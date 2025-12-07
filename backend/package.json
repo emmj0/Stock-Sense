@@ -1,0 +1,22 @@
+{
+  "name": "stocksense-backend",
+  "version": "0.1.0",
+  "description": "Backend for StockSense - auth APIs and landing page",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.2",
+    "google-auth-library": "^9.14.1",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

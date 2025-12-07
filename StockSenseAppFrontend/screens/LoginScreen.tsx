@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { API_URL } from '../config';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/navigation';
 import Animated, { FadeInDown } from 'react-native-reanimated';
@@ -23,11 +24,16 @@ export default function LoginScreen({ navigation }: Props) {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post('http://<YOUR_BACKEND_URL>/api/auth/login', { email, password });
-      await AsyncStorage.setItem('token', res.data.token);
-      navigation.replace('Dashboard');
-    } catch (err) {
-      Alert.alert('Login Failed', 'Invalid credentials');
+      const res = await axios.post(`${API_URL}/api/auth/login`, { email, password });
+      if (res?.data?.token) {
+        await AsyncStorage.setItem('token', res.data.token);
+        navigation.replace('Dashboard');
+      } else {
+        Alert.alert('Login Failed', 'No token received');
+      }
+    } catch (err: any) {
+      const msg = err?.response?.data?.message || 'Invalid credentials';
+      Alert.alert('Login Failed', msg);
     }
   };
 
