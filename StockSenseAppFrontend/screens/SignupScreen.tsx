@@ -4,6 +4,8 @@ import {
   Image, Alert, KeyboardAvoidingView, Platform, ScrollView, Dimensions 
 } from 'react-native';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { API_URL } from '../config';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/navigation';
@@ -20,13 +22,21 @@ export default function SignupScreen({ navigation }: Props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [name, setName] = useState('');
+
   const handleSignup = async () => {
     try {
-      await axios.post('http://<YOUR_BACKEND_URL>/api/auth/register', { email, password });
-      Alert.alert('Success', 'Account created successfully');
-      navigation.navigate('Login');
-    } catch (err) {
-      Alert.alert('Signup Failed', 'Please try again');
+      const res = await axios.post(`${API_URL}/api/auth/signup`, { name: name || 'User', email, password });
+      if (res?.data?.token) {
+        await AsyncStorage.setItem('token', res.data.token);
+        navigation.replace('Dashboard');
+      } else {
+        Alert.alert('Signup', 'Account created — please login');
+        navigation.navigate('Login');
+      }
+    } catch (err: any) {
+      const msg = err?.response?.data?.message || 'Please try again';
+      Alert.alert('Signup Failed', msg);
     }
   };
 
@@ -48,12 +58,20 @@ export default function SignupScreen({ navigation }: Props) {
           <Text style={styles.subtitle}>Join StockSense and start smart investing</Text>
 
           <TextInput
+            placeholder="Full name"
+            placeholderTextColor="#999"
+            style={styles.input}
+            value={name}
+            onChangeText={setName}
+          />
+          <TextInput
             placeholder="Email"
             placeholderTextColor="#999"
             style={styles.input}
             value={email}
             onChangeText={setEmail}
             autoCapitalize="none"
+            keyboardType="email-address"
           />
           <TextInput
             placeholder="Password"
