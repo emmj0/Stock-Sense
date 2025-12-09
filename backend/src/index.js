@@ -9,6 +9,7 @@ dotenv.config();
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const stockRoutes = require('./routes/stocks');
+const marketRoutes = require('./routes/market');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/stocks', stockRoutes);
+app.use('/api/market', marketRoutes);
 
 // Serve landing page
 app.use(express.static(path.join(__dirname, '..', 'public')));
@@ -43,6 +45,7 @@ async function start() {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
+    console.log('Connected to MongoDB');
 
     app.listen(PORT, () => {
       console.log(`Server started on port ${PORT}`);

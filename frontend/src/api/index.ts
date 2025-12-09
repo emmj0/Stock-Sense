@@ -54,3 +54,19 @@ export async function removePortfolioItem(symbol: string): Promise<PortfolioItem
   const { data } = await api.delete<{ portfolio: PortfolioItem[] }>(`/api/user/portfolio/${symbol}`);
   return data.portfolio;
 }
+
+export async function fetchIndexes(): Promise<any[]> {
+  const { data } = await api.get('/api/market/indexes');
+  return data.indexes || [];
+}
+
+export async function fetchSectors(): Promise<any[]> {
+  const { data } = await api.get('/api/market/sectors');
+  return data.sectors || [];
+}
+
+export async function fetchMarketWatch(filterType?: string, filterValue?: string): Promise<any[]> {
+  const params = filterType && filterValue ? { [filterType]: filterValue } : undefined;
+  const { data } = await api.get('/api/market/watch', { params });
+  return data.stocks || [];
+}
