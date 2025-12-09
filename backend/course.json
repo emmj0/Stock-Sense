@@ -1,0 +1,293 @@
+{
+  "courses": [
+    {
+      "id": "course_1",
+      "title": "Basics of Pakistan Stock Market",
+      "difficulty": "beginner",
+      "description": "Learn how the Pakistan Stock Exchange works, what shares are, and how people invest in real Pakistani companies.",
+      "content": {
+        "readingMaterial": "When you hear people say they are investing in the Pakistan Stock Exchange (PSX), it simply means they are buying small pieces of real companies. These pieces are called shares. When you buy a share of Lucky Cement or Engro, you become a small owner of that company.\n\nThe PSX has different indices like KSE-100, which shows the performance of the top 100 companies by market value. If the KSE-100 goes up, it generally means big companies in Pakistan performed well. But remember, index going up doesn’t guarantee every company is growing.\n\nCompanies list themselves on the PSX to raise money. When Engro or OGDC needs funds for expansion, instead of taking loans only, they can sell shares to investors. Investors buy shares because they expect the company to grow and the share price to increase in the future.\n\nShare prices go up and down every day depending on company performance, news, the economy of Pakistan, political situations, interest rates, and global markets. For example, if international oil prices go up, companies like PPL and OGDC might benefit.\n\nA common beginner mistake in Pakistan is investing blindly just because someone on Facebook or WhatsApp said “this stock will double.” Remember, investing is based on research, not rumors. Take time to learn before putting real money.",
+        "practiceQuestions": [
+          "What does buying a share of a company mean?",
+          "What does the KSE-100 index represent?",
+          "Name one thing that can affect share prices in Pakistan."
+        ]
+      },
+      "quizzes": [
+        {
+          "id": "quiz_1",
+          "question": "Which exchange is Pakistan’s main stock market?",
+          "options": ["NSE", "PSX", "NASDAQ", "BSE"],
+          "correctAnswer": "PSX"
+        },
+        {
+          "id": "quiz_2",
+          "question": "Buying shares means:",
+          "options": ["Donating to a company", "Becoming a small owner", "Getting a loan", "Paying tax"],
+          "correctAnswer": "Becoming a small owner"
+        }
+      ]
+    },
+
+    {
+      "id": "course_2",
+      "title": "Understanding Indices (KSE-100, KMI-30)",
+      "difficulty": "beginner",
+      "description": "Learn what stock indices are and how they show performance of the Pakistani market.",
+      "content": {
+        "readingMaterial": "An index is like a scorecard of selected companies. In Pakistan, the most famous index is KSE-100. It includes 100 top companies listed on PSX. When investors say “market upar hai,” they usually mean KSE-100 increased.\n\nKMI-30 is another index that represents 30 Shariah-compliant companies. This is useful for investors who prefer Islamic finance rules. For example, Meezan Bank follows Islamic principles and is often part of Shariah-compliant discussions.\n\nIndices help investors understand the overall market trend. If KSE-100 is falling for many days, it may indicate confidence is dropping due to economic or political reasons. However, some individual stocks may still perform well.\n\nMany beginners make the mistake of assuming if the index is rising, all companies are making profit. That’s not always true. Some companies may be falling even when KSE-100 is positive.\n\nIndices are not stocks themselves. You cannot “buy” KSE-100, but you can buy ETFs that follow an index when available. In Pakistan, ETF options are still growing and not as common as international markets.",
+        "practiceQuestions": [
+          "What does an index show?",
+          "What is KMI-30 based on?",
+          "Can every stock rise when the index rises?"
+        ]
+      },
+      "quizzes": [
+        {
+          "id": "quiz_1",
+          "question": "KSE-100 represents:",
+          "options": ["30 companies", "100 top PSX companies", "All listed companies", "Only banks"],
+          "correctAnswer": "100 top PSX companies"
+        },
+        {
+          "id": "quiz_2",
+          "question": "KMI-30 focuses on:",
+          "options": ["Technology companies", "Energy sector only", "Shariah-compliant companies", "Banks only"],
+          "correctAnswer": "Shariah-compliant companies"
+        }
+      ]
+    },
+
+    {
+      "id": "course_3",
+      "title": "Company Types & Sectors in Pakistan",
+      "difficulty": "intermediate",
+      "description": "Learn different types of listed companies in PSX like banks, oil & gas, cement, fertilizer, and tech.",
+      "content": {
+        "readingMaterial": "Companies on PSX are divided into sectors based on what they do. For example, Lucky Cement belongs to the cement sector, while PPL and OGDC belong to oil & gas. Engro is part of the fertilizer and chemicals space.\n\nSectors behave differently in different economic situations. When construction activity increases in Pakistan, cement companies like Lucky Cement may benefit. When international crude oil rises, oil companies like OGDC and PPL may show positive results.\n\nBanking sector, such as Meezan Bank and HBL, depends heavily on interest rates and economic conditions. When the State Bank changes interest rates, banking stocks may react immediately.\n\nUnderstanding sectors helps investors diversify. Instead of buying only cement shares, you can invest in multiple sectors to reduce risk. A big mistake new Pakistani investors make is buying only one hot sector because of hype.\n\nEvery sector has its own risks. For example, fertilizer companies depend on gas supply and government subsidies. So it is important to know the story behind every sector, not just the stock price.",
+        "practiceQuestions": [
+          "Name two sectors in PSX.",
+          "What affects the banking sector the most?",
+          "Why is diversification important?"
+        ]
+      },
+      "quizzes": [
+        {
+          "id": "quiz_1",
+          "question": "Lucky Cement belongs to which sector?",
+          "options": ["Oil & Gas", "Technology", "Cement", "Banking"],
+          "correctAnswer": "Cement"
+        },
+        {
+          "id": "quiz_2",
+          "question": "Diversification means:",
+          "options": ["Buying only one stock", "Investing in multiple sectors", "Following rumors", "Taking loans to invest"],
+          "correctAnswer": "Investing in multiple sectors"
+        }
+      ]
+    },
+
+    {
+      "id": "course_4",
+      "title": "Basic Fundamental Analysis (Pakistan)",
+      "difficulty": "intermediate",
+      "description": "Learn how to understand a company’s financial health using simple terms and Pakistani examples.",
+      "content": {
+        "readingMaterial": "Fundamental analysis means checking if a company is actually performing well. This includes its profits, sales, assets, and future plans. For example, if Engro keeps increasing profits every year, that may be a positive sign.\n\nLook at earnings (profit after expenses). If a company makes consistent earnings, it may be considered strong. But always compare with competitors. For example, compare Meezan Bank with other banks.\n\nDividends are payments companies give from their profit. Many Pakistani investors love dividend-paying companies like OGDC, because they receive regular income. But a high dividend alone doesn’t make a company good.\n\nA common mistake beginners make in Pakistan is only looking at “cheap share price,” thinking Rs.20 is better than Rs.200. Price alone means nothing—performance matters. Sometimes a Rs.200 stock is much stronger than a cheap Rs.20 stock.\n\nFundamental analysis helps avoid gambling. Instead of randomly buying because someone said buy, you study the company. Even reading quarterly reports on PSX website is a great habit.",
+        "practiceQuestions": [
+          "What does fundamental analysis check?",
+          "Do dividends guarantee a company is good?",
+          "Why is share price alone not enough?"
+        ]
+      },
+      "quizzes": [
+        {
+          "id": "quiz_1",
+          "question": "A dividend is:",
+          "options": ["A loan", "Company profit shared with investors", "Government tax", "Stock split"],
+          "correctAnswer": "Company profit shared with investors"
+        },
+        {
+          "id": "quiz_2",
+          "question": "Cheap share price means:",
+          "options": ["Always better", "Always risky", "Nothing by itself", "Guaranteed profit"],
+          "correctAnswer": "Nothing by itself"
+        }
+      ]
+    },
+
+    {
+      "id": "course_5",
+      "title": "Common Pakistani Investor Mistakes",
+      "difficulty": "beginner",
+      "description": "Learn common mistakes people make in Pakistan while investing and how you can avoid them.",
+      "content": {
+        "readingMaterial": "Many new investors in Pakistan rely on Facebook groups or WhatsApp friends for stock tips. This is risky because most of these tips have no research behind them. Always verify information from PSX or company announcements.\n\nAnother big mistake is short-term thinking. Pakistani markets can be volatile due to political news or economic decisions. Many people panic sell when the market drops and end up losing money.\n\nOverconfidence is common. After 1 or 2 profitable trades, investors think they are experts. Then they invest heavily in risky stocks and face losses. Slow and steady learning is better.\n\nNot diversifying is also dangerous. Buying only oil, or only banks, or only cement increases risk. Spread your investment across different sectors.\n\nLastly, emotional decisions are harmful. Never buy because someone says “engro chal raha hai.” Always check fundamentals. A smart Pakistani investor follows data, not hype.",
+        "practiceQuestions": [
+          "Why is following random tips risky?",
+          "What happens when investors panic sell?",
+          "Why is diversification important in Pakistan?"
+        ]
+      },
+      "quizzes": [
+        {
+          "id": "quiz_1",
+          "question": "A common beginner mistake is:",
+          "options": ["Reading company reports", "Checking fundamentals", "Following rumors", "Diversifying"],
+          "correctAnswer": "Following rumors"
+        },
+        {
+          "id": "quiz_2",
+          "question": "Emotional decisions usually:",
+          "options": ["Help profits", "Cause losses", "Are recommended", "Guarantee success"],
+          "correctAnswer": "Cause losses"
+        }
+      ]
+    },
+
+    {
+      "id": "course_6",
+      "title": "Risk Management for Pakistani Investors",
+      "difficulty": "intermediate",
+      "description": "Learn how to control your losses, manage risk, and avoid emotional decisions in Pakistani markets.",
+      "content": {
+        "readingMaterial": "Risk management simply means protecting your money from big losses. In Pakistan, markets can move suddenly due to political news, economic decisions, or sudden rupee changes. If you don’t plan your risk, you might panic and sell at the worst time.\n\nOne smart method is not investing all your money at once. For example, if you want to buy Lucky Cement worth Rs.100,000, don’t buy in one go. Buy in small parts over weeks. This reduces the effect of sudden price drops.\n\nStop-loss is a technique where you decide beforehand at which price you will sell your stock if it keeps falling. Example: if you buy OGDC at Rs.100, you may decide to sell if it goes below Rs.95. This prevents emotional decisions later.\n\nMany Pakistanis invest only in one stock. This is highly risky. Instead, divide your investment between energy, banking, cement, and fertilizers. If one sector falls, others may stay stable.\n\nAnother common mistake is investing borrowed money. Never take loans for investing. Markets are unpredictable. If price falls, you not only lose money but also face loan pressure.",
+        "practiceQuestions": [
+          "Why are Pakistani markets sometimes unpredictable?",
+          "What is a stop-loss?",
+          "Why should you not invest borrowed money?"
+        ]
+      },
+      "quizzes": [
+        {
+          "id": "quiz_1",
+          "question": "Risk management helps you:",
+          "options": ["Increase losses", "Protect capital", "Borrow more", "Trade daily"],
+          "correctAnswer": "Protect capital"
+        },
+        {
+          "id": "quiz_2",
+          "question": "Investing borrowed money is:",
+          "options": ["Safe", "Recommended", "Risky", "Guaranteed profit"],
+          "correctAnswer": "Risky"
+        }
+      ]
+    },
+
+    {
+      "id": "course_7",
+      "title": "Dividends & Islamic Investments (Pakistan)",
+      "difficulty": "intermediate",
+      "description": "Learn how Pakistani companies pay dividends and how Shariah-compliant investing works.",
+      "content": {
+        "readingMaterial": "Many Pakistani investors love dividend-paying companies like OGDC or Hubco, because dividends give regular income. Dividend is a portion of company profit given to shareholders. However, high dividend doesn’t always mean the company is growing.\n\nNot every company gives dividends. Some, like tech or growth companies, keep money for expansion. This is also a good sign if it is used wisely.\n\nIslamic investments follow Shariah rules. Pakistan has many Shariah-compliant companies. KMI-30 index tracks those. Example: Meezan Bank is a well-known Islamic banking institution.\n\nIn Islamic investing, earnings must not come from interest-based income. Also debt levels must be under certain limits. If a company violates Islamic rules, it may be removed from Shariah index.\n\nSome Pakistanis think Islamic stocks are always safer. That’s not correct. Islamic stocks can also fall. Always check fundamentals—profits, business model, and future plans.",
+        "practiceQuestions": [
+          "What is a dividend?",
+          "What does KMI-30 represent?",
+          "Are Islamic stocks risk-free?"
+        ]
+      },
+      "quizzes": [
+        {
+          "id": "quiz_1",
+          "question": "Dividend comes from:",
+          "options": ["Company losses", "Company profit", "Taxes", "Government"],
+          "correctAnswer": "Company profit"
+        },
+        {
+          "id": "quiz_2",
+          "question": "KMI-30 focuses on:",
+          "options": ["Banks only", "Shariah-compliant companies", "Foreign stocks", "Gold"],
+          "correctAnswer": "Shariah-compliant companies"
+        }
+      ]
+    },
+
+    {
+      "id": "course_8",
+      "title": "Beginner Technical Analysis (Pakistan)",
+      "difficulty": "intermediate",
+      "description": "Learn basic chart-reading methods used in Pakistani markets to understand price trends.",
+      "content": {
+        "readingMaterial": "Technical analysis means studying price charts instead of company reports. Example: if OGDC price keeps making higher highs, that indicates an uptrend.\n\nA candlestick chart shows open, high, low, and close price. Green candle usually means price went up, red means it went down. These charts are commonly used by Pakistani traders.\n\nSupport and resistance are important concepts. Support means a price where stock usually stops falling (buyers enter). Resistance means a price where stock usually stops rising (sellers enter). Example: Lucky Cement might repeatedly bounce around Rs.600 level.\n\nTrend lines help you understand direction. If price is mostly rising, trend is positive. But trend can change anytime due to economic news.\n\nBut remember: technical analysis is not magic. Many Pakistanis rely only on charts and ignore company fundamentals. The best approach is mixing both—charts plus financial knowledge.",
+        "practiceQuestions": [
+          "What does technical analysis study?",
+          "What is support in a chart?",
+          "Should technical analysis be used alone?"
+        ]
+      },
+      "quizzes": [
+        {
+          "id": "quiz_1",
+          "question": "A green candle usually means:",
+          "options": ["Price fell", "Price stayed same", "Price went up", "Market crashed"],
+          "correctAnswer": "Price went up"
+        },
+        {
+          "id": "quiz_2",
+          "question": "Support means:",
+          "options": ["Price stops rising", "Price stops falling", "Dividend payment", "Tax level"],
+          "correctAnswer": "Price stops falling"
+        }
+      ]
+    },
+
+    {
+      "id": "course_9",
+      "title": "Political & Economic Impact on PSX",
+      "difficulty": "advanced",
+      "description": "Learn how Pakistan’s economy, inflation, rupee rate, and government decisions affect stock movement.",
+      "content": {
+        "readingMaterial": "Pakistan’s stock market is very sensitive to economic news. If inflation rises, cost of doing business becomes high, which reduces company profit. This may push stock prices down.\n\nRupee depreciation affects companies differently. Oil & gas importers may suffer because imports become expensive. But exporters like textile companies may benefit because they earn in foreign currency.\n\nInterest rate changes by State Bank have huge effects. If interest rates rise, businesses borrow less. Banking sector might benefit from higher rates, but other sectors may slow down.\n\nPolitical instability also impacts PSX. When elections are near, foreign investors become cautious. As a result, volumes may fall and volatility increases.\n\nMany beginners ignore macro conditions and only look at stock price. Understanding Pakistan’s economy helps you invest smarter and avoid panic decisions.",
+        "practiceQuestions": [
+          "How does inflation affect companies?",
+          "Which sector benefits from rupee depreciation?",
+          "Do elections affect PSX confidence?"
+        ]
+      },
+      "quizzes": [
+        {
+          "id": "quiz_1",
+          "question": "When rupee falls, which sector may gain?",
+          "options": ["Importers", "Exporters", "Restaurants", "Retail only"],
+          "correctAnswer": "Exporters"
+        },
+        {
+          "id": "quiz_2",
+          "question": "Higher interest rates usually:",
+          "options": ["Increase borrowing", "Reduce borrowing", "Guaranteed profits", "Have no effect"],
+          "correctAnswer": "Reduce borrowing"
+        }
+      ]
+    },
+
+    {
+      "id": "course_10",
+      "title": "Long-Term Investing in Pakistan",
+      "difficulty": "advanced",
+      "description": "Learn how long-term investing works, how to build a portfolio, and avoid short-term panic.",
+      "content": {
+        "readingMaterial": "Long-term investing means holding good companies for years, not days. Pakistan has many companies that have grown slowly over the last decade.\n\nCompounding is powerful. If a company grows profits every year, your investment grows too. Dividends plus price increase can build wealth.\n\nInstead of buying daily, invest monthly using a fixed amount. This method is called averaging. It reduces the effect of sudden price jumps.\n\nBeginners in Pakistan often check stock price multiple times a day. That increases anxiety and panic decisions. Long-term investors check quarterly or monthly and study results.\n\nGood long-term stocks usually have strong business models like banking, energy, fertilizers, or cement depending on demand and economic cycle. But research is always required.",
+        "practiceQuestions": [
+          "What is long-term investing?",
+          "Why is averaging helpful?",
+          "How often should long-term investors check prices?"
+        ]
+      },
+      "quizzes": [
+        {
+          "id": "quiz_1",
+          "question": "Compounding means:",
+          "options": ["Quick profit", "Growing slowly every year", "Borrowing money", "Daily trading"],
+          "correctAnswer": "Growing slowly every year"
+        },
+        {
+          "id": "quiz_2",
+          "question": "Averaging means:",
+          "options": ["Buying everything at once", "Monthly investment in small parts", "Only buying cheap stocks", "Selling every day"],
+          "correctAnswer": "Monthly investment in small parts"
+        }
+      ]
+    }
+  ]
+}

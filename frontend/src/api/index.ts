@@ -70,3 +70,49 @@ export async function fetchMarketWatch(filterType?: string, filterValue?: string
   const { data } = await api.get('/api/market/watch', { params });
   return data.stocks || [];
 }
+
+export async function fetchSectorByCode(code: string): Promise<any> {
+  const { data } = await api.get(`/api/market/sectors/${code}`);
+  return data.sector;
+}
+
+export async function fetchIndexByName(name: string): Promise<any> {
+  const { data } = await api.get(`/api/market/indexes/${name}`);
+  return data.index;
+}
+
+// Courses API
+export async function fetchCourses(): Promise<any> {
+  const { data } = await api.get('/api/courses');
+  return data;
+}
+
+export async function fetchCourse(courseId: string): Promise<any> {
+  const { data } = await api.get(`/api/courses/${courseId}`);
+  return data;
+}
+
+export async function startCourse(courseId: string): Promise<any> {
+  const { data } = await api.post(`/api/courses/${courseId}/start`);
+  return data;
+}
+
+export async function markReadingComplete(courseId: string): Promise<any> {
+  const { data } = await api.post(`/api/courses/${courseId}/reading-complete`);
+  return data;
+}
+
+export async function markPracticeComplete(courseId: string): Promise<any> {
+  const { data } = await api.post(`/api/courses/${courseId}/practice-complete`);
+  return data;
+}
+
+export async function submitQuiz(courseId: string, answers: { quizId: string; selectedAnswer: string }[]): Promise<any> {
+  const { data } = await api.post(`/api/courses/${courseId}/submit-quiz`, { answers });
+  return data;
+}
+
+export async function fetchUserProgress(): Promise<any> {
+  const { data } = await api.get('/api/courses/user/progress');
+  return data;
+}
