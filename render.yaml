@@ -3,7 +3,7 @@ services:
     name: stocksense-model-api
     runtime: python
     rootDir: StockSense-model
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install --upgrade pip setuptools wheel && pip install -r requirements.txt
     startCommand: gunicorn api:app --bind 0.0.0.0:$PORT --timeout 120
     healthCheckPath: /api/health
     envVars:
