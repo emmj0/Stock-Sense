@@ -5,6 +5,7 @@ import SignupPage from './pages/SignupPage';
 import PreferencesPage from './pages/PreferencesPage';
 import DashboardPage from './pages/DashboardPage';
 import SettingsPage from './pages/SettingsPage';
+import MarketWatchPage from './pages/MarketWatchPage';
 import { useAuth } from './providers/AuthProvider';
 import TopNav from './components/TopNav';
 
@@ -49,6 +50,7 @@ export default function App() {
           <Route path="/" element={user ? <Navigate to="/dashboard" /> : <LandingPage />} />
           <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <LoginPage />} />
           <Route path="/signup" element={user ? <Navigate to="/dashboard" /> : <SignupPage />} />
+          <Route path="/market-watch" element={<MarketWatchPage />} />
           <Route
             path="/preferences"
             element={

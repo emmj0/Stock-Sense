@@ -71,3 +71,37 @@ select:focus {
   border-color: #3b82f6 !important;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes riseIn {
+  0% { transform: translateY(16px) scaleY(0.9); opacity: 0; }
+  100% { transform: translateY(0) scaleY(1); opacity: 1; }
+}
+
+@keyframes lineGlow {
+  0% { box-shadow: 0 0 0 rgba(59, 130, 246, 0.25); }
+  50% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
+  100% { box-shadow: 0 0 0 rgba(59, 130, 246, 0.25); }
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(16px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-float-slow { animation: float 9s ease-in-out infinite; }
+.animate-gradient { background-size: 200% 200%; animation: gradientShift 6s ease infinite; }
+.animate-rise { animation: riseIn 0.9s ease forwards; transform-origin: bottom; }
+.animate-line { animation: lineGlow 3s ease-in-out infinite; }
+.animate-slide-up { animation: slideUp 0.7s ease forwards; }
