@@ -6,6 +6,9 @@ import PreferencesPage from './pages/PreferencesPage';
 import DashboardPage from './pages/DashboardPage';
 import SettingsPage from './pages/SettingsPage';
 import MarketWatchPage from './pages/MarketWatchPage';
+import SectorsPage from './pages/SectorsPage';
+import IndexesPage from './pages/IndexesPage';
+import LearnPage from './pages/LearnPage';
 import { useAuth } from './providers/AuthProvider';
 import TopNav from './components/TopNav';
 
@@ -33,7 +36,6 @@ function RequireAuth({ children }: { children: JSX.Element }) {
 
 export default function App() {
   const { user, loading } = useAuth();
-  const location = useLocation();
 
   return (
     <div className="min-h-screen bg-dark-bg text-white">
@@ -51,6 +53,30 @@ export default function App() {
           <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <LoginPage />} />
           <Route path="/signup" element={user ? <Navigate to="/dashboard" /> : <SignupPage />} />
           <Route path="/market-watch" element={<MarketWatchPage />} />
+          <Route
+            path="/sectors"
+            element={
+              <RequireAuth>
+                <SectorsPage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/indexes"
+            element={
+              <RequireAuth>
+                <IndexesPage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/learn"
+            element={
+              <RequireAuth>
+                <LearnPage />
+              </RequireAuth>
+            }
+          />
           <Route
             path="/preferences"
             element={

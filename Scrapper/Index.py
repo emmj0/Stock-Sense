@@ -1,5 +1,7 @@
 import time
 import datetime
+import os
+from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait, Select
@@ -7,14 +9,17 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from pymongo import MongoClient
 
+# Load environment variables
+load_dotenv()
+
 # ======================================
 # CONFIG
 # ======================================
 PSX_URL = "https://dps.psx.com.pk/indices"
 WAIT_TIME = 30
 
-MONGO_URI = "mongodb://localhost:27017/"
-DB_NAME = "psx"
+MONGO_URI = os.getenv("MONGO_URI")
+DB_NAME = os.getenv("DB_NAME", "psx")
 MARKET_COLLECTION_NAME = "index"
 
 # ======================================

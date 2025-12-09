@@ -13,7 +13,7 @@ from pymongo import MongoClient
 PSX_URL = "https://dps.psx.com.pk/"
 WAIT_TIME = 20
 
-MONGO_URI = "mongodb://localhost:27017/"
+MONGO_URI = "mongodb+srv://practicehours08_db_user:6BbpygkmLhvhsd8I@cluster0.aqwkqsw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 DB_NAME = "psx"
 COLLECTION_NAME = "market_watch"
 

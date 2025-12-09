@@ -110,4 +110,66 @@ router.get('/watch', async (req, res) => {
   }
 });
 
+// GET /api/market/sectors/:code - Get single sector with companies
+router.get('/sectors/:code', async (req, res) => {
+  try {
+    const { code } = req.params;
+    const db = mongoose.connection.db;
+
+    let sector = null;
+    for (const collName of ['psx.sector', 'psx_sector', 'sector', 'sectors']) {
+      try {
+        const data = await db.collection(collName).findOne({ code });
+        if (data) {
+          console.log(`Found sector ${code} in collection: ${collName}`);
+          sector = data;
+          break;
+        }
+      } catch (e) {
+        continue;
+      }
+    }
+
+    if (!sector) {
+      return res.status(404).json({ message: 'Sector not found' });
+    }
+
+    res.json({ sector });
+  } catch (err) {
+    console.error('Failed to fetch sector', err);
+    res.status(500).json({ message: 'Unable to fetch sector', error: err.message });
+  }
+});
+
+// GET /api/market/indexes/:name - Get single index with constituents
+router.get('/indexes/:name', async (req, res) => {
+  try {
+    const { name } = req.params;
+    const db = mongoose.connection.db;
+
+    let index = null;
+    for (const collName of ['psx.index', 'psx_index', 'index', 'indexes']) {
+      try {
+        const data = await db.collection(collName).findOne({ index: name });
+        if (data) {
+          console.log(`Found index ${name} in collection: ${collName}`);
+          index = data;
+          break;
+        }
+      } catch (e) {
+        continue;
+      }
+    }
+
+    if (!index) {
+      return res.status(404).json({ message: 'Index not found' });
+    }
+
+    res.json({ index });
+  } catch (err) {
+    console.error('Failed to fetch index', err);
+    res.status(500).json({ message: 'Unable to fetch index', error: err.message });
+  }
+});
+
 module.exports = router;
