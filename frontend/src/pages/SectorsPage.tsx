@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchSectors, fetchSectorByCode } from '../api';
 import { HiOutlineChevronDown, HiOutlineChevronUp, HiOutlineTrendingUp, HiOutlineTrendingDown, HiOutlineMinusCircle, HiOutlineRefresh } from 'react-icons/hi';
+import { Loader, TableSkeletonLoader } from '../components/Loader';
 
 interface Company {
   SYMBOL: string;
@@ -91,10 +92,7 @@ export default function SectorsPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto" />
-          <p className="mt-4 text-gray-600 font-medium">Loading sectors...</p>
-        </div>
+        <Loader text="Loading sectors..." />
       </div>
     );
   }
@@ -213,9 +211,8 @@ export default function SectorsPage() {
                 {isExpanded && (
                   <div className="border-t border-gray-200 bg-gray-50">
                     {loadingDetails === sector.code ? (
-                      <div className="p-8 text-center">
-                        <div className="w-8 h-8 border-3 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto" />
-                        <p className="mt-3 text-gray-500">Loading companies...</p>
+                      <div className="p-8">
+                        <Loader text="Loading companies..." size="sm" />
                       </div>
                     ) : companies.length > 0 ? (
                       <div className="overflow-x-auto">

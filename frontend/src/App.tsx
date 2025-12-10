@@ -4,6 +4,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import PreferencesPage from './pages/PreferencesPage';
 import DashboardPage from './pages/DashboardPage';
+import HoldingsPage from './pages/HoldingsPage';
 import SettingsPage from './pages/SettingsPage';
 import MarketWatchPage from './pages/MarketWatchPage';
 import SectorsPage from './pages/SectorsPage';
@@ -90,6 +91,14 @@ export default function App() {
             element={
               <RequireAuth>
                 <DashboardPage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/holdings"
+            element={
+              <RequireAuth>
+                <HoldingsPage />
               </RequireAuth>
             }
           />

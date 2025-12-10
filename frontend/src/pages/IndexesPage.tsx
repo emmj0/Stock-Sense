@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchIndexes, fetchIndexByName } from '../api';
 import { HiOutlineChevronDown, HiOutlineChevronUp, HiOutlineTrendingUp, HiOutlineTrendingDown, HiOutlineRefresh, HiOutlineChartBar } from 'react-icons/hi';
+import { Loader, TableSkeletonLoader } from '../components/Loader';
 
 interface Constituent {
   SYMBOL: string;
@@ -101,10 +102,7 @@ export default function IndexesPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto" />
-          <p className="mt-4 text-gray-600 font-medium">Loading indexes...</p>
-        </div>
+        <Loader text="Loading indexes..." />
       </div>
     );
   }
@@ -243,9 +241,8 @@ export default function IndexesPage() {
                     </div>
 
                     {loadingDetails === idx.index ? (
-                      <div className="p-8 text-center">
-                        <div className="w-8 h-8 border-3 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto" />
-                        <p className="mt-3 text-gray-500">Loading constituents...</p>
+                      <div className="p-8">
+                        <Loader text="Loading constituents..." size="sm" />
                       </div>
                     ) : constituents.length > 0 ? (
                       <div className="overflow-x-auto">

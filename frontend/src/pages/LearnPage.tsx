@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchCourses, fetchCourse, startCourse, markReadingComplete, markPracticeComplete, submitQuiz } from '../api';
+import { Loader, SkeletonLoader } from '../components/Loader';
 import { 
   HiOutlineLockClosed, 
   HiOutlineCheckCircle, 
@@ -215,10 +216,7 @@ export default function LearnPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto" />
-          <p className="mt-4 text-gray-600 font-medium">Loading courses...</p>
-        </div>
+        <Loader text="Loading courses..." />
       </div>
     );
   }
@@ -290,9 +288,7 @@ export default function LearnPage() {
         {/* Course Content */}
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {courseLoading ? (
-            <div className="text-center py-16">
-              <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto" />
-            </div>
+            <Loader text="Loading course..." />
           ) : (
             <>
               {/* Reading Tab */}

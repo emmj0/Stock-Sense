@@ -63,6 +63,12 @@ export default function TopNav() {
                 Dashboard
               </button>
               <button
+                onClick={() => navigate('/holdings')}
+                className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors"
+              >
+                Holdings
+              </button>
+              <button
                 onClick={() => navigate('/market-watch')}
                 className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors"
               >

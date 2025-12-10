@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo } from 'react';
 import { fetchMarketWatch, fetchIndexes, fetchSectors } from '../api';
+import { Loader, TableSkeletonLoader } from '../components/Loader';
 
 interface Stock {
   _id: string;
@@ -217,9 +218,8 @@ export default function MarketWatchPage() {
         )}
 
         {loading ? (
-          <div className="text-center py-12">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600" />
-            <p className="mt-4 text-gray-600">Loading market data...</p>
+          <div className="py-12">
+            <Loader text="Loading market data..." />
           </div>
         ) : filteredStocks.length === 0 ? (
           <div className="rounded-lg border border-gray-200 bg-gray-50 p-12 text-center">

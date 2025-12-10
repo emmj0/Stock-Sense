@@ -119,31 +119,31 @@ export default function SettingsPage() {
   };
 
   return (
-    <main className="min-h-screen bg-white py-8">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-white py-6 sm:py-8">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl sm:text-5xl font-display font-bold text-black mb-2">Settings</h1>
-          <p className="text-lg text-gray-600">Manage your account and preferences</p>
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-black mb-2">Settings</h1>
+          <p className="text-base sm:text-lg text-gray-600">Manage your account and preferences</p>
         </div>
 
         {/* Alerts */}
         {error && (
           <div className="mb-6 p-4 rounded-lg bg-red-50 border border-red-200">
-            <p className="text-red-700 font-medium">{error}</p>
+            <p className="text-red-700 font-medium text-sm sm:text-base">{error}</p>
           </div>
         )}
         {message && (
           <div className="mb-6 p-4 rounded-lg bg-green-50 border border-green-200">
-            <p className="text-green-700 font-medium">{message}</p>
+            <p className="text-green-700 font-medium text-sm sm:text-base">{message}</p>
           </div>
         )}
 
         {/* Tabs */}
-        <div className="mb-8 flex gap-4 border-b border-gray-200 overflow-x-auto">
+        <div className="mb-8 flex gap-2 sm:gap-4 border-b border-gray-200 overflow-x-auto">
           <button
             onClick={() => setActiveTab('profile')}
-            className={`px-6 py-4 font-semibold transition-colors border-b-2 whitespace-nowrap ${
+            className={`px-3 sm:px-6 py-3 sm:py-4 font-semibold transition-colors border-b-2 whitespace-nowrap text-sm sm:text-base ${
               activeTab === 'profile'
                 ? 'border-blue-600 text-black'
                 : 'border-transparent text-gray-600 hover:text-gray-700'
@@ -153,18 +153,18 @@ export default function SettingsPage() {
           </button>
           <button
             onClick={() => setActiveTab('learning')}
-            className={`px-6 py-4 font-semibold transition-colors border-b-2 whitespace-nowrap flex items-center gap-2 ${
+            className={`px-3 sm:px-6 py-3 sm:py-4 font-semibold transition-colors border-b-2 whitespace-nowrap text-sm sm:text-base flex items-center gap-1 sm:gap-2 ${
               activeTab === 'learning'
                 ? 'border-blue-600 text-black'
                 : 'border-transparent text-gray-600 hover:text-gray-700'
             }`}
           >
-            <HiOutlineAcademicCap className="w-5 h-5" />
-            Learning Progress
+            <HiOutlineAcademicCap className="w-4 h-4 sm:w-5 sm:h-5" />
+            <span className="hidden sm:inline">Learning</span>
           </button>
           <button
             onClick={() => setActiveTab('security')}
-            className={`px-6 py-4 font-semibold transition-colors border-b-2 whitespace-nowrap ${
+            className={`px-3 sm:px-6 py-3 sm:py-4 font-semibold transition-colors border-b-2 whitespace-nowrap text-sm sm:text-base ${
               activeTab === 'security'
                 ? 'border-blue-600 text-black'
                 : 'border-transparent text-gray-600 hover:text-gray-700'
@@ -174,7 +174,7 @@ export default function SettingsPage() {
           </button>
           <button
             onClick={() => setActiveTab('account')}
-            className={`px-6 py-4 font-semibold transition-colors border-b-2 whitespace-nowrap ${
+            className={`px-3 sm:px-6 py-3 sm:py-4 font-semibold transition-colors border-b-2 whitespace-nowrap text-sm sm:text-base ${
               activeTab === 'account'
                 ? 'border-blue-600 text-black'
                 : 'border-transparent text-gray-600 hover:text-gray-700'
@@ -187,29 +187,29 @@ export default function SettingsPage() {
         {/* Profile Tab */}
         {activeTab === 'profile' && (
           <div className="space-y-6">
-            <div className="rounded-lg border border-gray-200 bg-white p-8">
-              <h2 className="text-2xl font-display font-bold text-black mb-6">Profile Information</h2>
+            <div className="rounded-lg border border-gray-200 bg-white p-4 sm:p-6 lg:p-8">
+              <h2 className="text-xl sm:text-2xl font-display font-bold text-black mb-6">Profile Information</h2>
 
               {!isEditing ? (
                 <div className="space-y-6">
-                  <div className="flex items-center gap-6">
-                    <div className="w-20 h-20 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-2xl">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg sm:text-2xl flex-shrink-0">
                       {user?.name.charAt(0).toUpperCase()}
                     </div>
                     <div>
-                      <p className="text-gray-600 text-sm">Name</p>
-                      <p className="text-black text-xl font-semibold">{user?.name}</p>
+                      <p className="text-gray-600 text-xs sm:text-sm">Name</p>
+                      <p className="text-black text-lg sm:text-xl font-semibold">{user?.name}</p>
                     </div>
                   </div>
 
                   <div>
-                    <p className="text-gray-600 text-sm mb-2">Email Address</p>
-                    <p className="text-black text-lg">{user?.email}</p>
+                    <p className="text-gray-600 text-xs sm:text-sm mb-2">Email Address</p>
+                    <p className="text-black text-base sm:text-lg break-all">{user?.email}</p>
                   </div>
 
                   <button
                     onClick={() => setIsEditing(true)}
-                    className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+                    className="px-4 sm:px-6 py-2.5 sm:py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base"
                   >
                     Edit Profile
                   </button>
@@ -223,7 +223,7 @@ export default function SettingsPage() {
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-black placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 transition-all"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-gray-300 bg-white text-black text-sm sm:text-base placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 transition-all"
                     />
                   </div>
 
@@ -234,20 +234,20 @@ export default function SettingsPage() {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-black placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 transition-all"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-gray-300 bg-white text-black text-sm sm:text-base placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 transition-all"
                     />
                   </div>
 
-                  <div className="flex gap-3">
+                  <div className="flex flex-col sm:flex-row gap-3">
                     <button
                       onClick={handleSaveProfile}
-                      className="flex-1 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+                      className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base"
                     >
                       Save Changes
                     </button>
                     <button
                       onClick={() => setIsEditing(false)}
-                      className="flex-1 px-6 py-3 bg-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-400 transition-colors"
+                      className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-400 transition-colors text-sm sm:text-base"
                     >
                       Cancel
                     </button>
@@ -279,32 +279,32 @@ export default function SettingsPage() {
                     </p>
                   </div>
 
-                  <div className="rounded-xl bg-gradient-to-br from-emerald-600 to-teal-600 p-6 text-white">
+                  <div className="rounded-xl bg-gradient-to-br from-emerald-600 to-teal-600 p-4 sm:p-6 text-white">
                     <div className="flex items-center gap-3 mb-2">
-                      <HiOutlineChartBar className="w-6 h-6" />
-                      <span className="text-sm font-medium text-emerald-100">Progress</span>
+                      <HiOutlineChartBar className="w-5 h-5 sm:w-6 sm:h-6" />
+                      <span className="text-xs sm:text-sm font-medium text-emerald-100">Progress</span>
                     </div>
-                    <p className="text-3xl font-bold">
+                    <p className="text-2xl sm:text-3xl font-bold">
                       {learningStats.totalCourses > 0 
                         ? Math.round((learningStats.totalCoursesCompleted / learningStats.totalCourses) * 100) 
                         : 0}%
                     </p>
                   </div>
 
-                  <div className="rounded-xl bg-gradient-to-br from-purple-600 to-pink-600 p-6 text-white">
+                  <div className="rounded-xl bg-gradient-to-br from-purple-600 to-pink-600 p-4 sm:p-6 text-white">
                     <div className="flex items-center gap-3 mb-2">
-                      <HiOutlineBookOpen className="w-6 h-6" />
-                      <span className="text-sm font-medium text-purple-100">Current Level</span>
+                      <HiOutlineBookOpen className="w-5 h-5 sm:w-6 sm:h-6" />
+                      <span className="text-xs sm:text-sm font-medium text-purple-100">Current Level</span>
                     </div>
-                    <p className="text-3xl font-bold">
+                    <p className="text-2xl sm:text-3xl font-bold">
                       {learningStats.currentCourseIndex + 1}
                     </p>
                   </div>
                 </div>
 
                 {/* Progress Bar */}
-                <div className="rounded-lg border border-gray-200 bg-white p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Overall Learning Progress</h3>
+                <div className="rounded-lg border border-gray-200 bg-white p-4 sm:p-6">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">Overall Learning Progress</h3>
                   <div className="relative">
                     <div className="h-4 bg-gray-200 rounded-full overflow-hidden">
                       <div 
@@ -316,18 +316,18 @@ export default function SettingsPage() {
                         }}
                       />
                     </div>
-                    <div className="flex justify-between mt-2 text-sm text-gray-500">
+                    <div className="flex justify-between mt-2 text-xs sm:text-sm text-gray-500">
                       <span>Start</span>
-                      <span>{learningStats.totalCoursesCompleted} of {learningStats.totalCourses} courses</span>
+                      <span className="text-center">{learningStats.totalCoursesCompleted} of {learningStats.totalCourses}</span>
                       <span>Expert</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Course List with Progress */}
-                <div className="rounded-lg border border-gray-200 bg-white p-6">
-                  <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-lg font-semibold text-gray-900">Your Courses</h3>
+                <div className="rounded-lg border border-gray-200 bg-white p-4 sm:p-6">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 mb-6">
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900">Your Courses</h3>
                     <Link 
                       to="/learn"
                       className="text-sm text-blue-600 hover:text-blue-700 font-medium"
@@ -353,68 +353,66 @@ export default function SettingsPage() {
                       return (
                         <div 
                           key={course.id}
-                          className={`p-4 rounded-xl border-2 transition-all ${
+                          className={`p-3 sm:p-4 rounded-xl border-2 transition-all ${
                             course.isUnlocked 
                               ? 'border-gray-200 hover:border-blue-300 hover:shadow-md' 
                               : 'border-gray-100 bg-gray-50 opacity-60'
                           }`}
                         >
-                          <div className="flex items-start justify-between gap-4">
-                            <div className="flex items-start gap-4">
-                              {/* Course Number / Status Icon */}
-                              <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                                course.progress.status === 'completed' 
-                                  ? 'bg-green-100' 
-                                  : course.isUnlocked 
-                                    ? 'bg-blue-100' 
-                                    : 'bg-gray-100'
-                              }`}>
-                                {course.progress.status === 'completed' ? (
-                                  <HiOutlineCheckCircle className="w-6 h-6 text-green-600" />
-                                ) : course.isUnlocked ? (
-                                  <span className="text-lg font-bold text-blue-600">{index + 1}</span>
-                                ) : (
-                                  <HiOutlineLockClosed className="w-5 h-5 text-gray-400" />
-                                )}
+                          <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
+                            {/* Course Number / Status Icon */}
+                            <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                              course.progress.status === 'completed' 
+                                ? 'bg-green-100' 
+                                : course.isUnlocked 
+                                  ? 'bg-blue-100' 
+                                  : 'bg-gray-100'
+                            }`}>
+                              {course.progress.status === 'completed' ? (
+                                <HiOutlineCheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
+                              ) : course.isUnlocked ? (
+                                <span className="text-base sm:text-lg font-bold text-blue-600">{index + 1}</span>
+                              ) : (
+                                <HiOutlineLockClosed className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+                              )}
+                            </div>
+
+                            <div className="flex-1 min-w-0">
+                              <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-1">
+                                <h4 className="font-semibold text-gray-900 text-sm sm:text-base truncate">{course.title}</h4>
+                                <span className={`text-xs px-2 py-0.5 rounded-full whitespace-nowrap ${difficultyColors[course.difficulty as keyof typeof difficultyColors]}`}>
+                                  {course.difficulty}
+                                </span>
                               </div>
+                              <p className="text-xs sm:text-sm text-gray-500 line-clamp-1">{course.description}</p>
 
-                              <div className="flex-1">
-                                <div className="flex items-center gap-2 mb-1">
-                                  <h4 className="font-semibold text-gray-900">{course.title}</h4>
-                                  <span className={`text-xs px-2 py-0.5 rounded-full ${difficultyColors[course.difficulty as keyof typeof difficultyColors]}`}>
-                                    {course.difficulty}
-                                  </span>
-                                </div>
-                                <p className="text-sm text-gray-500 line-clamp-1">{course.description}</p>
-
-                                {/* Progress Details */}
-                                {course.isUnlocked && course.progress.status !== 'not_started' && (
-                                  <div className="mt-3 flex flex-wrap items-center gap-3">
-                                    <div className="flex items-center gap-1.5">
-                                      <div className={`w-2 h-2 rounded-full ${course.progress.readingCompleted ? 'bg-green-500' : 'bg-gray-300'}`} />
-                                      <span className="text-xs text-gray-500">Reading</span>
-                                    </div>
-                                    <div className="flex items-center gap-1.5">
-                                      <div className={`w-2 h-2 rounded-full ${course.progress.practiceCompleted ? 'bg-green-500' : 'bg-gray-300'}`} />
-                                      <span className="text-xs text-gray-500">Practice</span>
-                                    </div>
-                                    <div className="flex items-center gap-1.5">
-                                      <div className={`w-2 h-2 rounded-full ${course.progress.quizPassed ? 'bg-green-500' : 'bg-gray-300'}`} />
-                                      <span className="text-xs text-gray-500">Quiz</span>
-                                    </div>
-                                    {course.progress.quizScore > 0 && (
-                                      <span className="text-xs font-medium text-blue-600">
-                                        Score: {course.progress.quizScore}%
-                                      </span>
-                                    )}
+                              {/* Progress Details */}
+                              {course.isUnlocked && course.progress.status !== 'not_started' && (
+                                <div className="mt-3 flex flex-wrap items-center gap-2 sm:gap-3">
+                                  <div className="flex items-center gap-1.5">
+                                    <div className={`w-2 h-2 rounded-full ${course.progress.readingCompleted ? 'bg-green-500' : 'bg-gray-300'}`} />
+                                    <span className="text-xs text-gray-500">Reading</span>
                                   </div>
-                                )}
-                              </div>
+                                  <div className="flex items-center gap-1.5">
+                                    <div className={`w-2 h-2 rounded-full ${course.progress.practiceCompleted ? 'bg-green-500' : 'bg-gray-300'}`} />
+                                    <span className="text-xs text-gray-500">Practice</span>
+                                  </div>
+                                  <div className="flex items-center gap-1.5">
+                                    <div className={`w-2 h-2 rounded-full ${course.progress.quizPassed ? 'bg-green-500' : 'bg-gray-300'}`} />
+                                    <span className="text-xs text-gray-500">Quiz</span>
+                                  </div>
+                                  {course.progress.quizScore > 0 && (
+                                    <span className="text-xs font-medium text-blue-600">
+                                      {course.progress.quizScore}%
+                                    </span>
+                                  )}
+                                </div>
+                              )}
                             </div>
 
                             {/* Status Badge */}
-                            <div className="flex flex-col items-end gap-2">
-                              <span className={`text-xs px-3 py-1 rounded-full border ${statusColors[course.progress.status]}`}>
+                            <div className="flex flex-col items-start sm:items-end gap-2">
+                              <span className={`text-xs px-3 py-1 rounded-full border whitespace-nowrap ${statusColors[course.progress.status]}`}>
                                 {course.progress.status === 'completed' ? 'Completed' 
                                   : course.progress.status === 'in_progress' ? 'In Progress' 
                                   : course.isUnlocked ? 'Not Started' : 'Locked'}

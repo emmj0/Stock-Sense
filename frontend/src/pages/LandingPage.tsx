@@ -283,42 +283,42 @@ export default function LandingPage() {
             <div className="space-y-6">
               <div className="relative overflow-hidden">
                 <div 
-                  className="rounded-2xl border-2 border-gray-300 bg-white p-8 shadow-lg hover:shadow-xl transition-all duration-500 ease-out"
+                  className="rounded-2xl border-2 border-gray-300 bg-white p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-500 ease-out"
                   key={indexSlide}
                   style={{ animation: 'slideIn 0.5s ease-out' }}
                 >
-                  <div className="flex items-center justify-between mb-6">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6">
                     <div>
-                      <p className="text-sm text-gray-500 uppercase tracking-wide font-medium">Index</p>
-                      <p className="text-4xl font-bold text-black">{currentIndex.index || 'N/A'}</p>
+                      <p className="text-xs sm:text-sm text-gray-500 uppercase tracking-wide font-medium">Index</p>
+                      <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mt-1 sm:mt-0">{currentIndex.index || 'N/A'}</p>
                     </div>
-                    <div className="text-right">
-                      <p className={`text-3xl font-bold ${parseFloat(currentIndex.change) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                    <div className="text-right mt-3 sm:mt-0">
+                      <p className={`text-xl sm:text-2xl lg:text-3xl font-bold ${parseFloat(currentIndex.change) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                         {parseFloat(currentIndex.change) >= 0 ? '+' : ''}{currentIndex.change}
                       </p>
-                      <p className={`text-lg font-medium ${parseFloat(currentIndex.percent_change) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                      <p className={`text-base sm:text-lg font-medium ${parseFloat(currentIndex.percent_change) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                         {currentIndex.percent_change}
                       </p>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-4 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
-                      <p className="text-sm text-gray-600 font-medium">Current</p>
-                      <p className="text-2xl font-bold text-black mt-1">{currentIndex.current}</p>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-3 sm:p-4 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
+                      <p className="text-xs sm:text-sm text-gray-600 font-medium">Current</p>
+                      <p className="text-lg sm:text-2xl font-bold text-black mt-1">{currentIndex.current}</p>
                     </div>
-                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-4 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
-                      <p className="text-sm text-gray-600 font-medium">High</p>
-                      <p className="text-2xl font-bold text-black mt-1">{currentIndex.high}</p>
+                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-3 sm:p-4 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
+                      <p className="text-xs sm:text-sm text-gray-600 font-medium">High</p>
+                      <p className="text-lg sm:text-2xl font-bold text-black mt-1">{currentIndex.high}</p>
                     </div>
-                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-4 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
-                      <p className="text-sm text-gray-600 font-medium">Low</p>
-                      <p className="text-2xl font-bold text-black mt-1">{currentIndex.low}</p>
+                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-3 sm:p-4 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
+                      <p className="text-xs sm:text-sm text-gray-600 font-medium">Low</p>
+                      <p className="text-lg sm:text-2xl font-bold text-black mt-1">{currentIndex.low}</p>
                     </div>
                   </div>
 
-                  <p className="text-sm text-gray-500 mt-6">
-                    Last updated: {currentIndex.scraped_at ? new Date(currentIndex.scraped_at.$date).toLocaleString() : 'N/A'}
+                  <p className="text-xs sm:text-sm text-gray-500 mt-6">
+                    Last updated: {currentIndex.scraped_at ? new Date(typeof currentIndex.scraped_at === 'string' ? currentIndex.scraped_at : currentIndex.scraped_at.$date).toLocaleString() : 'N/A'}
                   </p>
                 </div>
               </div>
@@ -365,41 +365,41 @@ export default function LandingPage() {
             <div className="space-y-6">
               <div className="relative overflow-hidden">
                 <div 
-                  className="rounded-2xl border-2 border-gray-300 bg-white p-8 shadow-lg hover:shadow-xl transition-all duration-500 ease-out"
+                  className="rounded-2xl border-2 border-gray-300 bg-white p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-500 ease-out"
                   key={sectorSlide}
                   style={{ animation: 'slideIn 0.5s ease-out' }}
                 >
-                  <div className="flex items-center justify-between mb-6">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6">
                     <div>
-                      <p className="text-sm text-gray-500 uppercase tracking-wide font-medium">Sector</p>
-                      <p className="text-3xl font-bold text-black">{currentSector.name}</p>
+                      <p className="text-xs sm:text-sm text-gray-500 uppercase tracking-wide font-medium">Sector</p>
+                      <p className="text-2xl sm:text-3xl font-bold text-black mt-1 sm:mt-0">{currentSector.name}</p>
                     </div>
-                    <div className="px-4 py-2 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-sm font-medium">
+                    <div className="px-3 sm:px-4 py-2 mt-3 sm:mt-0 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs sm:text-sm font-medium">
                       {currentSector.turnover}
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-4 gap-4">
-                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-4 hover:shadow-lg hover:border-green-300 transition-all duration-300">
-                      <p className="text-sm text-gray-600 font-medium">Advance</p>
-                      <p className="text-2xl font-bold text-green-600 mt-1">{currentSector.advance}</p>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-3 sm:p-4 hover:shadow-lg hover:border-green-300 transition-all duration-300">
+                      <p className="text-xs sm:text-sm text-gray-600 font-medium">Advance</p>
+                      <p className="text-lg sm:text-2xl font-bold text-green-600 mt-1">{currentSector.advance}</p>
                     </div>
-                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-4 hover:shadow-lg hover:border-red-300 transition-all duration-300">
-                      <p className="text-sm text-gray-600 font-medium">Decline</p>
-                      <p className="text-2xl font-bold text-red-600 mt-1">{currentSector.decline}</p>
+                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-3 sm:p-4 hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                      <p className="text-xs sm:text-sm text-gray-600 font-medium">Decline</p>
+                      <p className="text-lg sm:text-2xl font-bold text-red-600 mt-1">{currentSector.decline}</p>
                     </div>
-                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-4 hover:shadow-lg hover:border-gray-400 transition-all duration-300">
-                      <p className="text-sm text-gray-600 font-medium">Unchanged</p>
-                      <p className="text-2xl font-bold text-gray-700 mt-1">{currentSector.unchange || 0}</p>
+                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-3 sm:p-4 hover:shadow-lg hover:border-gray-400 transition-all duration-300">
+                      <p className="text-xs sm:text-sm text-gray-600 font-medium">Unchanged</p>
+                      <p className="text-lg sm:text-2xl font-bold text-gray-700 mt-1">{currentSector.unchange || 0}</p>
                     </div>
-                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-4 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
-                      <p className="text-sm text-gray-600 font-medium">Market Cap</p>
-                      <p className="text-2xl font-bold text-black mt-1">{currentSector.market_cap} B</p>
+                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-3 sm:p-4 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
+                      <p className="text-xs sm:text-sm text-gray-600 font-medium">Market Cap</p>
+                      <p className="text-lg sm:text-2xl font-bold text-black mt-1">{currentSector.market_cap} B</p>
                     </div>
                   </div>
 
-                  <p className="text-sm text-gray-500 mt-6">
-                    Last updated: {currentSector.scraped_at ? new Date(currentSector.scraped_at.$date).toLocaleString() : 'N/A'}
+                  <p className="text-xs sm:text-sm text-gray-500 mt-6">
+                    Last updated: {currentSector.scraped_at ? new Date(typeof currentSector.scraped_at === 'string' ? currentSector.scraped_at : currentSector.scraped_at.$date).toLocaleString() : 'N/A'}
                   </p>
                 </div>
               </div>
