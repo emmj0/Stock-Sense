@@ -310,6 +310,15 @@ export default function TopNav() {
                 </button>
                 <button
                   onClick={() => {
+                    navigate('/holdings');
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full text-left px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-50 transition-colors"
+                >
+                  Holdings
+                </button>
+                <button
+                  onClick={() => {
                     navigate('/market-watch');
                     setMobileMenuOpen(false);
                   }}

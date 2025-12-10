@@ -1,10 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { fetchStocks, upsertPortfolioItem } from '../api';
 import { TableSkeletonLoader } from '../components/Loader';
 import { HiOutlineX } from 'react-icons/hi';
 import type { Stock } from '../types';
 
 export default function DashboardPage() {
+  const navigate = useNavigate();
   const [stocks, setStocks] = useState<Stock[]>([]);
   const [search, setSearch] = useState('');
   const [loadingStocks, setLoadingStocks] = useState(false);
@@ -74,9 +76,20 @@ export default function DashboardPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl sm:text-5xl font-display font-bold text-black mb-2">
-            Portfolio Dashboard
-          </h1>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-2">
+            <h1 className="text-4xl sm:text-5xl font-display font-bold text-black">
+              Portfolio Dashboard
+            </h1>
+            <button
+              onClick={() => navigate('/holdings')}
+              className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2 whitespace-nowrap"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              View Holdings
+            </button>
+          </div>
           <p className="text-lg text-gray-600">Manage your PSX stocks and track your holdings in real-time</p>
         </div>
 
