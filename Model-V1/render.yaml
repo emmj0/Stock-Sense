@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: stocksense-model-api
+    runtime: python
+    buildCommand: pip install --upgrade pip setuptools wheel && pip install -r requirements.txt
+    startCommand: gunicorn api:app --bind 0.0.0.0:$PORT --timeout 300 --threads 2 --worker-tmp-dir /tmp --log-level info --access-logfile -
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
