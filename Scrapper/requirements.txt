@@ -4,3 +4,5 @@ pymongo==4.8.0
 pandas==2.2.2
 python-dateutil==2.9.0.post0
 dnspython==2.7.0
+python-dotenv==1.2.1
+schedule==1.2.0

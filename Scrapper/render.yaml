@@ -1,0 +1,13 @@
+services:
+  - type: cron
+    name: psx-scraper-job
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python run_all_scrapers.py
+    schedule: "0 */3 * * *"
+    envVars:
+      - key: MONGO_URI
+      - key: DB_NAME
+        value: psx
+      - key: PYTHONUNBUFFERED
+        value: "1"
