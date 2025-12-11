@@ -1,5 +1,5 @@
 import { api } from './client';
-import type { AuthResponse, Preferences, PortfolioItem, Stock, User } from '../types';
+import type { AuthResponse, Preferences, PortfolioItem, PortfolioResponse, Stock, User, Recommendations } from '../types';
 
 export async function signup(payload: { name: string; email: string; password: string }): Promise<AuthResponse> {
   const { data } = await api.post<AuthResponse>('/api/auth/signup', payload);
@@ -40,19 +40,19 @@ export async function fetchStocks(search?: string): Promise<Stock[]> {
   return data.stocks;
 }
 
-export async function fetchPortfolio(): Promise<PortfolioItem[]> {
-  const { data } = await api.get<{ portfolio: PortfolioItem[] }>('/api/user/portfolio');
-  return data.portfolio;
+export async function fetchPortfolio(): Promise<PortfolioResponse> {
+  const { data } = await api.get<PortfolioResponse>('/api/user/portfolio');
+  return { portfolio: data.portfolio, predictions: data.predictions || {} };
 }
 
-export async function upsertPortfolioItem(item: PortfolioItem): Promise<PortfolioItem[]> {
-  const { data } = await api.post<{ portfolio: PortfolioItem[] }>('/api/user/portfolio', item);
-  return data.portfolio;
+export async function upsertPortfolioItem(item: PortfolioItem): Promise<PortfolioResponse> {
+  const { data } = await api.post<PortfolioResponse>('/api/user/portfolio', item);
+  return { portfolio: data.portfolio, predictions: data.predictions || {} };
 }
 
-export async function removePortfolioItem(symbol: string): Promise<PortfolioItem[]> {
-  const { data } = await api.delete<{ portfolio: PortfolioItem[] }>(`/api/user/portfolio/${symbol}`);
-  return data.portfolio;
+export async function removePortfolioItem(symbol: string): Promise<PortfolioResponse> {
+  const { data } = await api.delete<PortfolioResponse>(`/api/user/portfolio/${symbol}`);
+  return { portfolio: data.portfolio, predictions: data.predictions || {} };
 }
 
 export async function fetchIndexes(): Promise<any[]> {
@@ -115,4 +115,13 @@ export async function submitQuiz(courseId: string, answers: { quizId: string; se
 export async function fetchUserProgress(): Promise<any> {
   const { data } = await api.get('/api/courses/user/progress');
   return data;
+}
+
+// Recommendations API
+export async function fetchRecommendations(topN = 5): Promise<Recommendations> {
+  const { data } = await api.get<{ recommendations: Recommendations }>(
+    '/api/recommendations',
+    { params: { top_n: topN } }
+  );
+  return data.recommendations;
 }

@@ -13,6 +13,41 @@ export type PortfolioItem = {
   addedAt?: string;
 };
 
+export type Prediction = {
+  id?: string;
+  symbol: string;
+  predictedPrice?: number;
+  predictedReturn?: number;
+  signal?: 'BUY' | 'SELL' | 'HOLD' | string;
+  confidence?: number;
+  currentPrice?: number;
+  predictionDate?: string;
+  horizonDays?: number;
+  ensembleAgreement?: number;
+  modelPredictions?: Record<string, number>;
+  technicalIndicators?: Record<string, any>;
+  reasoning?: string;
+  updatedAt?: string;
+};
+
+export type PortfolioResponse = {
+  portfolio: PortfolioItem[];
+  predictions?: Record<string, Prediction>;
+};
+
+export type Recommendations = {
+  id?: string;
+  topBuys: any[];
+  topSells: any[];
+  summary?: {
+    total_buys?: number;
+    total_sells?: number;
+  };
+  topN?: number;
+  sourceTimestamp?: string;
+  updatedAt?: string;
+};
+
 export type User = {
   id?: string;
   _id?: string;

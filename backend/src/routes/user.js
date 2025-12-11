@@ -1,9 +1,101 @@
 const express = require('express');
 const User = require('../models/User');
 const Stock = require('../models/Stock');
+const Prediction = require('../models/Prediction');
 const auth = require('../middleware/auth');
+const fetch = global.fetch;
 
 const router = express.Router();
+
+const PREDICTION_API_BASE = process.env.PREDICTION_API_BASE || 'http://localhost:5000/api/predict';
+
+function formatPrediction(prediction) {
+  if (!prediction) return null;
+  return {
+    id: prediction._id,
+    symbol: prediction.symbol,
+    predictedPrice: prediction.predictedPrice,
+    predictedReturn: prediction.predictedReturn,
+    signal: prediction.signal,
+    confidence: prediction.confidence,
+    currentPrice: prediction.currentPrice,
+    predictionDate: prediction.predictionDate,
+    horizonDays: prediction.horizonDays,
+    ensembleAgreement: prediction.ensembleAgreement,
+    modelPredictions: prediction.modelPredictions,
+    technicalIndicators: prediction.technicalIndicators,
+    reasoning: prediction.reasoning,
+    updatedAt: prediction.updatedAt,
+  };
+}
+
+function buildPredictionUrl(symbol) {
+  const base = PREDICTION_API_BASE.endsWith('/')
+    ? PREDICTION_API_BASE.slice(0, -1)
+    : PREDICTION_API_BASE;
+  return `${base}/${encodeURIComponent(symbol)}`;
+}
+
+function extractFieldsFromPayload(symbol, payload) {
+  const data = payload?.data || {};
+  return {
+    symbol: (data.ticker || symbol || '').toUpperCase(),
+    predictedPrice: Number(data.predicted_price ?? data?.model_predictions?.ensemble) || undefined,
+    predictedReturn: typeof data.predicted_return === 'number' ? data.predicted_return : undefined,
+    signal: (data.signal || '').toUpperCase() || undefined,
+    confidence: typeof data.confidence === 'number' ? data.confidence : undefined,
+    currentPrice: typeof data.current_price === 'number' ? data.current_price : undefined,
+    predictionDate: data.prediction_date || data.predictionDate,
+    horizonDays: data.prediction_horizon_days,
+    ensembleAgreement: typeof data.ensemble_agreement === 'number' ? data.ensemble_agreement : undefined,
+    modelPredictions: data.model_predictions,
+    technicalIndicators: data.technical_indicators,
+    reasoning: data.reasoning,
+    raw: data,
+  };
+}
+
+async function fetchAndStorePrediction(userId, symbol) {
+  if (!fetch) return null;
+  const url = buildPredictionUrl(symbol);
+  try {
+    const resp = await fetch(url);
+    if (!resp.ok) throw new Error(`Prediction API error: ${resp.status}`);
+    const payload = await resp.json();
+    if (!payload?.data) throw new Error('Prediction API returned no data');
+
+    const fields = extractFieldsFromPayload(symbol, payload);
+
+    const saved = await Prediction.findOneAndUpdate(
+      { user: userId, symbol: fields.symbol },
+      { $set: { ...fields } },
+      { upsert: true, new: true }
+    ).lean();
+
+    return formatPrediction(saved);
+  } catch (err) {
+    console.error(`Prediction fetch failed for ${symbol}:`, err.message || err);
+    return null;
+  }
+}
+
+async function getPredictionMap(userId, symbols) {
+  if (!symbols?.length) return {};
+  const docs = await Prediction.find({
+    user: userId,
+    symbol: { $in: symbols },
+  })
+    .sort({ updatedAt: -1 })
+    .lean();
+
+  const map = {};
+  for (const doc of docs) {
+    if (!map[doc.symbol]) {
+      map[doc.symbol] = formatPrediction(doc);
+    }
+  }
+  return map;
+}
 
 // GET /api/user/preferences
 router.get('/preferences', auth, async (req, res) => {
@@ -51,7 +143,9 @@ router.get('/portfolio', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('portfolio');
     if (!user) return res.status(404).json({ message: 'User not found' });
-    res.json({ portfolio: user.portfolio || [] });
+    const symbols = (user.portfolio || []).map((p) => p.symbol);
+    const predictions = await getPredictionMap(req.user.id, symbols);
+    res.json({ portfolio: user.portfolio || [], predictions });
   } catch (err) {
     console.error('Failed to get portfolio', err);
     res.status(500).json({ message: 'Unable to load portfolio' });
@@ -97,11 +191,9 @@ router.post('/portfolio', auth, async (req, res) => {
       }
     );
 
-    if (user) {
-      return res.json({ portfolio: user.portfolio });
-    }
-
-    const updated = await User.findByIdAndUpdate(
+    let portfolioDoc = user;
+    if (!portfolioDoc) {
+      portfolioDoc = await User.findByIdAndUpdate(
       req.user.id,
       {
         $push: {
@@ -112,10 +204,26 @@ router.post('/portfolio', auth, async (req, res) => {
           },
         },
       },
-      { new: true, select: 'portfolio' }
-    );
+        { new: true, select: 'portfolio' }
+      );
+    }
 
-    res.json({ portfolio: updated.portfolio });
+    const symbols = (portfolioDoc.portfolio || []).map((p) => p.symbol);
+
+    // Fetch prediction in the background but wait to include it in the response when available.
+    let prediction = null;
+    try {
+      prediction = await fetchAndStorePrediction(req.user.id, upperSymbol);
+    } catch (err) {
+      console.error('Error storing prediction', err);
+    }
+
+    const predictions = await getPredictionMap(req.user.id, symbols);
+    if (prediction && prediction.symbol) {
+      predictions[prediction.symbol] = prediction;
+    }
+
+    res.json({ portfolio: portfolioDoc.portfolio, predictions });
   } catch (err) {
     console.error('Failed to upsert portfolio item', err);
     res.status(500).json({ message: 'Unable to save portfolio item' });
@@ -133,7 +241,12 @@ router.delete('/portfolio/:symbol', auth, async (req, res) => {
     );
 
     if (!user) return res.status(404).json({ message: 'User not found' });
-    res.json({ portfolio: user.portfolio });
+
+    await Prediction.deleteMany({ user: req.user.id, symbol });
+    const symbols = (user.portfolio || []).map((p) => p.symbol);
+    const predictions = await getPredictionMap(req.user.id, symbols);
+
+    res.json({ portfolio: user.portfolio, predictions });
   } catch (err) {
     console.error('Failed to remove portfolio item', err);
     res.status(500).json({ message: 'Unable to remove portfolio item' });

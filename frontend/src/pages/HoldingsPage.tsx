@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { fetchPortfolio, upsertPortfolioItem, removePortfolioItem, fetchIndexes, fetchSectors } from '../api';
 import { HiOutlineArrowLeft, HiOutlinePencil, HiOutlineTrash, HiOutlineX, HiOutlineCheckCircle } from 'react-icons/hi';
 import { Loader } from '../components/Loader';
+import type { Prediction } from '../types';
 
 interface PortfolioItem {
   symbol: string;
@@ -24,6 +25,7 @@ export default function HoldingsPage() {
   const navigate = useNavigate();
   const [holdings, setHoldings] = useState<PortfolioItem[]>([]);
   const [stockDetails, setStockDetails] = useState<{ [key: string]: StockInfo }>({});
+  const [predictions, setPredictions] = useState<Record<string, Prediction>>({});
   const [loading, setLoading] = useState(true);
   const [editingSymbol, setEditingSymbol] = useState<string | null>(null);
   const [editForm, setEditForm] = useState({ quantity: 0, averageCost: 0 });
@@ -38,8 +40,9 @@ export default function HoldingsPage() {
     setLoading(true);
     try {
       // Fetch holdings
-      const portfolioData = await fetchPortfolio();
-      setHoldings(portfolioData);
+      const { portfolio, predictions: predictionMap } = await fetchPortfolio();
+      setHoldings(portfolio);
+      setPredictions(predictionMap || {});
 
       // Fetch indexes and sectors data to enrich stock info
       const indexesData = await fetchIndexes();
@@ -121,12 +124,13 @@ export default function HoldingsPage() {
 
     try {
       setError('');
-      const updated = await upsertPortfolioItem({
+      const { portfolio, predictions: predictionMap } = await upsertPortfolioItem({
         symbol: editingSymbol,
         quantity: editForm.quantity,
         averageCost: editForm.averageCost,
       });
-      setHoldings(updated);
+      setHoldings(portfolio);
+      setPredictions(predictionMap || {});
       setEditingSymbol(null);
       setMessage(`Updated ${editingSymbol} successfully`);
       setTimeout(() => setMessage(''), 3000);
@@ -140,8 +144,9 @@ export default function HoldingsPage() {
 
     try {
       setError('');
-      const updated = await removePortfolioItem(symbol);
-      setHoldings(updated);
+      const { portfolio, predictions: predictionMap } = await removePortfolioItem(symbol);
+      setHoldings(portfolio);
+      setPredictions(predictionMap || {});
       setMessage(`Removed ${symbol} from holdings`);
       setTimeout(() => setMessage(''), 3000);
     } catch (err: any) {
@@ -151,6 +156,16 @@ export default function HoldingsPage() {
 
   const getStockInfo = (symbol: string): StockInfo => {
     return stockDetails[symbol] || { name: 'N/A', current: 'N/A', indexName: 'N/A', sectorName: 'N/A' };
+  };
+
+  const getPrediction = (symbol: string): Prediction | undefined => predictions[symbol];
+
+  const signalColorClasses = (signal?: string) => {
+    const normalized = signal?.toUpperCase();
+    if (normalized === 'BUY') return 'bg-green-100 text-green-700 border-green-200';
+    if (normalized === 'SELL') return 'bg-red-100 text-red-700 border-red-200';
+    if (normalized === 'HOLD') return 'bg-amber-100 text-amber-700 border-amber-200';
+    return 'bg-gray-100 text-gray-700 border-gray-200';
   };
 
   const isPositiveChange = (change: string): boolean => {
@@ -215,8 +230,8 @@ export default function HoldingsPage() {
           <div className="space-y-5 sm:space-y-6">
             {holdings.map((item, idx) => {
               const info = getStockInfo(item.symbol);
-              const changeValue = parseFloat(info.change || '0');
               const isPositive = isPositiveChange(info.change || '0');
+              const prediction = getPrediction(item.symbol);
 
               return (
                 <div
@@ -337,6 +352,68 @@ export default function HoldingsPage() {
                           <p className="text-xs font-semibold text-purple-700 uppercase tracking-wide mb-2">Sector</p>
                           <p className="text-lg font-bold text-purple-900">{info.sectorName}</p>
                         </div>
+                      </div>
+
+                      {/* Model Prediction */}
+                      <div className="mb-6 pb-6 border-b border-gray-200">
+                        <div className="flex items-center justify-between mb-4">
+                          <div>
+                            <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide">AI Insight</p>
+                            <p className="text-lg font-bold text-gray-900">Next 7-day outlook</p>
+                          </div>
+                          <span
+                            className={`px-3 py-1 rounded-full text-sm font-semibold border ${signalColorClasses(
+                              prediction?.signal
+                            )}`}
+                          >
+                            {prediction?.signal ? prediction.signal.toUpperCase() : 'NO SIGNAL'}
+                          </span>
+                        </div>
+
+                        {prediction ? (
+                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                            <div className="p-4 rounded-xl bg-blue-50 border border-blue-200">
+                              <p className="text-xs font-semibold text-blue-700 uppercase tracking-wide mb-1">Predicted Price</p>
+                              <p className="text-xl sm:text-2xl font-bold text-blue-900">
+                                {typeof prediction.predictedPrice === 'number'
+                                  ? `Rs ${prediction.predictedPrice.toFixed(2)}`
+                                  : 'N/A'}
+                              </p>
+                            </div>
+                            <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200">
+                              <p className="text-xs font-semibold text-emerald-700 uppercase tracking-wide mb-1">Confidence</p>
+                              <p className="text-xl sm:text-2xl font-bold text-emerald-900">
+                                {typeof prediction.confidence === 'number'
+                                  ? `${prediction.confidence.toFixed(1)}%`
+                                  : 'N/A'}
+                              </p>
+                            </div>
+                            <div className="p-4 rounded-xl bg-amber-50 border border-amber-200">
+                              <p className="text-xs font-semibold text-amber-700 uppercase tracking-wide mb-1">Return</p>
+                              <p className="text-xl sm:text-2xl font-bold text-amber-900">
+                                {typeof prediction.predictedReturn === 'number'
+                                  ? `${prediction.predictedReturn.toFixed(2)}%`
+                                  : 'N/A'}
+                              </p>
+                            </div>
+                            <div className="p-4 rounded-xl bg-gray-50 border border-gray-200">
+                              <p className="text-xs font-semibold text-gray-700 uppercase tracking-wide mb-1">As Of</p>
+                              <p className="text-sm sm:text-base font-semibold text-gray-900">
+                                {prediction.predictionDate || 'N/A'}
+                              </p>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 text-gray-600">
+                            No prediction available for this symbol yet.
+                          </div>
+                        )}
+
+                        {prediction?.reasoning && (
+                          <p className="mt-4 text-sm text-gray-700 leading-relaxed bg-white border border-gray-200 rounded-lg p-4">
+                            {prediction.reasoning}
+                          </p>
+                        )}
                       </div>
 
                       {/* Your Holdings */}
