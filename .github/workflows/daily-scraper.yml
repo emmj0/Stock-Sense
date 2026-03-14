@@ -1,0 +1,63 @@
+name: Daily PSX Web Scrapers
+
+on:
+  schedule:
+    # Run daily at 2 AM UTC (7 AM PKT)
+    - cron: '0 2 * * *'
+  
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser chromium-chromedriver libnss3 libgconf-2-4 libxss1 libappindicator1 libindicator7 xvfb
+          sudo ln -s /usr/bin/chromium-browser /usr/bin/google-chrome || true
+      
+      - name: Install Python dependencies
+        working-directory: ./Scrapper
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Run Index Scraper
+        working-directory: ./Scrapper
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+        run: python Index.py
+      
+      - name: Run Market Watch Scraper
+        working-directory: ./Scrapper
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+        run: python ChromeScrapper.py
+      
+      - name: Run Sector Scraper
+        working-directory: ./Scrapper
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+        run: python sector.py
+      
+      - name: Upload logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: scraper-logs
+          path: ./Scrapper/logs/
+          retention-days: 7

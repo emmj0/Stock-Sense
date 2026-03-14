@@ -76,9 +76,15 @@ Edit the cron expression in `.github/workflows/daily-scraper.yml`:
 ### ❌ Workflow Fails
 - Check the **Logs** section for error messages
 - Common issues:
-  - MongoDB connection failed → Verify `MONGO_URI` secret
-  - Chrome not found → Workflow installs it automatically
-  - Selenium timeout → Website might be down
+  - **MongoDB connection failed** → Verify `MONGO_URI` secret is correct
+  - **Chrome binary not found** → Already fixed in updated workflows ✅
+  - **Selenium timeout** → Website might be down
+  - **File not found errors** → File names are case-sensitive (Index.py, ChromeScrapper.py, sector.py)
+
+### ✅ Recent Fixes
+- ✅ Added missing system dependencies for Chrome headless mode
+- ✅ Fixed file name case sensitivity (index.py → Index.py)
+- ✅ Created symbolic link: chromium-browser → google-chrome
 
 ### ✅ Manual Trigger
 To test the workflow manually:
