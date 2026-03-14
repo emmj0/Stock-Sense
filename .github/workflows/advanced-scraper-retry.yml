@@ -1,4 +1,5 @@
-name: Advanced Daily PSX Scrapers (with Retry)
+
+name: Advanced Daily PSX Scrapers
 
 on:
   schedule:
@@ -15,12 +16,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      - name: Install Chrome & dependencies
+      - name: Install Chrome and dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y \
@@ -33,13 +34,12 @@ jobs:
             libgbm1 \
             xvfb
 
-          sudo ln -sf /usr/bin/chromium-browser /usr/bin/google-chrome
-          sudo ln -sf /usr/bin/chromedriver /usr/bin/chromedriver
+          sudo ln -sf /usr/bin/chromium-browser /usr/bin/google-chrome || true
 
       - name: Install Python dependencies
         working-directory: ./Scrapper
         run: |
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Run Index Scraper
@@ -47,7 +47,8 @@ jobs:
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           DB_NAME: ${{ secrets.DB_NAME }}
-        run: python Index.py
+        run: |
+          python Index.py
 
 
   scrape-market:
@@ -57,12 +58,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      - name: Install Chrome & dependencies
+      - name: Install Chrome and dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y \
@@ -75,13 +76,12 @@ jobs:
             libgbm1 \
             xvfb
 
-          sudo ln -sf /usr/bin/chromium-browser /usr/bin/google-chrome
-          sudo ln -sf /usr/bin/chromedriver /usr/bin/chromedriver
+          sudo ln -sf /usr/bin/chromium-browser /usr/bin/google-chrome || true
 
       - name: Install Python dependencies
         working-directory: ./Scrapper
         run: |
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Run Market Scraper
@@ -89,7 +89,8 @@ jobs:
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           DB_NAME: ${{ secrets.DB_NAME }}
-        run: python ChromeScrapper.py
+        run: |
+          python ChromeScrapper.py
 
 
   scrape-sectors:
@@ -99,12 +100,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      - name: Install Chrome & dependencies
+      - name: Install Chrome and dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y \
@@ -117,13 +118,12 @@ jobs:
             libgbm1 \
             xvfb
 
-          sudo ln -sf /usr/bin/chromium-browser /usr/bin/google-chrome
-          sudo ln -sf /usr/bin/chromedriver /usr/bin/chromedriver
+          sudo ln -sf /usr/bin/chromium-browser /usr/bin/google-chrome || true
 
       - name: Install Python dependencies
         working-directory: ./Scrapper
         run: |
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Run Sector Scraper
@@ -131,4 +131,6 @@ jobs:
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           DB_NAME: ${{ secrets.DB_NAME }}
-        run: python sector.py
+        run: |
+          python sector.py
+
