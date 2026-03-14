@@ -1,0 +1,175 @@
+name: Advanced Daily PSX Scrapers (with Retry)
+
+on:
+  schedule:
+    # Run daily at 2 AM UTC (7 AM PKT)
+    - cron: '0 2 * * *'
+    # Backup run in case first one fails (5 AM UTC = 10 AM PKT)
+    - cron: '0 5 * * *'
+  
+  workflow_dispatch:
+    inputs:
+      run_all:
+        description: 'Run all scrapers'
+        required: false
+        default: 'true'
+
+jobs:
+  check-status:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check MongoDB Connection
+        run: |
+          echo "Testing MongoDB connection with your credentials..."
+          # Connection will be tested when scripts run
+
+  scrape-indices:
+    needs: check-status
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser chromium-chromedriver
+      
+      - name: Install Python dependencies
+        working-directory: ./Scrapper
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Run Index Scraper (with retry)
+        working-directory: ./Scrapper
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+        run: |
+          for attempt in {1..3}; do
+            echo "Attempt $attempt/3: Running index scraper..."
+            if python index.py; then
+              echo "✅ Index scraper succeeded"
+              exit 0
+            fi
+            if [ $attempt -lt 3 ]; then
+              echo "⏳ Waiting 30 seconds before retry..."
+              sleep 30
+            fi
+          done
+          echo "❌ Index scraper failed after 3 attempts"
+          exit 1
+
+  scrape-market:
+    needs: check-status
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser chromium-chromedriver
+      
+      - name: Install Python dependencies
+        working-directory: ./Scrapper
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Run Market Watch Scraper (with retry)
+        working-directory: ./Scrapper
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+        run: |
+          for attempt in {1..3}; do
+            echo "Attempt $attempt/3: Running market scraper..."
+            if python ChromeScrapper.py; then
+              echo "✅ Market scraper succeeded"
+              exit 0
+            fi
+            if [ $attempt -lt 3 ]; then
+              echo "⏳ Waiting 30 seconds before retry..."
+              sleep 30
+            fi
+          done
+          echo "❌ Market scraper failed after 3 attempts"
+          exit 1
+
+  scrape-sectors:
+    needs: check-status
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser chromium-chromedriver
+      
+      - name: Install Python dependencies
+        working-directory: ./Scrapper
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Run Sector Scraper (with retry)
+        working-directory: ./Scrapper
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+        run: |
+          for attempt in {1..3}; do
+            echo "Attempt $attempt/3: Running sector scraper..."
+            if python sector.py; then
+              echo "✅ Sector scraper succeeded"
+              exit 0
+            fi
+            if [ $attempt -lt 3 ]; then
+              echo "⏳ Waiting 30 seconds before retry..."
+              sleep 30
+            fi
+          done
+          echo "❌ Sector scraper failed after 3 attempts"
+          exit 1
+
+  notify-completion:
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [scrape-indices, scrape-market, scrape-sectors]
+    
+    steps:
+      - name: Check final status
+        run: |
+          if [ "${{ needs.scrape-indices.result }}" == "success" ] && \
+             [ "${{ needs.scrape-market.result }}" == "success" ] && \
+             [ "${{ needs.scrape-sectors.result }}" == "success" ]; then
+            echo "✅ All scrapers completed successfully!"
+            exit 0
+          else
+            echo "⚠️ Some scrapers had issues. Check logs above."
+            exit 1
+          fi

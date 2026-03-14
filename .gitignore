@@ -1,0 +1,53 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Virtual environments
+Scrapper/psx_scraper_env/
+backend/node_modules/
+frontend/node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+.npm
+npm-debug.log*
+
+# Scraper outputs (optional - comment out if you want to track these)
+# *.csv
+# Scrapper/logs/
+
+# Database backups
+*.dump
