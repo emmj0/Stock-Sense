@@ -23,7 +23,7 @@ jobs:
       - name: Install Google Chrome
         run: |
           sudo apt-get update
-          sudo apt-get install -y wget unzip xvfb libxi6 libgconf-2-4
+          sudo apt-get install -y wget unzip xvfb libxi6 libnss3 libxss1 libatk-bridge2.0-0 libgtk-3-0 libgbm1
 
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo apt install -y ./google-chrome-stable_current_amd64.deb
@@ -64,4 +64,3 @@ jobs:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           DB_NAME: ${{ secrets.DB_NAME }}
         run: python sector.py
-
