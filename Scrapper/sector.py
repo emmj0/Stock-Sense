@@ -3,6 +3,7 @@ import datetime
 import os
 from dotenv import load_dotenv
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -32,7 +33,8 @@ sector_collection = db[SECTOR_COLLECTION_NAME]
 # ======================================
 # SELENIUM SETUP
 # ======================================
-options = webdriver.ChromeOptions()
+options = Options()
+options.add_argument("--headless=new")
 options.add_argument("--start-maximized")
 options.add_argument("--disable-blink-features=AutomationControlled")
 options.add_experimental_option("excludeSwitches", ["enable-automation"])
