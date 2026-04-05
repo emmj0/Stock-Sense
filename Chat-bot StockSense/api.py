@@ -10,6 +10,8 @@ Endpoints:
 from __future__ import annotations
 
 import json
+import logging
+import time
 from pathlib import Path
 from typing import Dict, List, Optional
 
@@ -23,6 +25,16 @@ load_dotenv()
 
 import db_connector as db
 from chat_assistant import resolve_followup_question, CONTEXT_WINDOW
+
+# ---------------------------------------------------------------------------
+# Logging setup
+# ---------------------------------------------------------------------------
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
+logger = logging.getLogger("stocksense")
 
 app = Flask(__name__)
 CORS(app)
@@ -38,18 +50,23 @@ def get_rag():
     global _rag
     if _rag is None:
         from rag_engine import RAGEngine
-        print("Loading RAG engine...")
+        logger.info("Loading RAG engine...")
+        t = time.time()
         _rag = RAGEngine()
-        print(f"RAG engine ready ({_rag.index.ntotal} vectors)")
+        logger.info(f"RAG engine ready — {_rag.index.ntotal} vectors loaded in {time.time()-t:.1f}s")
     return _rag
 
 
 # Test DB on startup (lightweight)
 if db.is_db_connected():
-    print("Connected to PSX database.")
+    logger.info("Connected to PSX database")
 else:
-    print("Database not connected - offline mode.")
-print("API ready. RAG engine will load on first chat request.")
+    logger.warning("Database not connected — running in offline mode")
+
+ollama_model = os.getenv("LOCAL_LLM_MODEL", "phi3")
+ollama_url = os.getenv("LOCAL_LLM_URL", "http://127.0.0.1:11434")
+logger.info(f"LLM: {ollama_model} via Ollama at {ollama_url}")
+logger.info("API ready. RAG engine will load on first chat request.")
 
 
 # ---------------------------------------------------------------------------
@@ -107,12 +124,15 @@ def chat():
     """
     data = request.get_json(silent=True)
     if not data or not data.get("message", "").strip():
+        logger.warning("Chat request with empty message")
         return jsonify({"error": "Missing 'message' in request body"}), 400
 
     message = data["message"].strip()
     session_id = data.get("session_id", "default")
     user_email = data.get("user_email")
-    user_context = data.get("user_context")  # portfolio, preferences, name from backend
+    user_context = data.get("user_context")
+
+    logger.info(f"[{session_id}] User: {message[:120]}")
 
     # Load engine + history
     rag = get_rag()
@@ -123,11 +143,18 @@ def chat():
 
     # Resolve follow-ups
     resolved_query = resolve_followup_question(message, recent_history)
+    if resolved_query.lower().strip() != message.lower().strip():
+        logger.info(f"[{session_id}] Follow-up resolved: {resolved_query[:120]}")
 
     # Retrieve + answer
+    t_start = time.time()
     chunks = rag.retrieve(resolved_query, k=5)
+    t_retrieve = time.time() - t_start
+    top_score = max((c.score for c in chunks), default=0)
+    logger.info(f"[{session_id}] RAG retrieved {len(chunks)} chunks in {t_retrieve:.2f}s (top score: {top_score:.3f})")
 
     try:
+        t_start = time.time()
         reply = answer_with_context(
             question=resolved_query,
             chunks=chunks,
@@ -135,13 +162,18 @@ def chat():
             user_email=user_email,
             user_context=user_context,
         )
+        t_answer = time.time() - t_start
+        logger.info(f"[{session_id}] Reply generated in {t_answer:.2f}s ({len(reply)} chars)")
     except Exception as exc:
-        reply = f"Sorry, something went wrong. Please try again. ({exc})"
+        logger.error(f"[{session_id}] Answer generation failed: {exc}", exc_info=True)
+        reply = "Sorry, something went wrong. Please try again."
 
     # Save to history
     history.append({"role": "user", "content": message})
     history.append({"role": "assistant", "content": reply})
     _save_history(session_id, history)
+
+    logger.info(f"[{session_id}] Bot: {reply[:120]}...")
 
     response = {"reply": reply, "session_id": session_id}
     if resolved_query.lower().strip() != message.lower().strip():

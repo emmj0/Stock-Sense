@@ -1,4 +1,4 @@
-import { HiOutlineRefresh } from 'react-icons/hi';
+import { RefreshCw } from 'lucide-react';
 
 interface LoaderProps {
   text?: string;
@@ -14,7 +14,7 @@ export function Loader({ text = 'Loading...', size = 'md' }: LoaderProps) {
 
   return (
     <div className="flex flex-col items-center justify-center py-12">
-      <HiOutlineRefresh className={`${sizeClass} text-blue-600 animate-spin mb-2`} />
+      <RefreshCw className={`${sizeClass} text-blue-600 animate-spin mb-2`} />
       <p className="text-gray-600 dark:text-gray-300 font-medium">{text}</p>
     </div>
   );

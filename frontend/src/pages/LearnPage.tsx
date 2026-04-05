@@ -2,19 +2,19 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchCourses, fetchCourse, startCourse, markReadingComplete, markPracticeComplete, submitQuiz } from '../api';
 import { Loader, SkeletonLoader } from '../components/Loader';
-import { 
-  HiOutlineLockClosed, 
-  HiOutlineCheckCircle, 
-  HiOutlineBookOpen, 
-  HiOutlineAcademicCap,
-  HiOutlineClipboardCheck,
-  HiOutlineArrowRight,
-  HiOutlineArrowLeft,
-  HiOutlineRefresh,
-  HiOutlineLightningBolt,
-  HiOutlineStar,
-  HiOutlineX
-} from 'react-icons/hi';
+import {
+  Lock,
+  CheckCircle2,
+  BookOpen,
+  GraduationCap,
+  ClipboardCheck,
+  ArrowRight,
+  ArrowLeft,
+  RefreshCw,
+  Zap,
+  Star,
+  X
+} from 'lucide-react';
 
 interface CourseOverview {
   id: string;
@@ -202,15 +202,15 @@ export default function LearnPage() {
 
   const getStatusIcon = (course: CourseOverview) => {
     if (!course.isUnlocked) {
-      return <HiOutlineLockClosed className="w-6 h-6 text-gray-400" />;
+      return <Lock className="w-6 h-6 text-gray-400" />;
     }
     if (course.progress.status === 'completed') {
-      return <HiOutlineCheckCircle className="w-6 h-6 text-green-500" />;
+      return <CheckCircle2 className="w-6 h-6 text-green-500" />;
     }
     if (course.progress.status === 'in_progress') {
-      return <HiOutlineLightningBolt className="w-6 h-6 text-blue-500" />;
+      return <Zap className="w-6 h-6 text-blue-500" />;
     }
-    return <HiOutlineBookOpen className="w-6 h-6 text-gray-400" />;
+    return <BookOpen className="w-6 h-6 text-gray-400" />;
   };
 
   if (loading) {
@@ -233,7 +233,7 @@ export default function LearnPage() {
                 onClick={closeCourse}
                 className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
               >
-                <HiOutlineArrowLeft className="w-5 h-5" />
+                <ArrowLeft className="w-5 h-5" />
                 Back to Courses
               </button>
               <span className={`px-3 py-1 text-sm font-medium rounded-full border ${getDifficultyColor(selectedCourse.difficulty)}`}>
@@ -253,9 +253,9 @@ export default function LearnPage() {
                     : 'bg-gray-100 dark:bg-dark-surface text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-dark-hover'
                 }`}
               >
-                <HiOutlineBookOpen className="w-4 h-4" />
+                <BookOpen className="w-4 h-4" />
                 Reading
-                {courseProgress?.readingCompleted && <HiOutlineCheckCircle className="w-4 h-4 text-green-300" />}
+                {courseProgress?.readingCompleted && <CheckCircle2 className="w-4 h-4 text-green-300" />}
               </button>
               <button
                 onClick={() => setActiveTab('practice')}
@@ -265,9 +265,9 @@ export default function LearnPage() {
                     : 'bg-gray-100 dark:bg-dark-surface text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-dark-hover'
                 }`}
               >
-                <HiOutlineClipboardCheck className="w-4 h-4" />
+                <ClipboardCheck className="w-4 h-4" />
                 Practice
-                {courseProgress?.practiceCompleted && <HiOutlineCheckCircle className="w-4 h-4 text-green-300" />}
+                {courseProgress?.practiceCompleted && <CheckCircle2 className="w-4 h-4 text-green-300" />}
               </button>
               <button
                 onClick={() => setActiveTab('quiz')}
@@ -277,9 +277,9 @@ export default function LearnPage() {
                     : 'bg-gray-100 dark:bg-dark-surface text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-dark-hover'
                 }`}
               >
-                <HiOutlineAcademicCap className="w-4 h-4" />
+                <GraduationCap className="w-4 h-4" />
                 Quiz ({selectedCourse.quizzes.length})
-                {courseProgress?.quizPassed && <HiOutlineCheckCircle className="w-4 h-4 text-green-300" />}
+                {courseProgress?.quizPassed && <CheckCircle2 className="w-4 h-4 text-green-300" />}
               </button>
             </div>
           </div>
@@ -308,7 +308,7 @@ export default function LearnPage() {
                         onClick={handleMarkReadingComplete}
                         className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
                       >
-                        <HiOutlineCheckCircle className="w-5 h-5" />
+                        <CheckCircle2 className="w-5 h-5" />
                         Mark as Read
                       </button>
                     </div>
@@ -317,7 +317,7 @@ export default function LearnPage() {
                   {courseProgress?.readingCompleted && (
                     <div className="mt-8 pt-6 border-t border-gray-200 flex items-center justify-between">
                       <span className="flex items-center gap-2 text-green-600 font-medium">
-                        <HiOutlineCheckCircle className="w-5 h-5" />
+                        <CheckCircle2 className="w-5 h-5" />
                         Reading Completed
                       </span>
                       <button
@@ -325,7 +325,7 @@ export default function LearnPage() {
                         className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
                       >
                         Continue to Practice
-                        <HiOutlineArrowRight className="w-5 h-5" />
+                        <ArrowRight className="w-5 h-5" />
                       </button>
                     </div>
                   )}
@@ -357,7 +357,7 @@ export default function LearnPage() {
                         onClick={handleMarkPracticeComplete}
                         className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
                       >
-                        <HiOutlineCheckCircle className="w-5 h-5" />
+                        <CheckCircle2 className="w-5 h-5" />
                         I've Reviewed These Questions
                       </button>
                     </div>
@@ -366,7 +366,7 @@ export default function LearnPage() {
                   {courseProgress?.practiceCompleted && (
                     <div className="mt-8 pt-6 border-t border-gray-200 flex items-center justify-between">
                       <span className="flex items-center gap-2 text-green-600 font-medium">
-                        <HiOutlineCheckCircle className="w-5 h-5" />
+                        <CheckCircle2 className="w-5 h-5" />
                         Practice Completed
                       </span>
                       <button
@@ -374,7 +374,7 @@ export default function LearnPage() {
                         className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
                       >
                         Take the Quiz
-                        <HiOutlineArrowRight className="w-5 h-5" />
+                        <ArrowRight className="w-5 h-5" />
                       </button>
                     </div>
                   )}
@@ -440,7 +440,7 @@ export default function LearnPage() {
                             </>
                           ) : (
                             <>
-                              <HiOutlineAcademicCap className="w-5 h-5" />
+                              <GraduationCap className="w-5 h-5" />
                               Submit Quiz
                             </>
                           )}
@@ -454,9 +454,9 @@ export default function LearnPage() {
                       <div className={`rounded-2xl p-8 text-center ${quizResults?.passed ? 'bg-green-50 border-2 border-green-200' : 'bg-red-50 border-2 border-red-200'}`}>
                         <div className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4 ${quizResults?.passed ? 'bg-green-100' : 'bg-red-100'}`}>
                           {quizResults?.passed ? (
-                            <HiOutlineStar className="w-10 h-10 text-green-600" />
+                            <Star className="w-10 h-10 text-green-600" />
                           ) : (
-                            <HiOutlineX className="w-10 h-10 text-red-600" />
+                            <X className="w-10 h-10 text-red-600" />
                           )}
                         </div>
                         <h2 className={`text-3xl font-bold mb-2 ${quizResults?.passed ? 'text-green-700' : 'text-red-700'}`}>
@@ -511,7 +511,7 @@ export default function LearnPage() {
                             onClick={retryQuiz}
                             className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
                           >
-                            <HiOutlineRefresh className="w-5 h-5" />
+                            <RefreshCw className="w-5 h-5" />
                             Try Again
                           </button>
                         )}
@@ -548,7 +548,7 @@ export default function LearnPage() {
               onClick={loadCourses}
               className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
             >
-              <HiOutlineRefresh className="w-5 h-5" />
+              <RefreshCw className="w-5 h-5" />
               Refresh
             </button>
           </div>
@@ -605,11 +605,11 @@ export default function LearnPage() {
                   course.isUnlocked ? 'bg-blue-100 dark:bg-blue-900/30' : 'bg-gray-100 dark:bg-dark-surface'
                 }`}>
                   {course.progress.status === 'completed' ? (
-                    <HiOutlineCheckCircle className="w-8 h-8 text-green-600" />
+                    <CheckCircle2 className="w-8 h-8 text-green-600" />
                   ) : course.isUnlocked ? (
                     <span className="text-2xl font-bold text-blue-600">{index + 1}</span>
                   ) : (
-                    <HiOutlineLockClosed className="w-8 h-8 text-gray-400" />
+                    <Lock className="w-8 h-8 text-gray-400" />
                   )}
                 </div>
 
@@ -631,15 +631,15 @@ export default function LearnPage() {
                   {course.isUnlocked && course.progress.status !== 'not_started' && (
                     <div className="flex items-center gap-4 mt-3">
                       <span className={`flex items-center gap-1 text-xs ${course.progress.readingCompleted ? 'text-green-600' : 'text-gray-400'}`}>
-                        <HiOutlineBookOpen className="w-4 h-4" />
+                        <BookOpen className="w-4 h-4" />
                         Reading
                       </span>
                       <span className={`flex items-center gap-1 text-xs ${course.progress.practiceCompleted ? 'text-green-600' : 'text-gray-400'}`}>
-                        <HiOutlineClipboardCheck className="w-4 h-4" />
+                        <ClipboardCheck className="w-4 h-4" />
                         Practice
                       </span>
                       <span className={`flex items-center gap-1 text-xs ${course.progress.quizPassed ? 'text-green-600' : 'text-gray-400'}`}>
-                        <HiOutlineAcademicCap className="w-4 h-4" />
+                        <GraduationCap className="w-4 h-4" />
                         Quiz {course.progress.quizPassed && `(${course.progress.quizScore}%)`}
                       </span>
                     </div>
@@ -657,7 +657,7 @@ export default function LearnPage() {
                       ) : (
                         <span className="text-sm font-medium">Start</span>
                       )}
-                      <HiOutlineArrowRight className="w-5 h-5" />
+                      <ArrowRight className="w-5 h-5" />
                     </div>
                   ) : (
                     <span className="text-sm text-gray-400">Locked</span>
@@ -686,7 +686,7 @@ export default function LearnPage() {
 
         {courses.length === 0 && (
           <div className="text-center py-16">
-            <HiOutlineAcademicCap className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+            <GraduationCap className="w-16 h-16 text-gray-300 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-gray-900 dark:text-white">No courses available</h3>
             <p className="text-gray-500 dark:text-gray-300 mt-1">Check back later for new content</p>
           </div>

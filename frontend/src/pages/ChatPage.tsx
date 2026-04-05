@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { sendChatMessage, fetchChatSessions, fetchChatSession, deleteChatSession } from '../api';
 import { useAuth } from '../providers/AuthProvider';
-import { HiOutlinePaperAirplane, HiOutlinePlus, HiOutlineTrash, HiOutlineChatAlt2, HiOutlineMenuAlt2, HiOutlineX } from 'react-icons/hi';
+import { Send, Plus, Trash2, MessageSquare, Menu, X } from 'lucide-react';
 
 interface ChatMessage {
   role: 'user' | 'assistant';
@@ -201,7 +201,7 @@ export default function ChatPage() {
             onClick={startNewChat}
             className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-medium text-sm shadow-lg shadow-blue-600/20"
           >
-            <HiOutlinePlus className="w-5 h-5" />
+            <Plus className="w-5 h-5" />
             New Chat
           </button>
         </div>
@@ -226,14 +226,14 @@ export default function ChatPage() {
                 }`}
               >
                 <div className="flex items-center gap-2 min-w-0">
-                  <HiOutlineChatAlt2 className="w-4 h-4 flex-shrink-0 text-gray-400" />
+                  <MessageSquare className="w-4 h-4 flex-shrink-0 text-gray-400" />
                   <span className="truncate">{session.title}</span>
                 </div>
                 <button
                   onClick={(e) => handleDeleteSession(e, session._id)}
                   className="opacity-0 group-hover:opacity-100 p-1 rounded-lg hover:bg-red-50 hover:text-red-500 transition-all flex-shrink-0"
                 >
-                  <HiOutlineTrash className="w-4 h-4" />
+                  <Trash2 className="w-4 h-4" />
                 </button>
               </button>
             ))
@@ -262,11 +262,11 @@ export default function ChatPage() {
             onClick={() => setSidebarOpen(true)}
             className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
           >
-            <HiOutlineMenuAlt2 className="w-5 h-5 text-gray-600" />
+            <Menu className="w-5 h-5 text-gray-600" />
           </button>
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-600/20">
-              <HiOutlineChatAlt2 className="w-5 h-5 text-white" />
+              <MessageSquare className="w-5 h-5 text-white" />
             </div>
             <div>
               <h1 className="text-base font-semibold text-gray-900 dark:text-white">StockSense AI</h1>
@@ -280,7 +280,7 @@ export default function ChatPage() {
           {messages.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center max-w-lg mx-auto">
               <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center mb-6 shadow-xl shadow-blue-600/20">
-                <HiOutlineChatAlt2 className="w-8 h-8 text-white" />
+                <MessageSquare className="w-8 h-8 text-white" />
               </div>
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 Hi {user?.name?.split(' ')[0]}! How can I help?
@@ -363,7 +363,7 @@ export default function ChatPage() {
                 disabled={!input.trim() || loading}
                 className="p-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-lg shadow-blue-600/20 flex-shrink-0"
               >
-                <HiOutlinePaperAirplane className="w-4 h-4 rotate-90" />
+                <Send className="w-4 h-4 rotate-90" />
               </button>
             </div>
             <p className="text-xs text-gray-400 dark:text-gray-500 text-center mt-2">

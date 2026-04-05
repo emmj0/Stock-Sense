@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchStocks, upsertPortfolioItem } from '../api';
 import { TableSkeletonLoader } from '../components/Loader';
-import { HiOutlineX } from 'react-icons/hi';
+import { X } from 'lucide-react';
 import type { Stock } from '../types';
 
 export default function DashboardPage() {
@@ -211,7 +211,7 @@ export default function DashboardPage() {
                     onClick={() => setSelectedSymbol('')}
                     className="p-2 text-white hover:bg-white/20 rounded-lg transition-colors flex-shrink-0"
                   >
-                    <HiOutlineX className="w-6 h-6" />
+                    <X className="w-6 h-6" />
                   </button>
                 </div>
                 

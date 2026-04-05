@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
 import { fetchIndexes, fetchSectors } from '../api';
-import { HiOutlineShieldCheck, HiOutlineLockClosed, HiOutlineChartBar, HiOutlineBell, HiOutlinePlus, HiOutlineChartPie, HiOutlineChatAlt2, HiOutlineLightningBolt, HiOutlineAcademicCap } from 'react-icons/hi';
+import { ShieldCheck, Lock, BarChart3, Bell, Plus, PieChart, MessageSquare, Zap, GraduationCap } from 'lucide-react';
 
 const processSteps = [
-  { title: 'Add your desired stocks', description: 'Curate your portfolio with stocks that match your strategy', icon: HiOutlinePlus },
-  { title: 'Watch predictions', description: 'See AI-driven price forecasts and sentiment-based signals', icon: HiOutlineChartPie },
-  { title: 'Take help with your assistant', description: 'Chat with your always-on advisor for guidance', icon: HiOutlineChatAlt2 },
-  { title: 'Receive alerts', description: 'Stay informed with real-time notifications on moves', icon: HiOutlineLightningBolt },
-  { title: 'Learn about stocks', description: 'Build literacy through interactive courses and quizzes', icon: HiOutlineAcademicCap },
+  { title: 'Add your desired stocks', description: 'Curate your portfolio with stocks that match your strategy', icon: Plus },
+  { title: 'Watch predictions', description: 'See AI-driven price forecasts and sentiment-based signals', icon: PieChart },
+  { title: 'Take help with your assistant', description: 'Chat with your always-on advisor for guidance', icon: MessageSquare },
+  { title: 'Receive alerts', description: 'Stay informed with real-time notifications on moves', icon: Zap },
+  { title: 'Learn about stocks', description: 'Build literacy through interactive courses and quizzes', icon: GraduationCap },
 ];
 
 const featureBullets = [
@@ -569,7 +569,7 @@ export default function LandingPage() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-600 mb-6 shadow-xl shadow-blue-600/30">
-              <HiOutlineShieldCheck className="w-10 h-10 text-white" />
+              <ShieldCheck className="w-10 h-10 text-white" />
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
               Our Stance on Privacy & Safety
@@ -582,25 +582,25 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-2 gap-6">
             {[
               { 
-                icon: HiOutlineShieldCheck, 
+                icon: ShieldCheck,
                 title: 'Simulation First',
                 text: 'We run a simulation-first experience, avoiding live transactions and protecting your investment choices in a sandbox environment.',
                 gradient: 'from-blue-500 to-cyan-500'
               },
-              { 
-                icon: HiOutlineLockClosed, 
+              {
+                icon: Lock,
                 title: 'End-to-End Encryption',
                 text: 'Your credentials are encrypted end-to-end. We never store plaintext passwords or payment details.',
                 gradient: 'from-purple-500 to-pink-500'
               },
-              { 
-                icon: HiOutlineChartBar, 
+              {
+                icon: BarChart3,
                 title: 'Transparent Data',
                 text: 'All scraped market data comes from public sources and is treated transparently. Data refreshes every few minutes.',
                 gradient: 'from-orange-500 to-amber-500'
               },
-              { 
-                icon: HiOutlineBell, 
+              {
+                icon: Bell,
                 title: 'You\'re in Control',
                 text: 'Alerts respect your notification preferences. You control what you see and when you see it.',
                 gradient: 'from-green-500 to-emerald-500'

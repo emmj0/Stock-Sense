@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchIndexes, fetchIndexByName } from '../api';
-import { HiOutlineChevronDown, HiOutlineChevronUp, HiOutlineTrendingUp, HiOutlineTrendingDown, HiOutlineRefresh, HiOutlineChartBar } from 'react-icons/hi';
+import { ChevronDown, ChevronUp, TrendingUp, TrendingDown, RefreshCw, BarChart3 } from 'lucide-react';
 import { Loader, TableSkeletonLoader } from '../components/Loader';
 
 interface Constituent {
@@ -121,7 +121,7 @@ export default function IndexesPage() {
               onClick={loadIndexes}
               className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
             >
-              <HiOutlineRefresh className="w-5 h-5" />
+              <RefreshCw className="w-5 h-5" />
               Refresh
             </button>
           </div>
@@ -141,9 +141,9 @@ export default function IndexesPage() {
                   <p className="text-2xl font-bold mt-1">{idx.current}</p>
                   <div className="flex items-center gap-2 mt-2">
                     {parseFloat(idx.change) >= 0 ? (
-                      <HiOutlineTrendingUp className="w-4 h-4" />
+                      <TrendingUp className="w-4 h-4" />
                     ) : (
-                      <HiOutlineTrendingDown className="w-4 h-4" />
+                      <TrendingDown className="w-4 h-4" />
                     )}
                     <span className="text-sm font-medium">
                       {parseFloat(idx.change) >= 0 ? '+' : ''}{idx.change} ({idx.percent_change})
@@ -176,7 +176,7 @@ export default function IndexesPage() {
                 >
                   <div className="flex items-center gap-4">
                     <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${getIndexGradient(idx.index)} flex items-center justify-center text-white shadow-lg`}>
-                      <HiOutlineChartBar className="w-7 h-7" />
+                      <BarChart3 className="w-7 h-7" />
                     </div>
                     <div className="text-left">
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white">{idx.index}</h3>
@@ -192,9 +192,9 @@ export default function IndexesPage() {
                       <p className="text-2xl font-bold text-gray-900 dark:text-white">{idx.current}</p>
                       <div className={`flex items-center justify-end gap-1 ${getChangeColor(idx.change)}`}>
                         {parseFloat(idx.change) >= 0 ? (
-                          <HiOutlineTrendingUp className="w-4 h-4" />
+                          <TrendingUp className="w-4 h-4" />
                         ) : (
-                          <HiOutlineTrendingDown className="w-4 h-4" />
+                          <TrendingDown className="w-4 h-4" />
                         )}
                         <span className="text-sm font-semibold">
                           {parseFloat(idx.change) >= 0 ? '+' : ''}{idx.change}
@@ -216,9 +216,9 @@ export default function IndexesPage() {
                     </div>
 
                     {isExpanded ? (
-                      <HiOutlineChevronUp className="w-6 h-6 text-gray-400" />
+                      <ChevronUp className="w-6 h-6 text-gray-400" />
                     ) : (
-                      <HiOutlineChevronDown className="w-6 h-6 text-gray-400" />
+                      <ChevronDown className="w-6 h-6 text-gray-400" />
                     )}
                   </div>
                 </button>
@@ -319,7 +319,7 @@ export default function IndexesPage() {
         {indexes.length === 0 && (
           <div className="text-center py-16">
             <div className="w-16 h-16 bg-gray-100 dark:bg-dark-surface rounded-full flex items-center justify-center mx-auto mb-4">
-              <HiOutlineChartBar className="w-8 h-8 text-gray-400" />
+              <BarChart3 className="w-8 h-8 text-gray-400" />
             </div>
             <h3 className="text-lg font-medium text-gray-900 dark:text-white">No indexes found</h3>
             <p className="text-gray-500 dark:text-gray-300 mt-1">Try refreshing the page</p>
