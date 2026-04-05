@@ -70,13 +70,19 @@ router.get('/sectors', async (req, res) => {
   }
 });
 
+const KSE30_SYMBOLS = [
+  'OGDC', 'PPL', 'POL', 'HUBC', 'ENGRO', 'FFC', 'EFERT', 'LUCK', 'MCB', 'UBL',
+  'HBL', 'BAHL', 'MEBL', 'NBP', 'FABL', 'BAFL', 'DGKC', 'MLCF', 'FCCL', 'CHCC',
+  'PSO', 'SHEL', 'ATRL', 'PRL', 'SYS', 'SEARL', 'ILP', 'TGL', 'INIL', 'PAEL',
+];
+
 // GET /api/market/watch?sector=AUTOMOBILE%20ASSEMBLER&index=KSE100
 router.get('/watch', async (req, res) => {
   try {
     const { sector, index } = req.query;
     const db = mongoose.connection.db;
 
-    let filter = {};
+    let filter = { SYMBOL: { $in: KSE30_SYMBOLS } };
     if (sector) filter.sector = { $in: [sector] };
     if (index) filter.index = { $in: [index] };
 
@@ -87,20 +93,14 @@ router.get('/watch', async (req, res) => {
         const data = await db
           .collection(collName)
           .find(filter)
-          .limit(100)
           .toArray();
         if (data && data.length > 0) {
-          console.log(`Found ${data.length} stocks in collection: ${collName}`);
           stocks = data;
           break;
         }
       } catch (e) {
         continue;
       }
-    }
-
-    if (stocks.length === 0) {
-      console.warn('No market watch data found in any collection');
     }
 
     res.json({ stocks });

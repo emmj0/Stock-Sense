@@ -11,6 +11,8 @@ const userRoutes = require('./routes/user');
 const stockRoutes = require('./routes/stocks');
 const marketRoutes = require('./routes/market');
 const coursesRoutes = require('./routes/courses');
+const chatRoutes = require('./routes/chat');
+const predictionsRoutes = require('./routes/predictions');
 
 const app = express();
 
@@ -26,6 +28,8 @@ app.use('/api/user', userRoutes);
 app.use('/api/stocks', stockRoutes);
 app.use('/api/market', marketRoutes);
 app.use('/api/courses', coursesRoutes);
+app.use('/api/chat', chatRoutes);
+app.use('/api/predictions', predictionsRoutes);
 
 // Serve landing page
 app.use(express.static(path.join(__dirname, '..', 'public')));

@@ -1,0 +1,128 @@
+Source: Pakistan Stock Exchange - Official Investor Education Course Content (6 Sessions)
+
+SESSION 1: UNDERSTANDING STOCKS
+
+Introduction to Stocks:
+A stock represents a unit of ownership in a company. When you buy a stock, you become a partial owner (shareholder) of that company. Companies issue stocks to raise capital for growth, operations, or debt repayment.
+
+What is an IPO (Initial Public Offering):
+An IPO is when a private company offers its shares to the public for the first time. Through an IPO, a company lists on a stock exchange like PSX, allowing ordinary investors to buy shares. The purpose is to raise additional capital for expansion, working capital, or to give early investors an exit opportunity.
+
+The Listing Process - How Companies Go Public in Pakistan:
+1. Company appoints market intermediaries (Consultant to the Issue, Book Runner etc.)
+2. Preparation of Prospectus and listing documents
+3. Submission of listing documents to PSX for approval
+4. PSX places prospectus on website for public comments (7 working days)
+5. Submission of prospectus to SECP for approval
+6. Publication of prospectus in English and Urdu newspapers
+7. Placement of securities to investors through book building or fixed price method
+8. Listing of securities at Pakistan Stock Exchange
+
+The Mechanics of the Stock Market:
+The PSX operates as a marketplace where buyers and sellers trade stocks electronically. Prices are determined by supply and demand. When more people want to buy a stock than sell it, the price rises. When more want to sell than buy, the price falls.
+PSX trading hours: Monday to Friday, 9:30 AM to 3:30 PM Pakistan Standard Time.
+The KSE-100 index tracks the 100 largest companies on PSX and is the main benchmark.
+
+Capital Gains and Dividends Explained:
+Investors earn money from stocks in two ways:
+1. Capital Gains: Profit from selling a stock at a higher price than you bought it. Example: Buy at Rs. 50, sell at Rs. 70 = Rs. 20 capital gain per share.
+2. Dividends: A portion of company profits distributed to shareholders. Example: Company declares Rs. 5 dividend per share = you receive Rs. 5 for each share you hold.
+
+Differentiating Trading from Investing:
+Trading means buying and selling stocks frequently, often within days or weeks, to profit from short-term price movements. Higher risk, requires active monitoring.
+Investing means buying and holding stocks for months or years, believing the company will grow in value over time. Generally lower risk when diversified.
+
+Getting Started - Setting Up a Brokerage Account in Pakistan:
+To buy stocks on PSX, you need:
+1. A brokerage account with a SECP-registered broker
+2. A Unique Identification Number (UIN) from NCCPL
+3. A CDC (Central Depository Company) account to hold your shares electronically
+4. A bank account linked to your brokerage account
+
+SESSION 2: FINANCIAL STATEMENTS SIMPLIFIED
+
+The Balance Sheet:
+A balance sheet shows what a company owns (assets), what it owes (liabilities), and the remaining value for shareholders (equity) at a specific point in time.
+Formula: Assets = Liabilities + Equity
+Assets include cash, inventory, property, equipment, receivables.
+Liabilities include loans, unpaid bills, bonds issued.
+Equity is what belongs to shareholders after all debts are paid.
+
+The Income Statement:
+Shows revenue earned and expenses incurred over a period (quarterly or annually).
+Key items: Revenue, Cost of Goods Sold, Gross Profit, Operating Expenses, Net Profit.
+A company can have high revenue but low profit if its expenses are high.
+
+Cash Flow Statement:
+Shows actual cash moving in and out of the business. Important because a company can be profitable on paper but still run out of cash.
+Three sections: Operating Activities, Investing Activities, Financing Activities.
+
+Why Some Companies Are Profitable Yet Lack Cash:
+A company may show profit on its income statement (accounting profit) but have negative cash flow if it has sold goods on credit and not yet received payment, or if it has made large capital investments.
+
+SESSION 3: COMPANY ANALYSIS FOR INVESTORS
+
+Fundamental Analysis:
+Examining a company's financial health, business model, management, and industry position to determine its intrinsic value. Used for long-term investing decisions.
+
+Technical Analysis:
+Studying historical price charts and trading volume patterns to predict future price movements. Used more by short-term traders.
+
+Key Financial Ratios:
+EPS (Earnings Per Share): Net Profit divided by Total Shares. Higher EPS means more profitable per share.
+PE Ratio (Price to Earnings): Stock Price divided by EPS. Shows how much investors pay per rupee of earnings. Lower PE may indicate undervalued stock.
+Book Value Per Share: Total Equity divided by Total Shares. Assets minus liabilities per share.
+ROA (Return on Assets): Net Profit divided by Total Assets. How efficiently company uses its assets.
+Dividend Yield: Annual Dividend divided by Stock Price multiplied by 100. Income return on investment.
+
+Intrinsic Value:
+The actual worth of a company based on its fundamentals, independent of market price. Calculated through Discounted Cash Flow (DCF) methodology or PE Ratio method. If market price is below intrinsic value, stock may be undervalued (a buying opportunity). If above, it may be overvalued.
+
+Avoiding Traps - Insider Trading and Pump and Dump Schemes:
+Insider Trading means using non-public information to buy or sell stocks illegally.
+Pump and Dump means artificially inflating a stock price through false promotions, then selling. Both are illegal and punishable under Pakistan Securities Act 2015.
+
+SESSION 4 AND 5: MACRO-ECONOMIC FACTORS
+
+Understanding the Bigger Picture:
+Stock prices are influenced by broader economic conditions:
+Interest Rates: Higher rates make borrowing expensive, reducing company profits.
+Inflation: High inflation erodes purchasing power and squeezes profit margins.
+GDP Growth: Strong economy means more consumer spending and higher company revenues.
+Exchange Rate: PKR depreciation raises import costs for companies.
+Government Policies: Taxes, subsidies, import duties directly affect sector profitability.
+
+Industry-Specific Factors in Pakistan:
+Oil Sector (OGDC, PSO, PPL): Affected by global oil prices, OPEC decisions, rupee dollar rate.
+Banking (HBL, MCB, UBL): Affected by State Bank of Pakistan interest rate policy.
+Cement (LUCK, DGKC): Affected by construction activity and government infrastructure spending.
+Textiles (NML, GATM): Affected by export policies, cotton prices, global demand.
+Pharmaceuticals: Affected by drug pricing policies and healthcare spending.
+Automobiles (INDU, PSMC): Affected by import duties, purchasing power, currency rates.
+
+Research Methods:
+Financial reports from listed companies (annual reports, quarterly results).
+Financial news sources: Business Recorder, The News Business, Dawn Business.
+Political and socio-economic factors affecting sectors.
+Global events: pandemics, wars, oil price changes, international trade policies.
+
+SESSION 6: PRACTICAL TRADING SKILLS
+
+Understanding Volume:
+High Volume means many shares traded, strong interest in stock, price moves are more reliable.
+Low Volume means few shares traded, price can be manipulated easily, less reliable signals.
+
+Upper and Lower Limits (Circuit Breakers):
+PSX applies daily price movement limits to prevent extreme volatility.
+A stock cannot move more than a set percentage (typically 7.5%) up or down in a single day.
+If limit is hit, trading in that stock may be halted temporarily.
+
+Reading a Stock Quote on PSX:
+Open: First price at market open.
+High and Low: Highest and lowest price during the day.
+Close or Last: Final price at market close.
+Volume: Number of shares traded during the day.
+Change: Difference from previous closing price.
+
+Navigating Trading Platforms:
+Most Pakistani brokers offer online trading platforms where you can see real-time prices, place buy and sell orders, view your portfolio, and check account statements. Orders can be market orders (executed at current price) or limit orders (executed only at your specified price or better).

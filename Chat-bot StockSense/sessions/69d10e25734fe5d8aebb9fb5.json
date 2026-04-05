@@ -1,0 +1,90 @@
+[
+  {
+    "role": "user",
+    "content": "What's in my portfolio?"
+  },
+  {
+    "role": "assistant",
+    "content": "Your Portfolio:\n\n- ATRL: 1 shares @ Rs. 0 avg | Now Rs. 864.56 | P&L: +Rs. 864.56 (+0%)\n- PAEL: 14 shares @ Rs. 0 avg | Now Rs. 32.49 | P&L: +Rs. 454.86 (+0%)\n\nTotal Invested: Rs. 0.00\nCurrent Value: Rs. 1,319.42\nTotal P&L: +Rs. 1,319.42 (+0%)"
+  },
+  {
+    "role": "user",
+    "content": "how to start investing in stocks"
+  },
+  {
+    "role": "assistant",
+    "content": "(1) Open a trading account with a SECP-registered broker, (2) Complete KYC (Know Your Customer) verification with your CNIC and bank details, (3) Get a UIN (Unique Identification Number) from NCCPL, (4) Open a CDC sub-account for holding shares electronically, (5) Fund your account, (6) Start placing buy orders.\n\nSources: PSX_Complete_QA_Guide.pdf"
+  },
+  {
+    "role": "user",
+    "content": "how to open a broker account"
+  },
+  {
+    "role": "assistant",
+    "content": "Visit the PSX website at www.psx.com.pk to check the list of registered brokers and their branch offices. You can also ask the broker to provide their SECP Broker License Number and TRE Certificate Number. Never invest through an unregistered person.\n\nSources: PSX_Complete_QA_Guide.pdf"
+  },
+  {
+    "role": "user",
+    "content": "what is psx"
+  },
+  {
+    "role": "assistant",
+    "content": "PSX stands for Pakistan Stock Exchange. It is the sole securities exchange of Pakistan where shares of publicly listed companies are bought and sold. PSX was formed in 2016 through the merger of the Karachi Stock Exchange (KSE), Lahore Stock Exchange (LSE), and Islamabad Stock Exchange (ISE).\n\nSources: PSX_Complete_QA_Guide.pdf"
+  },
+  {
+    "role": "user",
+    "content": "what is best stock to invest in"
+  },
+  {
+    "role": "assistant",
+    "content": "Stock 'best' not found in the market. Check the symbol and try again."
+  },
+  {
+    "role": "user",
+    "content": "which sectors are best for investment"
+  },
+  {
+    "role": "assistant",
+    "content": "PSX Sectors:\n\n1. COMMERCIAL BANKS | Market Cap: 4,250.77B | Advance: 8 | Decline: 11\n2. OIL & GAS EXPLORATION COMPANIES | Market Cap: 2,641.02B | Advance: 1 | Decline: 3\n3. CEMENT | Market Cap: 1,348.89B | Advance: 3 | Decline: 14\n4. FERTILIZER | Market Cap: 1,300.95B | Advance: 1 | Decline: 4\n5. FOOD & PERSONAL CARE PRODUCTS | Market Cap: 1,280.17B | Advance: 8 | Decline: 16\n6. AUTOMOBILE ASSEMBLER | Market Cap: 622.67B | Advance: 1 | Decline: 9\n7. INV. BANKS / INV. COS. / SECURITIES COS. | Market Cap: 615.16B | Advance: 12 | Decline: 15\n8. POWER GENERATION & DISTRIBUTION | Market Cap: 558.39B | Advance: 2 | Decline: 13\n9. TECHNOLOGY & COMMUNICATION | Market Cap: 544.47B | Advance: 5 | Decline: 14\n10. PHARMACEUTICALS | Market Cap: 513.75B | Advance: 2 | Decline: 12\n11. TEXTILE COMPOSITE | Market Cap: 385.24B | Advance: 12 | Decline: 16\n12. OIL & GAS MARKETING COMPANIES | Market Cap: 356.30B | Advance: 7 | Decline: 2\n13. TOBACCO | Market Cap: 305.51B | Advance: 0 | Decline: 2\n14. CHEMICAL | Market Cap: 301.44B | Advance: 6 | Decline: 16\n15. INSURANCE | Market Cap: 192.55B | Advance: 7 | Decline: 14\n16. REFINERY | Market Cap: 181.71B | Advance: 4 | Decline: 0\n17. SUGAR & ALLIED INDUSTRIES | Market Cap: 166.84B | Advance: 8 | Decline: 12\n18. TRANSPORT | Market Cap: 126.36B | Advance: 1 | Decline: 5\n19. ENGINEERING | Market Cap: 114.21B | Advance: 2 | Decline: 12\n20. PAPER, BOARD & PACKAGING | Market Cap: 113.27B | Advance: 1 | Decline: 8\n21. MISCELLANEOUS | Market Cap: 107.82B | Advance: 4 | Decline: 10\n22. REAL ESTATE INVESTMENT TRUST | Market Cap: 100.31B | Advance: 1 | Decline: 4\n23. AUTOMOBILE PARTS & ACCESSORIES | Market Cap: 91.33B | Advance: 1 | Decline: 10\n24. LEATHER & TANNERIES | Market Cap: 86.80B | Advance: 2 | Decline: 2\n25. SYNTHETIC & RAYON | Market Cap: 86.45B | Advance: 1 | Decline: 4\n26. GLASS & CERAMICS | Market Cap: 77.76B | Advance: 2 | Decline: 4\n27. CABLE & ELECTRICAL GOODS | Market Cap: 68.72B | Advance: 1 | Decline: 5\n28. TEXTILE SPINNING | Market Cap: 66.20B | Advance: 14 | Decline: 14\n29. PROPERTY | Market Cap: 48.98B | Advance: 1 | Decline: 4\n30. MODARABAS | Market Cap: 11.90B | Advance: 7 | Decline: 8\n31. EXCHANGE TRADED FUNDS | Market Cap: 5.58B | Advance: 2 | Decline: 7\n32. CLOSE - END MUTUAL FUND | Market Cap: 5.31B | Advance: 1 | Decline: 2\n33. TEXTILE WEAVING | Market Cap: 3.93B | Advance: 0 | Decline: 2\n34. VANASPATI & ALLIED INDUSTRIES | Market Cap: 3.28B | Advance: 0 | Decline: 2\n35. LEASING COMPANIES | Market Cap: 1.12B | Advance: 2 | Decline: 0\n36. WOOLLEN | Market Cap: 0.61B | Advance: 0 | Decline: 1\n37. JUTE | Market Cap: 0.31B | Advance: 0 | Decline: 1"
+  },
+  {
+    "role": "user",
+    "content": "top 30 stocks ?"
+  },
+  {
+    "role": "assistant",
+    "content": "Defensive stocks are shares of companies that provide consistent returns regardless of economic conditions.\n\nSources: PSX_Complete_QA_Guide.pdf"
+  },
+  {
+    "role": "user",
+    "content": "give me the top 30 stocks"
+  },
+  {
+    "role": "assistant",
+    "content": "Examples on PSX include cement companies, steel, and automobile manufacturers, which depend heavily on construction activity and consumer spending.\n\nSources: PSX_Complete_QA_Guide.pdf"
+  },
+  {
+    "role": "user",
+    "content": "how to start investing ?"
+  },
+  {
+    "role": "assistant",
+    "content": "(1) Open a trading account with a SECP-registered broker, (2) Complete KYC (Know Your Customer) verification with your CNIC and bank details, (3) Get a UIN (Unique Identification Number) from NCCPL, (4) Open a CDC sub-account for holding shares electronically, (5) Fund your account, (6) Start placing buy orders.\n\nSources: PSX_Complete_QA_Guide.pdf"
+  },
+  {
+    "role": "user",
+    "content": "what is SECP"
+  },
+  {
+    "role": "assistant",
+    "content": "SECP (Securities and Exchange Commission of Pakistan) is Pakistan's apex securities regulator, responsible for regulating the securities market, insurance sector, and non-banking financial companies. SECP registers brokers, approves IPOs, sets corporate governance standards, and enforces securities laws to protect investors.\n\nSources: PSX_Complete_QA_Guide.pdf"
+  },
+  {
+    "role": "user",
+    "content": "According to my stock holdings what would you suggest to buy hold or sell"
+  },
+  {
+    "role": "assistant",
+    "content": "Stock 'my' not found in the market. Check the symbol and try again."
+  }
+]

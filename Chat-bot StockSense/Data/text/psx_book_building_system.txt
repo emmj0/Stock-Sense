@@ -1,0 +1,191 @@
+Source: PSX Book Building System Manual - IPO bidding process, eligible participants, bid placement, BKBS system
+
+PAKISTAN STOCK EXCHANGE
+BOOK BUILDING SYSTEM
+User Manual
+Version 1.1
+PAKISTAN STOCK EXCHANGE BOOK BUILDING SYSTEM
+Disclaimer
+This user manual has been prepared to provide a guide to Investors and Eligible Participants for the
+use of the Book Building System [“BKBS”]. The BKBS has been revamped and deployed under the
+regulatory oversight of the Securities and Exchange Commission of Pakistan [“SECP”] and operated
+through the Pakistan Stock Exchange Limited [“PSX”]. BKBS enables transparent, secure, and efficient
+participation in the Book Building through an electronic mechanism.
+This document outlines the procedures, requirements, and operational details necessary for
+Investors/Eligible Participants to register, submit bids, monitor activity, and complete the Book
+Building process in accordance with Public Offering Regulations, 2017 and the Joint Procedure
+designed by PSX and National Clearing Company of Pakistan Limited [“NCCPL”]. All users are
+expected to adhere to the guidelines described herein to ensure a fair and orderly bidding process.
+SECP, PSX and NCCPL shall not be held responsible for any discrepancy, deviation, or variation
+between this manual and the actual software, system functionalities or operational procedures. SECP,
+PSX and NCCPL further disclaim any liability arising from any misinterpretation, non-compliance, or
+deviation from applicable laws, rules, regulations, or guidelines.
+All users are advised to refer the latest applicable laws, rules, regulations, notices, circulars,
+procedures and guidelines issued by SECP, PSX and NCCPL. Any loss, damage, or adverse outcome
+incurred as a result of reliance on this manual, or due to any variation from the official regulatory
+framework shall be solely at the risk of the user.
+PAKISTAN STOCK EXCHANGE BOOK BUILDING SYSTEM
+Table of Contents
+Contents
+Introduction ........................................................................................................................................................... 3
+About the Book Building Process.................................................................................................................. 3
+Accessing the BKBS ......................................................................................................................................... 3
+Section Pertaining to Eligible Participants...................................................................................................... 4
+One-Time Registration with PSX .................................................................................................................. 4
+Submission of Interest to NCCPL .................................................................................................................. 4
+Creation of Branch(s) and Branch Administrator(s) .................................................................................. 4
+Roles of Branch Administrator: ..................................................................................................................... 5
+On-Boarding of Clients: ................................................................................................................................ 6
+Cash Allocation to Clients:............................................................................................................................. 9
+Bid Placement: ................................................................................................................................................. 9
+Section Pertaining to Consultant to the Issue................................................................................................ 11
+Section Pertaining to Investors ........................................................................................................................ 12
+PAKISTAN STOCK EXCHANGE BOOK BUILDING SYSTEM
+Introduction
+PSX is pleased to introduce a revamped Book Building System [“BKBS”] designed to deliver a
+significantly enhanced user experience. This upgraded platform incorporates key changes to align
+with recent regulatory updates, including the application of the concept of Eligible Participant [“EP”],
+in line with the recent amendments of the Public Offering Regulations, 2017 [“Regulations”].
+Additionally, the BKBS supports multiple book building processes simultaneously, enabling issuers
+and the consultants to manage various offerings efficiently. With a focus on ease of use, speed, and
+reliability, the revamped system offers a user friendly visual interface with faster performance,
+making the entire process smoother and more comprehensible for all stakeholders.
+About the Book Building Process
+The Book Building process is a price discovery mechanism that allows investors to bid for shares
+offered within a specified price band. Institutional and high-net worth individual investors
+[“Investors”] can bid for the shares in line with the regulatory requirements. The final strike price is
+determined based on Dutch Auction Method.
+Accessing the BKBS
+BKBS can be accessed using link bkb.psx.com.pk.
+(This portion of the page is left blanked intentionally)
+3 | Pa g e
+PAKISTAN STOCK EXCHANGE BOOK BUILDING SYSTEM
+Section Pertaining to Eligible Participants
+One-Time Registration with PSX
+All EP are required to have a One-Time registration of authorized user, known as Eligible Participant
+User with PSX. For the said purpose, the EP shall be required to share the following mandatory
+information to PSX:
+1. Name of Contact Person
+2. Email Address
+3. Mobile Number
+The aforementioned information shall be shared with PSX through email:
+bookbuilding@psx.com.pk.
+PSX will create Eligible Participant User in BKBS. Once the Eligible Participant User is created, system
+generated credentials such as Login ID, Password and PIN shall be transmitted to the authorized
+user(s) on the registered email address and mobile phone number. Upon first login, the user shall be
+required to change its password.
+The Eligible Participant User once registered can be used for further upcoming Book Buildings. In
+case there is a change in the Eligible Participant User, the same can be communicated to PSX in
+writing though the aforementioned email.
+Submission of Interest to NCCPL
+EP willing to participate in the Book Building must submit an expression of interest to NCCPL by
+registering themselves via an email to nccpl-docs@nccpl.com.pk with the subject clearly specifying
+“Book Building Auction” and submission of margins as per the requirements mentioned in the
+Regulations within Designated Time Schedule.
+Creation of Branch(s) and Branch Administrator(s)
+The Eligible Participant User, using its login credentials through bkb.psx.com.pk, shall create
+Branch(s) under the “Operations” tab as described below:
+4 | Pa g e
+PAKISTAN STOCK EXCHANGE BOOK BUILDING SYSTEM
+Once the Branch is created, the Eligible Participant User will create Branch Administrator(s) against
+the respective Branch(s) using the “Operations” tab.
+The BKBS is designed to provide enhanced level of flexibility to the EP with respect to assigning
+different level of authorization to different hierarchy levels. For the said purpose, the Branch
+Administrator can be classified as follows:
+Category Assign Role Authorization
+Master Master Admin Role  Complete Access
+ Place Bids against already on boarded
+Branch Bidding Role Investors
+ Limited Reports
+ Create Investors
+ Create Sub-Branch Admin
+Branch Operation Role  Upload Investors
+ Add Investor Deposits
+Junior
+ Limited Reports
+ Create Investors
+ Create Sub-Branch Admin
+ Upload Investors
+Branch Admin Role
+ Add Investor Deposits
+ Place Bids
+ All Reports
+In case the EP is also acting as a Consultant to the Issue, the Eligible Participant User shall be required
+to add the restricted UINs using the Upload UIN option in the Operations tab.
+Roles of Branch Administrator:
+The Branch Administrator created through the Eligible Participant User can login using the credentials
+received through the email and mobile phone number. On the first login, the BKBS will require the
+Branch Administrator to change its system generated password. It is also recommended to change
+the PIN, though its not mandatory.
+The Branch Administrator can create Investors, create sub-branch administrators, add cash to
+Investors from the funds allocated by NCCPL and place bids against clients.
+5 | Pa g e
+PAKISTAN STOCK EXCHANGE BOOK BUILDING SYSTEM
+It is advisable for the EP’s to create Sub-Branch Admin as the Sub-Branch Admin can upload multiple
+Investors using a CSV file (Format attached).
+The Branch Administrator shall be able to view/download the reports allocated to the EP using the
+Report tab.
+On-Boarding of Clients:
+The Branch Administrator/Sub-Branch Administrator may create Investors using the Operations tab
+and selecting Create Investor option. This will lend to the below page:
+6 | Pa g e
+PAKISTAN STOCK EXCHANGE BOOK BUILDING SYSTEM
+The Add button shall then be used to create Investors. The BKBS will require the basic information
+regarding the Investor. The Branch Administrator/Sub-Branch Administrator shall then Map the
+symbol with the respective Investors.
+7 | Pa g e
+PAKISTAN STOCK EXCHANGE BOOK BUILDING SYSTEM
+The Branch Administrator/Sub-Branch Administrator, after submitting the aforementioned
+information, may add funds from the allocated margin provided by NCCPL against the clients using
+the Save and Deposit Cash button from this screen or using Investor Deposit option from the
+Operations tab.
+The recent regulatory amendments allow the Investors to choose between Disclosed or Undisclosed
+bidding. BKBS, by default, select the Disclosed bidding at the time of assigning the Symbol, however,
+the same may be changed to undisclosed bidding option.
+8 | Pa g e
+PAKISTAN STOCK EXCHANGE BOOK BUILDING SYSTEM
+Cash Allocation to Clients:
+The Branch Administrator/Sub-Branch Administrator can allocate the funds to the Investors from the
+drop down for the respective symbol. The Eligible Participant Cash Summary table will show the
+total funds transferred by NCCPL, the allocated amount to clients and the remaining balance.
+Bid Placement:
+The Branch Administrator/Sub-Branch Administrator (if assigned to bid as per the category
+mentioned in the table above) can place the bids using the Bid Screen tab. The tab contains a Bid
+Summary & Bid Details boxes on the left side and the Bid Window & Clients Bids on the right side.
+The Branch Administrator/Sub-Branch Administrator shall select the client and the symbol from the
+Bid Window box using the drop down menu. The type of Bid i.e. Normal Bids or Step Bids can also
+be selected for each client.
+9 | Pa g e
+PAKISTAN STOCK EXCHANGE BOOK BUILDING SYSTEM
+The Bids already placed can also be changed or replaced with Step Bid using the option available
+in the screen.
+(This portion of the page is left blanked intentionally)
+10 | Pa g e
+PAKISTAN STOCK EXCHANGE BOOK BUILDING SYSTEM
+Section Pertaining to Consultant to the Issue
+The Consultant to the Issue (CTI) shall be required to request PSX for a separate Eligible Participant
+User. That said user will have the access to the consolidated reports of EPs participated in the Book
+Building.
+It may be noted that in order to maintain the confidentiality of the bids placed by each EP, the CTI
+shall only be allotted the access of the said user upon conclusion of the Book Building.
+(This portion of the page is left blanked intentionally)
+11 | Pa g e
+PAKISTAN STOCK EXCHANGE BOOK BUILDING SYSTEM
+Section Pertaining to Investors
+The Investors willing to participate in the Book Building shall be required to contact the EP. The EP
+shall require certain information/particulars pertaining to the Investor for the purpose of registering
+the same in the BKBS. Once the registration is completed, Investor may either bid through the EP or
+may directly bid through the BKBS. For the said purpose of self-bidding, Investors shall be required
+to utilize the system generated login credentials received on its designated email address and
+mobile phone number. For the first login, the BKBS will require the Investor to change its system
+generated password. It is also recommended to change the PIN, though its not mandatory.
+Upon successful login after password change, the Investor may place bid using the Bid Screen tab.
+It is pertinent to mention that in case the Investor choose to adopt undisclosed bidding option, as
+allowed in the Regulations, the EP shall not be allowed to place or modify the bids placed by the
+Investor.
+The Investor will select the Symbol from the drop down menu in the Bid Window and place the bid
+accordingly. The real-time Bid Summary and Bid Details can be viewed on the same screen. The
+Investor may choose to revise the bid upward or convert the already placed bid into Step Bid using
+the options inbuilt in the BKBS. The Investors may view/download the relevant reports from the
+Reports tab.
+12 | Pa g e

@@ -87,10 +87,22 @@ export default function TopNav() {
                 Indexes
               </button>
               <button
+                onClick={() => navigate('/predictions')}
+                className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors"
+              >
+                Predictions
+              </button>
+              <button
                 onClick={() => navigate('/learn')}
                 className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors"
               >
                 Learn
+              </button>
+              <button
+                onClick={() => navigate('/chat')}
+                className="text-sm font-medium text-white bg-blue-600 px-4 py-1.5 rounded-full hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/20"
+              >
+                AI Chat
               </button>
             </div>
           )}
@@ -346,12 +358,30 @@ export default function TopNav() {
                 </button>
                 <button
                   onClick={() => {
+                    navigate('/predictions');
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full text-left px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-50 transition-colors"
+                >
+                  Predictions
+                </button>
+                <button
+                  onClick={() => {
                     navigate('/learn');
                     setMobileMenuOpen(false);
                   }}
                   className="w-full text-left px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-50 transition-colors"
                 >
                   Learn
+                </button>
+                <button
+                  onClick={() => {
+                    navigate('/chat');
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full text-left px-4 py-3 text-sm font-medium text-blue-600 rounded-xl hover:bg-blue-50 transition-colors"
+                >
+                  AI Chat
                 </button>
 
                 <div className="pt-4 border-t border-gray-100 space-y-2">

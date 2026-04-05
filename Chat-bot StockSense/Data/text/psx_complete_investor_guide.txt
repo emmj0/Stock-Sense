@@ -1,0 +1,58 @@
+Source: Pakistan Stock Exchange - Complete Guide for Investors
+
+PSX Overview:
+The Pakistan Stock Exchange (PSX) is the sole securities exchange of Pakistan, formed in 2016 through the merger of three separate exchanges: the Karachi Stock Exchange, Lahore Stock Exchange, and Islamabad Stock Exchange. Headquartered in Karachi, PSX operates under the regulatory oversight of the Securities and Exchange Commission of Pakistan (SECP) and is a member of the World Federation of Exchanges.
+
+Key Facts About PSX:
+PSX has approximately 530 listed companies with a combined market capitalization that has grown significantly in recent years. The exchange operates Monday through Friday with trading hours from 9:30 AM to 3:30 PM Pakistan Standard Time. The benchmark KSE-100 Index tracks the performance of the 100 largest and most liquid companies listed on the exchange. A 40% strategic stake in PSX is owned by a Chinese consortium led by the China Financial Futures Exchange.
+
+PSX Market Indices:
+The KSE-100 Index is the most widely followed benchmark and includes the top 100 companies by market capitalization.
+The KSE-30 Index is a free-float market capitalization weighted index of the 30 largest companies, providing a concentrated view of blue-chip performance.
+The KSE All Share Index covers all listed companies and gives a broader picture of overall market activity.
+
+How to Open a Brokerage Account:
+To trade on PSX, you need to open an account with a SECP-licensed brokerage firm. The account opening process requires submitting identification documents (CNIC for Pakistani citizens, passport for foreigners), bank account details, and completing a Know Your Customer (KYC) process. Many brokers now offer online account opening. All share purchases on PSX are held electronically through the Central Depository Company (CDC) of Pakistan. When you open a brokerage account, your broker will also set up a CDC sub-account in your name.
+
+Trading Process:
+Once your brokerage account is active, you can place buy and sell orders through your broker's online trading platform, mobile app, or by calling your broker directly. PSX uses a T+2 settlement cycle, meaning that trades settle two business days after the transaction date. Orders can be placed as market orders (executed at the current market price) or limit orders (executed only at your specified price or better).
+
+Investing in PSX from Overseas (Roshan Digital Account):
+The Roshan Digital Account (RDA), launched by the State Bank of Pakistan, has made it significantly easier for overseas Pakistanis to invest in the country. RDA holders can invest directly in the stock market through the Roshan Equity Investment (REI) facility. The account can be opened remotely through partner banks without visiting Pakistan. RDA provides a streamlined, government-backed channel for the Pakistani diaspora to participate in PSX with full repatriation rights.
+
+Top Sectors and Companies on PSX:
+
+Banking and Financial Services:
+The banking sector is the largest by market capitalization on PSX and includes some of Pakistan's most profitable companies. Major listed banks include Habib Bank Limited (HBL), United Bank Limited (UBL), MCB Bank, Bank Alfalah, and Meezan Bank (the largest Islamic bank). The banking sector is typically the most actively traded on PSX and offers dividend yields that are among the highest in the region.
+
+Oil and Gas:
+Major listed companies include Oil and Gas Development Company (OGDC), Pakistan Petroleum Limited (PPL), Pakistan State Oil (PSO), and Mari Petroleum. These companies benefit from Pakistan's growing energy demand.
+
+Cement and Construction:
+Major listed cement companies include Lucky Cement, DG Khan Cement, Maple Leaf Cement, and Bestway Cement. Pakistan is one of the largest cement producers in Asia.
+
+Technology and Telecommunications:
+Systems Limited, a Pakistani IT services company, has been one of the best-performing stocks in recent years. Pakistan Telecommunication Company Limited (PTCL) is also listed.
+
+Fertilizer and Agriculture:
+Engro Corporation, Fauji Fertilizer Company, and Fatima Fertilizer are among the most traded stocks. These companies offer attractive dividend yields.
+
+Understanding the KSE-100 Index:
+The KSE-100 is a market capitalization-weighted index comprising the top 100 companies listed on PSX. Companies are selected based on their market capitalization, with the largest companies having the greatest influence on the index value. The index is calculated in real-time during trading hours. A rising KSE-100 generally indicates positive investor sentiment about Pakistan's economy and corporate earnings.
+
+Risks and Considerations:
+
+Currency Risk:
+Even if stock investments generate positive returns in Rupees, a weakening Rupee can reduce or eliminate gains when converted to other currencies. Pakistan's currency has experienced significant depreciation in recent years.
+
+Political and Economic Risk:
+Pakistan's stock market is sensitive to political developments, policy changes, and macroeconomic conditions. IMF program compliance, inflation rates, interest rate decisions, and political stability all influence market performance.
+
+Dividend Information:
+Many Pakistani companies pay regular dividends, and Pakistan's dividend yields are among the highest in the region. Dividends are paid directly into your linked bank account. Dividend payments in Pakistan are subject to withholding tax, which is deducted at source by the company.
+
+Minimum Investment:
+There is no official minimum investment amount for PSX. You can buy as little as one share of any listed company. Practically, starting with at least PKR 50,000 makes sense to build a diversified portfolio.
+
+Regulation:
+PSX is regulated by the Securities and Exchange Commission of Pakistan (SECP). The Central Depository Company (CDC) ensures safe electronic custody of shares. These regulatory frameworks provide investor protection.

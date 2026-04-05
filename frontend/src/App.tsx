@@ -10,6 +10,8 @@ import MarketWatchPage from './pages/MarketWatchPage';
 import SectorsPage from './pages/SectorsPage';
 import IndexesPage from './pages/IndexesPage';
 import LearnPage from './pages/LearnPage';
+import ChatPage from './pages/ChatPage';
+import PredictionsPage from './pages/PredictionsPage';
 import { useAuth } from './providers/AuthProvider';
 import TopNav from './components/TopNav';
 
@@ -99,6 +101,22 @@ export default function App() {
             element={
               <RequireAuth>
                 <HoldingsPage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/predictions"
+            element={
+              <RequireAuth>
+                <PredictionsPage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/chat"
+            element={
+              <RequireAuth>
+                <ChatPage />
               </RequireAuth>
             }
           />
