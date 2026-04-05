@@ -7,3 +7,4 @@ pymongo>=4.7.0
 python-dotenv>=1.0.1
 requests>=2.31.0
 sentence-transformers>=2.7.0
+gunicorn>=21.2.0
