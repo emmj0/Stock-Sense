@@ -110,12 +110,13 @@ class RAGEngine:
         chunks_path: Path = Path("rag_chunks.json"),
         embedding_model: str = "all-MiniLM-L6-v2",
     ) -> None:
-        orig = hf_constants.HF_HUB_OFFLINE
-        hf_constants.HF_HUB_OFFLINE = True
+        # Allow online download on first run (e.g. Render), use cache after
         try:
+            hf_constants.HF_HUB_OFFLINE = True
             self.embedder = SentenceTransformer(embedding_model)
-        finally:
-            hf_constants.HF_HUB_OFFLINE = orig
+        except (OSError, Exception):
+            hf_constants.HF_HUB_OFFLINE = False
+            self.embedder = SentenceTransformer(embedding_model)
         self.index = faiss.read_index(str(index_path))
         with chunks_path.open("r", encoding="utf-8") as f:
             self.chunks: List[Dict[str, str]] = json.load(f)
