@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchSectors, fetchSectorByCode } from '../api';
-import { HiOutlineChevronDown, HiOutlineChevronUp, HiOutlineTrendingUp, HiOutlineTrendingDown, HiOutlineMinusCircle, HiOutlineRefresh } from 'react-icons/hi';
+import { ChevronDown, ChevronUp, TrendingUp, TrendingDown, MinusCircle, RefreshCw } from 'lucide-react';
 import { Loader, TableSkeletonLoader } from '../components/Loader';
 
 interface Company {
@@ -111,7 +111,7 @@ export default function SectorsPage() {
               onClick={loadSectors}
               className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
             >
-              <HiOutlineRefresh className="w-5 h-5" />
+              <RefreshCw className="w-5 h-5" />
               Refresh
             </button>
           </div>
@@ -176,15 +176,15 @@ export default function SectorsPage() {
                     {/* Stats */}
                     <div className="hidden md:flex items-center gap-4">
                       <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
-                        <HiOutlineTrendingUp className="w-4 h-4 text-green-600" />
+                        <TrendingUp className="w-4 h-4 text-green-600" />
                         <span className="text-sm font-medium text-green-700">{sector.advance}</span>
                       </div>
                       <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
-                        <HiOutlineTrendingDown className="w-4 h-4 text-red-600" />
+                        <TrendingDown className="w-4 h-4 text-red-600" />
                         <span className="text-sm font-medium text-red-700">{sector.decline}</span>
                       </div>
                       <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gray-100 dark:bg-dark-surface border border-gray-200 dark:border-dark-border">
-                        <HiOutlineMinusCircle className="w-4 h-4 text-gray-500 dark:text-gray-300" />
+                        <MinusCircle className="w-4 h-4 text-gray-500 dark:text-gray-300" />
                         <span className="text-sm font-medium text-gray-600 dark:text-gray-300">{sector.unchange || 0}</span>
                       </div>
                     </div>
@@ -200,9 +200,9 @@ export default function SectorsPage() {
                     </div>
 
                     {isExpanded ? (
-                      <HiOutlineChevronUp className="w-6 h-6 text-gray-400" />
+                      <ChevronUp className="w-6 h-6 text-gray-400" />
                     ) : (
-                      <HiOutlineChevronDown className="w-6 h-6 text-gray-400" />
+                      <ChevronDown className="w-6 h-6 text-gray-400" />
                     )}
                   </div>
                 </button>
@@ -307,7 +307,7 @@ export default function SectorsPage() {
         {sectors.length === 0 && (
           <div className="text-center py-16">
             <div className="w-16 h-16 bg-gray-100 dark:bg-dark-surface rounded-full flex items-center justify-center mx-auto mb-4">
-              <HiOutlineTrendingUp className="w-8 h-8 text-gray-400" />
+              <TrendingUp className="w-8 h-8 text-gray-400" />
             </div>
             <h3 className="text-lg font-medium text-gray-900 dark:text-white">No sectors found</h3>
             <p className="text-gray-500 dark:text-gray-300 mt-1">Try refreshing the page</p>

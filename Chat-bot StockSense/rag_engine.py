@@ -18,6 +18,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Optional
 
+import logging
+import time
+
 import faiss
 import numpy as np
 import requests
@@ -25,6 +28,98 @@ from huggingface_hub import constants as hf_constants
 from sentence_transformers import SentenceTransformer
 
 import db_connector as db
+
+logger = logging.getLogger("stocksense")
+
+
+# ---------------------------------------------------------------------------
+# Ollama / Phi-3 LLM integration
+# ---------------------------------------------------------------------------
+
+
+def _get_ollama_config() -> tuple[str, str]:
+    """Read Ollama config at call time so dotenv is loaded first."""
+    url = os.getenv("LOCAL_LLM_URL", "http://127.0.0.1:11434")
+    model = os.getenv("LOCAL_LLM_MODEL", "phi3")
+    return url, model
+
+
+def call_ollama(prompt: str, system: str = "", temperature: float = 0.7, max_tokens: int = 512) -> Optional[str]:
+    """Call local Ollama API with Phi-3. Returns generated text or None on failure."""
+    url, model = _get_ollama_config()
+    logger.info(f"[LLM] Calling {model} (max_tokens={max_tokens}, temp={temperature})")
+    t_start = time.time()
+    try:
+        payload = {
+            "model": model,
+            "prompt": prompt,
+            "stream": False,
+            "options": {
+                "temperature": temperature,
+                "num_predict": max_tokens,
+            },
+        }
+        if system:
+            payload["system"] = system
+        resp = requests.post(f"{url}/api/generate", json=payload, timeout=120)
+        resp.raise_for_status()
+        result = resp.json()
+        text = result.get("response", "").strip()
+        elapsed = time.time() - t_start
+        logger.info(f"[LLM] {model} responded in {elapsed:.1f}s ({len(text)} chars)")
+        return text
+    except requests.exceptions.ConnectionError:
+        logger.error(f"[LLM] Ollama not reachable at {url} — is it running?")
+        return None
+    except requests.exceptions.Timeout:
+        logger.error(f"[LLM] Ollama timed out after 120s")
+        return None
+    except Exception as exc:
+        logger.error(f"[LLM] Call failed ({model}): {exc}")
+        return None
+
+
+def build_rag_prompt(question: str, chunks: List["RetrievedChunk"],
+                     chat_history: Optional[List[Dict[str, str]]] = None,
+                     db_context: Optional[str] = None) -> tuple[str, str]:
+    """Build system + user prompt for LLM from RAG chunks and conversation history."""
+    system = (
+        "You are StockSense, a PSX (Pakistan Stock Exchange) assistant. "
+        "Answer based on the provided context only. Be concise and helpful. "
+        "Use bullet points for lists. Never guarantee returns."
+    )
+
+    # Build context section — keep it short for fast inference
+    parts = []
+
+    if db_context:
+        # Trim DB context to avoid huge prompts
+        parts.append(f"DATA:\n{db_context[:600]}")
+
+    if chunks:
+        context_texts = []
+        for i, chunk in enumerate(chunks[:3], 1):
+            text = extract_answer_text(chunk.text)
+            if text and len(text) > 20:
+                context_texts.append(f"[{i}] {text[:250]}")
+        if context_texts:
+            parts.append("CONTEXT:\n" + "\n".join(context_texts))
+
+    # Only last 2 turns of conversation history
+    if chat_history:
+        recent = chat_history[-(4):]
+        history_lines = []
+        for msg in recent:
+            role = "User" if msg.get("role") == "user" else "Assistant"
+            history_lines.append(f"{role}: {msg.get('content', '')[:100]}")
+        if history_lines:
+            parts.append("HISTORY:\n" + "\n".join(history_lines))
+
+    context_block = "\n\n".join(parts) if parts else "No context."
+
+    user_prompt = f"{context_block}\n\nQuestion: {question}\n\nAnswer concisely:"
+
+    return system, user_prompt
 
 
 @dataclass
@@ -803,6 +898,30 @@ def _format_user_context_summary(user_context: Optional[Dict[str, object]]) -> s
     return " | ".join(parts)
 
 
+def _generate_llm_answer(
+    question: str,
+    chunks: List[RetrievedChunk],
+    chat_history: Optional[List[Dict[str, str]]] = None,
+    db_context: Optional[str] = None,
+) -> str:
+    """Generate answer using Ollama Phi-3 with RAG context. Falls back to extractive."""
+    has_db = db_context is not None
+    logger.info(f"[Answer] Generating LLM answer (chunks={len(chunks)}, db_context={has_db})")
+
+    system, user_prompt = build_rag_prompt(question, chunks, chat_history, db_context)
+    llm_reply = call_ollama(user_prompt, system=system, temperature=0.7, max_tokens=200)
+
+    if llm_reply and len(llm_reply) > 15:
+        logger.info("[Answer] Using LLM response")
+        return llm_reply
+
+    # Fallback to extractive if LLM is unavailable
+    logger.warning("[Answer] LLM unavailable — falling back to extractive")
+    if db_context:
+        return db_context
+    return build_extractive_answer(question, chunks, chat_history)
+
+
 def answer_with_context(
     question: str,
     chunks: List[RetrievedChunk],
@@ -812,52 +931,64 @@ def answer_with_context(
     user_email: Optional[str] = None,
     user_context: Optional[Dict[str, object]] = None,
 ) -> str:
-    """Route question to the right handler and generate answer.
+    """Route question to the right handler and generate answer via LLM.
 
     Priority:
     1. Greeting / Identity / Casual / Unrealistic
-    2. Educational questions → always go to RAG (never accidentally hit DB)
-    3. Database queries (prices, portfolio, predictions, sectors)
+    2. Educational questions → RAG + LLM
+    3. Database queries → DB data + LLM enhancement
     4. Domain check
-    5. RAG retrieval from educational documents
+    5. General RAG + LLM
     """
     _ = user_profile
 
+    logger.info(f"[Router] Processing: {question[:100]}")
+
     # --- 1. Quick intent checks ---
     if is_greeting(question):
+        logger.info("[Router] Intent: greeting")
         name = (user_context or {}).get("name")
         if name:
             return f"Hello {name}! " + GREETING_RESPONSE[len("Hello! "):]
         return GREETING_RESPONSE
     if is_identity_question(question):
+        logger.info("[Router] Intent: identity")
         return IDENTITY_RESPONSE
     if is_casual_or_personal(question):
+        logger.info("[Router] Intent: casual/personal")
         return CASUAL_RESPONSE
     if is_unrealistic_expectation(question):
+        logger.info("[Router] Intent: unrealistic expectation")
         return UNREALISTIC_RESPONSE
 
-    # --- 2. Educational questions → RAG first (skip DB) ---
-    # "what is a stock", "how to invest", "explain dividend" etc.
+    # --- 2. Educational questions → RAG + LLM ---
     if is_educational_question(question):
+        logger.info("[Router] Intent: educational → RAG + LLM")
         min_score = float(os.getenv("RAG_MIN_RETRIEVAL_SCORE", "0.25"))
         if chunks and max(c.score for c in chunks) >= min_score:
-            return build_extractive_answer(question, chunks, chat_history)
+            return _generate_llm_answer(question, chunks, chat_history)
 
-    # --- 3. Try database answer ---
+    # --- 3. Try database answer → enhance with LLM ---
     db_answer = try_db_answer(question, user_email, user_context)
     if db_answer:
-        return db_answer
+        logger.info("[Router] Intent: database query → DB + LLM")
+        return _generate_llm_answer(question, chunks, chat_history, db_context=db_answer)
 
     # --- 4. Domain check ---
     if not is_domain_question(question):
         conv_topics = get_conversation_topics(chat_history)
         domain_words = {"stock", "psx", "invest", "broker", "share", "trading", "market", "dividend", "sector"}
         if not (conv_topics & domain_words):
+            logger.info("[Router] Intent: off-domain")
             return OFF_DOMAIN_RESPONSE
 
     # --- 5. Low retrieval confidence ---
     min_score = float(os.getenv("RAG_MIN_RETRIEVAL_SCORE", "0.30"))
     if not chunks or max(c.score for c in chunks) < min_score:
+        logger.info("[Router] Low RAG confidence — trying LLM anyway")
+        llm_reply = _generate_llm_answer(question, chunks or [], chat_history)
+        if llm_reply and "I don't have enough" not in llm_reply:
+            return llm_reply
         return (
             "I'm not sure about that. Try asking something like:\n"
             "- \"What is a stock?\"\n"
@@ -866,8 +997,9 @@ def answer_with_context(
             "- \"Show top gainers\""
         )
 
-    # --- 6. Extractive answer from RAG ---
-    return build_extractive_answer(question, chunks, chat_history)
+    # --- 6. RAG + LLM answer ---
+    logger.info("[Router] Intent: general domain → RAG + LLM")
+    return _generate_llm_answer(question, chunks, chat_history)
 
 
 # Backward-compatible alias

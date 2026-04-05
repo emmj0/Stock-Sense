@@ -5,6 +5,7 @@ const tokenStorageKey = 'stocksense_token';
 
 export const api = axios.create({
   baseURL,
+  timeout: 120000, // 2 minutes — phi3 LLM can take 30-60s on CPU
 });
 
 export function setAuthToken(token: string | null) {

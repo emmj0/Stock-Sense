@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import { useAuth } from '../providers/AuthProvider';
-import { HiOutlineMail, HiOutlineLockClosed, HiOutlineUser, HiOutlineArrowRight, HiOutlineCheckCircle } from 'react-icons/hi';
+import { Mail, Lock, User, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 export default function SignupPage() {
   const { register, authenticateWithGoogle } = useAuth();
@@ -83,7 +83,7 @@ export default function SignupPage() {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <HiOutlineUser className="h-5 w-5 text-gray-400" />
+                  <User className="h-5 w-5 text-gray-400" />
                 </div>
                 <input
                   className="w-full pl-12 pr-4 py-3.5 rounded-xl border-2 border-gray-200 dark:border-dark-border bg-gray-50 dark:bg-dark-surface text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:border-blue-500 focus:bg-white dark:focus:bg-dark-surface focus:ring-4 focus:ring-blue-500/10 transition-all duration-300"
@@ -101,7 +101,7 @@ export default function SignupPage() {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <HiOutlineMail className="h-5 w-5 text-gray-400" />
+                  <Mail className="h-5 w-5 text-gray-400" />
                 </div>
                 <input
                   className="w-full pl-12 pr-4 py-3.5 rounded-xl border-2 border-gray-200 dark:border-dark-border bg-gray-50 dark:bg-dark-surface text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:border-blue-500 focus:bg-white dark:focus:bg-dark-surface focus:ring-4 focus:ring-blue-500/10 transition-all duration-300"
@@ -120,7 +120,7 @@ export default function SignupPage() {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <HiOutlineLockClosed className="h-5 w-5 text-gray-400" />
+                  <Lock className="h-5 w-5 text-gray-400" />
                 </div>
                 <input
                   className="w-full pl-12 pr-4 py-3.5 rounded-xl border-2 border-gray-200 dark:border-dark-border bg-gray-50 dark:bg-dark-surface text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:border-blue-500 focus:bg-white dark:focus:bg-dark-surface focus:ring-4 focus:ring-blue-500/10 transition-all duration-300"
@@ -162,7 +162,7 @@ export default function SignupPage() {
                   <p key={idx} className={`text-xs flex items-center gap-1.5 transition-colors ${
                     req.check ? 'text-green-600' : 'text-gray-400 dark:text-gray-500'
                   }`}>
-                    <HiOutlineCheckCircle className={`w-4 h-4 ${req.check ? 'text-green-500' : 'text-gray-300 dark:text-gray-600'}`} />
+                    <CheckCircle2 className={`w-4 h-4 ${req.check ? 'text-green-500' : 'text-gray-300 dark:text-gray-600'}`} />
                     {req.text}
                   </p>
                 ))}
@@ -193,7 +193,7 @@ export default function SignupPage() {
               ) : (
                 <>
                   Create Account
-                  <HiOutlineArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </>
               )}
             </button>

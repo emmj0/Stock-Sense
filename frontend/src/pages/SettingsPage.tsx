@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../providers/AuthProvider';
 import { fetchUserProgress, fetchCourses } from '../api';
-import { HiOutlineAcademicCap, HiOutlineCheckCircle, HiOutlineClock, HiOutlineLockClosed, HiOutlineChartBar, HiOutlineStar, HiOutlineBookOpen } from 'react-icons/hi';
+import { GraduationCap, CheckCircle2, Clock, Lock, BarChart3, Star, BookOpen } from 'lucide-react';
 
 interface CourseProgress {
   courseId: string;
@@ -159,7 +159,7 @@ export default function SettingsPage() {
                 : 'border-transparent text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-300'
             }`}
           >
-            <HiOutlineAcademicCap className="w-4 h-4 sm:w-5 sm:h-5" />
+            <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5" />
             <span className="hidden sm:inline">Learning</span>
           </button>
           <button
@@ -271,7 +271,7 @@ export default function SettingsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 p-6 text-white">
                     <div className="flex items-center gap-3 mb-2">
-                      <HiOutlineStar className="w-6 h-6" />
+                      <Star className="w-6 h-6" />
                       <span className="text-sm font-medium text-blue-100">Courses Completed</span>
                     </div>
                     <p className="text-3xl font-bold">
@@ -281,7 +281,7 @@ export default function SettingsPage() {
 
                   <div className="rounded-xl bg-gradient-to-br from-emerald-600 to-teal-600 p-4 sm:p-6 text-white">
                     <div className="flex items-center gap-3 mb-2">
-                      <HiOutlineChartBar className="w-5 h-5 sm:w-6 sm:h-6" />
+                      <BarChart3 className="w-5 h-5 sm:w-6 sm:h-6" />
                       <span className="text-xs sm:text-sm font-medium text-emerald-100">Progress</span>
                     </div>
                     <p className="text-2xl sm:text-3xl font-bold">
@@ -293,7 +293,7 @@ export default function SettingsPage() {
 
                   <div className="rounded-xl bg-gradient-to-br from-purple-600 to-pink-600 p-4 sm:p-6 text-white">
                     <div className="flex items-center gap-3 mb-2">
-                      <HiOutlineBookOpen className="w-5 h-5 sm:w-6 sm:h-6" />
+                      <BookOpen className="w-5 h-5 sm:w-6 sm:h-6" />
                       <span className="text-xs sm:text-sm font-medium text-purple-100">Current Level</span>
                     </div>
                     <p className="text-2xl sm:text-3xl font-bold">
@@ -369,11 +369,11 @@ export default function SettingsPage() {
                                   : 'bg-gray-100 dark:bg-dark-surface'
                             }`}>
                               {course.progress.status === 'completed' ? (
-                                <HiOutlineCheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
+                                <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
                               ) : course.isUnlocked ? (
                                 <span className="text-base sm:text-lg font-bold text-blue-600">{index + 1}</span>
                               ) : (
-                                <HiOutlineLockClosed className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+                                <Lock className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
                               )}
                             </div>
 
@@ -419,7 +419,7 @@ export default function SettingsPage() {
                               </span>
                               {course.progress.completedAt && (
                                 <span className="text-xs text-gray-400 flex items-center gap-1">
-                                  <HiOutlineClock className="w-3 h-3" />
+                                  <Clock className="w-3 h-3" />
                                   {new Date(course.progress.completedAt).toLocaleDateString()}
                                 </span>
                               )}
@@ -431,7 +431,7 @@ export default function SettingsPage() {
 
                     {courses.length === 0 && (
                       <div className="text-center py-8">
-                        <HiOutlineAcademicCap className="w-12 h-12 text-gray-300 mx-auto mb-3" />
+                        <GraduationCap className="w-12 h-12 text-gray-300 mx-auto mb-3" />
                         <p className="text-gray-500 dark:text-gray-300">No courses available yet</p>
                         <Link 
                           to="/learn"

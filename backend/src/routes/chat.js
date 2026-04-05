@@ -45,7 +45,7 @@ router.post('/send', async (req, res) => {
       session_id: session._id.toString(),
       user_email: user.email,
       user_context: userContext,
-    }, { timeout: 30000 });
+    }, { timeout: 120000 });
 
     const reply = chatResponse.data.reply || 'Sorry, I could not generate a response.';
 
