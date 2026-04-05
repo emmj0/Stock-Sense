@@ -97,6 +97,22 @@ export default function PredictionsPage() {
     }
   };
 
+  // Clean technical jargon from model reasoning for user display
+  const cleanReasoning = (text: string) => {
+    if (!text) return '';
+    return text
+      .replace(/TFT model forecasts?/gi, 'Our AI predicts')
+      .replace(/TFT/g, 'AI')
+      .replace(/blended score: [-\d.]+/gi, '')
+      .replace(/blended sentiment/gi, 'market mood')
+      .replace(/\(blended score: \)/gi, '')
+      .replace(/Forecast uncertainty: [\d.]+% price range \([^)]*\)\.\s*/gi, '')
+      .replace(/Market sentiment is (neutral|positive|negative) \(\)\.?\s*/gi, (_, mood) => `Market mood is ${mood}. `)
+      .replace(/Market sentiment is (neutral|positive|negative) \(market mood: [-\d.]+\)\.?\s*/gi, (_, mood) => `Market mood is ${mood}. `)
+      .replace(/\s+/g, ' ')
+      .trim();
+  };
+
   const sectors = useMemo(() => {
     const s = new Set(predictions.map((p) => p.sector).filter(Boolean));
     return Array.from(s).sort();
@@ -135,21 +151,21 @@ export default function PredictionsPage() {
   };
 
   const returnColor = (ret: number) => {
-    if (ret > 0) return 'text-emerald-600';
-    if (ret < 0) return 'text-red-600';
-    return 'text-gray-600';
+    if (ret > 0) return 'text-emerald-600 dark:text-emerald-400';
+    if (ret < 0) return 'text-red-600 dark:text-red-400';
+    return 'text-gray-600 dark:text-gray-300';
   };
 
   const trustBadge = (level: string) => {
-    if (level === 'high') return { text: 'High accuracy', cls: 'text-emerald-700 bg-emerald-50' };
-    if (level === 'low') return { text: 'Low accuracy', cls: 'text-red-700 bg-red-50' };
-    return { text: 'Moderate accuracy', cls: 'text-amber-700 bg-amber-50' };
+    if (level === 'high') return { text: 'High accuracy', cls: 'text-emerald-700 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-900/30' };
+    if (level === 'low') return { text: 'Low accuracy', cls: 'text-red-700 bg-red-50 dark:text-red-400 dark:bg-red-900/30' };
+    return { text: 'Moderate accuracy', cls: 'text-amber-700 bg-amber-50 dark:text-amber-400 dark:bg-amber-900/30' };
   };
 
   const sentimentLabel = (score: number) => {
-    if (score >= 0.3) return { text: 'Positive news', cls: 'text-emerald-600' };
-    if (score <= -0.3) return { text: 'Negative news', cls: 'text-red-600' };
-    return { text: 'Neutral news', cls: 'text-gray-500' };
+    if (score >= 0.3) return { text: 'Positive news', cls: 'text-emerald-600 dark:text-emerald-400' };
+    if (score <= -0.3) return { text: 'Negative news', cls: 'text-red-600 dark:text-red-400' };
+    return { text: 'Neutral news', cls: 'text-gray-500 dark:text-gray-300' };
   };
 
   // Mini sparkline for 7-day price forecast
@@ -191,16 +207,16 @@ export default function PredictionsPage() {
   const lastUpdated = predictions.length > 0 ? predictions[0].updatedAt : null;
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-white dark:bg-dark-bg text-black dark:text-gray-100">
       {/* Header */}
-      <div className="relative border-b border-gray-200 bg-white">
+      <div className="relative border-b border-gray-200 dark:border-dark-border bg-white dark:bg-dark-bg">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
             <div className="space-y-2">
-              <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900">
+              <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Stock Predictions
               </h1>
-              <p className="text-gray-500 text-base max-w-2xl">
+              <p className="text-gray-500 dark:text-gray-300 text-base max-w-2xl">
                 Our AI analyzes 28 KSE-30 stocks daily and predicts where prices may go in the next 7 days.
                 Each stock gets a <strong className="text-emerald-600">BUY</strong>, <strong className="text-amber-600">HOLD</strong>, or <strong className="text-red-600">SELL</strong> recommendation based on price patterns, market data, and news sentiment.
               </p>
@@ -216,23 +232,23 @@ export default function PredictionsPage() {
 
       {/* Summary Cards */}
       {!loading && predictions.length > 0 && (
-        <div className="border-b border-gray-100 bg-gray-50/50">
+        <div className="border-b border-gray-100 dark:border-dark-border bg-gray-50/50 dark:bg-dark-surface/50">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5">
             <div className="flex flex-wrap gap-3">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-100 dark:border-emerald-800">
                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                <span className="text-sm font-semibold text-emerald-700">{summary.buy} stocks to buy</span>
+                <span className="text-sm font-semibold text-emerald-700 dark:text-emerald-400">{summary.buy} stocks to buy</span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 border border-amber-100">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 dark:bg-amber-900/30 border border-amber-100 dark:border-amber-800">
                 <span className="w-2 h-2 rounded-full bg-amber-500" />
-                <span className="text-sm font-semibold text-amber-700">{summary.hold} to hold</span>
+                <span className="text-sm font-semibold text-amber-700 dark:text-amber-400">{summary.hold} to hold</span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 border border-red-100">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 dark:bg-red-900/30 border border-red-100 dark:border-red-800">
                 <span className="w-2 h-2 rounded-full bg-red-500" />
-                <span className="text-sm font-semibold text-red-700">{summary.sell} to sell</span>
+                <span className="text-sm font-semibold text-red-700 dark:text-red-400">{summary.sell} to sell</span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100">
-                <span className="text-sm text-gray-500">{predictions.length} stocks analyzed</span>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-dark-surface">
+                <span className="text-sm text-gray-500 dark:text-gray-300">{predictions.length} stocks analyzed</span>
               </div>
             </div>
           </div>
@@ -240,7 +256,7 @@ export default function PredictionsPage() {
       )}
 
       {/* Tabs */}
-      <div className="border-b border-gray-200 bg-white sticky top-[72px] z-10">
+      <div className="border-b border-gray-200 dark:border-dark-border bg-white dark:bg-dark-bg sticky top-[72px] z-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex gap-6">
             {user && (
@@ -249,7 +265,7 @@ export default function PredictionsPage() {
                 className={`py-3.5 text-sm font-medium border-b-2 transition-colors ${
                   activeTab === 'portfolio'
                     ? 'border-blue-600 text-blue-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                    : 'border-transparent text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200'
                 }`}
               >
                 My Stocks {portfolioPredictions.length > 0 && `(${portfolioPredictions.length})`}
@@ -260,7 +276,7 @@ export default function PredictionsPage() {
               className={`py-3.5 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === 'recommendations'
                   ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
+                  : 'border-transparent text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200'
               }`}
             >
               Top Picks
@@ -270,7 +286,7 @@ export default function PredictionsPage() {
               className={`py-3.5 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === 'all'
                   ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
+                  : 'border-transparent text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200'
               }`}
             >
               All Stocks ({predictions.length})
@@ -284,7 +300,7 @@ export default function PredictionsPage() {
           <div className="flex items-center justify-center py-20">
             <div className="text-center">
               <div className="inline-block animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600" />
-              <p className="mt-4 text-gray-500">Loading predictions...</p>
+              <p className="mt-4 text-gray-500 dark:text-gray-300">Loading predictions...</p>
             </div>
           </div>
         ) : error ? (
@@ -296,26 +312,26 @@ export default function PredictionsPage() {
           </div>
         ) : predictions.length === 0 ? (
           <div className="text-center py-20">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 dark:bg-dark-surface flex items-center justify-center">
               <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
             </div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-1">No Predictions Yet</h3>
-            <p className="text-gray-500">The prediction pipeline hasn't run yet. Check back later.</p>
+            <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">No Predictions Yet</h3>
+            <p className="text-gray-500 dark:text-gray-300">No predictions available yet. Check back later.</p>
           </div>
         ) : activeTab === 'portfolio' ? (
           /* ============== MY STOCKS TAB ============== */
           <div>
             {portfolioPredictions.length === 0 ? (
               <div className="text-center py-16">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-50 flex items-center justify-center">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center">
                   <svg className="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-1">No stocks in your portfolio</h3>
-                <p className="text-gray-500 mb-4">Add KSE-30 stocks to your portfolio from the Dashboard to see personalized predictions here.</p>
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">No stocks in your portfolio</h3>
+                <p className="text-gray-500 dark:text-gray-300 mb-4">Add KSE-30 stocks to your portfolio from the Dashboard to see personalized predictions here.</p>
                 <a href="/dashboard" className="inline-block px-5 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-full hover:bg-blue-700 transition-colors">
                   Go to Dashboard
                 </a>
@@ -326,9 +342,9 @@ export default function PredictionsPage() {
                   <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
-                  <h2 className="text-lg font-bold text-gray-900">Predictions for Your Stocks</h2>
+                  <h2 className="text-lg font-bold text-gray-900 dark:text-white">Predictions for Your Stocks</h2>
                 </div>
-                <p className="text-sm text-gray-500 mb-5">
+                <p className="text-sm text-gray-500 dark:text-gray-300 mb-5">
                   Here's what our AI predicts for the {portfolioPredictions.length} stock{portfolioPredictions.length !== 1 ? 's' : ''} in your portfolio over the next 7 days.
                 </p>
 
@@ -341,17 +357,17 @@ export default function PredictionsPage() {
                     return (
                       <>
                         {pBuy > 0 && (
-                          <span className="px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-100 text-sm font-medium text-emerald-700">
+                          <span className="px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-100 dark:border-emerald-800 text-sm font-medium text-emerald-700 dark:text-emerald-400">
                             {pBuy} to buy
                           </span>
                         )}
                         {pHold > 0 && (
-                          <span className="px-3 py-1.5 rounded-full bg-amber-50 border border-amber-100 text-sm font-medium text-amber-700">
+                          <span className="px-3 py-1.5 rounded-full bg-amber-50 dark:bg-amber-900/30 border border-amber-100 dark:border-amber-800 text-sm font-medium text-amber-700 dark:text-amber-400">
                             {pHold} to hold
                           </span>
                         )}
                         {pSell > 0 && (
-                          <span className="px-3 py-1.5 rounded-full bg-red-50 border border-red-100 text-sm font-medium text-red-700">
+                          <span className="px-3 py-1.5 rounded-full bg-red-50 dark:bg-red-900/30 border border-red-100 dark:border-red-800 text-sm font-medium text-red-700 dark:text-red-400">
                             {pSell} to sell
                           </span>
                         )}
@@ -367,10 +383,10 @@ export default function PredictionsPage() {
                     const trust = trustBadge(pred.trustLevel || 'medium');
 
                     return (
-                      <div key={pred.symbol} className="border border-blue-100 rounded-xl overflow-hidden hover:border-blue-200 transition-colors bg-blue-50/20">
+                      <div key={pred.symbol} className="border border-blue-100 dark:border-blue-800/50 rounded-xl overflow-hidden hover:border-blue-200 dark:hover:border-blue-700 transition-colors bg-blue-50/20 dark:bg-dark-card">
                         <div
                           onClick={() => setExpandedSymbol(isExpanded ? null : pred.symbol)}
-                          className="p-4 cursor-pointer hover:bg-blue-50/40 transition-colors"
+                          className="p-4 cursor-pointer hover:bg-blue-50/40 dark:hover:bg-dark-hover transition-colors"
                         >
                           <div className="flex items-center justify-between gap-3">
                             <div className="flex items-center gap-3 min-w-0">
@@ -379,7 +395,7 @@ export default function PredictionsPage() {
                               </div>
                               <div className="min-w-0">
                                 <div className="flex items-center gap-2">
-                                  <p className="font-semibold text-gray-900">{pred.symbol}</p>
+                                  <p className="font-semibold text-gray-900 dark:text-white">{pred.symbol}</p>
                                   <span className="text-xs text-gray-400 hidden sm:inline">{pred.companyName}</span>
                                 </div>
                                 <p className="text-xs text-gray-400">{pred.sector} &middot; {signalLabel(pred.signal)}</p>
@@ -393,7 +409,7 @@ export default function PredictionsPage() {
                               <div className="flex items-center gap-3">
                                 <div className="hidden sm:block text-right">
                                   <p className="text-xs text-gray-400">Now</p>
-                                  <p className="text-sm font-medium text-gray-700">Rs. {pred.currentPrice?.toFixed(2)}</p>
+                                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Rs. {pred.currentPrice?.toFixed(2)}</p>
                                 </div>
                                 <div className="text-right">
                                   <p className="text-xs text-gray-400">7-day target</p>
@@ -401,7 +417,7 @@ export default function PredictionsPage() {
                                     Rs. {pred.predictedPrice?.toFixed(2)}
                                   </p>
                                 </div>
-                                <div className={`text-right px-2.5 py-1 rounded-lg ${pred.predictedReturn > 0 ? 'bg-emerald-50' : pred.predictedReturn < 0 ? 'bg-red-50' : 'bg-gray-50'}`}>
+                                <div className={`text-right px-2.5 py-1 rounded-lg ${pred.predictedReturn > 0 ? 'bg-emerald-50 dark:bg-emerald-900/30' : pred.predictedReturn < 0 ? 'bg-red-50 dark:bg-red-900/30' : 'bg-gray-50 dark:bg-dark-surface'}`}>
                                   <p className={`text-base font-bold ${returnColor(pred.predictedReturn)}`}>
                                     {pred.predictedReturn > 0 ? '+' : ''}{pred.predictedReturn?.toFixed(1)}%
                                   </p>
@@ -414,32 +430,32 @@ export default function PredictionsPage() {
                           </div>
                           {/* Holding info */}
                           {pred.holding && (
-                            <div className="mt-2 pt-2 border-t border-blue-100 flex flex-wrap gap-4 text-xs text-gray-500">
-                              <span>Shares: <strong className="text-gray-700">{pred.holding.quantity}</strong></span>
-                              <span>Avg cost: <strong className="text-gray-700">Rs. {pred.holding.averageCost?.toFixed(2)}</strong></span>
-                              <span>Invested: <strong className="text-gray-700">Rs. {pred.holding.invested?.toFixed(0)}</strong></span>
-                              <span>Current value: <strong className="text-gray-700">Rs. {pred.holding.currentValue?.toFixed(0)}</strong></span>
+                            <div className="mt-2 pt-2 border-t border-blue-100 dark:border-blue-800/50 flex flex-wrap gap-4 text-xs text-gray-500 dark:text-gray-300">
+                              <span>Shares: <strong className="text-gray-700 dark:text-gray-300">{pred.holding.quantity}</strong></span>
+                              <span>Avg cost: <strong className="text-gray-700 dark:text-gray-300">Rs. {pred.holding.averageCost?.toFixed(2)}</strong></span>
+                              <span>Invested: <strong className="text-gray-700 dark:text-gray-300">Rs. {pred.holding.invested?.toFixed(0)}</strong></span>
+                              <span>Current value: <strong className="text-gray-700 dark:text-gray-300">Rs. {pred.holding.currentValue?.toFixed(0)}</strong></span>
                             </div>
                           )}
                         </div>
                         {isExpanded && (
-                          <div className="border-t border-blue-100 bg-white p-4 sm:p-6 space-y-5">
+                          <div className="border-t border-blue-100 dark:border-blue-800/50 bg-white dark:bg-dark-surface p-4 sm:p-6 space-y-5">
                             <div>
-                              <h4 className="text-sm font-semibold text-gray-800 mb-2 flex items-center gap-2">
+                              <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-100 mb-2 flex items-center gap-2">
                                 <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                                 </svg>
                                 What our AI says
                               </h4>
-                              <p className="text-sm text-gray-600 leading-relaxed">{pred.llmReasoning || pred.reasoning}</p>
+                              <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{cleanReasoning(pred.llmReasoning || pred.reasoning)}</p>
                             </div>
-                            <div className="flex flex-wrap gap-2 pt-2 border-t border-gray-100">
+                            <div className="flex flex-wrap gap-2 pt-2 border-t border-gray-100 dark:border-dark-border">
                               <span className={`text-[11px] px-2.5 py-1 rounded-full font-medium ${trust.cls}`}>{trust.text}</span>
-                              <span className="text-[11px] px-2.5 py-1 rounded-full bg-gray-100 text-gray-500">
+                              <span className="text-[11px] px-2.5 py-1 rounded-full bg-gray-100 dark:bg-dark-surface text-gray-500 dark:text-gray-300">
                                 {pred.forecastDays?.bullish || 0} of 7 days look positive
                               </span>
-                              <span className="text-[11px] px-2.5 py-1 rounded-full bg-gray-100 text-gray-500">
-                                Model confidence: {pred.confidence?.toFixed(0)}%
+                              <span className="text-[11px] px-2.5 py-1 rounded-full bg-gray-100 dark:bg-dark-surface text-gray-500 dark:text-gray-300">
+                                AI confidence: {pred.confidence?.toFixed(0)}%
                               </span>
                             </div>
                           </div>
@@ -458,20 +474,20 @@ export default function PredictionsPage() {
               <div>
                 <div className="flex items-center gap-2 mb-4">
                   <span className="w-3 h-3 rounded-full bg-emerald-500" />
-                  <h2 className="text-lg font-bold text-gray-900">Stocks Worth Buying</h2>
+                  <h2 className="text-lg font-bold text-gray-900 dark:text-white">Stocks Worth Buying</h2>
                   <span className="text-xs text-gray-400 ml-1">Our AI thinks these may go up</span>
                 </div>
                 <div className="grid gap-3">
                   {recommendations.topBuys.map((rec, i) => (
-                    <div key={rec.symbol} className="p-4 border border-gray-200 rounded-xl hover:border-emerald-200 hover:bg-emerald-50/20 transition-all">
+                    <div key={rec.symbol} className="p-4 border border-gray-200 dark:border-dark-border rounded-xl hover:border-emerald-200 dark:hover:border-emerald-800 hover:bg-emerald-50/20 dark:hover:bg-emerald-900/10 transition-all">
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex items-center gap-3">
-                          <div className="w-9 h-9 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-sm">
+                          <div className="w-9 h-9 rounded-lg bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center text-emerald-700 dark:text-emerald-400 font-bold text-sm">
                             #{i + 1}
                           </div>
                           <div>
-                            <p className="font-semibold text-gray-900">{rec.symbol}</p>
-                            <p className="text-xs text-gray-500">{rec.sector}</p>
+                            <p className="font-semibold text-gray-900 dark:text-white">{rec.symbol}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-300">{rec.sector}</p>
                           </div>
                         </div>
                         <div className="text-right">
@@ -492,11 +508,11 @@ export default function PredictionsPage() {
                           <span className="font-semibold text-emerald-600">Rs. {rec.predicted_price?.toFixed(2)}</span>
                         </div>
                         <div className="ml-auto text-xs text-gray-400">
-                          Model confidence: {rec.confidence?.toFixed(0)}%
+                          Confidence: {rec.confidence?.toFixed(0)}%
                         </div>
                       </div>
                       {rec.reasoning && (
-                        <p className="mt-2 text-xs text-gray-500 leading-relaxed line-clamp-2">{rec.reasoning}</p>
+                        <p className="mt-2 text-xs text-gray-500 dark:text-gray-300 leading-relaxed line-clamp-2">{cleanReasoning(rec.reasoning)}</p>
                       )}
                     </div>
                   ))}
@@ -508,20 +524,20 @@ export default function PredictionsPage() {
               <div>
                 <div className="flex items-center gap-2 mb-4">
                   <span className="w-3 h-3 rounded-full bg-red-500" />
-                  <h2 className="text-lg font-bold text-gray-900">Stocks to Watch Out For</h2>
+                  <h2 className="text-lg font-bold text-gray-900 dark:text-white">Stocks to Watch Out For</h2>
                   <span className="text-xs text-gray-400 ml-1">Our AI thinks these may decline</span>
                 </div>
                 <div className="grid gap-3">
                   {recommendations.topSells.map((rec, i) => (
-                    <div key={rec.symbol} className="p-4 border border-gray-200 rounded-xl hover:border-red-200 hover:bg-red-50/20 transition-all">
+                    <div key={rec.symbol} className="p-4 border border-gray-200 dark:border-dark-border rounded-xl hover:border-red-200 dark:hover:border-red-800 hover:bg-red-50/20 dark:hover:bg-red-900/10 transition-all">
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex items-center gap-3">
-                          <div className="w-9 h-9 rounded-lg bg-red-100 flex items-center justify-center text-red-700 font-bold text-sm">
+                          <div className="w-9 h-9 rounded-lg bg-red-100 dark:bg-red-900/40 flex items-center justify-center text-red-700 dark:text-red-400 font-bold text-sm">
                             #{i + 1}
                           </div>
                           <div>
-                            <p className="font-semibold text-gray-900">{rec.symbol}</p>
-                            <p className="text-xs text-gray-500">{rec.sector}</p>
+                            <p className="font-semibold text-gray-900 dark:text-white">{rec.symbol}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-300">{rec.sector}</p>
                           </div>
                         </div>
                         <div className="text-right">
@@ -542,11 +558,11 @@ export default function PredictionsPage() {
                           <span className="font-semibold text-red-600">Rs. {rec.predicted_price?.toFixed(2)}</span>
                         </div>
                         <div className="ml-auto text-xs text-gray-400">
-                          Model confidence: {rec.confidence?.toFixed(0)}%
+                          Confidence: {rec.confidence?.toFixed(0)}%
                         </div>
                       </div>
                       {rec.reasoning && (
-                        <p className="mt-2 text-xs text-gray-500 leading-relaxed line-clamp-2">{rec.reasoning}</p>
+                        <p className="mt-2 text-xs text-gray-500 dark:text-gray-300 leading-relaxed line-clamp-2">{cleanReasoning(rec.reasoning)}</p>
                       )}
                     </div>
                   ))}
@@ -555,7 +571,7 @@ export default function PredictionsPage() {
             ) : null}
 
             {!recommendations?.topBuys?.length && !recommendations?.topSells?.length && (
-              <div className="text-center py-16 text-gray-500">No recommendations available yet.</div>
+              <div className="text-center py-16 text-gray-500 dark:text-gray-300">No recommendations available yet.</div>
             )}
           </div>
         ) : (
@@ -568,12 +584,12 @@ export default function PredictionsPage() {
                 placeholder="Search stock name or symbol..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
+                className="w-full px-4 py-2.5 border border-gray-200 dark:border-dark-border rounded-xl text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white dark:bg-dark-card dark:text-gray-100 dark:placeholder-gray-500"
               />
               <select
                 value={filterSignal}
                 onChange={(e) => setFilterSignal(e.target.value)}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-blue-400 bg-white"
+                className="w-full px-4 py-2.5 border border-gray-200 dark:border-dark-border rounded-xl text-sm focus:outline-none focus:border-blue-400 bg-white dark:bg-dark-card dark:text-gray-100"
               >
                 <option value="">All Recommendations</option>
                 <option value="BUY">Buy signals only</option>
@@ -583,7 +599,7 @@ export default function PredictionsPage() {
               <select
                 value={filterSector}
                 onChange={(e) => setFilterSector(e.target.value)}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-blue-400 bg-white"
+                className="w-full px-4 py-2.5 border border-gray-200 dark:border-dark-border rounded-xl text-sm focus:outline-none focus:border-blue-400 bg-white dark:bg-dark-card dark:text-gray-100"
               >
                 <option value="">All Sectors</option>
                 {sectors.map((s) => (
@@ -600,11 +616,11 @@ export default function PredictionsPage() {
                 const trust = trustBadge(pred.trustLevel || 'medium');
 
                 return (
-                  <div key={pred.symbol} className="border border-gray-200 rounded-xl overflow-hidden hover:border-gray-300 transition-colors">
+                  <div key={pred.symbol} className="border border-gray-200 dark:border-dark-border rounded-xl overflow-hidden hover:border-gray-300 dark:hover:border-gray-600 transition-colors dark:bg-dark-card">
                     {/* Main Row */}
                     <div
                       onClick={() => setExpandedSymbol(isExpanded ? null : pred.symbol)}
-                      className="p-4 cursor-pointer hover:bg-gray-50/50 transition-colors"
+                      className="p-4 cursor-pointer hover:bg-gray-50/50 dark:hover:bg-dark-hover transition-colors"
                     >
                       <div className="flex items-center justify-between gap-3">
                         {/* Left: Stock info + signal */}
@@ -614,7 +630,7 @@ export default function PredictionsPage() {
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-2">
-                              <p className="font-semibold text-gray-900">{pred.symbol}</p>
+                              <p className="font-semibold text-gray-900 dark:text-white">{pred.symbol}</p>
                               <span className="text-xs text-gray-400 hidden sm:inline">{pred.companyName}</span>
                             </div>
                             <p className="text-xs text-gray-400">{pred.sector} &middot; {signalLabel(pred.signal)}</p>
@@ -632,7 +648,7 @@ export default function PredictionsPage() {
                           <div className="flex items-center gap-3">
                             <div className="hidden sm:block text-right">
                               <p className="text-xs text-gray-400">Now</p>
-                              <p className="text-sm font-medium text-gray-700">Rs. {pred.currentPrice?.toFixed(2)}</p>
+                              <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Rs. {pred.currentPrice?.toFixed(2)}</p>
                             </div>
                             <div className="text-right">
                               <p className="text-xs text-gray-400">7-day target</p>
@@ -640,7 +656,7 @@ export default function PredictionsPage() {
                                 Rs. {pred.predictedPrice?.toFixed(2)}
                               </p>
                             </div>
-                            <div className={`text-right px-2.5 py-1 rounded-lg ${pred.predictedReturn > 0 ? 'bg-emerald-50' : pred.predictedReturn < 0 ? 'bg-red-50' : 'bg-gray-50'}`}>
+                            <div className={`text-right px-2.5 py-1 rounded-lg ${pred.predictedReturn > 0 ? 'bg-emerald-50 dark:bg-emerald-900/30' : pred.predictedReturn < 0 ? 'bg-red-50 dark:bg-red-900/30' : 'bg-gray-50 dark:bg-dark-surface'}`}>
                               <p className={`text-base font-bold ${returnColor(pred.predictedReturn)}`}>
                                 {pred.predictedReturn > 0 ? '+' : ''}{pred.predictedReturn?.toFixed(1)}%
                               </p>
@@ -657,31 +673,31 @@ export default function PredictionsPage() {
 
                     {/* Expanded Detail */}
                     {isExpanded && (
-                      <div className="border-t border-gray-100 bg-gray-50/50 p-4 sm:p-6 space-y-5">
+                      <div className="border-t border-gray-100 dark:border-dark-border bg-gray-50/50 dark:bg-dark-surface p-4 sm:p-6 space-y-5">
                         {/* AI Analysis */}
                         <div>
-                          <h4 className="text-sm font-semibold text-gray-800 mb-2 flex items-center gap-2">
+                          <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-100 mb-2 flex items-center gap-2">
                             <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                             </svg>
                             What our AI says
                           </h4>
-                          <p className="text-sm text-gray-600 leading-relaxed">
-                            {pred.llmReasoning || pred.reasoning}
+                          <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                            {cleanReasoning(pred.llmReasoning || pred.reasoning)}
                           </p>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                           {/* Price Forecast */}
                           <div>
-                            <h4 className="text-sm font-semibold text-gray-800 mb-3">Where the price could go</h4>
+                            <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-100 mb-3">Where the price could go</h4>
                             <div className="space-y-2">
                               <div className="flex items-center justify-between text-sm">
-                                <span className="text-gray-500">Current price</span>
+                                <span className="text-gray-500 dark:text-gray-300">Current price</span>
                                 <span className="font-semibold">Rs. {pred.currentPrice?.toFixed(2)}</span>
                               </div>
                               <div className="flex items-center justify-between text-sm">
-                                <span className="text-gray-500">Most likely price (7 days)</span>
+                                <span className="text-gray-500 dark:text-gray-300">Most likely price (7 days)</span>
                                 <span className={`font-bold ${returnColor(pred.predictedReturn)}`}>
                                   Rs. {pred.predictedPrice?.toFixed(2)}
                                 </span>
@@ -698,11 +714,11 @@ export default function PredictionsPage() {
                                 const goingUp = pred.predictedPrice > pred.currentPrice;
 
                                 return (
-                                  <div className="mt-3 p-3 rounded-lg bg-white border border-gray-100">
+                                  <div className="mt-3 p-3 rounded-lg bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border">
                                     <p className="text-xs text-gray-400 mb-3">Predicted price range in 7 days</p>
                                     <div className="relative h-8">
                                       {/* Full range line */}
-                                      <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 h-1 bg-gray-100 rounded-full" />
+                                      <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 h-1 bg-gray-100 dark:bg-dark-surface rounded-full" />
                                       {/* Model's predicted range (q10 to q90) */}
                                       <div
                                         className="absolute top-1/2 -translate-y-1/2 h-2.5 bg-blue-100 rounded-full"
@@ -749,8 +765,8 @@ export default function PredictionsPage() {
                           <div className="space-y-4">
                             {/* News Sentiment */}
                             <div>
-                              <h4 className="text-sm font-semibold text-gray-800 mb-2">Recent news mood</h4>
-                              <div className="p-3 rounded-lg bg-white border border-gray-100">
+                              <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-100 mb-2">Recent news mood</h4>
+                              <div className="p-3 rounded-lg bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border">
                                 <div className="flex items-center justify-between mb-2">
                                   <span className={`text-sm font-medium ${sent.cls}`}>{sent.text}</span>
                                   {pred.sentiment?.source && pred.sentiment.source !== 'neutral' && (
@@ -760,7 +776,7 @@ export default function PredictionsPage() {
                                 {pred.sentiment?.key_headlines?.length > 0 ? (
                                   <ul className="space-y-1">
                                     {pred.sentiment.key_headlines.slice(0, 3).map((h, i) => (
-                                      <li key={i} className="text-xs text-gray-500 flex items-start gap-1.5">
+                                      <li key={i} className="text-xs text-gray-500 dark:text-gray-300 flex items-start gap-1.5">
                                         <span className="text-gray-300 mt-0.5">-</span>
                                         <span>{h}</span>
                                       </li>
@@ -775,10 +791,10 @@ export default function PredictionsPage() {
                             {/* Risk Factors */}
                             {pred.riskFactors?.length > 0 && (
                               <div>
-                                <h4 className="text-sm font-semibold text-gray-800 mb-2">Things to watch out for</h4>
+                                <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-100 mb-2">Things to watch out for</h4>
                                 <ul className="space-y-1">
                                   {pred.riskFactors.map((risk, i) => (
-                                    <li key={i} className="text-xs text-gray-500 flex items-start gap-1.5">
+                                    <li key={i} className="text-xs text-gray-500 dark:text-gray-300 flex items-start gap-1.5">
                                       <span className="text-amber-400 mt-0.5">!</span>
                                       <span>{risk}</span>
                                     </li>
@@ -790,18 +806,18 @@ export default function PredictionsPage() {
                         </div>
 
                         {/* Bottom tags */}
-                        <div className="flex flex-wrap gap-2 pt-2 border-t border-gray-100">
+                        <div className="flex flex-wrap gap-2 pt-2 border-t border-gray-100 dark:border-dark-border">
                           <span className={`text-[11px] px-2.5 py-1 rounded-full font-medium ${trust.cls}`}>
                             {trust.text}
                           </span>
-                          <span className="text-[11px] px-2.5 py-1 rounded-full bg-gray-100 text-gray-500">
+                          <span className="text-[11px] px-2.5 py-1 rounded-full bg-gray-100 dark:bg-dark-surface text-gray-500 dark:text-gray-300">
                             {pred.forecastDays?.bullish || 0} of 7 days look positive
                           </span>
-                          <span className="text-[11px] px-2.5 py-1 rounded-full bg-gray-100 text-gray-500">
-                            Model confidence: {pred.confidence?.toFixed(0)}%
+                          <span className="text-[11px] px-2.5 py-1 rounded-full bg-gray-100 dark:bg-dark-surface text-gray-500 dark:text-gray-300">
+                            AI confidence: {pred.confidence?.toFixed(0)}%
                           </span>
                           {pred.trustNote && (
-                            <span className="text-[11px] px-2.5 py-1 rounded-full bg-red-50 text-red-500">
+                            <span className="text-[11px] px-2.5 py-1 rounded-full bg-red-50 dark:bg-red-900/30 text-red-500 dark:text-red-400">
                               {pred.trustNote}
                             </span>
                           )}
@@ -813,7 +829,7 @@ export default function PredictionsPage() {
               })}
 
               {filtered.length === 0 && (
-                <div className="text-center py-12 text-gray-500">
+                <div className="text-center py-12 text-gray-500 dark:text-gray-300">
                   No stocks match your search.
                 </div>
               )}
@@ -823,8 +839,8 @@ export default function PredictionsPage() {
 
         {/* Disclaimer */}
         {predictions.length > 0 && (
-          <div className="mt-8 p-4 rounded-xl bg-amber-50/50 border border-amber-100">
-            <p className="text-xs text-amber-700 leading-relaxed">
+          <div className="mt-8 p-4 rounded-xl bg-amber-50/50 dark:bg-amber-900/20 border border-amber-100 dark:border-amber-800/50">
+            <p className="text-xs text-amber-700 dark:text-amber-400 leading-relaxed">
               <strong>Important:</strong> These predictions are generated by an AI model for educational and informational purposes only.
               They are <strong>not financial advice</strong>. The stock market carries risk — you can lose money.
               Always do your own research or consult a financial advisor before making any investment decisions.

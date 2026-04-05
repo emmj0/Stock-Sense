@@ -15,7 +15,7 @@ export function Loader({ text = 'Loading...', size = 'md' }: LoaderProps) {
   return (
     <div className="flex flex-col items-center justify-center py-12">
       <HiOutlineRefresh className={`${sizeClass} text-blue-600 animate-spin mb-2`} />
-      <p className="text-gray-600 font-medium">{text}</p>
+      <p className="text-gray-600 dark:text-gray-300 font-medium">{text}</p>
     </div>
   );
 }
@@ -24,7 +24,7 @@ export function SkeletonLoader() {
   return (
     <div className="space-y-4">
       {[1, 2, 3].map((i) => (
-        <div key={i} className="bg-gray-200 h-20 rounded-lg animate-pulse" />
+        <div key={i} className="skeleton h-20 rounded-lg" />
       ))}
     </div>
   );
@@ -34,7 +34,7 @@ export function TableSkeletonLoader() {
   return (
     <div className="space-y-3">
       {[1, 2, 3, 4, 5].map((i) => (
-        <div key={i} className="bg-gray-200 h-16 rounded animate-pulse" />
+        <div key={i} className="skeleton h-16 rounded-lg" />
       ))}
     </div>
   );

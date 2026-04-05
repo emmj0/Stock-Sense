@@ -12,17 +12,17 @@ const processSteps = [
 ];
 
 const featureBullets = [
-  { title: 'Real PSX coverage', text: 'Indexes, sectors, and market watch backed by scraped PSX data refreshed every few minutes.' },
-  { title: 'Predictive intelligence', text: 'Price trends, sentiment, and confidence levels guiding buy / hold / sell signals.' },
-  { title: 'Always-on assistant', text: 'Conversational advisor to explain moves, surface insights, and keep you on track.' },
-  { title: 'Learning-first design', text: 'Micro-courses, quizzes, and progress tracking to build literacy alongside returns.' },
+  { title: 'Live PSX data', text: 'Real-time stock prices, indexes, sectors, and market data from the Pakistan Stock Exchange — updated daily.' },
+  { title: 'AI-powered predictions', text: '7-day price forecasts with buy, hold, and sell signals powered by deep learning and news analysis.' },
+  { title: 'Smart AI assistant', text: 'Ask anything about stocks, your portfolio, or investing — get instant, personalized answers.' },
+  { title: 'Learn as you invest', text: 'Interactive courses, quizzes, and progress tracking to build your stock market knowledge step by step.' },
 ];
 
 const srsSummary = [
-  { heading: 'Problem', text: 'Retail investors lack a single, trustworthy PSX companion. Data is fragmented, tools are manual, and scams erode confidence.' },
-  { heading: 'Solution', text: 'StockSense unifies scraped market data, predictive analytics, sentiment, alerts, and education in a safe simulation-first workspace.' },
-  { heading: 'Objectives', text: 'Cross-platform app, ML recommendations, AI chatbot, education module, secure auth, and transparent data handling.' },
-  { heading: 'Constraints', text: 'Dependent on scraper uptime, public data structures, network stability, and model accuracy; operates in a simulation environment.' },
+  { heading: 'The Problem', text: 'New investors in Pakistan struggle with fragmented data, confusing tools, and lack of reliable guidance for PSX investing.' },
+  { heading: 'Our Solution', text: 'StockSense brings together live market data, AI price predictions, a smart assistant, and educational courses — all in one place.' },
+  { heading: 'What You Get', text: 'A complete investing companion: personalized stock recommendations, portfolio tracking, an AI chatbot, and learning modules.' },
+  { heading: 'Built For You', text: 'Designed for everyday Pakistani investors — whether you are a complete beginner or an experienced trader looking for AI insights.' },
 ];
 
 // Floating decorative elements for hero
@@ -105,7 +105,7 @@ export default function LandingPage() {
   const currentSector = sectors[sectorSlide];
 
   return (
-    <div className="min-h-screen bg-white text-black overflow-x-hidden">
+    <div className="min-h-screen bg-white dark:bg-dark-bg text-black dark:text-gray-100 overflow-x-hidden">
       {/* CSS Animations */}
       <style>{`
         @keyframes float {
@@ -157,12 +157,12 @@ export default function LandingPage() {
           {/* Left Content */}
           <div className={`space-y-8 ${isVisible ? 'animate-fadeInLeft' : 'opacity-0'}`}>
             <div className="space-y-6">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white leading-tight">
                 Smart Investing
                 <br />
                 <span className="text-blue-600">Made Simple</span>
               </h1>
-              <p className="text-lg sm:text-xl text-gray-500 max-w-lg leading-relaxed">
+              <p className="text-lg sm:text-xl text-gray-500 dark:text-gray-300 max-w-lg leading-relaxed">
                 Track PSX indexes, sectors, and market data with AI-driven predictions. Your intelligent financial companion for smarter investment decisions.
               </p>
             </div>
@@ -179,7 +179,7 @@ export default function LandingPage() {
               </Link>
               <Link
                 to="/market-watch"
-                className="px-8 py-4 text-base font-semibold text-gray-700 border-2 border-gray-200 rounded-full hover:border-gray-300 hover:bg-gray-50 transition-all duration-300"
+                className="px-8 py-4 text-base font-semibold text-gray-700 dark:text-gray-300 border-2 border-gray-200 dark:border-dark-border rounded-full hover:border-gray-300 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-dark-hover transition-all duration-300"
               >
                 Explore Market
               </Link>
@@ -198,7 +198,7 @@ export default function LandingPage() {
               <FloatingElement className="bottom-40 right-32 w-8 h-8 bg-blue-200 rounded-lg" delay={1.5} />
               
               {/* Central Card - Stock Preview */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 bg-white rounded-2xl shadow-2xl p-6 border-2 border-gray-200">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 bg-white dark:bg-dark-card rounded-2xl shadow-2xl dark:shadow-black/30 p-6 border-2 border-gray-200 dark:border-dark-border">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
@@ -228,7 +228,7 @@ export default function LandingPage() {
               </div>
 
               {/* Small Stats Cards */}
-              <div className="absolute top-16 right-8 bg-white rounded-xl shadow-xl p-4 border-2 border-gray-200" style={{ animation: 'float 5s ease-in-out infinite', animationDelay: '0.5s' }}>
+              <div className="absolute top-16 right-8 bg-white dark:bg-dark-card rounded-xl shadow-xl dark:shadow-black/30 p-4 border-2 border-gray-200 dark:border-dark-border" style={{ animation: 'float 5s ease-in-out infinite', animationDelay: '0.5s' }}>
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
                     <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -242,7 +242,7 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              <div className="absolute bottom-24 left-8 bg-white rounded-xl shadow-xl p-4 border-2 border-gray-200" style={{ animation: 'float 6s ease-in-out infinite', animationDelay: '1s' }}>
+              <div className="absolute bottom-24 left-8 bg-white dark:bg-dark-card rounded-xl shadow-xl dark:shadow-black/30 p-4 border-2 border-gray-200 dark:border-dark-border" style={{ animation: 'float 6s ease-in-out infinite', animationDelay: '1s' }}>
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
                     <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -261,7 +261,7 @@ export default function LandingPage() {
       </section>
 
       {/* Indexes Slideshow */}
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-gray-200 bg-gray-50">
+      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-gray-200 dark:border-dark-border bg-gray-50 dark:bg-dark-card">
         <div className="max-w-6xl mx-auto">
           <div className="mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2">
@@ -273,7 +273,7 @@ export default function LandingPage() {
           </div>
 
           {indexLoading ? (
-            <div className="flex items-center justify-center h-64 rounded-2xl border-2 border-gray-300 bg-white shadow-lg">
+            <div className="flex items-center justify-center h-64 rounded-2xl border-2 border-gray-300 dark:border-dark-border bg-white dark:bg-dark-card shadow-lg">
               <div className="flex flex-col items-center gap-3">
                 <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
                 <p className="text-gray-500">Loading indexes...</p>
@@ -283,7 +283,7 @@ export default function LandingPage() {
             <div className="space-y-6">
               <div className="relative overflow-hidden">
                 <div 
-                  className="rounded-2xl border-2 border-gray-300 bg-white p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-500 ease-out"
+                  className="rounded-2xl border-2 border-gray-300 dark:border-dark-border bg-white dark:bg-dark-card p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-500 ease-out"
                   key={indexSlide}
                   style={{ animation: 'slideIn 0.5s ease-out' }}
                 >
@@ -303,15 +303,15 @@ export default function LandingPage() {
                   </div>
 
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-3 sm:p-4 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
+                    <div className="rounded-xl border-2 border-gray-200 dark:border-dark-border bg-gray-50 dark:bg-dark-surface p-3 sm:p-4 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
                       <p className="text-xs sm:text-sm text-gray-600 font-medium">Current</p>
                       <p className="text-lg sm:text-2xl font-bold text-black mt-1">{currentIndex.current}</p>
                     </div>
-                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-3 sm:p-4 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
+                    <div className="rounded-xl border-2 border-gray-200 dark:border-dark-border bg-gray-50 dark:bg-dark-surface p-3 sm:p-4 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
                       <p className="text-xs sm:text-sm text-gray-600 font-medium">High</p>
                       <p className="text-lg sm:text-2xl font-bold text-black mt-1">{currentIndex.high}</p>
                     </div>
-                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-3 sm:p-4 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
+                    <div className="rounded-xl border-2 border-gray-200 dark:border-dark-border bg-gray-50 dark:bg-dark-surface p-3 sm:p-4 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
                       <p className="text-xs sm:text-sm text-gray-600 font-medium">Low</p>
                       <p className="text-lg sm:text-2xl font-bold text-black mt-1">{currentIndex.low}</p>
                     </div>
@@ -355,7 +355,7 @@ export default function LandingPage() {
           </div>
 
           {sectorLoading ? (
-            <div className="flex items-center justify-center h-64 rounded-2xl border-2 border-gray-300 bg-white shadow-lg">
+            <div className="flex items-center justify-center h-64 rounded-2xl border-2 border-gray-300 dark:border-dark-border bg-white dark:bg-dark-card shadow-lg">
               <div className="flex flex-col items-center gap-3">
                 <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
                 <p className="text-gray-500">Loading sectors...</p>
@@ -365,7 +365,7 @@ export default function LandingPage() {
             <div className="space-y-6">
               <div className="relative overflow-hidden">
                 <div 
-                  className="rounded-2xl border-2 border-gray-300 bg-white p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-500 ease-out"
+                  className="rounded-2xl border-2 border-gray-300 dark:border-dark-border bg-white dark:bg-dark-card p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-500 ease-out"
                   key={sectorSlide}
                   style={{ animation: 'slideIn 0.5s ease-out' }}
                 >
@@ -380,19 +380,19 @@ export default function LandingPage() {
                   </div>
 
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-3 sm:p-4 hover:shadow-lg hover:border-green-300 transition-all duration-300">
+                    <div className="rounded-xl border-2 border-gray-200 dark:border-dark-border bg-gray-50 dark:bg-dark-surface p-3 sm:p-4 hover:shadow-lg hover:border-green-300 transition-all duration-300">
                       <p className="text-xs sm:text-sm text-gray-600 font-medium">Advance</p>
                       <p className="text-lg sm:text-2xl font-bold text-green-600 mt-1">{currentSector.advance}</p>
                     </div>
-                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-3 sm:p-4 hover:shadow-lg hover:border-red-300 transition-all duration-300">
+                    <div className="rounded-xl border-2 border-gray-200 dark:border-dark-border bg-gray-50 dark:bg-dark-surface p-3 sm:p-4 hover:shadow-lg hover:border-red-300 transition-all duration-300">
                       <p className="text-xs sm:text-sm text-gray-600 font-medium">Decline</p>
                       <p className="text-lg sm:text-2xl font-bold text-red-600 mt-1">{currentSector.decline}</p>
                     </div>
-                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-3 sm:p-4 hover:shadow-lg hover:border-gray-400 transition-all duration-300">
+                    <div className="rounded-xl border-2 border-gray-200 dark:border-dark-border bg-gray-50 dark:bg-dark-surface p-3 sm:p-4 hover:shadow-lg hover:border-gray-400 transition-all duration-300">
                       <p className="text-xs sm:text-sm text-gray-600 font-medium">Unchanged</p>
                       <p className="text-lg sm:text-2xl font-bold text-gray-700 mt-1">{currentSector.unchange || 0}</p>
                     </div>
-                    <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-3 sm:p-4 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
+                    <div className="rounded-xl border-2 border-gray-200 dark:border-dark-border bg-gray-50 dark:bg-dark-surface p-3 sm:p-4 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
                       <p className="text-xs sm:text-sm text-gray-600 font-medium">Market Cap</p>
                       <p className="text-lg sm:text-2xl font-bold text-black mt-1">{currentSector.market_cap} B</p>
                     </div>
@@ -424,7 +424,7 @@ export default function LandingPage() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <section id="features" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-dark-card">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
@@ -439,7 +439,7 @@ export default function LandingPage() {
             {featureBullets.map((item, idx) => (
               <div 
                 key={item.title} 
-                className="group p-8 bg-white rounded-2xl border-2 border-gray-300 shadow-md hover:border-blue-500 hover:shadow-2xl transition-all duration-300"
+                className="group p-8 bg-white dark:bg-dark-card rounded-2xl border-2 border-gray-300 dark:border-dark-border shadow-md hover:border-blue-500 hover:shadow-2xl transition-all duration-300"
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
                 <div className="flex items-start gap-4">
@@ -460,7 +460,7 @@ export default function LandingPage() {
       </section>
 
       {/* Process Timeline Section */}
-      <section id="how-it-works" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-white">
+      <section id="how-it-works" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-white dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <span className="inline-block px-4 py-2 rounded-full bg-blue-100 text-blue-600 text-sm font-semibold mb-4">
@@ -481,7 +481,7 @@ export default function LandingPage() {
               return (
                 <div
                   key={idx}
-                  className={`group relative p-8 bg-white rounded-2xl border-2 border-gray-200 shadow-sm hover:shadow-2xl hover:border-blue-500 hover:-translate-y-2 transition-all duration-500 ${
+                  className={`group relative p-8 bg-white dark:bg-dark-card rounded-2xl border-2 border-gray-200 dark:border-dark-border shadow-sm hover:shadow-2xl hover:border-blue-500 hover:-translate-y-2 transition-all duration-500 ${
                     idx === 4 ? 'md:col-span-2 lg:col-span-1' : ''
                   }`}
                 >
@@ -532,7 +532,7 @@ export default function LandingPage() {
       </section>
 
       {/* SRS Summary Section */}
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-white dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
@@ -610,7 +610,7 @@ export default function LandingPage() {
               return (
                 <div 
                   key={idx} 
-                  className="group relative p-8 bg-white rounded-2xl border-2 border-gray-200 shadow-sm hover:shadow-2xl hover:border-blue-400 transition-all duration-500 overflow-hidden"
+                  className="group relative p-8 bg-white dark:bg-dark-card rounded-2xl border-2 border-gray-200 dark:border-dark-border shadow-sm hover:shadow-2xl hover:border-blue-400 transition-all duration-500 overflow-hidden"
                 >
                   {/* Background Gradient Hover Effect */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
@@ -636,7 +636,7 @@ export default function LandingPage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-white border-t border-gray-200">
+      <section id="contact" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-white dark:bg-dark-bg border-t border-gray-200 dark:border-dark-border">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
@@ -647,7 +647,7 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <form className="space-y-6 bg-gray-50 p-8 rounded-2xl border-2 border-gray-300 shadow-lg">
+          <form className="space-y-6 bg-gray-50 dark:bg-dark-card p-8 rounded-2xl border-2 border-gray-300 dark:border-dark-border shadow-lg dark:shadow-black/20">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">

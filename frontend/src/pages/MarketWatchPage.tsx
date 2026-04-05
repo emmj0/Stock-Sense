@@ -123,15 +123,15 @@ export default function MarketWatchPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-white dark:bg-dark-bg text-black dark:text-gray-100">
       {/* Header */}
-      <div className="relative border-b border-gray-200 bg-white">
+      <div className="relative border-b border-gray-200 dark:border-dark-border bg-white dark:bg-dark-card">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
           <div className="space-y-2">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold">
               Market Watch
             </h1>
-            <p className="text-gray-600 text-lg max-w-2xl">
+            <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl">
               Follow real-time stock movements across all indexes and sectors
             </p>
           </div>
@@ -139,13 +139,13 @@ export default function MarketWatchPage() {
       </div>
 
       {/* Filters */}
-      <div className="border-b border-gray-200 bg-gray-50">
+      <div className="border-b border-gray-200 dark:border-dark-border bg-gray-50 dark:bg-dark-surface">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Search */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Search Symbol
                 </label>
                 <input
@@ -159,7 +159,7 @@ export default function MarketWatchPage() {
 
               {/* Index Filter */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Filter by Index
                 </label>
                 <select
@@ -178,7 +178,7 @@ export default function MarketWatchPage() {
 
               {/* Sector Filter */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Filter by Sector
                 </label>
                 <select
@@ -212,7 +212,7 @@ export default function MarketWatchPage() {
       {/* Content */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         {error && (
-          <div className="rounded-lg bg-red-50 border border-red-200 p-4 text-red-800 mb-6">
+          <div className="rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-4 text-red-800 dark:text-red-400 mb-6">
             {error}
           </div>
         )}
@@ -222,52 +222,52 @@ export default function MarketWatchPage() {
             <Loader text="Loading market data..." />
           </div>
         ) : filteredStocks.length === 0 ? (
-          <div className="rounded-lg border border-gray-200 bg-gray-50 p-12 text-center">
-            <p className="text-gray-600">No stocks found matching your filters</p>
+          <div className="rounded-lg border border-gray-200 dark:border-dark-border bg-gray-50 dark:bg-dark-surface p-12 text-center">
+            <p className="text-gray-600 dark:text-gray-300">No stocks found matching your filters</p>
           </div>
         ) : (
-          <div className="rounded-lg border border-gray-200 bg-white overflow-hidden">
+          <div className="rounded-lg border border-gray-200 dark:border-dark-border bg-white dark:bg-dark-card overflow-hidden">
             {/* Table wrapper for responsive scrolling */}
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-gray-200 bg-gray-50">
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
+                  <tr className="border-b border-gray-200 dark:border-dark-border bg-gray-50 dark:bg-dark-surface">
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">
                       Symbol
                     </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900">
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900 dark:text-white">
                       Current
                     </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900">
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900 dark:text-white">
                       Change
                     </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900">
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900 dark:text-white">
                       Change %
                     </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900">
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900 dark:text-white">
                       High
                     </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900">
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900 dark:text-white">
                       Low
                     </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900">
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900 dark:text-white">
                       Open
                     </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900">
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900 dark:text-white">
                       Volume
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200">
+                <tbody className="divide-y divide-gray-200 dark:divide-dark-border">
                   {filteredStocks.map((stock) => (
                     <tr
                       key={stock._id}
-                      className="hover:bg-gray-50 transition-colors cursor-pointer"
+                      className="hover:bg-gray-50 dark:hover:bg-dark-hover transition-colors cursor-pointer"
                     >
-                      <td className="px-6 py-4 text-sm font-semibold text-gray-900">
+                      <td className="px-6 py-4 text-sm font-semibold text-gray-900 dark:text-white">
                         {stock.SYMBOL}
                       </td>
-                      <td className="px-6 py-4 text-sm text-right text-gray-900 font-semibold">
+                      <td className="px-6 py-4 text-sm text-right text-gray-900 dark:text-white font-semibold">
                         {stock.CURRENT}
                       </td>
                       <td
@@ -288,16 +288,16 @@ export default function MarketWatchPage() {
                       >
                         {isPositive(stock['CHANGE (%)']) ? '+' : ''}{stock['CHANGE (%)']}
                       </td>
-                      <td className="px-6 py-4 text-sm text-right text-gray-600">
+                      <td className="px-6 py-4 text-sm text-right text-gray-600 dark:text-gray-300">
                         {stock.HIGH}
                       </td>
-                      <td className="px-6 py-4 text-sm text-right text-gray-600">
+                      <td className="px-6 py-4 text-sm text-right text-gray-600 dark:text-gray-300">
                         {stock.LOW}
                       </td>
-                      <td className="px-6 py-4 text-sm text-right text-gray-600">
+                      <td className="px-6 py-4 text-sm text-right text-gray-600 dark:text-gray-300">
                         {stock.OPEN}
                       </td>
-                      <td className="px-6 py-4 text-sm text-right text-gray-600">
+                      <td className="px-6 py-4 text-sm text-right text-gray-600 dark:text-gray-300">
                         {stock.VOLUME}
                       </td>
                     </tr>
@@ -307,8 +307,8 @@ export default function MarketWatchPage() {
             </div>
 
             {/* Footer with count */}
-            <div className="border-t border-gray-200 px-6 py-4 bg-gray-50">
-              <p className="text-sm text-gray-600">
+            <div className="border-t border-gray-200 dark:border-dark-border px-6 py-4 bg-gray-50 dark:bg-dark-surface">
+              <p className="text-sm text-gray-600 dark:text-gray-300">
                 Showing {filteredStocks.length} of {stocks.length} stocks
               </p>
             </div>

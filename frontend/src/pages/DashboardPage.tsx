@@ -72,12 +72,12 @@ export default function DashboardPage() {
   };
 
   return (
-    <main className="min-h-screen bg-white py-8">
+    <main className="min-h-screen bg-white dark:bg-dark-bg py-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-2">
-            <h1 className="text-4xl sm:text-5xl font-display font-bold text-black">
+            <h1 className="text-4xl sm:text-5xl font-display font-bold text-black dark:text-white">
               Portfolio Dashboard
             </h1>
             <button
@@ -90,20 +90,20 @@ export default function DashboardPage() {
               View Holdings
             </button>
           </div>
-          <p className="text-lg text-gray-600">Manage your PSX stocks and track your holdings in real-time</p>
+          <p className="text-lg text-gray-600 dark:text-gray-300">Manage your PSX stocks and track your holdings in real-time</p>
         </div>
 
         {/* Alerts */}
         {error && (
-          <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 flex items-center gap-3">
+          <div className="mb-6 p-4 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 flex items-center gap-3">
             <div className="w-5 h-5 rounded-full bg-red-500 flex-shrink-0" />
-            <p className="text-red-700 font-medium">{error}</p>
+            <p className="text-red-700 dark:text-red-400 font-medium">{error}</p>
           </div>
         )}
         {success && (
-          <div className="mb-6 p-4 rounded-xl bg-green-50 border border-green-200 flex items-center gap-3">
+          <div className="mb-6 p-4 rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 flex items-center gap-3">
             <div className="w-5 h-5 rounded-full bg-green-500 flex-shrink-0" />
-            <p className="text-green-700 font-medium">{success}</p>
+            <p className="text-green-700 dark:text-green-400 font-medium">{success}</p>
           </div>
         )}
 
@@ -111,7 +111,7 @@ export default function DashboardPage() {
         <div className="mb-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
           <div className="flex-1 relative">
             <input
-              className="w-full px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl border border-gray-300 bg-white text-black text-sm sm:text-base placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 transition-all"
+              className="w-full px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl border border-gray-300 dark:border-dark-border bg-white dark:bg-dark-surface text-black dark:text-white text-sm sm:text-base placeholder-gray-500 dark:placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 transition-all"
               placeholder="Search stocks... (e.g., LPL, PTC)"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -130,11 +130,11 @@ export default function DashboardPage() {
         <div className="grid gap-8 lg:grid-cols-1">
           {/* Stocks Table */}
           <div className="lg:col-span-1">
-            <div className="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
-              <div className="border-b border-gray-200 px-4 sm:px-6 py-4 bg-gray-50">
+            <div className="rounded-xl border border-gray-200 dark:border-dark-border bg-white dark:bg-dark-card shadow-sm overflow-hidden">
+              <div className="border-b border-gray-200 dark:border-dark-border px-4 sm:px-6 py-4 bg-gray-50 dark:bg-dark-surface">
                 <div className="flex items-center justify-between gap-2">
-                  <h2 className="text-lg sm:text-xl font-display font-bold text-black truncate">Available Stocks</h2>
-                  <span className="text-xs sm:text-sm font-semibold text-gray-600 bg-gray-200 px-3 py-1 sm:px-4 sm:py-2 rounded-full whitespace-nowrap">
+                  <h2 className="text-lg sm:text-xl font-display font-bold text-black dark:text-white truncate">Available Stocks</h2>
+                  <span className="text-xs sm:text-sm font-semibold text-gray-600 dark:text-gray-300 bg-gray-200 dark:bg-dark-hover px-3 py-1 sm:px-4 sm:py-2 rounded-full whitespace-nowrap">
                     {filteredStocks.length}
                   </span>
                 </div>
@@ -147,26 +147,26 @@ export default function DashboardPage() {
                   </div>
                 ) : filteredStocks.length > 0 ? (
                   <table className="w-full text-xs sm:text-sm">
-                    <thead className="sticky top-0 bg-gray-50 border-b border-gray-200">
+                    <thead className="sticky top-0 bg-gray-50 dark:bg-dark-surface border-b border-gray-200 dark:border-dark-border">
                       <tr>
-                        <th className="text-left px-3 sm:px-6 py-3 sm:py-4 font-semibold text-gray-700">Symbol</th>
-                        <th className="text-right px-2 sm:px-6 py-3 sm:py-4 font-semibold text-gray-700">Price</th>
-                        <th className="text-right px-2 sm:px-6 py-3 sm:py-4 font-semibold text-gray-700">Change</th>
-                        <th className="text-right px-2 sm:px-6 py-3 sm:py-4 font-semibold text-gray-700 hidden sm:table-cell">Volume</th>
-                        <th className="text-right px-2 sm:px-6 py-3 sm:py-4 font-semibold text-gray-700">Action</th>
+                        <th className="text-left px-3 sm:px-6 py-3 sm:py-4 font-semibold text-gray-700 dark:text-gray-300">Symbol</th>
+                        <th className="text-right px-2 sm:px-6 py-3 sm:py-4 font-semibold text-gray-700 dark:text-gray-300">Price</th>
+                        <th className="text-right px-2 sm:px-6 py-3 sm:py-4 font-semibold text-gray-700 dark:text-gray-300">Change</th>
+                        <th className="text-right px-2 sm:px-6 py-3 sm:py-4 font-semibold text-gray-700 dark:text-gray-300 hidden sm:table-cell">Volume</th>
+                        <th className="text-right px-2 sm:px-6 py-3 sm:py-4 font-semibold text-gray-700 dark:text-gray-300">Action</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-200">
+                    <tbody className="divide-y divide-gray-200 dark:divide-dark-border">
                       {filteredStocks.map((stock) => (
-                        <tr key={stock.id} className="hover:bg-gray-50 transition-colors group">
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 font-semibold text-black group-hover:text-blue-600 transition-colors whitespace-nowrap">{stock.symbol}</td>
-                          <td className="text-right px-2 sm:px-6 py-3 sm:py-4 text-gray-700 font-medium whitespace-nowrap text-xs sm:text-sm">Rs {stock.current}</td>
+                        <tr key={stock.id} className="hover:bg-gray-50 dark:hover:bg-dark-hover transition-colors group">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 font-semibold text-black dark:text-white group-hover:text-blue-600 transition-colors whitespace-nowrap">{stock.symbol}</td>
+                          <td className="text-right px-2 sm:px-6 py-3 sm:py-4 text-gray-700 dark:text-gray-300 font-medium whitespace-nowrap text-xs sm:text-sm">Rs {stock.current}</td>
                           <td className={`text-right px-2 sm:px-6 py-3 sm:py-4 font-semibold text-xs sm:text-sm whitespace-nowrap ${
                             stock.changePercent.startsWith('-') ? 'text-red-600' : 'text-green-600'
                           }`}>
                             {stock.changePercent}
                           </td>
-                          <td className="text-right px-2 sm:px-6 py-3 sm:py-4 text-gray-600 text-xs font-medium hidden sm:table-cell">{stock.volume}</td>
+                          <td className="text-right px-2 sm:px-6 py-3 sm:py-4 text-gray-600 dark:text-gray-300 text-xs font-medium hidden sm:table-cell">{stock.volume}</td>
                           <td className="text-right px-2 sm:px-6 py-3 sm:py-4">
                             <button
                               onClick={() => startAdd(stock.symbol)}
@@ -181,7 +181,7 @@ export default function DashboardPage() {
                   </table>
                 ) : (
                   <div className="px-4 sm:px-6 py-12 text-center">
-                    <p className="text-gray-600 text-sm sm:text-lg font-medium">
+                    <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-lg font-medium">
                       {search ? `No stocks found matching "${search}"` : 'No stocks available'}
                     </p>
                   </div>
@@ -200,7 +200,7 @@ export default function DashboardPage() {
               />
               
               {/* Modal */}
-              <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-in fade-in zoom-in duration-300">
+              <div className="relative bg-white dark:bg-dark-card rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-in fade-in zoom-in duration-300">
                 {/* Header with gradient */}
                 <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 sm:px-8 py-6 flex items-center justify-between">
                   <div>
@@ -218,27 +218,27 @@ export default function DashboardPage() {
                 {/* Content */}
                 <div className="p-6 sm:p-8 space-y-6">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                       Quantity (shares)
                     </label>
                     <input
                       type="number"
                       min={1}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-black focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 transition-all"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-border bg-white dark:bg-dark-surface text-black dark:text-white focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 transition-all"
                       value={quantity}
                       onChange={(e) => setQuantity(Math.max(1, Number(e.target.value)))}
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                       Average Cost (Optional)
                     </label>
                     <input
                       type="number"
                       min={0}
                       step={0.01}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-black placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 transition-all"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-border bg-white dark:bg-dark-surface text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 transition-all"
                       placeholder="e.g. 25.50"
                       value={averageCost ?? ''}
                       onChange={(e) => setAverageCost(e.target.value ? Number(e.target.value) : undefined)}
@@ -254,7 +254,7 @@ export default function DashboardPage() {
                     </button>
                     <button
                       onClick={() => setSelectedSymbol('')}
-                      className="flex-1 py-3 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition-colors"
+                      className="flex-1 py-3 bg-gray-200 dark:bg-dark-surface text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-300 dark:hover:bg-dark-hover transition-colors"
                     >
                       Cancel
                     </button>

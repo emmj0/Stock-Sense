@@ -62,28 +62,28 @@ export default function PreferencesPage() {
   };
 
   return (
-    <main className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-white dark:bg-dark-bg py-12 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-2xl">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl sm:text-5xl font-display font-bold text-black mb-4">
+          <h1 className="text-4xl sm:text-5xl font-display font-bold text-black dark:text-white mb-4">
             Personalize Your Experience
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-gray-600 dark:text-gray-300">
             Tell us about your investing style so we can show you the most relevant stocks and insights.
           </p>
         </div>
 
         {/* Form Card */}
-        <div className="rounded-xl bg-white border border-gray-200 p-8 md:p-12 shadow-sm">
+        <div className="rounded-xl bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border p-8 md:p-12 shadow-sm">
           <form className="space-y-10" onSubmit={handleSubmit}>
             {/* Risk Tolerance */}
             <div>
               <label className="block mb-5">
-                <span className="text-lg font-semibold text-black mb-2 block">
+                <span className="text-lg font-semibold text-black dark:text-white mb-2 block">
                   Risk Tolerance
                 </span>
-                <p className="text-sm text-gray-600">How much volatility can you handle?</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300">How much volatility can you handle?</p>
               </label>
               <div className="grid gap-3">
                 {[
@@ -95,8 +95,8 @@ export default function PreferencesPage() {
                     key={option.value}
                     className={`flex items-center p-4 rounded-lg border-2 cursor-pointer transition-all ${
                       prefs.riskTolerance === option.value
-                        ? 'border-blue-500 bg-blue-50'
-                        : 'border-gray-300 bg-gray-50 hover:border-gray-400'
+                        ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-400'
+                        : 'border-gray-300 dark:border-dark-border bg-gray-50 dark:bg-dark-surface hover:border-gray-400 dark:hover:border-gray-600'
                     }`}
                   >
                     <input
@@ -108,8 +108,8 @@ export default function PreferencesPage() {
                       className="w-5 h-5 accent-blue-600"
                     />
                     <div className="ml-4">
-                      <p className="font-semibold text-black">{option.label}</p>
-                      <p className="text-sm text-gray-600">{option.desc}</p>
+                      <p className="font-semibold text-black dark:text-white">{option.label}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">{option.desc}</p>
                     </div>
                   </label>
                 ))}
@@ -119,13 +119,13 @@ export default function PreferencesPage() {
             {/* Investment Horizon */}
             <div>
               <label className="block mb-5">
-                <span className="text-lg font-semibold text-black mb-2 block">
+                <span className="text-lg font-semibold text-black dark:text-white mb-2 block">
                   Investment Horizon
                 </span>
-                <p className="text-sm text-gray-600">How long do you plan to hold your stocks?</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300">How long do you plan to hold your stocks?</p>
               </label>
               <select
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-black focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 transition-all appearance-none"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-border bg-white dark:bg-dark-surface text-black dark:text-gray-100 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 transition-all appearance-none"
                 style={{backgroundImage: 'url(data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23000000" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>)', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center', backgroundSize: '20px', paddingRight: '40px'}}
                 value={prefs.investmentHorizon || ''}
                 onChange={(e) => update('investmentHorizon', e.target.value)}
@@ -142,13 +142,13 @@ export default function PreferencesPage() {
             {/* Market Cap Focus */}
             <div>
               <label className="block mb-5">
-                <span className="text-lg font-semibold text-black mb-2 block">
+                <span className="text-lg font-semibold text-black dark:text-white mb-2 block">
                   Market Cap Focus
                 </span>
-                <p className="text-sm text-gray-600">What size companies interest you?</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300">What size companies interest you?</p>
               </label>
               <select
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-black focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 transition-all appearance-none"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-border bg-white dark:bg-dark-surface text-black dark:text-gray-100 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 transition-all appearance-none"
                 style={{backgroundImage: 'url(data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23000000" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>)', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center', backgroundSize: '20px', paddingRight: '40px'}}
                 value={prefs.marketCapFocus || ''}
                 onChange={(e) => update('marketCapFocus', e.target.value)}
@@ -164,13 +164,13 @@ export default function PreferencesPage() {
             {/* Dividend Preference */}
             <div>
               <label className="block mb-5">
-                <span className="text-lg font-semibold text-black mb-2 block">
+                <span className="text-lg font-semibold text-black dark:text-white mb-2 block">
                   Dividend Preference
                 </span>
-                <p className="text-sm text-gray-600">How do you prefer to receive dividends?</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300">How do you prefer to receive dividends?</p>
               </label>
               <select
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-black focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 transition-all appearance-none"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-border bg-white dark:bg-dark-surface text-black dark:text-gray-100 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 transition-all appearance-none"
                 style={{backgroundImage: 'url(data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23000000" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>)', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center', backgroundSize: '20px', paddingRight: '40px'}}
                 value={prefs.dividendPreference || ''}
                 onChange={(e) => update('dividendPreference', e.target.value)}
@@ -185,10 +185,10 @@ export default function PreferencesPage() {
             {/* Sectors */}
             <div>
               <label className="block mb-5">
-                <span className="text-lg font-semibold text-black mb-2 block">
+                <span className="text-lg font-semibold text-black dark:text-white mb-2 block">
                   Preferred Sectors
                 </span>
-                <p className="text-sm text-gray-600">Which industries interest you most? (Select at least one)</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300">Which industries interest you most? (Select at least one)</p>
               </label>
               <div className="grid grid-cols-2 gap-3">
                 {sectorOptions.map((sector) => (
@@ -199,7 +199,7 @@ export default function PreferencesPage() {
                     className={`px-4 py-3 rounded-lg font-medium transition-all border ${
                       (prefs.sectors || []).includes(sector)
                         ? 'border-blue-500 bg-blue-600 text-white'
-                        : 'border-gray-300 bg-gray-50 text-gray-700 hover:border-gray-400'
+                        : 'border-gray-300 dark:border-dark-border bg-gray-50 dark:bg-dark-surface text-gray-700 dark:text-gray-300 hover:border-gray-400 dark:hover:border-gray-600'
                     }`}
                   >
                     {sector}
@@ -210,8 +210,8 @@ export default function PreferencesPage() {
 
             {/* Error Message */}
             {error && (
-              <div className="p-4 rounded-lg bg-red-50 border border-red-200">
-                <p className="text-sm text-red-700 font-medium">{error}</p>
+              <div className="p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/30">
+                <p className="text-sm text-red-700 dark:text-red-400 font-medium">{error}</p>
               </div>
             )}
 

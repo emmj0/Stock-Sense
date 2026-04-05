@@ -238,6 +238,1810 @@
     "heading": "Peer Group Comparison"
   },
   {
+    "text": "Q: What is a stock?\nA: A stock (also called a share) is a small piece of ownership in a company. When you buy a stock, you become a part-owner of that company. If the company does well and makes profit, the value of your stock goes up and you can sell it for more than you paid. Companies sell stocks to raise money for their business, and investors buy stocks hoping to earn returns over time.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is a stock?",
+    "pair_idx": 0
+  },
+  {
+    "text": "Q: What is a stock?\nA: A stock (also called a share) is a small piece of ownership in a company.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a stock?",
+    "pair_idx": 0,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is a stock?\nA: When you buy a stock, you become a part-owner of that company.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a stock?",
+    "pair_idx": 0,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is a stock?\nA: If the company does well and makes profit, the value of your stock goes up and you can sell it for more than you paid.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a stock?",
+    "pair_idx": 0,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is a stock?\nA: Companies sell stocks to raise money for their business, and investors buy stocks hoping to earn returns over time.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a stock?",
+    "pair_idx": 0,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: What is the Pakistan Stock Exchange (PSX)?\nA: The Pakistan Stock Exchange (PSX) is the only stock exchange in Pakistan where stocks of Pakistani companies are bought and sold. It was formed in 2016 by merging the Karachi, Lahore, and Islamabad stock exchanges. PSX is located in Karachi and is regulated by the Securities and Exchange Commission of Pakistan (SECP). Over 500 companies are listed on PSX, and the main index is the KSE-100 which tracks the top 100 companies.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is the Pakistan Stock Exchange (PSX)?",
+    "pair_idx": 1
+  },
+  {
+    "text": "Q: What is the Pakistan Stock Exchange (PSX)?\nA: The Pakistan Stock Exchange (PSX) is the only stock exchange in Pakistan where stocks of Pakistani companies are bought and sold.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the Pakistan Stock Exchange (PSX)?",
+    "pair_idx": 1,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is the Pakistan Stock Exchange (PSX)?\nA: It was formed in 2016 by merging the Karachi, Lahore, and Islamabad stock exchanges.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the Pakistan Stock Exchange (PSX)?",
+    "pair_idx": 1,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is the Pakistan Stock Exchange (PSX)?\nA: PSX is located in Karachi and is regulated by the Securities and Exchange Commission of Pakistan (SECP).",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the Pakistan Stock Exchange (PSX)?",
+    "pair_idx": 1,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is the Pakistan Stock Exchange (PSX)?\nA: Over 500 companies are listed on PSX, and the main index is the KSE-100 which tracks the top 100 companies.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the Pakistan Stock Exchange (PSX)?",
+    "pair_idx": 1,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: What is the KSE-100 index?\nA: The KSE-100 index is the benchmark index of the Pakistan Stock Exchange. It tracks the performance of the top 100 companies listed on PSX by market capitalization. When people say \"the market went up\" or \"the market crashed\", they are usually referring to the KSE-100 index. If the KSE-100 goes up, it means most of the top stocks gained value that day. If it goes down, most stocks lost value.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is the KSE-100 index?",
+    "pair_idx": 2
+  },
+  {
+    "text": "Q: What is the KSE-100 index?\nA: The KSE-100 index is the benchmark index of the Pakistan Stock Exchange.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the KSE-100 index?",
+    "pair_idx": 2,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is the KSE-100 index?\nA: It tracks the performance of the top 100 companies listed on PSX by market capitalization.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the KSE-100 index?",
+    "pair_idx": 2,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is the KSE-100 index?\nA: When people say \"the market went up\" or \"the market crashed\", they are usually referring to the KSE-100 index.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the KSE-100 index?",
+    "pair_idx": 2,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is the KSE-100 index?\nA: If the KSE-100 goes up, it means most of the top stocks gained value that day.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the KSE-100 index?",
+    "pair_idx": 2,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: What is the KSE-30 index?\nA: The KSE-30 index tracks the top 30 companies on the Pakistan Stock Exchange based on market capitalization and liquidity. These are the biggest and most actively traded companies in Pakistan. StockSense focuses on KSE-30 stocks for predictions because they have the most reliable data and highest trading volumes.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is the KSE-30 index?",
+    "pair_idx": 3
+  },
+  {
+    "text": "Q: What is the KSE-30 index?\nA: The KSE-30 index tracks the top 30 companies on the Pakistan Stock Exchange based on market capitalization and liquidity.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the KSE-30 index?",
+    "pair_idx": 3,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is the KSE-30 index?\nA: StockSense focuses on KSE-30 stocks for predictions because they have the most reliable data and highest trading volumes.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the KSE-30 index?",
+    "pair_idx": 3,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: How do I start investing in stocks in Pakistan?\nA: To start investing in stocks in Pakistan, follow these steps: (1) Choose a SECP-registered broker - you can find a list on the PSX website. (2) Open a trading account with the broker - you will need your CNIC, bank account details, and a recent photograph. (3) Complete KYC (Know Your Customer) verification. (4) Get a UIN (Unique Identification Number) from NCCPL. (5) Open a CDC sub-account for holding your shares electronically. (6) Deposit money into your trading account. (7) Start buying and selling stocks through your broker's trading platform or app.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "How do I start investing in stocks in Pakistan?",
+    "pair_idx": 4
+  },
+  {
+    "text": "Q: How do I start investing in stocks in Pakistan?\nA: To start investing in stocks in Pakistan, follow these steps: (1) Choose a SECP-registered broker - you can find a list on the PSX website.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How do I start investing in stocks in Pakistan?",
+    "pair_idx": 4,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: How do I start investing in stocks in Pakistan?\nA: (2) Open a trading account with the broker - you will need your CNIC, bank account details, and a recent photograph.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How do I start investing in stocks in Pakistan?",
+    "pair_idx": 4,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: How do I start investing in stocks in Pakistan?\nA: (7) Start buying and selling stocks through your broker's trading platform or app.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How do I start investing in stocks in Pakistan?",
+    "pair_idx": 4,
+    "sentence_idx": 6
+  },
+  {
+    "text": "Q: How much money do I need to start investing?\nA: You can start investing with as little as Rs. 5,000 to Rs. 10,000. Many stocks on PSX are priced under Rs. 50, so even a small amount lets you buy a few shares. There is no official minimum requirement - you just need enough to buy at least one share of the stock you want. It is recommended to start small, learn how the market works, and gradually increase your investment as you gain experience.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "How much money do I need to start investing?",
+    "pair_idx": 5
+  },
+  {
+    "text": "Q: How much money do I need to start investing?\nA: 50, so even a small amount lets you buy a few shares.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How much money do I need to start investing?",
+    "pair_idx": 5,
+    "sentence_idx": 4
+  },
+  {
+    "text": "Q: How much money do I need to start investing?\nA: There is no official minimum requirement - you just need enough to buy at least one share of the stock you want.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How much money do I need to start investing?",
+    "pair_idx": 5,
+    "sentence_idx": 5
+  },
+  {
+    "text": "Q: How much money do I need to start investing?\nA: It is recommended to start small, learn how the market works, and gradually increase your investment as you gain experience.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How much money do I need to start investing?",
+    "pair_idx": 5,
+    "sentence_idx": 6
+  },
+  {
+    "text": "Q: What is a broker?\nA: A broker is a licensed company or person that helps you buy and sell stocks on the Pakistan Stock Exchange. You cannot buy stocks directly from PSX - you must go through a registered broker. Brokers charge a small commission (usually 0.1% to 0.5%) on each trade. You can find SECP-registered brokers on the PSX website. Some popular brokers in Pakistan include AKD Securities, Topline Securities, JS Global, and Arif Habib.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is a broker?",
+    "pair_idx": 6
+  },
+  {
+    "text": "Q: What is a broker?\nA: A broker is a licensed company or person that helps you buy and sell stocks on the Pakistan Stock Exchange.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a broker?",
+    "pair_idx": 6,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is a broker?\nA: You cannot buy stocks directly from PSX - you must go through a registered broker.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a broker?",
+    "pair_idx": 6,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is a broker?\nA: Brokers charge a small commission (usually 0.1% to 0.5%) on each trade.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a broker?",
+    "pair_idx": 6,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is a broker?\nA: Some popular brokers in Pakistan include AKD Securities, Topline Securities, JS Global, and Arif Habib.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a broker?",
+    "pair_idx": 6,
+    "sentence_idx": 4
+  },
+  {
+    "text": "Q: What is a dividend?\nA: A dividend is a payment that a company makes to its shareholders from its profits. When a company earns profit, it can either reinvest the money back into the business or distribute some of it to shareholders as dividends. Dividends are usually paid annually or semi-annually. For example, if you own 100 shares of a company and it declares a Rs. 5 per share dividend, you will receive Rs. 500. Not all companies pay dividends - some prefer to reinvest all profits for growth.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is a dividend?",
+    "pair_idx": 7
+  },
+  {
+    "text": "Q: What is a dividend?\nA: A dividend is a payment that a company makes to its shareholders from its profits.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a dividend?",
+    "pair_idx": 7,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is a dividend?\nA: When a company earns profit, it can either reinvest the money back into the business or distribute some of it to shareholders as dividends.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a dividend?",
+    "pair_idx": 7,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is a dividend?\nA: For example, if you own 100 shares of a company and it declares a Rs.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a dividend?",
+    "pair_idx": 7,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: What is a dividend?\nA: Not all companies pay dividends - some prefer to reinvest all profits for growth.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a dividend?",
+    "pair_idx": 7,
+    "sentence_idx": 6
+  },
+  {
+    "text": "Q: What is an IPO?\nA: IPO stands for Initial Public Offering. It is when a private company sells its shares to the public for the first time and gets listed on the stock exchange. Through an IPO, regular investors can buy shares of the company at the offering price. After the IPO, the shares start trading on PSX and the price is determined by supply and demand. IPOs can be a good investment opportunity but also carry risk since the company has no public track record yet.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is an IPO?",
+    "pair_idx": 8
+  },
+  {
+    "text": "Q: What is an IPO?\nA: It is when a private company sells its shares to the public for the first time and gets listed on the stock exchange.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is an IPO?",
+    "pair_idx": 8,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is an IPO?\nA: Through an IPO, regular investors can buy shares of the company at the offering price.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is an IPO?",
+    "pair_idx": 8,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is an IPO?\nA: After the IPO, the shares start trading on PSX and the price is determined by supply and demand.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is an IPO?",
+    "pair_idx": 8,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: What is an IPO?\nA: IPOs can be a good investment opportunity but also carry risk since the company has no public track record yet.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is an IPO?",
+    "pair_idx": 8,
+    "sentence_idx": 4
+  },
+  {
+    "text": "Q: What is a bull market and bear market?\nA: A bull market is when stock prices are generally rising and investors are optimistic. The term comes from a bull that thrusts its horns upward. A bear market is when stock prices are falling and investors are pessimistic. The term comes from a bear that swipes its paws downward. In Pakistan, when the KSE-100 is consistently going up over weeks or months, we say it is a bull market. When it keeps falling, it is a bear market.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is a bull market and bear market?",
+    "pair_idx": 9
+  },
+  {
+    "text": "Q: What is a bull market and bear market?\nA: A bull market is when stock prices are generally rising and investors are optimistic.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a bull market and bear market?",
+    "pair_idx": 9,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is a bull market and bear market?\nA: A bear market is when stock prices are falling and investors are pessimistic.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a bull market and bear market?",
+    "pair_idx": 9,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is a bull market and bear market?\nA: In Pakistan, when the KSE-100 is consistently going up over weeks or months, we say it is a bull market.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a bull market and bear market?",
+    "pair_idx": 9,
+    "sentence_idx": 4
+  },
+  {
+    "text": "Q: What is market capitalization?\nA: Market capitalization (market cap) is the total value of a company's shares. It is calculated by multiplying the current stock price by the total number of shares. For example, if a company's stock price is Rs. 100 and it has 10 million shares, its market cap is Rs. 1 billion. Large-cap companies are big, established companies (like HBL, OGDC), while small-cap companies are smaller and more risky.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is market capitalization?",
+    "pair_idx": 10
+  },
+  {
+    "text": "Q: What is market capitalization?\nA: Market capitalization (market cap) is the total value of a company's shares.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is market capitalization?",
+    "pair_idx": 10,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is market capitalization?\nA: It is calculated by multiplying the current stock price by the total number of shares.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is market capitalization?",
+    "pair_idx": 10,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is market capitalization?\nA: 100 and it has 10 million shares, its market cap is Rs.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is market capitalization?",
+    "pair_idx": 10,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: What is market capitalization?\nA: Large-cap companies are big, established companies (like HBL, OGDC), while small-cap companies are smaller and more risky.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is market capitalization?",
+    "pair_idx": 10,
+    "sentence_idx": 5
+  },
+  {
+    "text": "Q: What is the difference between trading and investing?\nA: Trading means buying and selling stocks frequently (daily, weekly) to profit from short-term price changes. Investing means buying stocks and holding them for months or years, expecting the company to grow in value over time. Trading is riskier and requires more time and attention. Investing is generally considered safer for beginners because it does not require constant monitoring. Most financial experts recommend long-term investing for regular people.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is the difference between trading and investing?",
+    "pair_idx": 11
+  },
+  {
+    "text": "Q: What is the difference between trading and investing?\nA: Trading means buying and selling stocks frequently (daily, weekly) to profit from short-term price changes.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the difference between trading and investing?",
+    "pair_idx": 11,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is the difference between trading and investing?\nA: Investing means buying stocks and holding them for months or years, expecting the company to grow in value over time.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the difference between trading and investing?",
+    "pair_idx": 11,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is the difference between trading and investing?\nA: Investing is generally considered safer for beginners because it does not require constant monitoring.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the difference between trading and investing?",
+    "pair_idx": 11,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: Is investing in stocks safe?\nA: Investing in stocks carries risk - you can lose money if stock prices fall. However, historically, the stock market has provided better returns than bank savings accounts over long periods. The key risks are: market risk (prices fall due to economic conditions), company risk (the specific company performs poorly), and liquidity risk (you cannot sell quickly). To reduce risk, diversify your portfolio across multiple stocks and sectors, invest for the long term, and never invest money you cannot afford to lose.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "Is investing in stocks safe?",
+    "pair_idx": 12
+  },
+  {
+    "text": "Q: Is investing in stocks safe?\nA: Investing in stocks carries risk - you can lose money if stock prices fall.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "Is investing in stocks safe?",
+    "pair_idx": 12,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: Is investing in stocks safe?\nA: However, historically, the stock market has provided better returns than bank savings accounts over long periods.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "Is investing in stocks safe?",
+    "pair_idx": 12,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: Is investing in stocks safe?\nA: The key risks are: market risk (prices fall due to economic conditions), company risk (the specific company performs poorly), and liquidity risk (you cannot sell quickly).",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "Is investing in stocks safe?",
+    "pair_idx": 12,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: Is investing in stocks safe?\nA: To reduce risk, diversify your portfolio across multiple stocks and sectors, invest for the long term, and never invest money you cannot afford to lose.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "Is investing in stocks safe?",
+    "pair_idx": 12,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: What is a portfolio?\nA: A portfolio is the collection of all stocks and investments you own. For example, if you own shares of OGDC, HBL, and LUCK, those three stocks together make up your portfolio. A well-diversified portfolio contains stocks from different sectors (banking, energy, cement, etc.) to reduce risk. If one sector performs poorly, stocks in other sectors may still do well, balancing out your losses.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is a portfolio?",
+    "pair_idx": 13
+  },
+  {
+    "text": "Q: What is a portfolio?\nA: A portfolio is the collection of all stocks and investments you own.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a portfolio?",
+    "pair_idx": 13,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is a portfolio?\nA: For example, if you own shares of OGDC, HBL, and LUCK, those three stocks together make up your portfolio.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a portfolio?",
+    "pair_idx": 13,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is a portfolio?\nA: A well-diversified portfolio contains stocks from different sectors (banking, energy, cement, etc.) to reduce risk.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a portfolio?",
+    "pair_idx": 13,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is a portfolio?\nA: If one sector performs poorly, stocks in other sectors may still do well, balancing out your losses.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a portfolio?",
+    "pair_idx": 13,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: What is SECP?\nA: SECP stands for the Securities and Exchange Commission of Pakistan. It is the government body that regulates the stock market, brokers, and listed companies in Pakistan. SECP's job is to protect investors, ensure fair trading, and maintain transparency in the capital market. If you have a complaint against a broker or company, you can file it with SECP.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is SECP?",
+    "pair_idx": 14
+  },
+  {
+    "text": "Q: What is SECP?\nA: It is the government body that regulates the stock market, brokers, and listed companies in Pakistan.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is SECP?",
+    "pair_idx": 14,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is SECP?\nA: SECP's job is to protect investors, ensure fair trading, and maintain transparency in the capital market.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is SECP?",
+    "pair_idx": 14,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is SECP?\nA: If you have a complaint against a broker or company, you can file it with SECP.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is SECP?",
+    "pair_idx": 14,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: What is CDC?\nA: CDC stands for the Central Depository Company of Pakistan. It holds your shares electronically in a secure account (called a CDC sub-account). In the old days, shares were physical paper certificates that could be lost or stolen. Now all shares are held electronically by CDC. When you buy shares through your broker, they are credited to your CDC account. You can check your holdings online through the CDC Access portal.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is CDC?",
+    "pair_idx": 15
+  },
+  {
+    "text": "Q: What is CDC?\nA: It holds your shares electronically in a secure account (called a CDC sub-account).",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is CDC?",
+    "pair_idx": 15,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is CDC?\nA: In the old days, shares were physical paper certificates that could be lost or stolen.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is CDC?",
+    "pair_idx": 15,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is CDC?\nA: When you buy shares through your broker, they are credited to your CDC account.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is CDC?",
+    "pair_idx": 15,
+    "sentence_idx": 4
+  },
+  {
+    "text": "Q: What is NCCPL?\nA: NCCPL stands for the National Clearing Company of Pakistan Limited. It handles the clearing and settlement of stock trades on PSX. When you buy a stock, NCCPL ensures that the shares are transferred from the seller to you, and the money is transferred from you to the seller. Settlement in Pakistan follows a T+2 cycle, meaning the trade is settled 2 business days after the transaction.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is NCCPL?",
+    "pair_idx": 16
+  },
+  {
+    "text": "Q: What is NCCPL?\nA: When you buy a stock, NCCPL ensures that the shares are transferred from the seller to you, and the money is transferred from you to the seller.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is NCCPL?",
+    "pair_idx": 16,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is NCCPL?\nA: Settlement in Pakistan follows a T+2 cycle, meaning the trade is settled 2 business days after the transaction.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is NCCPL?",
+    "pair_idx": 16,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: What are the trading hours of PSX?\nA: The Pakistan Stock Exchange (PSX) trades from Monday to Friday. Trading hours are from 9:30 AM to 3:30 PM Pakistan Standard Time (PST). The market is closed on Saturdays, Sundays, and Pakistani public holidays. Pre-open session starts at 9:15 AM where orders are placed but not executed until the market opens at 9:30 AM.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What are the trading hours of PSX?",
+    "pair_idx": 17
+  },
+  {
+    "text": "Q: What are the trading hours of PSX?\nA: Trading hours are from 9:30 AM to 3:30 PM Pakistan Standard Time (PST).",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What are the trading hours of PSX?",
+    "pair_idx": 17,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What are the trading hours of PSX?\nA: Pre-open session starts at 9:15 AM where orders are placed but not executed until the market opens at 9:30 AM.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What are the trading hours of PSX?",
+    "pair_idx": 17,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: What is a P/E ratio?\nA: P/E ratio stands for Price-to-Earnings ratio. It tells you how much investors are willing to pay for each rupee of a company's profit. It is calculated by dividing the stock price by the earnings per share (EPS). For example, if a stock price is Rs. 100 and the EPS is Rs. 10, the P/E ratio is 10. A lower P/E may indicate the stock is undervalued (cheap), while a higher P/E may indicate it is overvalued (expensive). However, P/E should be compared within the same sector.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is a P/E ratio?",
+    "pair_idx": 18
+  },
+  {
+    "text": "Q: What is a P/E ratio?\nA: It tells you how much investors are willing to pay for each rupee of a company's profit.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a P/E ratio?",
+    "pair_idx": 18,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is a P/E ratio?\nA: It is calculated by dividing the stock price by the earnings per share (EPS).",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a P/E ratio?",
+    "pair_idx": 18,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is a P/E ratio?\nA: A lower P/E may indicate the stock is undervalued (cheap), while a higher P/E may indicate it is overvalued (expensive).",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a P/E ratio?",
+    "pair_idx": 18,
+    "sentence_idx": 6
+  },
+  {
+    "text": "Q: What sectors are available on PSX?\nA: The Pakistan Stock Exchange has companies from many sectors including: Banking (HBL, MCB, UBL, Meezan Bank), Oil and Gas (OGDC, PPL, POL), Cement (Lucky Cement, DG Khan Cement, Cherat Cement), Fertilizer (Engro, FFC, EFERT), Power (Hub Power), Technology (Systems Limited), Pharmaceuticals (Searle Company), Refinery (Attock Refinery, Pakistan Refinery), and many more. Banking and energy are the largest sectors by market capitalization.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What sectors are available on PSX?",
+    "pair_idx": 19
+  },
+  {
+    "text": "Q: What sectors are available on PSX?\nA: The Pakistan Stock Exchange has companies from many sectors including: Banking (HBL, MCB, UBL, Meezan Bank), Oil and Gas (OGDC, PPL, POL), Cement (Lucky Cement, DG Khan Cement, Cherat Cement), Fertilizer (Engro, FFC, EFERT), Power (Hub Power), Technology (Systems Limited), Pharmaceuticals (Searle Company), Refinery (Attock Refinery, Pakistan Refinery), and many more.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What sectors are available on PSX?",
+    "pair_idx": 19,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is a stop-loss order?\nA: A stop-loss order is an instruction to your broker to automatically sell a stock if its price drops to a certain level. It helps limit your losses. For example, if you buy a stock at Rs. 100 and set a stop-loss at Rs. 90, the stock will automatically be sold if the price falls to Rs. 90, limiting your loss to Rs. 10 per share. Stop-loss orders are an important risk management tool.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is a stop-loss order?",
+    "pair_idx": 20
+  },
+  {
+    "text": "Q: What is a stop-loss order?\nA: A stop-loss order is an instruction to your broker to automatically sell a stock if its price drops to a certain level.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a stop-loss order?",
+    "pair_idx": 20,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is a stop-loss order?\nA: 90, the stock will automatically be sold if the price falls to Rs.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a stop-loss order?",
+    "pair_idx": 20,
+    "sentence_idx": 4
+  },
+  {
+    "text": "Q: What are blue chip stocks?\nA: Blue chip stocks are shares of large, well-established, and financially stable companies with a history of reliable performance. In Pakistan, blue chip stocks include companies like OGDC, HBL, MCB, Lucky Cement, and Engro. These companies are leaders in their sectors, pay regular dividends, and are considered less risky than smaller companies. Blue chip stocks are generally recommended for beginner investors.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What are blue chip stocks?",
+    "pair_idx": 21
+  },
+  {
+    "text": "Q: What are blue chip stocks?\nA: Blue chip stocks are shares of large, well-established, and financially stable companies with a history of reliable performance.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What are blue chip stocks?",
+    "pair_idx": 21,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What are blue chip stocks?\nA: In Pakistan, blue chip stocks include companies like OGDC, HBL, MCB, Lucky Cement, and Engro.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What are blue chip stocks?",
+    "pair_idx": 21,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What are blue chip stocks?\nA: These companies are leaders in their sectors, pay regular dividends, and are considered less risky than smaller companies.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What are blue chip stocks?",
+    "pair_idx": 21,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: Should I invest in stocks or keep money in bank?\nA: Bank savings accounts in Pakistan typically offer 10-15% annual returns. Historically, the stock market has provided higher returns over long periods (15-25% average annual returns on KSE-100 over the past decade). However, stocks are riskier - you can lose money in bad years. A balanced approach is to keep an emergency fund in your bank account (3-6 months of expenses) and invest the rest in stocks for long-term growth. Never invest money you need for daily expenses.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "Should I invest in stocks or keep money in bank?",
+    "pair_idx": 22
+  },
+  {
+    "text": "Q: Should I invest in stocks or keep money in bank?\nA: Historically, the stock market has provided higher returns over long periods (15-25% average annual returns on KSE-100 over the past decade).",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "Should I invest in stocks or keep money in bank?",
+    "pair_idx": 22,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: Should I invest in stocks or keep money in bank?\nA: However, stocks are riskier - you can lose money in bad years.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "Should I invest in stocks or keep money in bank?",
+    "pair_idx": 22,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: Should I invest in stocks or keep money in bank?\nA: A balanced approach is to keep an emergency fund in your bank account (3-6 months of expenses) and invest the rest in stocks for long-term growth.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "Should I invest in stocks or keep money in bank?",
+    "pair_idx": 22,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: What is short selling?\nA: Short selling means selling a stock you do not own, hoping to buy it back later at a lower price. In Pakistan, short selling is allowed under regulated conditions on PSX. It is a very advanced and risky strategy - if the stock price goes up instead of down, you could lose a lot of money. Short selling is not recommended for beginners.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is short selling?",
+    "pair_idx": 23
+  },
+  {
+    "text": "Q: What is short selling?\nA: Short selling means selling a stock you do not own, hoping to buy it back later at a lower price.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is short selling?",
+    "pair_idx": 23,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is short selling?\nA: It is a very advanced and risky strategy - if the stock price goes up instead of down, you could lose a lot of money.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is short selling?",
+    "pair_idx": 23,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: How do I know which stock to buy?\nA: To choose which stock to buy, consider these factors: (1) Look at the company's financial health - is it profitable? Is revenue growing? (2) Check the P/E ratio compared to sector average. (3) Look at the company's dividend history. (4) Consider the sector outlook - is the industry growing? (5) Check our AI predictions on StockSense for data-driven recommendations. (6) Diversify - don't put all your money in one stock. (7) Start with blue chip stocks if you are a beginner.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "How do I know which stock to buy?",
+    "pair_idx": 24
+  },
+  {
+    "text": "Q: How do I know which stock to buy?\nA: To choose which stock to buy, consider these factors: (1) Look at the company's financial health - is it profitable?",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How do I know which stock to buy?",
+    "pair_idx": 24,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What are predictions on StockSense?\nA: StockSense uses an AI model called TFT (Temporal Fusion Transformer) to predict stock prices for the next 7 days. The model analyzes 90 days of historical price data, technical indicators (like SMA, RSI), market conditions, and news sentiment. For each stock, it provides: a BUY, HOLD, or SELL signal; a target price; a confidence score; and a price range. These predictions are updated daily and cover all 30 KSE-30 stocks.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What are predictions on StockSense?",
+    "pair_idx": 25
+  },
+  {
+    "text": "Q: What are predictions on StockSense?\nA: StockSense uses an AI model called TFT (Temporal Fusion Transformer) to predict stock prices for the next 7 days.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What are predictions on StockSense?",
+    "pair_idx": 25,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What are predictions on StockSense?\nA: The model analyzes 90 days of historical price data, technical indicators (like SMA, RSI), market conditions, and news sentiment.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What are predictions on StockSense?",
+    "pair_idx": 25,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What are predictions on StockSense?\nA: For each stock, it provides: a BUY, HOLD, or SELL signal; a target price; a confidence score; and a price range.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What are predictions on StockSense?",
+    "pair_idx": 25,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: How accurate are StockSense predictions?\nA: Our AI model has an overall accuracy of about 70% for directional predictions (whether the price goes up or down). Some stocks are predicted more accurately than others. High-accuracy stocks include PSO, PPL, ILP, POL, and OGDC (error rate below 10%). Lower accuracy stocks include FFC and EFERT (error rate above 40%) due to regime changes in their sectors. Always treat predictions as one input in your decision, not the only factor.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "How accurate are StockSense predictions?",
+    "pair_idx": 26
+  },
+  {
+    "text": "Q: How accurate are StockSense predictions?\nA: Our AI model has an overall accuracy of about 70% for directional predictions (whether the price goes up or down).",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How accurate are StockSense predictions?",
+    "pair_idx": 26,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: How accurate are StockSense predictions?\nA: High-accuracy stocks include PSO, PPL, ILP, POL, and OGDC (error rate below 10%).",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How accurate are StockSense predictions?",
+    "pair_idx": 26,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: How accurate are StockSense predictions?\nA: Lower accuracy stocks include FFC and EFERT (error rate above 40%) due to regime changes in their sectors.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How accurate are StockSense predictions?",
+    "pair_idx": 26,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: How accurate are StockSense predictions?\nA: Always treat predictions as one input in your decision, not the only factor.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How accurate are StockSense predictions?",
+    "pair_idx": 26,
+    "sentence_idx": 4
+  },
+  {
+    "text": "Q: What is a BUY signal?\nA: A BUY signal from StockSense means our AI model predicts the stock price will go up by at least 3% in the next 7 days, with a confidence of at least 55%, and at least 4 out of 7 forecast days are bullish. It suggests this could be a good time to buy the stock. However, this is not financial advice - always do your own research and consider your risk tolerance before investing.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is a BUY signal?",
+    "pair_idx": 27
+  },
+  {
+    "text": "Q: What is a BUY signal?\nA: A BUY signal from StockSense means our AI model predicts the stock price will go up by at least 3% in the next 7 days, with a confidence of at least 55%, and at least 4 out of 7 forecast days are bullish.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a BUY signal?",
+    "pair_idx": 27,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is a BUY signal?\nA: It suggests this could be a good time to buy the stock.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a BUY signal?",
+    "pair_idx": 27,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is a BUY signal?\nA: However, this is not financial advice - always do your own research and consider your risk tolerance before investing.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a BUY signal?",
+    "pair_idx": 27,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is a SELL signal?\nA: A SELL signal means our AI model predicts the stock price will drop by at least 3% in the next 7 days, with sufficient confidence and bearish days. If you already own this stock, you might want to consider selling or reducing your position. If you don't own it, this is not a good time to buy. Again, this is AI-generated insight, not financial advice.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is a SELL signal?",
+    "pair_idx": 28
+  },
+  {
+    "text": "Q: What is a SELL signal?\nA: A SELL signal means our AI model predicts the stock price will drop by at least 3% in the next 7 days, with sufficient confidence and bearish days.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a SELL signal?",
+    "pair_idx": 28,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is a SELL signal?\nA: If you already own this stock, you might want to consider selling or reducing your position.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a SELL signal?",
+    "pair_idx": 28,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is a SELL signal?\nA: If you don't own it, this is not a good time to buy.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a SELL signal?",
+    "pair_idx": 28,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is a HOLD signal?\nA: A HOLD signal means our AI model doesn't see a strong enough trend in either direction for the next 7 days. The stock might go slightly up or down, but not enough for a clear BUY or SELL recommendation. If you own the stock, keep holding it. If you don't own it, there might be better opportunities elsewhere.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is a HOLD signal?",
+    "pair_idx": 29
+  },
+  {
+    "text": "Q: What is a HOLD signal?\nA: A HOLD signal means our AI model doesn't see a strong enough trend in either direction for the next 7 days.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a HOLD signal?",
+    "pair_idx": 29,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is a HOLD signal?\nA: The stock might go slightly up or down, but not enough for a clear BUY or SELL recommendation.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a HOLD signal?",
+    "pair_idx": 29,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What does confidence score mean?\nA: The confidence score (shown as a percentage) tells you how sure our AI model is about its prediction. A higher confidence means the model's price range is narrow and most forecast days agree on the direction. For example, 75% confidence is strong, while 40% confidence means high uncertainty. Low confidence predictions should be taken with more caution.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What does confidence score mean?",
+    "pair_idx": 30
+  },
+  {
+    "text": "Q: What does confidence score mean?\nA: The confidence score (shown as a percentage) tells you how sure our AI model is about its prediction.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What does confidence score mean?",
+    "pair_idx": 30,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What does confidence score mean?\nA: A higher confidence means the model's price range is narrow and most forecast days agree on the direction.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What does confidence score mean?",
+    "pair_idx": 30,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What does confidence score mean?\nA: For example, 75% confidence is strong, while 40% confidence means high uncertainty.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What does confidence score mean?",
+    "pair_idx": 30,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is RSI?\nA: RSI stands for Relative Strength Index. It is a number between 0 and 100 that measures how fast a stock's price is rising or falling. RSI above 70 means the stock may be overbought (price went up too fast and might come back down). RSI below 30 means the stock may be oversold (price dropped too much and might bounce back). RSI between 30-70 is considered normal. Our AI model uses RSI as one of its input features.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is RSI?",
+    "pair_idx": 31
+  },
+  {
+    "text": "Q: What is RSI?\nA: It is a number between 0 and 100 that measures how fast a stock's price is rising or falling.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is RSI?",
+    "pair_idx": 31,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is RSI?\nA: RSI above 70 means the stock may be overbought (price went up too fast and might come back down).",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is RSI?",
+    "pair_idx": 31,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is RSI?\nA: RSI below 30 means the stock may be oversold (price dropped too much and might bounce back).",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is RSI?",
+    "pair_idx": 31,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: What is SMA?\nA: SMA stands for Simple Moving Average. It is the average closing price of a stock over a specific number of days. SMA-20 is the average over the last 20 trading days, and SMA-50 is the average over the last 50 days. When the stock price is above its SMA, it generally indicates an upward trend. When the price crosses below the SMA, it may signal a downward trend. StockSense uses both SMA-20 and SMA-50 in its predictions.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is SMA?",
+    "pair_idx": 32
+  },
+  {
+    "text": "Q: What is SMA?\nA: It is the average closing price of a stock over a specific number of days.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is SMA?",
+    "pair_idx": 32,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is SMA?\nA: SMA-20 is the average over the last 20 trading days, and SMA-50 is the average over the last 50 days.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is SMA?",
+    "pair_idx": 32,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is SMA?\nA: When the stock price is above its SMA, it generally indicates an upward trend.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is SMA?",
+    "pair_idx": 32,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: What is SMA?\nA: When the price crosses below the SMA, it may signal a downward trend.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is SMA?",
+    "pair_idx": 32,
+    "sentence_idx": 4
+  },
+  {
+    "text": "Q: What is volume in stocks?\nA: Volume is the number of shares traded in a day. High volume means many people are buying and selling the stock, which usually means higher interest and liquidity. Low volume means few people are trading, which can make it harder to buy or sell at your desired price. A sudden spike in volume often signals important news or a major price move. StockSense shows volume data for all KSE-30 stocks.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is volume in stocks?",
+    "pair_idx": 33
+  },
+  {
+    "text": "Q: What is volume in stocks?\nA: High volume means many people are buying and selling the stock, which usually means higher interest and liquidity.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is volume in stocks?",
+    "pair_idx": 33,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is volume in stocks?\nA: Low volume means few people are trading, which can make it harder to buy or sell at your desired price.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is volume in stocks?",
+    "pair_idx": 33,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is volume in stocks?\nA: A sudden spike in volume often signals important news or a major price move.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is volume in stocks?",
+    "pair_idx": 33,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: What is a trading account?\nA: A trading account is an account you open with a SECP-registered stock broker that allows you to buy and sell shares on the Pakistan Stock Exchange. To open one, you need: a valid CNIC, a bank account, proof of income (salary slip or bank statement), and passport-sized photographs. Most brokers now offer online account opening and mobile trading apps.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is a trading account?",
+    "pair_idx": 34
+  },
+  {
+    "text": "Q: What is a trading account?\nA: A trading account is an account you open with a SECP-registered stock broker that allows you to buy and sell shares on the Pakistan Stock Exchange.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a trading account?",
+    "pair_idx": 34,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is a trading account?\nA: To open one, you need: a valid CNIC, a bank account, proof of income (salary slip or bank statement), and passport-sized photographs.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a trading account?",
+    "pair_idx": 34,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: Can overseas Pakistanis invest in PSX?\nA: Yes, overseas Pakistanis can invest in the Pakistan Stock Exchange through the Roshan Digital Account (RDA). RDA was launched by the State Bank of Pakistan and allows non-resident Pakistanis to open bank accounts in Pakistan remotely and invest in government securities and stocks. You can open an RDA through participating banks like HBL, UBL, MCB, and Meezan Bank.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "Can overseas Pakistanis invest in PSX?",
+    "pair_idx": 35
+  },
+  {
+    "text": "Q: Can overseas Pakistanis invest in PSX?\nA: Yes, overseas Pakistanis can invest in the Pakistan Stock Exchange through the Roshan Digital Account (RDA).",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "Can overseas Pakistanis invest in PSX?",
+    "pair_idx": 35,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: Can overseas Pakistanis invest in PSX?\nA: RDA was launched by the State Bank of Pakistan and allows non-resident Pakistanis to open bank accounts in Pakistan remotely and invest in government securities and stocks.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "Can overseas Pakistanis invest in PSX?",
+    "pair_idx": 35,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: Can overseas Pakistanis invest in PSX?\nA: You can open an RDA through participating banks like HBL, UBL, MCB, and Meezan Bank.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "Can overseas Pakistanis invest in PSX?",
+    "pair_idx": 35,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What taxes apply on stock trading in Pakistan?\nA: Capital gains tax applies when you sell stocks at a profit. For stocks held less than 1 year, the tax rate is 15%. For stocks held between 1-2 years, the rate is 12.5%. For stocks held more than 2 years, the rate is 0% (tax-free). Additionally, there is a 0.5% withholding tax on the sale value of shares for filers, and 1% for non-filers. Dividend income is taxed at 15% for filers and 30% for non-filers.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What taxes apply on stock trading in Pakistan?",
+    "pair_idx": 36
+  },
+  {
+    "text": "Q: What taxes apply on stock trading in Pakistan?\nA: For stocks held less than 1 year, the tax rate is 15%.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What taxes apply on stock trading in Pakistan?",
+    "pair_idx": 36,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What taxes apply on stock trading in Pakistan?\nA: For stocks held more than 2 years, the rate is 0% (tax-free).",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What taxes apply on stock trading in Pakistan?",
+    "pair_idx": 36,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: What taxes apply on stock trading in Pakistan?\nA: Additionally, there is a 0.5% withholding tax on the sale value of shares for filers, and 1% for non-filers.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What taxes apply on stock trading in Pakistan?",
+    "pair_idx": 36,
+    "sentence_idx": 4
+  },
+  {
+    "text": "Q: What taxes apply on stock trading in Pakistan?\nA: Dividend income is taxed at 15% for filers and 30% for non-filers.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What taxes apply on stock trading in Pakistan?",
+    "pair_idx": 36,
+    "sentence_idx": 5
+  },
+  {
+    "text": "Q: What is the settlement cycle in Pakistan?\nA: The settlement cycle for stock trades on PSX is T+2, which means the trade is settled 2 business days after the transaction date. So if you buy a stock on Monday, the shares will be delivered to your CDC account and money deducted from your bank account by Wednesday. During this period, the stock is considered \"in transit\" and you cannot sell it until settlement is complete.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is the settlement cycle in Pakistan?",
+    "pair_idx": 37
+  },
+  {
+    "text": "Q: What is the settlement cycle in Pakistan?\nA: The settlement cycle for stock trades on PSX is T+2, which means the trade is settled 2 business days after the transaction date.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the settlement cycle in Pakistan?",
+    "pair_idx": 37,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is the settlement cycle in Pakistan?\nA: So if you buy a stock on Monday, the shares will be delivered to your CDC account and money deducted from your bank account by Wednesday.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the settlement cycle in Pakistan?",
+    "pair_idx": 37,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is the settlement cycle in Pakistan?\nA: During this period, the stock is considered \"in transit\" and you cannot sell it until settlement is complete.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the settlement cycle in Pakistan?",
+    "pair_idx": 37,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: How does StockSense chatbot work?\nA: StockSense chatbot uses a RAG (Retrieval Augmented Generation) system to answer your questions. It searches through official PSX documents, investor guides, and rulebooks to find the most relevant information. For stock prices and market data, it queries a live database. For predictions, it fetches AI-generated forecasts. The chatbot understands natural language, so you can ask questions in your own words.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "How does StockSense chatbot work?",
+    "pair_idx": 38
+  },
+  {
+    "text": "Q: How does StockSense chatbot work?\nA: StockSense chatbot uses a RAG (Retrieval Augmented Generation) system to answer your questions.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How does StockSense chatbot work?",
+    "pair_idx": 38,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: How does StockSense chatbot work?\nA: It searches through official PSX documents, investor guides, and rulebooks to find the most relevant information.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How does StockSense chatbot work?",
+    "pair_idx": 38,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: How does StockSense chatbot work?\nA: The chatbot understands natural language, so you can ask questions in your own words.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How does StockSense chatbot work?",
+    "pair_idx": 38,
+    "sentence_idx": 4
+  },
+  {
+    "text": "Q: What is halal investing in Pakistan?\nA: Halal investing means investing in companies that comply with Islamic principles. This means avoiding companies involved in alcohol, gambling, tobacco, conventional banking (interest-based), or other prohibited activities. On PSX, the KMI-30 (KSE Meezan Index) tracks 30 Shariah-compliant stocks. Meezan Bank and other Islamic brokers offer Shariah-compliant trading accounts. Always check the Shariah screening criteria if halal investing is important to you.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is halal investing in Pakistan?",
+    "pair_idx": 39
+  },
+  {
+    "text": "Q: What is halal investing in Pakistan?\nA: This means avoiding companies involved in alcohol, gambling, tobacco, conventional banking (interest-based), or other prohibited activities.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is halal investing in Pakistan?",
+    "pair_idx": 39,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is halal investing in Pakistan?\nA: Always check the Shariah screening criteria if halal investing is important to you.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is halal investing in Pakistan?",
+    "pair_idx": 39,
+    "sentence_idx": 4
+  },
+  {
+    "text": "Q: What is the difference between shares and stocks?\nA: In everyday language, shares and stocks mean the same thing - they both refer to ownership in a company. Technically, \"stock\" is a general term for ownership in any company, while \"shares\" refers to ownership units in a specific company. For example, you might say \"I invest in stocks\" (general) or \"I own 100 shares of OGDC\" (specific). On PSX, both terms are used interchangeably.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is the difference between shares and stocks?",
+    "pair_idx": 40
+  },
+  {
+    "text": "Q: What is the difference between shares and stocks?\nA: In everyday language, shares and stocks mean the same thing - they both refer to ownership in a company.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the difference between shares and stocks?",
+    "pair_idx": 40,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is the difference between shares and stocks?\nA: Technically, \"stock\" is a general term for ownership in any company, while \"shares\" refers to ownership units in a specific company.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the difference between shares and stocks?",
+    "pair_idx": 40,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is the difference between shares and stocks?\nA: For example, you might say \"I invest in stocks\" (general) or \"I own 100 shares of OGDC\" (specific).",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the difference between shares and stocks?",
+    "pair_idx": 40,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: How do I check my stock portfolio?\nA: You can check your portfolio through: (1) Your broker's trading app or website - most brokers provide a portfolio view showing your holdings and profit/loss. (2) CDC Access portal (cdcaccess.cdcpakistan.com) - shows all shares held in your CDC account. (3) StockSense app - if you have added your holdings in StockSense, you can see your portfolio along with AI predictions for each stock.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "How do I check my stock portfolio?",
+    "pair_idx": 41
+  },
+  {
+    "text": "Q: How do I check my stock portfolio?\nA: You can check your portfolio through: (1) Your broker's trading app or website - most brokers provide a portfolio view showing your holdings and profit/loss.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How do I check my stock portfolio?",
+    "pair_idx": 41,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: How do I check my stock portfolio?\nA: (2) CDC Access portal (cdcaccess.cdcpakistan.com) - shows all shares held in your CDC account.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How do I check my stock portfolio?",
+    "pair_idx": 41,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: How do I check my stock portfolio?\nA: (3) StockSense app - if you have added your holdings in StockSense, you can see your portfolio along with AI predictions for each stock.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How do I check my stock portfolio?",
+    "pair_idx": 41,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What happens if a company goes bankrupt?\nA: If a company listed on PSX goes bankrupt, its stock price will typically drop to near zero before it is delisted from the exchange. As a shareholder, you may lose most or all of your investment. In liquidation, creditors and bondholders are paid first, and shareholders get whatever is left (which is usually nothing). This is why diversification is so important - if one company fails, your other investments can still protect your wealth.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What happens if a company goes bankrupt?",
+    "pair_idx": 42
+  },
+  {
+    "text": "Q: What happens if a company goes bankrupt?\nA: If a company listed on PSX goes bankrupt, its stock price will typically drop to near zero before it is delisted from the exchange.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What happens if a company goes bankrupt?",
+    "pair_idx": 42,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What happens if a company goes bankrupt?\nA: As a shareholder, you may lose most or all of your investment.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What happens if a company goes bankrupt?",
+    "pair_idx": 42,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What happens if a company goes bankrupt?\nA: In liquidation, creditors and bondholders are paid first, and shareholders get whatever is left (which is usually nothing).",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What happens if a company goes bankrupt?",
+    "pair_idx": 42,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What happens if a company goes bankrupt?\nA: This is why diversification is so important - if one company fails, your other investments can still protect your wealth.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What happens if a company goes bankrupt?",
+    "pair_idx": 42,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: What is insider trading?\nA: Insider trading is when someone buys or sells stocks based on confidential, non-public information about a company. For example, if a company executive knows that the company will announce poor earnings and sells shares before the announcement, that is insider trading. Insider trading is illegal in Pakistan and is punished by SECP with fines and imprisonment. It is considered unfair to other investors who don't have access to the same information.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is insider trading?",
+    "pair_idx": 43
+  },
+  {
+    "text": "Q: What is insider trading?\nA: Insider trading is when someone buys or sells stocks based on confidential, non-public information about a company.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is insider trading?",
+    "pair_idx": 43,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is insider trading?\nA: For example, if a company executive knows that the company will announce poor earnings and sells shares before the announcement, that is insider trading.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is insider trading?",
+    "pair_idx": 43,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is insider trading?\nA: Insider trading is illegal in Pakistan and is punished by SECP with fines and imprisonment.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is insider trading?",
+    "pair_idx": 43,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is insider trading?\nA: It is considered unfair to other investors who don't have access to the same information.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is insider trading?",
+    "pair_idx": 43,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: What is a mutual fund?\nA: A mutual fund is a professionally managed investment fund that pools money from many investors and invests it in stocks, bonds, or other securities. Instead of picking individual stocks yourself, you give your money to a fund manager who makes the investment decisions. In Pakistan, mutual funds are offered by companies like Al Meezan, HBL Asset Management, UBL Fund Managers, and JS Investments. Mutual funds are a good option for people who don't have time to research individual stocks.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is a mutual fund?",
+    "pair_idx": 44
+  },
+  {
+    "text": "Q: What is a mutual fund?\nA: A mutual fund is a professionally managed investment fund that pools money from many investors and invests it in stocks, bonds, or other securities.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a mutual fund?",
+    "pair_idx": 44,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is a mutual fund?\nA: Instead of picking individual stocks yourself, you give your money to a fund manager who makes the investment decisions.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a mutual fund?",
+    "pair_idx": 44,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is a mutual fund?\nA: In Pakistan, mutual funds are offered by companies like Al Meezan, HBL Asset Management, UBL Fund Managers, and JS Investments.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a mutual fund?",
+    "pair_idx": 44,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is a mutual fund?\nA: Mutual funds are a good option for people who don't have time to research individual stocks.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a mutual fund?",
+    "pair_idx": 44,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: What are the risks of stock market investing?\nA: The main risks of stock market investing are: (1) Market risk - the entire market can fall due to economic downturns, political instability, or global events. (2) Company-specific risk - a single company can fail due to poor management or competition. (3) Liquidity risk - some stocks have low trading volume, making it hard to sell quickly. (4) Currency risk - for foreign investors, PKR depreciation affects returns. (5) Inflation risk - returns may not keep up with inflation. To minimize risk, diversify your investments, invest for the long term, and never invest money you need for daily expenses.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What are the risks of stock market investing?",
+    "pair_idx": 45
+  },
+  {
+    "text": "Q: What are the risks of stock market investing?\nA: The main risks of stock market investing are: (1) Market risk - the entire market can fall due to economic downturns, political instability, or global events.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What are the risks of stock market investing?",
+    "pair_idx": 45,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What are the risks of stock market investing?\nA: (2) Company-specific risk - a single company can fail due to poor management or competition.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What are the risks of stock market investing?",
+    "pair_idx": 45,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What are the risks of stock market investing?\nA: (3) Liquidity risk - some stocks have low trading volume, making it hard to sell quickly.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What are the risks of stock market investing?",
+    "pair_idx": 45,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What are the risks of stock market investing?\nA: To minimize risk, diversify your investments, invest for the long term, and never invest money you need for daily expenses.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What are the risks of stock market investing?",
+    "pair_idx": 45,
+    "sentence_idx": 5
+  },
+  {
+    "text": "Q: How do I sell my stocks?\nA: To sell your stocks: (1) Log in to your broker's trading platform or app. (2) Select the stock you want to sell from your portfolio. (3) Enter the number of shares you want to sell. (4) Choose the order type - market order (sell at current market price) or limit order (sell only at your specified price or higher). (5) Confirm the order. The sale will be executed during trading hours (9:30 AM - 3:30 PM) and settled in T+2 days.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "How do I sell my stocks?",
+    "pair_idx": 46
+  },
+  {
+    "text": "Q: How do I sell my stocks?\nA: To sell your stocks: (1) Log in to your broker's trading platform or app.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How do I sell my stocks?",
+    "pair_idx": 46,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: How do I sell my stocks?\nA: (4) Choose the order type - market order (sell at current market price) or limit order (sell only at your specified price or higher).",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How do I sell my stocks?",
+    "pair_idx": 46,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: How do I sell my stocks?\nA: The sale will be executed during trading hours (9:30 AM - 3:30 PM) and settled in T+2 days.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How do I sell my stocks?",
+    "pair_idx": 46,
+    "sentence_idx": 5
+  },
+  {
+    "text": "Q: What is a limit order vs market order?\nA: A market order is an instruction to buy or sell a stock immediately at the current market price. It guarantees execution but not the exact price. A limit order is an instruction to buy or sell a stock only at a specific price or better. For example, if a stock is trading at Rs. 100, you can place a limit buy order at Rs. 95 - the order will only execute if the price drops to Rs. 95 or below. Limit orders give you price control but may not be executed if the price doesn't reach your limit.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is a limit order vs market order?",
+    "pair_idx": 47
+  },
+  {
+    "text": "Q: What is a limit order vs market order?\nA: A market order is an instruction to buy or sell a stock immediately at the current market price.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a limit order vs market order?",
+    "pair_idx": 47,
+    "sentence_idx": 0
+  },
+  {
+    "text": "Q: What is a limit order vs market order?\nA: A limit order is an instruction to buy or sell a stock only at a specific price or better.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a limit order vs market order?",
+    "pair_idx": 47,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is a limit order vs market order?\nA: 95 - the order will only execute if the price drops to Rs.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a limit order vs market order?",
+    "pair_idx": 47,
+    "sentence_idx": 5
+  },
+  {
+    "text": "Q: What is a limit order vs market order?\nA: Limit orders give you price control but may not be executed if the price doesn't reach your limit.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is a limit order vs market order?",
+    "pair_idx": 47,
+    "sentence_idx": 7
+  },
+  {
+    "text": "Q: What is the right time to invest in stocks?\nA: There is no perfect time to invest. Research shows that trying to time the market (waiting for the \"right\" moment) usually performs worse than investing regularly over time. A strategy called rupee-cost averaging involves investing a fixed amount every month regardless of market conditions. This way, you buy more shares when prices are low and fewer when prices are high, averaging out your cost over time.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "What is the right time to invest in stocks?",
+    "pair_idx": 48
+  },
+  {
+    "text": "Q: What is the right time to invest in stocks?\nA: Research shows that trying to time the market (waiting for the \"right\" moment) usually performs worse than investing regularly over time.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the right time to invest in stocks?",
+    "pair_idx": 48,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: What is the right time to invest in stocks?\nA: A strategy called rupee-cost averaging involves investing a fixed amount every month regardless of market conditions.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the right time to invest in stocks?",
+    "pair_idx": 48,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: What is the right time to invest in stocks?\nA: This way, you buy more shares when prices are low and fewer when prices are high, averaging out your cost over time.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "What is the right time to invest in stocks?",
+    "pair_idx": 48,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: How does news affect stock prices?\nA: News can significantly affect stock prices. Positive news (strong earnings, new contracts, favorable government policies) tends to push prices up. Negative news (losses, lawsuits, political instability, global recession) tends to push prices down. Company-specific news affects individual stocks, while economic and political news affects the entire market. StockSense monitors news sentiment for all KSE-30 stocks and uses it in AI predictions to help you understand how recent news might impact stock prices.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_full",
+    "question": "How does news affect stock prices?",
+    "pair_idx": 49
+  },
+  {
+    "text": "Q: How does news affect stock prices?\nA: Positive news (strong earnings, new contracts, favorable government policies) tends to push prices up.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How does news affect stock prices?",
+    "pair_idx": 49,
+    "sentence_idx": 1
+  },
+  {
+    "text": "Q: How does news affect stock prices?\nA: Negative news (losses, lawsuits, political instability, global recession) tends to push prices down.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How does news affect stock prices?",
+    "pair_idx": 49,
+    "sentence_idx": 2
+  },
+  {
+    "text": "Q: How does news affect stock prices?\nA: Company-specific news affects individual stocks, while economic and political news affects the entire market.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How does news affect stock prices?",
+    "pair_idx": 49,
+    "sentence_idx": 3
+  },
+  {
+    "text": "Q: How does news affect stock prices?\nA: StockSense monitors news sentiment for all KSE-30 stocks and uses it in AI predictions to help you understand how recent news might impact stock prices.",
+    "source": "Data\\text\\stocksense_knowledge_base.txt",
+    "kind": "txt",
+    "chunk_type": "qa_answer_sentence",
+    "question": "How does news affect stock prices?",
+    "pair_idx": 49,
+    "sentence_idx": 4
+  },
+  {
     "text": "[Capitalization]\n25 crores rupees. c. Net tangible assets: three crore rupees d. Pre-tax operating proﬁt: ﬁfteen crore rupees e. Net Worth: one crore rupees. f. Track record: 3 years. In case of noncompliance: IPO through book Building method with 75% allocation to QIBs. Free Float 5%-25% depending on post issue paid up capital. 25% free ﬂoat (can be reduce to 15% if market cap >_ HK $10 bn. 12%-25% depending on Market Capitalization. 25%. 25% Minimum number of shareholders 500 300 500 1,000 shareholders each holding at least 100 shares 1,000 Compliance with code of corporate Governance Yes Yes Yes * Yes Yes * Prior to listing, all debts owing to the group by its directors, substantial shareholders, and companies controlled by the directors and substantial shareholders must be settled except Subsidiaries and associated companies of the Issuer. Detailed jurisdictional comparison is available on SECP website and can be accessed through below link: https://www.secp.gov.pk/document/jurisdictional-study-initial-public-oﬀering/ ?ind=1663240194990&ﬁlename=Jurisdictional-Study-Initial-Public-Oﬀering.pdf &wpdmdl=45736&refresh=63230da2098651663241634 Overview and Regulatory Initiatives. IPO- Market. Chapter 3 Regulatory Initiatives- Pakistan. During the last couple of years, SECP has taken number of initiatives to promote capital formation through IPO market and make the entire public oﬀering process more eﬃcient and cost eﬀective. Initiatives are listed down below: i) Revamping of Public Oﬀering regime. a. Objective eligibility criteria for listing of companies have been revised to enable companies having a track record of less than three years and proﬁtable track record of less than two years. b. Requirement of audited accounts has been reduced from 5 years to 2 years and processing time for listing of applications has been conﬁned to 15 working days. c. Regulatory requirements such as credit rating, market making, information memorandum have been relaxed for certain type of debt securities. d. Objective criterion for listing of Green ﬁeld projects has been introduced. e. Enhanced disclosures including front page risk disclosures to enable investors to take informed decision.",
     "source": "Data\\pdf\\Initial_Public_Offering-_Market_Overview_and_Regulatory_Initiatives.pdf",
     "kind": "pdf",
