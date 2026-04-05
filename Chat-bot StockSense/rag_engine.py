@@ -627,9 +627,7 @@ def exact_qa_match_answer(question: str, chunks: List[RetrievedChunk]) -> Option
         best = candidates[0][1]
         answer = extract_answer_text(best.text)
         if answer and len(answer) > 25:
-            answer = _simplify_answer(answer)
-            sources = get_source_names([best])
-            return f"{answer}\n\nSources: {', '.join(sources)}"
+            return _simplify_answer(answer)
 
     return None
 
@@ -692,9 +690,7 @@ def build_extractive_answer(
 
     if not scored:
         first = extract_answer_text(chunks[0].text)
-        cleaned = _simplify_answer(first)
-        sources = get_source_names(chunks)
-        return f"{cleaned}\n\nSources: {', '.join(sources)}"
+        return _simplify_answer(first)
 
     scored.sort(key=lambda x: x[0], reverse=True)
     selected: List[str] = []
@@ -714,12 +710,14 @@ def build_extractive_answer(
     answer = " ".join(selected)
     if q_terms and not any(t in normalize_text(answer) for t in q_terms):
         return (
-            "I couldn't find a precise answer in my documents. "
-            "Try rephrasing with terms like: PSX, dividend, KSE-100, broker, SECP, IPO."
+            "I'm not sure about that one. Could you try asking differently? "
+            "For example:\n"
+            "- \"What is a dividend?\"\n"
+            "- \"How to start investing?\"\n"
+            "- \"Price of OGDC\""
         )
 
-    sources = get_source_names(chunks)
-    return f"{answer}\n\nSources: {', '.join(sources)}"
+    return answer
 
 
 # ---------------------------------------------------------------------------

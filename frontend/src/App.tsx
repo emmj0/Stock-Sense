@@ -11,7 +11,6 @@ import SectorsPage from './pages/SectorsPage';
 import IndexesPage from './pages/IndexesPage';
 import LearnPage from './pages/LearnPage';
 import ChatPage from './pages/ChatPage';
-import PredictionsPage from './pages/PredictionsPage';
 import { useAuth } from './providers/AuthProvider';
 import TopNav from './components/TopNav';
 
@@ -41,13 +40,13 @@ export default function App() {
   const { user, loading } = useAuth();
 
   return (
-    <div className="min-h-screen bg-dark-bg text-white">
+    <div className="min-h-screen bg-white dark:bg-dark-bg text-gray-900 dark:text-gray-100">
       <TopNav />
       {loading ? (
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-accent-blue" />
-            <p className="mt-4 text-gray-400 font-medium">Loading...</p>
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600" />
+            <p className="mt-4 text-gray-500 dark:text-gray-400 font-medium">Loading...</p>
           </div>
         </div>
       ) : (
@@ -101,14 +100,6 @@ export default function App() {
             element={
               <RequireAuth>
                 <HoldingsPage />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/predictions"
-            element={
-              <RequireAuth>
-                <PredictionsPage />
               </RequireAuth>
             }
           />

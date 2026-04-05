@@ -111,12 +111,63 @@ export default function ChatPage() {
   };
 
   const formatMessage = (content: string) => {
-    return content.split('\n').map((line, i) => (
-      <span key={i}>
-        {line}
-        {i < content.split('\n').length - 1 && <br />}
-      </span>
-    ));
+    const lines = content.split('\n');
+    return lines.map((line, i) => {
+      const trimmed = line.trim();
+
+      // Empty line = spacer
+      if (!trimmed) return <div key={i} className="h-2" />;
+
+      // Numbered list item: "1. text" or "(1) text"
+      const numMatch = trimmed.match(/^(?:(\d+)\.\s+|\((\d+)\)\s+)(.+)/);
+      if (numMatch) {
+        const num = numMatch[1] || numMatch[2];
+        const text = numMatch[3];
+        return (
+          <div key={i} className="flex gap-2 py-0.5">
+            <span className="text-blue-500 font-semibold text-xs mt-0.5 min-w-[18px]">{num}.</span>
+            <span>{text}</span>
+          </div>
+        );
+      }
+
+      // Bullet list: "- text" or "• text"
+      if (trimmed.startsWith('- ') || trimmed.startsWith('• ')) {
+        return (
+          <div key={i} className="flex gap-2 py-0.5 pl-1">
+            <span className="text-blue-400 mt-1">•</span>
+            <span>{trimmed.slice(2)}</span>
+          </div>
+        );
+      }
+
+      // Header-like line (all caps or ends with colon and is short)
+      if ((trimmed === trimmed.toUpperCase() && trimmed.length > 3 && trimmed.length < 40) ||
+          (trimmed.endsWith(':') && trimmed.length < 50)) {
+        return (
+          <div key={i} className="font-semibold text-gray-900 dark:text-gray-100 pt-2 pb-0.5 text-[13px]">
+            {trimmed}
+          </div>
+        );
+      }
+
+      // Stock data line with Rs. price
+      if (trimmed.match(/^.{2,8}:\s*Rs\./)) {
+        return (
+          <div key={i} className="font-mono text-xs py-0.5 bg-white/50 dark:bg-white/10 rounded px-2 my-0.5">
+            {trimmed}
+          </div>
+        );
+      }
+
+      // Regular text
+      return (
+        <span key={i}>
+          {trimmed}
+          {i < lines.length - 1 && <br />}
+        </span>
+      );
+    });
   };
 
   const suggestedQuestions = [
@@ -129,7 +180,7 @@ export default function ChatPage() {
   ];
 
   return (
-    <div className="flex h-[calc(100vh-80px)] bg-white">
+    <div className="flex h-[calc(100vh-64px)] bg-white dark:bg-dark-bg">
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div
@@ -140,12 +191,12 @@ export default function ChatPage() {
 
       {/* Sidebar */}
       <div
-        className={`fixed md:relative z-50 md:z-0 h-full w-72 bg-gray-50 border-r border-gray-200 flex flex-col transition-transform duration-300 ${
+        className={`fixed md:relative z-50 md:z-0 h-full w-72 bg-gray-50 dark:bg-dark-card border-r border-gray-200 dark:border-dark-border flex flex-col transition-transform duration-300 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
       >
         {/* New Chat Button */}
-        <div className="p-4 border-b border-gray-200">
+        <div className="p-4 border-b border-gray-200 dark:border-dark-border">
           <button
             onClick={startNewChat}
             className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-medium text-sm shadow-lg shadow-blue-600/20"
@@ -170,8 +221,8 @@ export default function ChatPage() {
                 onClick={() => loadSession(session._id)}
                 className={`w-full text-left px-3 py-3 rounded-xl text-sm transition-all group flex items-center justify-between gap-2 ${
                   activeSessionId === session._id
-                    ? 'bg-blue-50 text-blue-700 border border-blue-200'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-dark-hover'
                 }`}
               >
                 <div className="flex items-center gap-2 min-w-0">
@@ -190,14 +241,14 @@ export default function ChatPage() {
         </div>
 
         {/* User info */}
-        <div className="p-4 border-t border-gray-200 bg-white">
+        <div className="p-4 border-t border-gray-200 dark:border-dark-border bg-white dark:bg-dark-card">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 text-white flex items-center justify-center text-sm font-bold flex-shrink-0">
               {user?.name?.charAt(0).toUpperCase()}
             </div>
             <div className="min-w-0">
-              <p className="text-sm font-medium text-gray-900 truncate">{user?.name}</p>
-              <p className="text-xs text-gray-500 truncate">{user?.email}</p>
+              <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{user?.name}</p>
+              <p className="text-xs text-gray-500 dark:text-gray-300 truncate">{user?.email}</p>
             </div>
           </div>
         </div>
@@ -206,7 +257,7 @@ export default function ChatPage() {
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Header */}
-        <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-200 bg-white">
+        <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-200 dark:border-dark-border bg-white dark:bg-dark-card">
           <button
             onClick={() => setSidebarOpen(true)}
             className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
@@ -218,8 +269,8 @@ export default function ChatPage() {
               <HiOutlineChatAlt2 className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h1 className="text-base font-semibold text-gray-900">StockSense AI</h1>
-              <p className="text-xs text-gray-500">Your PSX investment assistant</p>
+              <h1 className="text-base font-semibold text-gray-900 dark:text-white">StockSense AI</h1>
+              <p className="text-xs text-gray-500 dark:text-gray-300">Your PSX investment assistant</p>
             </div>
           </div>
         </div>
@@ -231,10 +282,10 @@ export default function ChatPage() {
               <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center mb-6 shadow-xl shadow-blue-600/20">
                 <HiOutlineChatAlt2 className="w-8 h-8 text-white" />
               </div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 Hi {user?.name?.split(' ')[0]}! How can I help?
               </h2>
-              <p className="text-sm text-gray-500 text-center mb-8">
+              <p className="text-sm text-gray-500 dark:text-gray-300 text-center mb-8">
                 Ask me about stock prices, your portfolio, predictions, sectors, or anything PSX-related.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full">
@@ -245,7 +296,7 @@ export default function ChatPage() {
                       setInput(q);
                       inputRef.current?.focus();
                     }}
-                    className="text-left px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-all"
+                    className="text-left px-4 py-3 rounded-xl border border-gray-200 dark:border-dark-border text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-dark-hover hover:border-gray-300 dark:hover:border-gray-600 transition-all"
                   >
                     {q}
                   </button>
@@ -263,7 +314,7 @@ export default function ChatPage() {
                     className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                       msg.role === 'user'
                         ? 'bg-blue-600 text-white rounded-br-md'
-                        : 'bg-gray-100 text-gray-800 rounded-bl-md'
+                        : 'bg-gray-100 dark:bg-dark-surface text-gray-800 dark:text-gray-200 rounded-bl-md'
                     }`}
                   >
                     <div className="whitespace-pre-wrap break-words">{formatMessage(msg.content)}</div>
@@ -273,9 +324,9 @@ export default function ChatPage() {
 
               {loading && (
                 <div className="flex justify-start">
-                  <div className="bg-gray-100 rounded-2xl rounded-bl-md px-4 py-3">
+                  <div className="bg-gray-100 dark:bg-dark-surface rounded-2xl rounded-bl-md px-4 py-3">
                     <div className="flex gap-1.5">
-                      <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '0ms' }} />
+                      <div className="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500 animate-bounce" style={{ animationDelay: '0ms' }} />
                       <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '150ms' }} />
                       <div className="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: '300ms' }} />
                     </div>
@@ -289,9 +340,9 @@ export default function ChatPage() {
         </div>
 
         {/* Input Area */}
-        <div className="border-t border-gray-200 bg-white px-4 py-4">
+        <div className="border-t border-gray-200 dark:border-dark-border bg-white dark:bg-dark-card px-4 py-4">
           <div className="max-w-3xl mx-auto">
-            <div className="flex items-end gap-3 bg-gray-50 rounded-2xl border border-gray-200 px-4 py-3 focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-blue-100 transition-all">
+            <div className="flex items-end gap-3 bg-gray-50 dark:bg-dark-surface rounded-2xl border border-gray-200 dark:border-dark-border px-4 py-3 focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-blue-500/20 transition-all">
               <textarea
                 ref={inputRef}
                 value={input}
@@ -299,7 +350,7 @@ export default function ChatPage() {
                 onKeyDown={handleKeyDown}
                 placeholder="Ask about stocks, portfolio, predictions..."
                 rows={1}
-                className="flex-1 bg-transparent resize-none text-sm text-gray-900 placeholder-gray-400 focus:outline-none max-h-32"
+                className="flex-1 bg-transparent resize-none text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none max-h-32"
                 style={{ minHeight: '24px' }}
                 onInput={(e) => {
                   const t = e.target as HTMLTextAreaElement;
@@ -315,7 +366,7 @@ export default function ChatPage() {
                 <HiOutlinePaperAirplane className="w-4 h-4 rotate-90" />
               </button>
             </div>
-            <p className="text-xs text-gray-400 text-center mt-2">
+            <p className="text-xs text-gray-400 dark:text-gray-500 text-center mt-2">
               StockSense AI can make mistakes. Not financial advice.
             </p>
           </div>
