@@ -1,0 +1,82 @@
+[
+  {
+    "role": "user",
+    "content": "how many courses I completed ?"
+  },
+  {
+    "role": "assistant",
+    "content": "I'm focused on Pakistan Stock Exchange topics. I can help with:\n- Stock prices and market data\n- Investment education (what is a stock, how to invest, etc.)\n- Your portfolio and predictions\n\nTry asking something like \"What is a stock?\" or \"How is the market today?\""
+  },
+  {
+    "role": "user",
+    "content": "give me all investment education"
+  },
+  {
+    "role": "assistant",
+    "content": "Simulation lets beginners learn how the market works, practice reading price charts, understand how news affects stock prices, and test investment strategies — all without financial risk. It builds confidence and knowledge before committing real money to the market.\n\nSources: PSX_Complete_QA_Guide.pdf"
+  },
+  {
+    "role": "user",
+    "content": "how is the market today ?"
+  },
+  {
+    "role": "assistant",
+    "content": "The KSE-100 index is currently at 150,398.71 (down -1612.55, -1.06% today).\n\nWant to see top gainers, top losers, or specific stock prices?"
+  },
+  {
+    "role": "user",
+    "content": "top gainers?"
+  },
+  {
+    "role": "assistant",
+    "content": "Top Gainers Today\n\n1. PASLNC: Rs. 2.20 (+0.22, 11.11%) Vol: 10,379,129\n2. JSBL: Rs. 14.92 (+1.36, 10.03%) Vol: 284,515\n3. CRTM: Rs. 52.44 (+4.77, 10.01%) Vol: 203,366\n4. PRL: Rs. 32.90 (+2.99, 10.00%) Vol: 24,216,388\n5. 786: Rs. 50.15 (+4.56, 10.00%) Vol: 931,255\n6. FTSM: Rs. 25.63 (+2.33, 10.00%) Vol: 32,200\n7. KPUS: Rs. 296.93 (+26.99, 10.00%) Vol: 4,323\n8. ASLCPS: Rs. 76.56 (+6.96, 10.00%) Vol: 471\n9. PAKL: Rs. 41.62 (+3.78, 9.99%) Vol: 27,614\n10. SHCM: Rs. 35.89 (+3.25, 9.96%) Vol: 3,861"
+  },
+  {
+    "role": "user",
+    "content": "what is price of PSO"
+  },
+  {
+    "role": "assistant",
+    "content": "PSO stands for Pakistan State Oil Company Limited. It is Pakistan's largest oil marketing company, responsible for importing, storing, and distributing petroleum products (petrol, diesel, furnace oil, etc.) across Pakistan. PSO is a state-owned enterprise listed on PSX.\n\nSources: PSX_Complete_QA_Guide.pdf"
+  },
+  {
+    "role": "user",
+    "content": "PSO price"
+  },
+  {
+    "role": "assistant",
+    "content": "PSO - Current Price: Rs. 337.21\n  Open: 332.80 | High: 346.90 | Low: 329.00 | LDCP: 335.14\n  Change: 2.07 (0.62%)\n  Volume: 2,380,646"
+  },
+  {
+    "role": "user",
+    "content": "how to find good stocks ?"
+  },
+  {
+    "role": "assistant",
+    "content": "For beginners simulating PSX investing, start with large, well-known companies in sectors you understand. Good starting choices include major banks (HBL, MCB), blue-chip industrials (OGDC, Lucky Cement), or consumer companies (Engro, National Foods). These are actively traded, information is widely available, and they are relatively stable.\n\nSources: PSX_Complete_QA_Guide.pdf"
+  },
+  {
+    "role": "user",
+    "content": "explain about stocks"
+  },
+  {
+    "role": "assistant",
+    "content": "A stock or share represents a unit of ownership in a company. When you buy a share, you become a partial owner (shareholder) of that company and are entitled to a proportional share of its profits and assets.\n\nSources: PSX_Complete_QA_Guide.pdf"
+  },
+  {
+    "role": "user",
+    "content": "what is difference between dividends and stocks"
+  },
+  {
+    "role": "assistant",
+    "content": "Cash dividends pay shareholders actual rupees per share. Stock dividends (bonus shares) give shareholders additional shares instead of cash. Cash dividends provide immediate income. Stock dividends increase share count but do not change the shareholder's proportional ownership or the company's total value immediately.\n\nSources: PSX_Complete_QA_Guide.pdf"
+  },
+  {
+    "role": "user",
+    "content": "portfolio"
+  },
+  {
+    "role": "assistant",
+    "content": "A portfolio is a collection of financial investments held by an investor. A stock portfolio may contain shares of multiple companies across different sectors. Diversifying across sectors reduces risk because not all sectors perform poorly at the same time.\n\nSources: PSX_Complete_QA_Guide.pdf"
+  }
+]
