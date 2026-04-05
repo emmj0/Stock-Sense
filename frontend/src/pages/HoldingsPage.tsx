@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchPortfolio, upsertPortfolioItem, removePortfolioItem, fetchIndexes, fetchSectors } from '../api';
+import { fetchPortfolio, upsertPortfolioItem, removePortfolioItem, fetchIndexes, fetchSectors, fetchPortfolioPredictions } from '../api';
 import { HiOutlineArrowLeft, HiOutlinePencil, HiOutlineTrash, HiOutlineX, HiOutlineCheckCircle } from 'react-icons/hi';
 import { Loader } from '../components/Loader';
 
@@ -20,10 +20,22 @@ interface StockInfo {
   volume?: string;
 }
 
+interface PredictionInfo {
+  signal: string;
+  confidence: number;
+  predictedPrice: number;
+  predictedReturn: number;
+  reasoning: string;
+  llmReasoning?: string;
+  forecastDays?: { bullish: number; bearish: number; neutral: number };
+  trustLevel?: string;
+}
+
 export default function HoldingsPage() {
   const navigate = useNavigate();
   const [holdings, setHoldings] = useState<PortfolioItem[]>([]);
   const [stockDetails, setStockDetails] = useState<{ [key: string]: StockInfo }>({});
+  const [predictionMap, setPredictionMap] = useState<{ [key: string]: PredictionInfo }>({});
   const [loading, setLoading] = useState(true);
   const [editingSymbol, setEditingSymbol] = useState<string | null>(null);
   const [editForm, setEditForm] = useState({ quantity: 0, averageCost: 0 });
@@ -95,6 +107,29 @@ export default function HoldingsPage() {
       });
 
       setStockDetails(details);
+
+      // Fetch AI predictions for portfolio stocks
+      try {
+        const preds = await fetchPortfolioPredictions();
+        const pMap: { [key: string]: PredictionInfo } = {};
+        if (preds && Array.isArray(preds)) {
+          preds.forEach((p: any) => {
+            pMap[p.symbol] = {
+              signal: p.signal,
+              confidence: p.confidence,
+              predictedPrice: p.predictedPrice,
+              predictedReturn: p.predictedReturn,
+              reasoning: p.reasoning,
+              llmReasoning: p.llmReasoning,
+              forecastDays: p.forecastDays,
+              trustLevel: p.trustLevel,
+            };
+          });
+        }
+        setPredictionMap(pMap);
+      } catch {
+        // Predictions not available — that's fine
+      }
     } catch (err: any) {
       setError(err?.response?.data?.message || 'Failed to load holdings');
     } finally {
@@ -362,6 +397,68 @@ export default function HoldingsPage() {
                           </div>
                         )}
                       </div>
+
+                      {/* AI Prediction */}
+                      {predictionMap[item.symbol] && (() => {
+                        const pred = predictionMap[item.symbol];
+                        const signalColors: any = {
+                          BUY: { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-700', badge: 'bg-emerald-500' },
+                          SELL: { bg: 'bg-red-50', border: 'border-red-200', text: 'text-red-700', badge: 'bg-red-500' },
+                          HOLD: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-700', badge: 'bg-amber-500' },
+                        };
+                        const sc = signalColors[pred.signal] || signalColors.HOLD;
+
+                        return (
+                          <div className={`mb-6 p-4 rounded-xl ${sc.bg} border ${sc.border}`}>
+                            <div className="flex items-center justify-between mb-3">
+                              <div className="flex items-center gap-2">
+                                <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                </svg>
+                                <span className="text-sm font-semibold text-gray-800">AI Prediction (7-day)</span>
+                              </div>
+                              <span className={`px-3 py-1 rounded-full text-xs font-bold text-white ${sc.badge}`}>
+                                {pred.signal}
+                              </span>
+                            </div>
+                            <div className="grid grid-cols-3 gap-3 mb-3">
+                              <div>
+                                <p className="text-xs text-gray-500">Target Price</p>
+                                <p className={`text-lg font-bold ${sc.text}`}>Rs. {pred.predictedPrice?.toFixed(2)}</p>
+                              </div>
+                              <div>
+                                <p className="text-xs text-gray-500">Expected Return</p>
+                                <p className={`text-lg font-bold ${sc.text}`}>
+                                  {pred.predictedReturn > 0 ? '+' : ''}{pred.predictedReturn?.toFixed(1)}%
+                                </p>
+                              </div>
+                              <div>
+                                <p className="text-xs text-gray-500">Confidence</p>
+                                <p className="text-lg font-bold text-gray-800">{pred.confidence?.toFixed(0)}%</p>
+                              </div>
+                            </div>
+                            {(pred.llmReasoning || pred.reasoning) && (
+                              <p className="text-xs text-gray-600 leading-relaxed line-clamp-3">
+                                {pred.llmReasoning || pred.reasoning}
+                              </p>
+                            )}
+                            {pred.forecastDays && (
+                              <div className="flex items-center gap-3 mt-2 text-xs text-gray-500">
+                                <span>{pred.forecastDays.bullish || 0} of 7 days look positive</span>
+                                {pred.trustLevel && (
+                                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${
+                                    pred.trustLevel === 'high' ? 'bg-emerald-100 text-emerald-700' :
+                                    pred.trustLevel === 'low' ? 'bg-red-100 text-red-700' :
+                                    'bg-amber-100 text-amber-700'
+                                  }`}>
+                                    {pred.trustLevel === 'high' ? 'High accuracy' : pred.trustLevel === 'low' ? 'Low accuracy' : 'Moderate accuracy'}
+                                  </span>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })()}
 
                       {/* Action Buttons */}
                       <div className="flex gap-3 pt-2">

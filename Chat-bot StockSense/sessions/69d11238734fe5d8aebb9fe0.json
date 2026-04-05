@@ -1,0 +1,42 @@
+[
+  {
+    "role": "user",
+    "content": "what are tickers"
+  },
+  {
+    "role": "assistant",
+    "content": "I'm focused on Pakistan Stock Exchange topics. Ask me about stock prices, investing, brokers, IPOs, dividends, sectors, or anything PSX-related!"
+  },
+  {
+    "role": "user",
+    "content": "tell me about psx tickers"
+  },
+  {
+    "role": "assistant",
+    "content": "PSX stands for Pakistan Stock Exchange. It is the sole securities exchange of Pakistan where shares of publicly listed companies are bought and sold. PSX was formed in 2016 through the merger of the Karachi Stock Exchange (KSE), Lahore Stock Exchange (LSE), and Islamabad Stock Exchange (ISE).\n\nSources: PSX_Complete_QA_Guide.pdf"
+  },
+  {
+    "role": "user",
+    "content": "which stocks you prefer to invest"
+  },
+  {
+    "role": "assistant",
+    "content": "Stock Recommendations:\n\nTOP BUY Picks:\n  1. ?: Rs. 107.33 -> Rs. 127.69 (18.97%) | Confidence: 70.81%\n  2. ?: Rs. 185.01 -> Rs. 204.71 (10.65%) | Confidence: 70.05%\n  3. ?: Rs. 18.27 -> Rs. 21.7 (18.75%) | Confidence: 64.89%\n  4. ?: Rs. 161.84 -> Rs. 226.47 (39.93%) | Confidence: 62.19%\n\nTOP SELL Picks:\n  1. ?: Rs. 314.64 -> Rs. 289.28 (-8.06%) | Confidence: 79.05%\n  2. ?: Rs. 272.4 -> Rs. 259.14 (-4.87%) | Confidence: 78.59%\n  3. ?: Rs. 478.64 -> Rs. 435.56 (-9%) | Confidence: 78.14%\n  4. ?: Rs. 358.15 -> Rs. 341.37 (-4.68%) | Confidence: 77.34%\n  5. ?: Rs. 78.37 -> Rs. 74.81 (-4.54%) | Confidence: 76.65%\n\nSummary: 4 buys, 5 sells"
+  },
+  {
+    "role": "user",
+    "content": "which stocks you prefer to invest"
+  },
+  {
+    "role": "assistant",
+    "content": "Stock Recommendations:\n\nTOP BUY Picks:\n  1. ?: Rs. 107.33 -> Rs. 127.69 (18.97%) | Confidence: 70.81%\n  2. ?: Rs. 185.01 -> Rs. 204.71 (10.65%) | Confidence: 70.05%\n  3. ?: Rs. 18.27 -> Rs. 21.7 (18.75%) | Confidence: 64.89%\n  4. ?: Rs. 161.84 -> Rs. 226.47 (39.93%) | Confidence: 62.19%\n\nTOP SELL Picks:\n  1. ?: Rs. 314.64 -> Rs. 289.28 (-8.06%) | Confidence: 79.05%\n  2. ?: Rs. 272.4 -> Rs. 259.14 (-4.87%) | Confidence: 78.59%\n  3. ?: Rs. 478.64 -> Rs. 435.56 (-9%) | Confidence: 78.14%\n  4. ?: Rs. 358.15 -> Rs. 341.37 (-4.68%) | Confidence: 77.34%\n  5. ?: Rs. 78.37 -> Rs. 74.81 (-4.54%) | Confidence: 76.65%\n\nSummary: 4 buys, 5 sells"
+  },
+  {
+    "role": "user",
+    "content": "give me kSE 30"
+  },
+  {
+    "role": "assistant",
+    "content": "KSE30: 45,453.35\nChange: -522.50 (-1.14%)\nHigh: 46,040.70 | Low: 44,942.14\n\nTop constituents:\n  1. FFC: Rs. 486.10 (Weight: 13.43%)\n  2. UBL: Rs. 326.76 (Weight: 9.26%)\n  3. ENGROH: Rs. 257.41 (Weight: 8.02%)\n  4. MEBL: Rs. 477.77 (Weight: 6.96%)\n  5. HUBC: Rs. 195.21 (Weight: 6.14%)\n  6. OGDC: Rs. 270.59 (Weight: 5.65%)\n  7. LUCK: Rs. 371.17 (Weight: 5.28%)\n  8. HBLXD: Rs. 265.21 (Weight: 5.03%)\n  9. MCB: Rs. 367.37 (Weight: 4.93%)\n  10. MARI: Rs. 623.08 (Weight: 4.84%)"
+  }
+]

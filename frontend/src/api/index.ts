@@ -116,3 +116,44 @@ export async function fetchUserProgress(): Promise<any> {
   const { data } = await api.get('/api/courses/user/progress');
   return data;
 }
+
+// Chat API
+export async function sendChatMessage(message: string, sessionId?: string): Promise<{ reply: string; sessionId: string; resolvedQuery?: string }> {
+  const { data } = await api.post('/api/chat/send', { message, sessionId });
+  return data;
+}
+
+export async function fetchChatSessions(): Promise<any[]> {
+  const { data } = await api.get('/api/chat/sessions');
+  return data.sessions || [];
+}
+
+export async function fetchChatSession(sessionId: string): Promise<any> {
+  const { data } = await api.get(`/api/chat/sessions/${sessionId}`);
+  return data.session;
+}
+
+export async function deleteChatSession(sessionId: string): Promise<void> {
+  await api.delete(`/api/chat/sessions/${sessionId}`);
+}
+
+// Predictions API
+export async function fetchPredictions(params?: { signal?: string; sector?: string; sort?: string }): Promise<any> {
+  const { data } = await api.get('/api/predictions', { params });
+  return data;
+}
+
+export async function fetchPrediction(symbol: string): Promise<any> {
+  const { data } = await api.get(`/api/predictions/${symbol}`);
+  return data.prediction;
+}
+
+export async function fetchRecommendations(): Promise<any> {
+  const { data } = await api.get('/api/predictions/recommendations');
+  return data.recommendations;
+}
+
+export async function fetchPortfolioPredictions(): Promise<any> {
+  const { data } = await api.get('/api/predictions/user/portfolio');
+  return data.predictions;
+}

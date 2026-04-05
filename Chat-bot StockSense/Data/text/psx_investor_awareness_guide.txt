@@ -1,0 +1,962 @@
+Source: PSX Official Investor Awareness Guide - investor rights, broker verification, trading process, complaint mechanism, account opening, CDC, NCCPL, UIN
+
+INVESTOR
+AWARENESS
+GUIDE
+Pakistan Stock Exchange Limited (PSX) is issuing this ‘Investor Awareness
+Guide’ to educate the investing public about their rights and obligations
+and guide them to take prudent approach while trading in shares or
+futures contracts. This guide explains some significant provisions regarding
+shares trading and settlement as well as investors’ protection.
+DISCLAIMER: Investors should not construe this guide as comprehensive and interpretive of all applicable regulatory
+provisions. Investors are further advised in their own interests to read and understand the applicable securities rules and
+regulations as framed by Securities and Exchange Commission of Pakistan (SECP), PSX, Central Depository Company of
+Pakistan Limited (CDC) and National Clearing Company of Pakistan Limited (NCCPL) to obtain complete understanding
+of their rights and obligations.
+0
+Page | 1
+TABLE OF CONTENTS
+Sr. # TITLE PAGE #
+1 KNOW YOUR BROKERS AND THEIR REGISTERED BRANCHES 3
+2 OPENING OF ACCOUNT IN OWN NAME 3
+3 FILLING OF CUSTOMER RELATIONSHIP FORM (CRF) 3
+4 FILLING OF SAHULAT ACCOUNT AND SIMPLIFIED KYC FORM 4
+5 OPENING OF ACCOUNTS OF CUSTOMERS 4
+6 ACCOUNT FACILITATION/ CUSTOMER HELP CENTERS 5
+7 CENTRALIZED KNOW YOUR CUSTOMER ORGANIZATION 6
+8 PROVISION OF MANDATORY TARIFF STRUCTURE TO CUSTOMERS 6
+UNIFORMITY OF INFORMATION MAINTAINED IN CRF, SAHULAT FORM, KYC FORM
+9 6
+AND UNIQUE IDENTIFICATION NUMBER (UIN) DATABASE OF NCCPL
+REQUIREMENTS RELATING TO SEGREGATION OF CUSTOMERS’ MONEY AND
+10 6
+SECURITIES
+DISTRIBUTION OF PROFIT BY THE SECURITIES BROKERS EARNED ON UNUTILIZED
+11 7
+FUNDS OF THE CUSTOMERS
+12 PLACEMENT OF TRADING ORDERS/INSTRUCTIONS 7
+13 ONLINE TRADING 7
+14 OBLIGATIONS & DUTIES OF CUSTOMERS WHILE TRADING 7
+15 OBLIGATION OF CUSTOMERS TO DEPOSIT MARGINS 8
+16 MODES OF PAYMENTS/ RECEIPTS 8
+17 TRANSMISSION OF TRADE CONFIRMATION 8
+18 SMS AND/OR E-ALERTS BY NCCPL AND CDC FOR SECURITIES TRADES 9
+19 CONFIRMATION OF SECURITIES POSITIONS THROUGH CDC 9
+20 RIGHT TO OBTAIN LEDGER DETAILS SHOWING CASH AND SECURITIES POSITIONS 9
+MANDATORY PROVISION OF QUARTERLY ACCOUNT STATEMENTS BY PSX
+21 10
+BROKERS
+22 FACILITY TO OPEN INVESTOR ACCOUNT WITH CDC 10
+23 SETTLEMENT OF TRADES DIRECTLY THROUGH NCS OF NCCPL AND DSS OF CDC 10
+24 ON-LINE ACCESS THROUGH UIN INFORMATION SYSTEM OF NCCPL 10
+25 PRESCRIBED RISK DISCLOSURE DOCUMENT 11
+PROHIBITION ON GIVING GUARANTEE OF FIXED/SPECIFIC RETURN TO
+26 11
+CUSTOMERS
+27 COMPLAINT HANDLING MECHANISM 11
+28 REGULAR VISITS TO WEBSITES OF SECP, PSX, CDC, NCCPL AND JAMAPUNJI 11
+29 DEFINITION OF KEY TERMS USED IN THIS GUIDE 12
+30 GENERAL PROCESS OF TRADING IN A SECURITIES MARKET 12
+Page | 2
+1. KNOW YOUR BROKERS AND THEIR REGISTERED BRANCHES:
+The Securities Brokers (Licensing and Operations) Regulations, 2016 framed under Securities Act, 2015
+require a broker to be licensed and registered as Securities Broker (hereinafter referred to as “PSX Broker”)
+with SECP in order to perform the functions of a PSX Broker.
+To verify the registration details of PSX Brokers is the first prudent step all investors should take to ensure
+that they trade through a duly registered person and at a registered office/branch office. Therefore,
+investors should seek from PSX Brokers the following information and other related details prior to
+commencing business with them and match the same with their registration details including details relating
+to their registered branch offices available on PSX website: www.psx.com.pk:
+(a) Broker License Number assigned by the SECP;
+(b) Trading Rights Entitlement Certificate Number assigned by PSX; and
+(c) Contact details including web link, helpline number etc.
+The above verification is crucial, because if you do business with an unregistered person/ party that later
+embezzles your money and/or securities or goes out of business, you may have no recourse to recover your
+money or even lodge a complaint with the Commission or other capital market institutions i.e. PSX, CDC and
+NCCPL. Therefore, it is strongly advised that all investors ensure that they deal through the registered PSX
+Brokers and at their registered branches/offices.
+2. OPENING OF ACCOUNT IN OWN NAME:
+Customers are advised in their own interest to open a trading account with PSX Brokers in their own name
+and are encouraged to operate the account themselves. However, in case Customer wishes to authorize a
+trustworthy person to operate the trading account, he/she should furnish written authorization for the same
+with the PSX Broker while opening the account. The Customer must retain a copy of such authorization for
+record purpose.
+Customers must take note that they will be responsible and liable for any consequences including but not
+limited to losses and claims that may arise or be incurred by virtue of transactions executed in their account
+on the instructions of their authorized persons. Please keep in mind that such authorization carries risk of misuse
+of authority and may lead to fraud. Therefore, Customers need to be mindful of any bogus activity in their
+account and carefully select a person who will be authorized to operate their account in order to make sure
+that all trades executed in their accounts remain in their knowledge.
+3. FILLING OF CUSTOMER RELATIONSHIP FORM (CRF):
+Unless it is explicitly provided otherwise in the relevant laws and regulations, PSX Brokers are required to
+adopt Customer Relationship Form (CRF) for each of their Customers. CRF has been separately prescribed
+for individual and corporate Customers. CRF is a primary source of contractual agreement that contains
+minimum Terms and Conditions binding on PSX Broker and its Customers equally.
+It is mandatory for Customers to fill all relevant fields of the CRF provided by PSX Broker for its Customers
+for commencing trading in the stock market and for custody and settlement of their securities. Moreover,
+Customers can also strike out fields which are either irrelevant or not applicable. This will ensure that all
+information mentioned in the forms remain in their knowledge and no other information can be added without
+their knowledge. Provision of correct, complete and current information in the CRF and furnishing the
+supporting documents by the Customers are necessary to establish their identity and enable the regulators to
+serve them effectively. The Customers should read and understand all terms and conditions of the CRF and
+Page | 3
+obtain from their PSX Broker a copy of CRF duly signed by such Customer and the PSX Broker for his/her/its
+information and record purposes.
+The CRF that must be adopted by PSX Brokers for their individual or corporate Customers is prescribed in
+Annexure-I to Chapter 4 of the PSX Regulations.
+Note: PSX Regulations are available in Legal Framework Section of PSX website: www.psx.com.pk.
+4. FILING OF SAHULAT ACCOUNT WITH SIMPLIFIED KYC FORM:
+Individual Customers have an option to open a Sahulat Account with a PSX Broker. Some of the key features
+of Sahulat Account which distinguish it from normal account are as follows:
+(a) Individual Customers opening Sahulat Account are subject to simplified Know Your Customer (KYC)
+regime;
+(b) Maximum position limit a Customer can take is PKR 1,000,000;
+(c) Net trades of up to PKR 1,000,000/- can be made by Customers;
+(d) Only a local individual investor can open Sahulat Account with a PSX Broker; and
+(e) Trading in only Ready Delivery Contract Market is allowed.
+The facility of Sahulat Account also falls under CKO regime whereby a Customer desirous of opening Sahulat
+Account is required to undergo the process of biometric IBAN and mobile number verification. Moreover, this
+facility with simplified KYC requirements has also been made available to Authorized Intermediaries (AIs) in
+KIS.
+For more details on Sahulat Account, please refer to PSX Notice No. PSX/N-740 dated June 17, 2019, PSX
+Notice No. PSX/N-33 dated January 10, 2020 and PSX Notice No. PSX/N-759 dated July 24, 2023 which are
+available on PSX website.
+5. OPENING OF ACCOUNTS OF CUSTOMERS:
+(a) Online Account Opening:
+The PSX Brokers may open an online account of Customers by utilizing the services of an authorized
+entity as per the terms and conditions specified by PSX from time to time. The PSX Brokers may also
+open accounts digitally on-boarded through the Centralized Gateway Portal. The PSX Brokers shall
+ensure that the online accounts are opened after completing all applicable regulatory requirements
+including conducting required verification and due diligence of Customers, collection and submission of
+documents/information and meeting any other requirements or conditions as may be prescribed by PSX
+or SECP in relation to online account opening.
+(b) Account Opening of Resident Pakistanis based on KYC Information shared by Banks in Pakistan:
+PSX Brokers can also open account of a local Customer who/which maintains an account with a bank in
+Pakistan, microfinance bank, non-banking finance companies or any other entity as may be authorized
+by the SECP (jointly referred to as an “Authorized Entity”) on such terms and conditions as prescribed in
+the procedures specified by PSX and as amended from time to time.
+(c) Account Opening of Non-Resident Pakistanis (NRP) based on KYC Information shared by Banks in
+Pakistan:
+A Non-Resident Pakistani can open a bank account in any of the designated Pakistani banks’ online
+portal (Roshan Digital Account-RDA) and choose to invest in various asset classes such as National Saving
+Schemes, Government Securities, securities of listed companies (Roshan Equity Investment-REI), mutual
+funds etc.
+Page | 4
+Where the NRP chooses to invest in capital market (REI), the NRP will have to select from the list of
+designated PSX Brokers provided on the bank’s portal and provide to bank any additional information
+required for opening of account with PSX Broker. Such additional information shall then be transmitted
+by bank to CDC for onward transmission to selected PSX Broker and to NCCPL for creating UIN. PSX
+Broker shall perform its own KYC and CDD and confirm to NRP and CDC regarding opening of trading
+account.
+For further details, the readers are advised to read Clause 4.15 of PSX Regulations.
+6. ACCOUNT FACILITATION/ CUSTOMER HELP CENTERS:
+Account Facilitation/ Customer Help Centers (“Centers”) mean the Centers opened and maintained by PSX
+Broker for performing such activities as specified in Chapter 22A of PSX Regulations. These Centers include
+the sales office(s) of the “Designated Entity” which includes Commercial Bank, Asset Management Company,
+Insurance Company or any other entity as may be specified by PSX with prior approval of the SECP.
+In addition to opening Branch Offices in accordance with Chapter 22 of PSX Regulations, PSX Brokers can
+also open Centers in accordance with Chapter 22A of PSX Regulations, and use such Centers to market their
+products, attract new Customers, address queries of existing Customers and educate & facilitate their existing
+Customers in their local language. This will also help their Customers who are in remote areas to physically
+visit the designated place of the PSX Broker near to their locations.
+Only following activities are allowed to be performed in the Center:
+(a) Facilitate and guide Customers in account opening and conducting KYC verification check;
+(b) Make available account opening forms, Risk Disclosure Document, Investors Awareness Guide, tariff
+structure and any print or electronic material for marketing education and tutorial purposes;
+(c) Address grievances and complaints of Customers; and
+(d) Any other activity as may be permitted by PSX.
+Following activities are prohibited inside the Center:
+(a) Conduct trading activities on its own account or on account of its Customers;
+(b) Provide investment advisory services or trading recommendation to its Customers;
+(c) Engage in cash receipt/payment from/ to Customers;
+(d) Install Trading Terminals or any trading related applications obtained from PSX or any third party;
+(e) Deploy system operators/ traders;
+(f) Maintain any books of accounts, records etc.; and
+(g) Any other activity as may be prohibited by PSX.
+It is important to note that these Centers do not fall within the following definitions provided under the PSX
+Regulations:
+(a) Broker’s Main Office;
+(b) Head Office; and
+(c) Office(s) or Branch Office(s)
+For further details regarding obligations of a PSX Broker and powers of PSX with respect to the Centers, readers
+should read Chapter 22A of PSX Regulations.
+Page | 5
+7. CENTRALIZED KNOW YOUR CUSTOMER ORGANIZATION:
+Centralized Know Your Customer (KYC) Organization (CKO) Rules, 2017 (“CKO Rules”) have been
+promulgated by the Federal Government under the Securities Act, 2015. Under these CKO Rules, NCCPL
+has been licensed to act as a CKO. As a result, NCCPL has accordingly framed its regulatory framework
+and specified KYC Form for Customers.
+Once CKO has performed KYC process for a Customer and fed in all the details in KYC Information System
+(KIS), such Customer/respective Authorized Intermediary (AI) shall not be required to initiate complete KYC
+Process with CKO again. For example, Customer of ‘PSX Broker A’ would not need to fill the KYC Form again
+with ‘PSX Broker B’.
+8. PROVISION OF MANDATORY TARIFF STRUCTURE TO CUSTOMERS:
+Every PSX Broker is required to provide its Customers tariff schedule annexed to CRF and Sahulat Form
+containing the following information:
+(a) Commission rate and any other charges;
+(b) Applicable regulatory levies i.e. trade or transaction fee of PSX, CDC, NCCPL and SECP etc.; and
+(c) Applicable statutory levies i.e. taxes and duties of federal and provincial government.
+Customers must receive from its PSX Broker a copy of the aforesaid tariff schedule at the time of opening
+account and read the same to determine the transaction cost. The PSX Broker must obtain consent of their
+Customers, through signature or using digital means or otherwise in written form.
+In case of any change in the tariff schedule mentioned in point (b) and (c) above, the PSX Broker is required
+to communicate any change therein to its Customers within seven (07) working days from the effective date
+of such change. However, any change in the tariff mentioned in point (a) shall take effect after the same is
+communicated to the Customers at least 30 days, or such higher number of days as may be specified by the
+PSX, in advance of the effective date of the change. The change must be communicated in writing through
+acceptable mode of communication as provided under CRF and Sahulat Form.
+9. UNIFORMITY OF INFORMATION MAINTAINED IN CRF, SAHULAT FORM, KYC FORM AND
+UNIQUE IDENTIFICATION NUMBER (UIN) DATABASE OF NCCPL:
+It is important that the Customer information provided in the KYC Form and CRF should match with the
+information provided in UIN database of NCCPL for creating UIN of such Customer. Customers must ensure
+that their registration details such as CNIC number, mobile number, email address and residential address
+are correctly recorded in the KYC Form, CRF, Central Depository System (CDS) of CDC and National Clearing
+and Settlement System (NCSS) of NCCPL, as the case may be.
+Further, Customers must ensure to sign the CDC Posted Report provided by PSX Broker after verifying the
+correctness and completeness of the information.
+10. REQUIREMENTS RELATING TO SEGREGATION OF CUSTOMERS’ MONEY AND SECURITIES:
+PSX Brokers have a fiduciary obligation under the law to keep their Customers’ money and securities fully
+segregated from their own assets and also keep them protected at all times. No PSX Broker is allowed under
+any circumstance to make unauthorized use of Customers’ funds and securities for their own purpose/ benefit.
+Page | 6
+11. DISTRIBUTION OF PROFIT BY THE SECURITIES BROKERS EARNED ON UNUTILIZED FUNDS OF THE
+CUSTOMERS:
+PSX Brokers have a fiduciary obligation to pass on profit, credited by the bank, to the respective Customers
+in proportion to their unutilized balances, if such funds are kept in a profit-bearing bank account. Any
+Customer who does not wish to receive the profit must specify the same in writing to its PSX Broker.
+12. PLACEMENT OF TRADING ORDERS/ INSTRUCTIONS:
+Customers should give order instructions to PSX Brokers as per the acceptable mode of communication in
+writing, verbally through a dedicated recorded telephone line(s) of Brokers, in writing through registered
+email address / mobile/ fax/ letter, or online through internet-based trading systems for each trade. The
+Customers should take due care and be diligent while giving order instructions and indicate clearly whether
+the order is buy, sale or short sale order.
+The trade orders placed through any of the above modes by the Customers should specify the relevant
+details such as the name and number of the securities and/or futures contracts to be bought or sold, the
+nature of the transaction and the limitation as to the price, if any, etc.
+Customer should note the following:
+(a) Short Share (i.e. shares sold in regular market without having Pre-Existing Interest or shares available in
+CDS account, but the client or proprietary account has SLB contract executed through SLB market at
+NCCPL) is allowed in Ready Market.
+(b) Blank Sale (i.e. Sale without having Pre-Existing Interest or shares available in CDS account) at the time
+of placing sale order is strictly prohibited in the Ready Market. However, Blank Sale is allowed in the
+Deliverable Futures Contract Market through special order F8 window designated in the Trading System
+for Blank Sale subject to the limits specified in Chapter 13 of PSX Regulations.
+Additionally, visiting Customers placing verbal orders to PSX Brokers should also provide written
+acknowledgement of such orders to PSX Brokers.
+13. ONLINE TRADING:
+Trading in securities market has been made easier, economical and faster through the introduction of online
+trading services. Although it offers Customers many benefits, online trading may not be completely secure
+and reliable and may cause delay in transmitting information or execution of instructions due to technological
+barriers. It is important for the Customers to know the risks involved in online trading and learn the important
+security features are in place like encryption, firewalls, Anti-virus, use strong & complex password, enable
+multifactor authentication, avoid clicking on links or downloading from unknown or suspicious emails, avoid
+using public Wi-Fi, regularly checks account statements and transaction histories, etc. to keep their trade
+information confidential and secure. Moreover, the Customer must acknowledge that they shall be solely
+responsible for any consequences arising from online trading or due to disclosure of the access codes and/or
+passwords to any third person or any unauthorized use of the access codes and/or passwords.
+Furthermore, the Customers must ensure that while opening of an online account, all the communication is held
+with the employee(s) of a licensed securities broker. For this purpose, the Customer may call a securities
+broker at its official telephone line(s) and/ or UAN(s) for confirmation of such person.
+14. OBLIGATIONS & DUTIES OF CUSTOMERS WHILE TRADING:
+Customers should comply with the requirements of Chapter 7A governing Market Misconduct Regulations of
+PSX Rulebook and all other applicable laws, rules, regulations, policies, notices, directives, guidelines etc.
+Page | 7
+issued by the PSX or SECP, from time to time to ensure that the regulatory and procedural obligations
+imposed on them are fully complied with at all times.
+It is the legal and ethical responsibility of Customers to maintain high standards of integrity, promptitude and
+fairness and act purely in a legitimate manner when dealing in capital market activities. A Customer while
+carrying out trading activities should not indulge in Market Misconducts such as Insider Trading, Market
+Manipulation or any other Market Abuse, which are prohibited under the governing laws and tantamount to
+criminal offense if committed by a Customer. Besides, a Customer, facilitating any other Customer committing
+or attempting to commit Market Misconduct, shall also be held liable.
+15. OBLIGATION OF CUSTOMERS TO DEPOSIT MARGINS:
+Customers should deposit all applicable margins (exposure margins, mark to market margins and any other
+applicable margins) as required by PSX Broker for their trades in any market. Such margins can be deposited
+in any form as permitted under Schedule II to Chapter 12 of NCCPL Regulations.
+16. MODES OF PAYMENTS / RECEIPTS:
+It is mandatory for the Customers to receive all payments from PSX Brokers only through crossed
+cheques/bank drafts/pay orders or any other banking channels in their own name. Similarly, Customers
+should make payments to PSX Brokers through "A/c Payee Only" crossed cheque, bank drafts, pay orders
+or other banking channels drawn on their own bank account and obtain receipt thereof. In case of cash
+payment (allowed maximum up to PKR 25,000), Customers should obtain proper receipt specifically
+mentioning if payment is for margin or the purchase of securities.
+However, PSX Brokers may accept cash from Customers in excess of PKR 25,000 in exceptional circumstances
+where it becomes necessary for them to do so only through deposit in PSX Broker’s bank account designated
+for Customers. PSX Brokers are required to report such exceptional instances with rationale thereof to PSX
+within one trading day through prescribed reporting mechanism.
+17. TRANSMISSION OF TRADE CONFIRMATION:
+PSX Brokers must deliver to its Customers a contract note in respect of daily trades for the purchase, sale or
+exchange of securities of the Customers within 24 hours of trade execution through any previously agreed
+mode of communication as specified in the CRF and Sahulat Form.
+The confirmation order shall precisely include the following specific information:
+(a) Date on which order is executed;
+(b) Name and number of securities;
+(c) Nature of trade (SPOT, Ready, Future, Leveraged Market, Debt Market and also whether bought or
+sold);
+(d) Price;
+(e) Commission rate and any other charges;
+(f) Applicable regulatory levies i.e. trade fee of the Exchange, CDC, NCCPL and SECP etc.;
+(g) Applicable statutory levies i.e. taxes and duties of federal and provincial government; and
+(h) Whether the order is executed for the Securities Broker’s own account or from the market.
+Customers should ensure that they receive the contract notes from PSX Brokers through which they have
+traded and verify that the executed trades are same as instructed by the Customers.
+In case contract note is not issued or it contains any discrepancy, Customer should report the same to PSX
+Broker within one trading day otherwise the trade shall be considered conclusive and binding on the
+Page | 8
+Customer. If PSX Broker does not rectify the discrepancy or does not respond to Customer, the Customer
+should immediately file a complaint with Regulatory Affairs Division of PSX through any of the following
+modes:
+Mail The Chief Regulatory Officer,
+Regulatory Affairs Division,
+2nd Floor, Administration Building,
+Pakistan Stock Exchange Building,
+Pakistan Stock Exchange Road,
+Karachi – 74000.
+Email investor.complaints@psx.com.pk
+The Complaint/Claim Form can be downloaded by visiting the link 'Investor Center’ section of PSX website:
+www.psx.com.pk.
+18. SMS AND/OR E-ALERTS BY NCCPL AND CDC FOR SECURITIES TRADES:
+In order to keep Customers updated about their trades and transactions in a fast, easy and convenient
+manner while keeping the confidentiality of information intact, NCCPL provides trading information to
+Customers through SMS and/or email at day end for all trades and transactions executed on their UIN during
+the day. Similarly, CDC provides SMS and/or e-alerts to Customers regarding movement of their shares in
+CDS.
+In order to benefit from such messages/e-alert facilities and to track daily trades and maintain record
+thereof, Customers are strongly advised to provide and update their valid mobile number and/or email
+address of their own to NCCPL and CDC.
+19. CONFIRMATION OF SECURITIES POSITIONS THROUGH CDC:
+Customers can contact CDC for obtaining updated information regarding their securities position in their sub-
+accounts as per CDC record and match that information with the securities positions as per back-office record
+of PSX Broker obtained by the Customer from PSX Broker. In case of any discrepancy between the securities
+position as per the information provided by CDC and the securities position provided by PSX Broker, the
+Customer should immediately report the same to PSX Broker for removal of the discrepancy. In case of non-
+cooperation or non-resolution of the issue, the Customer should immediately file a complaint with Regulatory
+Affairs Division of PSX in writing by submitting a duly filled Investors’ Complaint/Claim Form, either in hard
+form through email at investor.complaints@psx.com.pk.
+The Complaint/Claim Form can be downloaded by visiting the link 'Investor Center’ section of PSX website:
+www.psx.com.pk.
+20. RIGHT TO OBTAIN LEDGER DETAILS SHOWING CASH AND SECURITIES POSITIONS:
+The Customers have a right to obtain a copy of ledger statement specifying cash and portfolio positions of
+their account opened and maintained with PSX Broker under official seal and signature of PSX Broker or its
+authorized representative on periodic basis. In case of any discrepancy in the ledger statement, Customers
+are required to inform the same to PSX Broker within one (1) trading day of receipt of the ledger statement
+to remove such discrepancy. In case of non-resolution of any discrepancy, the Customers should report the
+same to the PSX. The name of authorized representative of PSX Broker is displayed at the entrance of its
+branches/offices.
+Page | 9
+21. MANDATORY PROVISION OF QUARTERLY ACCOUNT STATEMENTS BY PSX BROKERS:
+In order to safeguard Customers’ assets kept with PSX Brokers and ensure transparency in the securities
+industry, every PSX Broker must provide to its Customers a quarterly account statement within 15 days of
+close of each quarter through any of the acceptable modes of communication as designated by Customer
+for this purpose. The quarterly statement must show cash ledger statement with opening and closing cash
+balances, all receipts and payments of money and settlement-wise money obligation debited or credited to
+the client account, securities positions as per back office record of PSX Broker showing status of available
+and pledged securities, and securities position as per CDS record along with reconciliation of any differences
+therein.
+Customers must obtain, read and verify the quarterly statements provided by PSX Broker to ensure that the
+same reflect the true position of cash and securities as per the clients’ order instructions given to PSX Brokers
+during the quarter. In case of any discrepancy, the Customer should immediately report the same to PSX
+Broker for removal of the discrepancy and also inform the same to PSX. In case of non-cooperation or non-
+resolution of the issue, the Customer should immediately file a complaint with Regulatory Affairs Division of
+PSX in writing by submitting a duly filled Investors’ Complaint/Claim Form, either in hard form or through
+email at investor.complaints@psx.com.pk.
+The Complaint/Claim Form can be downloaded by visiting the link 'Investor Center’ section of PSX website:
+www.psx.com.pk.
+22. FACILITY TO OPEN INVESTOR ACCOUNT WITH CDC:
+CDC provides an excellent option to the Customers to open and maintain Investor Account directly with CDC
+for secure and safe custody of their securities as they are directly maintained by CDC. Investor
+Accountholders have direct and complete control over their securities as this account is operated only on the
+instructions of investor(s). Multiple ‘Value Added Services’ are available on this account round the clock for
+viewing Account & Cash Balance, Account & Cash Activities through dedicated web portal, Interactive Voice
+Response (IVR), SMS, e-Statement & e-Alerts.
+23. SETTLEMENT OF TRADES DIRECTLY THROUGH NCS OF NCCPL AND DSS OF CDC:
+In order to bring increased efficiency and transparency to the clearing and settlement process of Customers’
+trade and to provide maximum protection to their cash and securities, CDC and NCCPL have launched
+National Custodial Services (NCS) and Direct Settlement Services (DSS) respectively for the stock market
+investors.
+Under these services, PSX Brokers will only be involved for trade execution while NCCPL or CDC will provide
+clearing, settlement and custodial services for such trades. For this purpose, the investors shall open web-
+based NCS account with NCCPL or IAS account with CDC.
+These direct settlement facilities/enables the investors to maintain their cash and securities balances directly
+with NCCPL and/or CDC. To obtain full information regarding these services, Customers are advised to visit
+Products & Services section of NCCPL website: www.nccpl.com.pk and Businesses section of CDC website:
+www.cdcpakistan.com.
+24. ON-LINE ACCESS THROUGH UIN INFORMATION SYSTEM OF NCCPL:
+In order to enhance transparency, foster investors’ confidence and minimize risk of misappropriation of clients’
+securities, NCCPL has developed a web-based UIN Information System (UIS) to enable investors to track their
+trading, settlement and related information. This system enables UIN Holders to view all their trading,
+settlement and relevant information with their respective PSX Brokers in a smooth and efficient manner through
+Page | 10
+dedicated User ID and Password. The application form of UIS is available on the NCCPL’s website
+www.nccpl.com.pk or can be obtained directly from NCCPL’s Offices.
+25. PRESCRIBED RISK DISCLOSURE DOCUMENT:
+In order to facilitate Customers in understanding the risks and making well informed investment decisions in
+light of their financial situation, investment objectives and risk appetite, PSX has formulated a specimen of a
+Risk Disclosure Document as required under Clause 13(1) of the Securities Brokers (Licensing and Operations)
+Regulations, 2016. The Risk Disclosure Document provides important information about the various risks
+associated with trading and investment in financial instruments being traded at PSX.
+PSX Brokers must provide the Risk Disclosure Document to their every new Customer and obtain an
+undertaking duly signed and dated by the Customers confirming that they have understood the nature and
+contents of the Risk Disclosure Document.
+Hence, the Customers are required to carefully read and understand the Risk Disclosure Document in their
+own interests prior to commencing business with PSX Brokers.
+26. PROHIBITION ON GIVING GUARANTEE OF FIXED/SPECIFIC RETURN TO CUSTOMERS:
+PSX Brokers are licensed to carry out functions relating to buying, selling, exchanging or subscribing for
+securities or effect transactions in securities for Customers or on their own account. PSX Brokers are prohibited
+under the law from raising deposits from public/investors against fixed or guaranteed returns of deposits
+because these activities of PSX Brokers are illegal and tantamount to defrauding the public. Customer must
+know that investment in securities contain volatility risk that makes their return inherently unpredictable.
+Customers should be cautious of these illegal activities and should not give deposit by whatever named
+called, to any PSX Broker as the same is illegal and any claim in respect of such illegal deposit would not be
+considered/entertained by PSX as the same is beyond the scope of legitimate capital market activities.
+27. COMPLAINT HANDLING MECHANISM:
+In case a Customer has any dispute with a PSX Broker/Representative in connection with any trade or
+transaction and is not otherwise settled amicably, the Customer can lodge complaint with PSX for resolution
+of dispute through mediation or arbitration to be conducted in accordance with the arbitration procedures
+prescribed under Chapter 18 of the PSX Regulations. Such complaints can be lodged with Regulatory Affairs
+Division of PSX in writing by submitting a duly filled Investors’ Complaint/Claim Form, either in hard form or
+through email at investor.complaints@psx.com.pk.
+The Complaint/Claim Form can be downloaded by visiting the link 'Investor Center’ section of PSX website:
+www.psx.com.pk.
+28. REGULAR VISITS TO WEBSITES OF SECP, PSX, CDC, NCCPL AND JAMAPUNJI:
+The websites of SECP, PSX, CDC and NCCPL make available copies of all applicable laws, rules, regulations,
+guidelines, circulars, notifications etc. issued from time to time.
+Additionally, the information relating to all procedures, processes and requirements to open and maintain
+account with PSX Brokers, various products and services offered by PSX, CDC and NCCPL to facilitate the
+Customers are disseminated clearly and prominently through the websites of these institutions. Customers are
+advised to visit regularly these websites to keep themselves updated and make well-informed and prudent
+investment decisions.
+Page | 11
+We wish to re-emphasize that it is extremely important for the Customers to regularly monitor their cash and
+securities balances and maintain documentary record of their business transactions. Customers must
+immediately report to the concerned PSX Broker or to PSX in case of any discrepancy in their cash or securities
+balances or they do not receive the requisite trade confirmation notes, periodic account statements, SMS
+and/or e-alerts etc.
+29. DEFINITION OF KEY TERMS USED IN THIS GUIDE
+1. CUSTOMER: Customer is defined in Section 2 of the Securities Act, 2015 as “a person on whose behalf
+a regulated person carries on any regulated securities activity and includes any person commonly known
+as an investor”
+2. REPRESENTATIVE: Representative is defined in Section 2 of the Securities Act, 2015 as “an individual, by
+whatever name called, in the employment of or acting for or by arrangement with, a regulated person,
+who carries out for that regulated person any such activity (other than work ordinarily performed by
+accountants, clerks or cashiers), whether or not he is remunerated, and whether his remuneration, if any, is
+by way of salary, wages, commission or otherwise; and includes any officer of a company who performs
+for the company any such activity whether or not he is remunerated, and whether his remuneration, if any,
+is by way of salary, wages, commission or otherwise and includes an agent of a regulated person;
+3. SECURITIES BROKER: Securities Broker is defined in Section 2 of the Securities Act, 2015 as “a trading
+right entitlement certificate holder or “TRE” certificate holder who, by way of business,
+(a) makes or offers to make with any person or induces or attempts to induce any person to enter into
+or to offer to enter into, any agreement for or with a view to buying, selling, exchanging or
+subscribing for, securities; or
+(b) solicits or accepts any order for or otherwise trading in, or effects transactions in, securities for clients
+or on its own account;”
+4. SALE WITH PRE-EXISTING INTEREST: Sale with Pre-Existing Interest is defined in Clause 2 of the
+Securities Brokers (Licensing and Operations) Regulations, 2016 as “the squaring up of:
+(i) an earlier purchase in the same settlement or in a different settlement which will settle prior to the
+settlement of the sale; and
+(ii) an open position in margin trading or margin financing as a financee on account of same UIN of same
+security.”
+30. GENERAL PROCESS OF TRADING IN SECURITIES MARKET:
+1. Investors desirous of investing in the securities of listed companies should first open a trading account with
+any of the registered PSX Brokers duly licensed with SECP to perform function as Securities Broker.
+2. Open an Investor Account with CDC or Sub-Account with PSX Broker for settlement and custody of shares.
+3. PSX Broker may require the Customers to deposit a margin money with it upfront.
+4. Customers should give clear order instruction to PSX Broker for every buy or sale trade;
+5. PSX Broker places the trade order in the automated trading system of PSX;
+6. PSX Broker provides trade confirmation to its Customers showing full details of the buy or sale order
+executed on the Trading System within next 24 hours of the trade execution along with disclosure of
+commission charges and other levies/taxes applicable on such trade;
+Page | 12
+7. Customer must receive trade related alert from NCCPL through SMS and/or email for their trades at
+relevant day end.
+8. The Customer should also receive an alert either through SMS or e-mail for movement of their shares at
+day end from CDC.
+9. The Customer can register for UIS services of NCCPL to monitor their trades executed by the PSX Broker
+and securities position available as per NCCPL’s record at day end.
+10. For buy trades, Customers must have sufficient funds available with PSX Brokers (with NCCPL or CDC in
+case of NCS or DSS Customers, as the case may be, on trade date) on settlement date to settle such buy
+trade.
+11. After payment of settlement amount, the shares are transferred into CDS account of Customer on
+settlement day and the Customer becomes the beneficial owner of such shares. Similarly, for sale trades,
+the Customers must have sufficient shares on settlement date (with NCCPL or CDC in case of NCS or DSS
+Customers on trade date) to settle such sale trade. After receipt of payment from the buying party, the
+shares are delivered to the buying party and hence the transaction stands settled.
+12. Customers must receive a quarterly account statement from the PSX Broker showing details of cash and
+securities position as per CDS record and back office record of PSX Broker and reconciliation of any
+differences therein. However, PSX Broker may provide account statements to Customer as per other
+frequency stipulated by Customers.
+NOTE: Customers are advised to note that the general securities trade process described above is
+subject to requirements stipulated in this ‘Investor Awareness Guide’ and applicable securities rules,
+regulations, policies, guidelines, circular, notices and procedures etc.
+Page | 13
+CONTACT
+SECURITIES AND EXCHANGE COMMISSION OF PAKISTAN (SECP)
+Securities and Exchange Commission of Pakistan
+NIC Building, 63 Jinnah Avenue
+HEAD OFFICE
+Blue Area, Islamabad – 44000, Pakistan
+UAN: 051-111-117-327
+Web: www.secp.gov.pk
+PAKISTAN STOCK EXCHANGE LIMITED (PSX)
+Stock Exchange Building, Stock Exchange Road,
+Karachi – 74000, Pakistan
+HEAD OFFICE KARACHI UAN: 021-111-001-122
+Web: www.psx.com.pk
+Info: info@psx.com.pk
+LSE Plaza, 19-Khayaban-e-Aiwan-e-Iqbal,
+LAHORE Lahore – 54000, Pakistan
+Phone: (92 42) 36316974
+REGIONAL OFFICES
+Office # 712-714, 7th Floor, ISE Towers 55-B,
+ISLAMABAD Jinnah Avenue, Islamabad, Pakistan
+Phone: (92 51) 2894500
+CENTRAL DEPOSITORY COMPANY OF PAKISTAN LIMITED (CDC)
+CDC House, 99-B, Block B, S.M.C.H.S. Main Shahra-e-Faisal,
+Karachi – 74400.
+(92-21) 111-111-500
+HEAD OFFICE Call Center: 0800 – 23275 (CDCPL)
+Overseas Callers: + (9221) 34326038
+Web: www.cdcpakistan.com
+Info: info@cdcpak.com
+NATIONAL CLEARING COMPANY OF PAKISTAN LIMITED (NCCPL)
+8th Floor, Pakistan Stock Exchange Building,
+Stock Exchange Road
+Karachi – 74000, Pakistan
+HEAD OFFICE
+UAN: 051-111-111-622
+Web: www.nccpl.com.pk
+Info: info@nccpl.com.pk
+Page | 14
+لئے کے ہیگاآ کی ںورکا یہماسر
+)ڈیئاگ( امنہر
+کے نا کو دافرا لےاو نےکر یرکا یہماسر ئیڈگا تیمامعلو لیے کے ںورکا یہماسر سے نبجا کی )یکسا یسا پی( لمیٹڈ یکسچینجا کسٹاا نکستاپا
+لیے کے نےپناا یہور طمحتا قتو تےکر نگیڈٹر میں یکٹکنٹر زچرفیو روا کیٹرما حصص روا نےکر ہگاآ میں ےربا کے ںیوراد مہذ روا قحقو
+۔ ہے تاکر حتضاو کی تفعاد ہما کچھ متعلق سے تحفظ کے ںورکا یہماسر نیز ٹ
+نمل ٹ ی س
+روا ترتجا کی حصص ئیڈگا یہ ہے ہیر جا کی یرجا
+ہے تاجا یاد ہرمشو یدمز نہیںا میں دمفا کے ںورکا یہماسر ۔ سمجھیں نہ پر رطو کے یحیتشر روا معجا کی تفعاد یلیٹریگور قطلاا بلقا متما کو ئیڈگا سا کو ںورکا یہماسر : رم ی لک سڈ
+نکستاپا فآ کمپنی نگکلیئر نیشنل روا )سی یڈ سی( لمیٹڈ نکستاپا فآ کمپنی یٹرزیپاڈ لسینٹر ،یکسا یسا پی ،)پی سی یسا یسا( نکستاپا فآ کمیشن یکسچینجا ینڈا ٹیزرو ن ک ٹ س ہو کہ
+.یںکر لعہمطا لیے کے ننےجا میں ےربا کے ںیوراد مہذ روا قحقو پنےا کا بطاضو و عداقو ٹیزر و ن ک ٹ س قطلاا بلقا ہدکر ضعو کے ) یلا پی سی سی ینا( لمیٹڈ
+حتضا و یروضر
+جمہتر ودرا کا )Investor Awareness Guide( ئیڈگا تیمامعلو لیے کے ںورکا یہماسر کی )یکسا یسا پی( یکسچینجا کسٹاا نکستاپا
+لیے کے لےاحو روا ضےتقا نینوقا کسی ہمتا ہے ہار جا کیا پیش لیے کے ئیہنمار روا ہیگاآ کی سلناا ماعو روا ںورکا یہماسر فصر
+گا ئےجا کیا رتصو حتمی ہیکو متن ییزنگرا
+15
+1 6 | نمبر صفحہ
+مینمضا ستفہر
+نمبر صفحہ ناعنو رشما نمبر
+18 نناجا کو ںنچوابر ڈجسٹرر کی نا روا زکروبر پنےا .1
+18 لناکھو نٹؤکاا سے منا پنےا .2
+18 ناکرپر مرفا شپ یلیشنر کسٹمر .3
+19 ناکر پر مرفا سی ئیاو کے نساآ روا نٹؤکاا لتسہو .4
+19 لناکھو نٹؤکاا کے فینرصا .5
+20 زسینٹر ہیلپ کسٹمر / یرکا لتسہو کی نٹؤکاا .6
+20 ناکر ڈئزلاسنٹر کو یشنئزگنارآ کی ننےجا کو کسٹمر پنےا .7
+21 ہمیافر کی کچرسٹرا فٹیر میزلا کو ز کسٹمر .8
+21 نیتیکسا کی تمامعلو راقربر میں بیس یٹاڈ )UIN(نمبر ختیشنا دمنفر کے یلا پی پی سی ینا روا مرفا سی ئیاو کے ،مرفا لتسہو ، یفا رآ سی .9
+21 ئطاشر کی گیعلیحد کی ٹیزرسیکو روا قمر کی زکسٹمر .10
+21 تقسیم کی فعمنا گئے ئےکما پر زفنڈ ہشد لستعماا غیر کے فینرصا کی زکروبر ٹیزرسیکو .11
+21 تیااہد /زرڈرآ نگیڈٹر .12
+22 نگیڈٹر ئنلا نآ .13
+22 ضءافر روا ںیاراد مہذ کی زکسٹمر نارود کے نگیڈٹر .14
+22 یراد مہذ کیزکسٹمر لیے کے نےکر جمع جنرما .15
+23 سیدر / ئعارذ کے ) منٹ پے( ئیگیادا .16
+23 ہمیافر کی یقتصد کی نگیڈٹر .17
+24 ٹسلرا یا یا /روا یسا یما یسا سے فطر کی سی یڈ سی روا یلا پی سی سی ینا لیے کے زیڈٹر ٹیزرسیکو .18
+24 یقتصد کی یشنزپو کی ٹیزر و نک ٹس سے نبجا کی سی یڈ سی .19
+24 حق کا نےکر صلحا تتفصیلا کی لیجر لیے کے نےکر ہرظا یشنزپو ٹیزرسیکو روا کیش .20
+24 ہمیافر میزلا کی سٹیٹمنٹا نٹؤکاا ہیما سہ سے فطر کی زکروبر یکسا یسا پی .21
+25 لتسہو کی لنےکھو نٹؤکاا یسٹرنوا میں سی یڈ سی .22
+25 ٹ نمل ٹ یس ستار ہابر کی یڈٹر یعےرذ کے یسا یسا یڈ کے سی یڈ سی روا یسا سی ینا کے یلا پی سی سی ینا .23
+25 ئیسار ئنلا نآ یعےرذ کے سسٹم میشنرنفاا ینا ئیآ یو کے یلا پی سی سی ینا .24
+25 یزوستاد رژکلو سڈ سکر ہرمقر .25
+25 نعتمما کی ینےد نٹیرگا کی نیٹرر صخا ہرمقر کو زکسٹمر .26
+26 رکا یقہطر کا لےازا کے یتشکا .27
+26 ٹزو سے گیعدقابا کا ٹسءسا یبو کی نچیپو جمع روا یلا پی پی سی ینا ،سی یڈ سی ،یسا پی ،پی سی یا یسا .28
+26 یفتعر کی تحاصطلاا یدبنیا لیاو نےجا کی لستعماا میں ئیڈگا سا .29
+27 عمل میعمو کا نگیڈٹر میں کیٹرما ٹیزر و نک ٹس .30
+1 7 | نمبر صفحہ
+:نناجا کو ںنچوابر ڈجسٹرر کی نا روا زکروبر پنےا .1
+پی سی یا یسا کو کروبر یکا لیے کے ینےد منجاا کو لفعاا کےکر وبر یکسا یسا پی ہیں گئے ئےبنا تحت کے 2015 ،یکٹا ٹیزر و ن ک ٹ س جو 2016 ز نس ی ل یگور )یشنزپرآ روا گٹ س یس ئ لا( زکروبر ٹیزر و ن ک ٹ س
+سا کو ںورکا یہماسر متما جو ہے مقد طیحتیاا پہلا ناکر یقتصد کی تتفصیلا کی یشنجسٹرر کی زکروبر یکسا یسا پی ۔ ہے یروضر ناہو ڈجسٹرر پر رطو کے کروبر ٹیزر و ن ک ٹ س روا فتہیا ئسنسلا تھسا کے
+تھسا کے زکروبر یکسا یسا پی ہو کہ ہیےچا کو ںورکا یہماسر الہذ ۔ یںکر نگیڈٹر میں فسآ نچابر/فسآ ڈجسٹرر روا یعےرذ کے شخص ڈجسٹرر یکا ہو کہ ہیےچا ناٹھاا لیے کے نےبنا یقینی کو تبا
+پر www.psx.com.pk ئٹسا یبو کی یکسا یسا پی لبشمو تتفصیلا کی یشنجسٹرر نکیا میں جن یںکر صلحا تتفصیلا متعلقہ یگرد روا تمامعلو یلذ جرد پہلے سے نےکر عوشر رباورکا
+۔ئیںملا تھسا کے تتفصیلا متعلق سے ترفاد نچابر ڈجسٹرر کے نا بستیاد
+;نمبر ئسنسلا کروبر ہدکر یضتفو سے فطر کی پی سی یا یسا )لفا(
+روا ،نمبر ٹیفکیٹسر ٹ
+نمل ٹ
+ءنٹاا ٹسءار نگیڈٹر ہدکر یضتفو سے فطر کی یکسا یسا پی )ب(
+۔ ہغیرو نمبر ئنلا ہیلپ ،لنک یبو لبشمو تتفصیلا کی بطہار )پ(
+تاجا ہو ہربا سے رباورکا یا ہے تاکر غبن میں ٹیزر و ن ک ٹ س یا/روا قمر کی پآمیں بعد جو ہیں تےکر رباورکا تھسا کے ٹیرپا/شخص ڈجسٹرر غیر کسی پآ گرا نکہکیو ہے یروضر بہت یقتصد لابا جہرمند
+سا الہذ ۔ گاہو نہیں صلحا حق کا نےاکر جرد یتشکا سپا کے سی یڈ سی یا یلا پی سی سی ینا ، یکسا یسا پ ںورادا ےسرود کے کیٹرما کیپٹل یا کمیشنیا لیصوو کی قمر پنیا سپا کے پآ تو ،ہے
+۔ یںکر یلڈ یعےرذ کے ترفاد/ ن ابر ڈجسٹرر پنیا روا زکروبر یکسا یسا پی ڈجسٹرر ہو کہ ئیںبنا یقینی کو تبا سا رکا یہماسر متما کہ ہے تیجا کی کیدتا روزپر کی
+:لناکھو نٹؤکاا سے منا پنےا .2
+نٹؤکاا نگیڈٹر کو شخص دعتماا بلقا کسی کسٹمر گرا ہمتا ۔ ئیںچلا سےا دخو روا لیںکھو نٹؤکاا نگیڈٹر پر منا پنےا تھسا کے زکروبر یکسا یسا پی ہو کہ ہے یروضر لیے کے دمفا بہتر پنےا کے زکسٹمر
+۔ہیےچانی ہو پیکایک اکی مےنا تزجاا سابھی میں ڈ ریکار کے کسٹمر ۔گی ہوینی د تزجاای یرتحر لیے کے ساس پا کے کروبریکس ایس اپی قتو لتےکھو نٹؤکاا سےا تو ،ہے ہتاچاینا د تزجااکی نےچلا
+کی یند لین گئے کیےمیں نٹؤکاا کے نا پر تیااہد کی دافر زمجا سے نبجا کی نا جو ہیں ملشا ےعود روا تنانقصا میں جن گے ںہو دخو راد مہذ کے ئجنتا بھی کسی ہو کہ ہیےچا ناکر ٹنو یہ کوزکسٹمر
+نٹؤکاا پنےا کو زکسٹمرالہذ ۔ ہے سکتا بن عثبا کا ہید کہھود یہ روا ہے تاہو ہخطر کا لستعماا غلط کے تارختیاا سے تزجاا کی حطر سا کہ ہےر نشین ہنذ یہ مکر ہابر ۔ ی ہیں سکتے ہو اپید سے جہو
+سکے جا یابنا یقینی یہ کہتا گا ہو زمجا کا نےچلا کو نٹؤکاا پنےا جو ہے تروضر کی نےکر منتخب کو شخص یسےا یکا سے طحتیاا روا ہے تروضر کی کھنےر میں ہنذ کو میگرسر گسبو بھی کسی لیاو نےہو میں
+۔ہو پتا نہیںا میں ےربا کے نگیڈٹر متما لیاو نےہو میں نٹسؤکاا کے نا کہ
+:ناکرپر (CRF) مرفا شپ یلیشنر کسٹمر .3
+CRF۔ ہے تروضر کی نےپناا کو(CRF) مرفا شپ یلیشنر کسٹمر لیے کے فرصا ہر پنےا کو زکروبر یکسا یسا پی،ہو گیا کیا نہ ہمافر پر رطو ضحاو میں بطاضو روا نیناقو متعلقہ کہ تک جب
+کے سا روا کروبر یکسا یسا پی پر جن ہیں ملشا بطاضو و ئطاشر کم زا کم میں جس ہے یعہرذ یدبنیا یکا کا ےہدمعا CRF ۔ ہے گیا کیا یزتجو لگا لگا لیے کےزکسٹمر یٹرپورکا روا یدانفرا
+ہے مزلا پر رطو ںیکسا ناکر عمل پر ز کسم
+پنیا روا نےکر عوشر نگیڈٹر میں کیٹرما کسٹاا لیے کے زکسٹمر پنےا جو یںکر پُر کو زفیلڈ متعلقہ متما کے CRF ہدکر ہمافر یعےرذ کے کروبر یکسا یسا پی ہو کہ ہے میزلا لیے کے زکسٹمر
+متما رکومذ میں مرفا کہ گا ئےبنا یقینی کو تبا سا یہ ۔ ہیں نہیں قطلاا بلقا یا ہیں متعلقہ غیر تو یا جو ہیں سکتے کر ختم کو زفیلڈ نا زکسٹمر ، ںآبر یدمز ۔ ہے لیے کے ٹ نمل ٹ ی س روا یلتحو کی ٹیزر و ن ک ٹ س
+نومعا سے فطر کیزکسٹمر روا ہمیافر کی تمامعلو ہدجومو روا مکمل ،سترد میں CRF ۔ سکتیں جا کی نہیں ملشا تمامعلو یسرود ئیکو بغیر کے علم کے نا روا ہیں میں علم کے نا تمامعلو
+ھناپڑ کو بطاضو و ئطاشر متما کے CRF کو زکسٹمر ۔ ہے یروضر لیے کے نےبنا بلقا کے نےکر متخد کی نا سے یقےطر ثرمؤ کو زلیٹریگور روا نےکر ئمقا ختشنا کی نا ہمیافر کی تایزوستاد
+۔ہو لیے کے صدمقا کے ڈریکار روا تمامعلو جو ںہو ہشد ستخطد کے کروبر یکسا یسا پی رواکسٹمر پر جسہیے چا نیکر صلحا پیکا یکا کی CRF سے کروبر یکسا یسا پی پنےا رواہیےچا سمجھنا روا
+۔ ہے گیا کیا یزتجو میں 1 ضمیمہسے 4 ببا کے بطاضو کے یکسا یسا پی جو ہے یروضر ناپناا لیے کے فینرصا یٹرپورکا یا یدانفرا پنےا یفا رآ سی کو زکروبر یسا پی
+۔ ہیں بستیاد میں سیکشن کرو یمفر نینوقا کے www.psx.com.pk ئٹسا یبو کی یکسا پی بطاضو کے یکسا یکسا پی :ٹنو
+1 8 | نمبر صفحہ
+:ناکر پر مرفا سی ئیاو کے نساآ روا نٹؤکاا لتسہو .4
+:ہیں یلذ جرد ہیں تیکر زممتا سے نٹؤکاا معا سےا جوت صیاخصو ہما چند کی نٹؤکاا لتسہو ۔ ہے رختیاا کا لنےکھو نٹؤکاا لتسہو تھسا کے کروبر یکسا یسا پی سپا کے زکسٹمر یدانفرا
+۔ ہیں طومشر تھسا کے منظا(KYC ( نیںجا کو کسٹمر پنےا زکسٹمر یدانفرا لےاو لنےکھو نٹؤکاا لتسہو )لفا(
+۔ ہے پےور نیکستاپا 1,000,000 ہے سکتا لے کسٹمریک ا جو حد کی یشنزپو ہدیاز سے ہدیاز )ب(
+۔ ہیں سکتے کر زکسٹمر نگیدٹر لصخا کی تک پےور نیکستاپا 1,000,000 )پ(
+روا ۔ ہے سکتا لکھو نٹؤکاا لتسہو تھسا کے کروبر یکسا یسا پی رکا یہماسر یدانفرا میمقا یکا فصر )ج(
+۔ ہے تزجاا کی نگیڈٹر میں کیٹرما یکٹکنٹر یریلیوڈ ییڈر فصر )د(
+نارگز سے عمل کے یقتصد کی نمبر ئلبامو روا IBAN کمیٹر ئیوبا کوکسٹمر ہشمنداخو کے لنےکھو نٹؤکاا لتسہو تحت کے جس ہے تیآ تحت کے منظا CKO بھی لتسہو کی نٹؤکاا لتسہو
+ہے گئی کی ہمافر بھی کو(AIs ( یزیرمیڈنٹرا زمجا میں KIS تھسا کے ںضوتقا نساآ کےKYC لتسہو یہ ، ںآبر یدمز ۔ ہے تاپڑ
+2020 یرجنو 10 خہرمؤ PSX/N -33 نمبر ٹسنوPSX ،2019 نجو 17 خہرمؤ PSX/N-740 نمبر ٹسنو PSX مکر ہابر ،لیے کے تتفصیلا یدمز میں ےربا کے نٹؤکاا لتسہو
+۔ ہیں بستیاد پر ئٹسا یبو کی یکسا یسا پی جو یںکر حظہملا 2023 ئیلاجو 24 ، خہرمؤ PSX/N -759 نمبر ٹسنو PSX روا
+:لناکھو نٹؤکاا کے فینرصا .5
+:لناکھو نٹؤکاا ئنلا نآ )لفا(
+یسا پی ۔ ہیں سکتے لکھو نٹؤکاا ئنلا نآ کازکسٹمر ئےہو تےکر لستعماا کا تماخد کی ےرادا زمجا کسی بقمطا کے بطاضو و ئطاشر ہدکر نبیا سے فطر کی یکسا پی قتاًفو قتاًو زکروبر یکسا یسا پی
+قطلاا بلقا متما نٹسؤکاا ئنلا نآ کہ گے ئیںبنا یقینی کو تبا سا زکروبر یکسا پی ۔ ہیں سکتے لکھو بھی نٹسؤکاا ڈربو نآ پر رطو یجیٹلڈ یعےرذ کے ٹلرپو ےو گیٹ ڈئزلاسینٹر زکروبر یکسا
+سے فطر کی پی سی یا یسا یا یکسا یسا پی روا ناکر جمع تمامعلو تایزوستاد ،ناکر عمل سے یمستعد روا یقتصد بہمطلو کی زکسٹمر میں جن ئیںجا لےکھو بعد کے نےکر ارپو کو ںضوتقا یلیٹریگور
+ہیں متعلق سے لنےکھو نٹؤکاا ئنلا نآ جو ہے ملشا ناکر ارپو کو ئطاشر یا تیاروضر یگرد ہدکر یزتجو
+:لناکھو نٹؤکاا کا ںنیوکستاپا ئشیہار پر دبنیا کی تمامعلو KYC ہدکر شیئر یعےرذ کے ںبینکو میں نکستاپا )ب(
+جسے ہے کھتار نٹؤکاا تھسا کے ےرادا ےسرودکسی یا ں کمپنیو نسفنابینکنگ ننا، بینک نسفناو ئیکرما، بینک کسیمیں نکستاپا جو/جوہیں سکتے لکھو بھی نٹؤکاا کا کسٹمرمی مقا یکا زکروبر یکسایس اپی
+ہےتی جا کیمیم تر قتاًفو قتاًومیں جسیا ہیں گئی کی ن بیامیں رکایقہ طر ہدکرن بیا سے فطر کییکس ایس اپی جو ےدر ختیاا پر بطاضو و ئطاشریسی ا )’’ ہے تاجا کہا ہرادا زمجا پر رطو کہمشتر( پیسی ی ایس ا
+:لناکھو نٹؤکاا کا (NRP)ںنیوکستاپا مقیم غیر پر دبنیا کی تمامعلو KYC ہدکر کاشترا یعےرذ کے ںبینکو میں نکستاپا )پ(
+نگسیو نیشنل کہ جیسے ںسوکلا کی تجا ثہثاا مختلف روا ہے سکتا لکھو نٹؤکاا بینک میں RDA) نٹؤکاا یجیٹلڈ شنور (ٹلرپو ئنلا نآ کے ںبینکو نیکستاپا دمزنا بھی کسی نیکستاپا مقیم غیر یکا
+۔ ہے سکتاکر بنتخاا کا نےکر یرکا یہماسر میں ہغیرو زفنڈ چلمیو (Roshan Equity Investment - REI) ٹیزر و ن ک ٹ س کی ںکمپنیو ڈ ٹسل ،ٹیزر و ن ک ٹ س نمنٹرگو ،سکیما
+پی روا گاہو ناکر بنتخاا سے میں ستفہر کی زکروبر یکسا یسا پی دمزنا ہدکر ہمافر پر ٹلرپو کے بینککو NRP تو گا ےکر بنتخاا کا نےکر یرکا یہماسر میں (REI) کیٹرما کیپٹل NRP جب
+NCCPL روا کروبر یکسا پی منتخب یعےرذ کے بینک کو تمامعلو فیضاا کی حطر سا ۔ گیہو نیکر ہمافر کو بینک تمامعلو فیضاا بھی ئیکو رکارد لیے کے لنےکھو نٹؤکاا تھسا کے کروبر یکسا
+NRP میں ےربا کے لنےکھو نٹؤکاا نگیڈٹر روا گا ےکر CDD روا KYC پناا کروبر یکسا یا پی ۔ گا ئےجا کیا منتقل کوCDC لیے کے نےکر منتقل گےآ لیے کے نےبناUIN کو
+۔ گا ےکریق تصد سےCDC روا
+ہیےچا ناکر لعہمطا کا 4 .1 5شق کی بطاضو کے یکسا پی کو ئینرقا ،لیے کے تتفصیلا یدمز
+1 9 |نمبر صفحہ
+:زسینٹر ہیلپ کسٹمر / یرکا لتسہو کی نٹؤکاا .6
+میں A 22 ببا کے زنس ی ل یگور یکسا یسا پی کہ جیسا گے یکھیںد کو ںمیوگرسر یسیا جو ہیںزسنٹر یسےا گئے لےکھو سے نبجا کی کروبر یکسا پی مطلب کا زسینٹر ہیلپ کسٹمر/لتسہو کی نٹؤکاا
+یرمنظو پیشگی کی پی سی یا یسا کہ جو ہے ملشا ہرادا روا ئیکو یا کمپنی نسرنشوا ،کمپنی مینتظاا کی تجا ثہثاا ،بینک شلکمر میں جس ہے ملشا فسآ سیلز کا ٹیرتھاا زمجا میں زسنٹر نا ۔ ہے گیا کیا نبیا
+۔ہو گئیکی نبیا سے نبجا کی یکسا یسا پی تھسا کے
+زسنٹر یسےا روا ہیں سکتے لکھو بھی زسنٹر بقمطا کے A 22 ببا کے بطاضو کے یکسا یسا پی زکروبر یکسا یکسا پی ہوعلا کے لنےکھو فسآ نچابر بقمطا کے 22 ببا کے بطاضو کے یکسا یسا پی
+کے نےکر ہمافر لتسہو میں نباز میمقا کی نا کو زکسٹمر ہدجومو پنےا روا ، ینےد گینداخو روا نےکر حل کو تلااسو کے زکسٹمر ہدجومو ،نےکر غبار کوزکسٹمر نئے ،کیٹنگرما کی تعامصنو پنیا کو
+۔گی ملے دمد بھی میں نےجا میں فترد زمجا کے کروبر یسا پی یبقر کے قےعلا پنےا پر رطوتی اذ روا ہیں میں ںقوعلا زارد رود جو زکسٹمر یسےا کے نا سے سا ۔ ہیں سکتے کر لستعماا لیے
+:ہے تزجاا کی ینےد منجاا ںمیاگرسر یلذ جہرمند فصر میں سنٹر
+ئیہنمار روا لتسہو کی فینرصا میں دنعقاا کے نچجا یقیتصد KYC روا لنےکھو نٹؤکاا )لفا
+دامو نکالیکٹرا یا نٹپر ئیکو روا نچہھاڈ کا فٹیر ،ئیڈگا ہیگاآ کی ںورکا یہماسر ،یزوستاد رز ولکسڈ سکر ،مرفا کے لنےکھو نٹؤکاا لیے کے صدمقا کے یلرٹوٹیو روا تعلیم کی کیٹنگرما )ب
+ہمیافر کی
+روا لہازا کا تیاشکا روا ئلمسا کے زکسٹمر )پ
+۔ ہے سکتی ہو تزجاا سے فطر کی یکسا یسا پی کی جس میگرسر یسرود ئیکو )ج
+:ہے نعتمما کی ںمیوگرسر یلذ جرد رندا کے سنٹر
+ںمیاگرسر نگیڈٹر سے نٹوءکاا کے زکسٹمر یا نٹوءکاا پنےا )لفا
+ہمیافر کی تشارسفا تیرتجا یا تماخد تیرومشا کی یرکا یہماسر کوزکسٹمر پنےا )ب
+ئیگیادا /سیدر نقد کو /سے ںہکوگا )پ
+تنصیب کی کیشنز یپلیا متعلقہ تیرتجا بھی ئیکو یا ز
+لٹ ی م
+ٹر نگیڈٹر ہدکر صلحا سے یقفر ےتیسر کسی یا یکسا یسا پی )ج
+تیتعینا کی ںوجرتا /زیٹرپرآ سسٹم )د
+روا کھنار بحسا کا ہغیرو ڈریکار ،نٹسؤکاا )ذ
+۔ ہے سکتی ہو نعتمما سے فطر کی یکسا یسا پی پر جس میگرسر یسرود ئیکو )ف
+۔ ہیں تےآ نہیں رندا کے ں یتعر یلذ جرد ہدکر ہمافر تحت کے بطاضو کے یکسایس ا پی زسنٹر یہ کہ ہے یروضر ناکر ٹنو یہ
+فترد یکزمر کا کروبر )لفا
+روا فسآ ہیڈ )ب
+فسآ نچابر یا فترد ) پ
+۔ہیےچا ناکر لعہمطا کا 22Aببا کا بطاضو کے یکسایس اپی کو ئینرقا،لیے کےت تفصیلا یدمزمیں ےربا کےت ارختیاا کےیکس ایس اپی سے لےاحو کے سینٹر رواں یوراد مہذ کی کروبر یکسایس اپی
+:ناکر ڈئزلاسنٹر کو یشنئزگنارآ کی ننےجا کو کسٹمر پنےا .7
+NCCPL تحت کے لزور CKO نا ۔ ہیں کیے یرجا تحت کے 2015 یکٹا ٹیزرسیکو نے متحکو قیفاو 2017 ،لزور (CKO) تنظیم Know Your Customer KYC) ڈئزلاسینٹر
+۔ ہے کی حتضاو کی مرفا CYK لیے کے زکسٹمر روا ہے کیا رتیا کرو یمفر یلیٹریگور پناا بقمطا کےس ا نےNCCPL پر رطو کے نتیجے ۔ ہے گیایا د ئسنسلا کا نےکر مکا پر رطو کےCKO کو
+2 0 |نمبر صفحہ
+(AI) ییرمیڈنٹرا زمجا متعلقہ /کسٹمر یسےا تو ، یںد کر ہمافر تتفصیلا متما میں KIS سسٹم میشنرنفاا KYC روا یاد ےد منجاا عمل کا KYC لیے کے کسٹمر کسی نے CKO جب ربا یکا
+نےبھر ہرباود تھسا کےB کروبرPSX کو مرفا KYC کو کسٹمر کےA کروبر یکسا یسا پیپر رطو کے لمثا ۔ گیہو نہیں تروضر کی نےکر عوشر ہرباود عمل KYC مکمل تھسا کےCKO کو
+۔ گیہو نہیں تروضر کی
+:ہمیافر کی کچرسٹرا فٹیر میزلا کو ز کسٹمر .8
+ہے مزلا ناکر ہمافر لوشیڈ فٹیر منسلک سے مرفا لتسہو روا CRF مشتمل پر تمامعلو یلذ جرد کو فینرصا پنےا پر کروبر یکسا یسا پی ہر
+جزرچا ئیکو روا حشر کی کمیشن ) لفا
+روا فیس کی یند لین یا یڈٹر کی ہغیرو پی سی یا یسا روا یلا پی سی سی ینا ،سی یڈ سی ،یکسا یسا پی یعنی یزلیو یلیٹریگور قطلاا بلقا )ب
+ٹییوڈ روا ٹیکس کے ںمتوحکو ئیباصو روا قیفاو یعنی تلامحصو نینوقا قطلاا بلقا )پ
+یسا پی ۔ ہیےچا ھناپڑ سےا لیے کے نےکر تعین کا گتلا کی یند لین روا ہیےچا نیکر صلحا پیکا یکا کی لوشیڈ فٹیر ہرکومذ سے کروبر یکسا یسا پی پنےا قتو کے لنےکھو نٹؤکاا کو فینرصا
+۔ ہیےچا نیکر صلحا میں شکل ییرتحر یگرد تربصو یا ئےہو تےکر لستعماا عءارذ یجیٹلڈ یا یعےرذ کے ستخطد ،یمندضار کی زکسٹمر پنےا کو کروبر یکسا
+کے مکا )07( تسا سے یخرتا ثرمؤ کی یلیتبد سا عطلاا کی یلیتبد بھی کسی میں سا کو کروبر یکسا یسا پی میں ترصو کی یلیتبد کسی میں لوشیڈ فٹیر رکومذ میں )پ( روا )ب( ئنٹاپو پروا
+ںنود ہدیاز گئی ئیبتا سے فطر کی یکسا یسا پی یا ند 30 کم زا کم بعد کے نےجا ئےبتا کوزکسٹمر یلیتبد بھی ئیکو میں فٹیر رکومذ میں )لفا( ئنٹاپو ،ہمتا ۔ گیہو نیبتا کو زکسٹمر پنےا رندا کے ںنود
+۔ہے گیا کیا ہمافر تحت کے مرفا لتسہو روا ; کہ جیسا گا ہو نابتا یعےرذ کے عءارذ لقبو بلقا کے تصلاامو پر رطو ییرتحر کو یلیتبد ۔ گیہو گولا پہلے سے یخرتا ثرمؤ کی
+:نیتیکسا کی تمامعلو راقربر میں بیس یٹاڈ (UIN) نمبر ختیشنا دمنفر کے یلا پی پی سی ینا روا مرفا سی ئیاو کے ،مرفا لتسہو ، یفا رآ سی .9
+یقینی کو تبا سا کوزکسٹمر ۔ ہو کھتیر ثلتمما سے تمامعلو ہدکر ہمافر میں بیس یٹاڈ ینا ئیآ یو کے یلا پی سی سی ینا تمامعلو کیکسٹمر ہدکر ہمافر میں CRF روا مرفا KYC کہ ہے یروضر یہ
+روا (CDS) سسٹم یٹرزپاڈ لسینٹر کےCDC ، CRF مرفا سی ئیاو کے پتہ ئشیہار روا پتہ میل یا ،نمبر ئلبامو ،نمبر ڈرکا ختیشنا کہ جیسے تتفصیلا کی یشنجسٹرر کی نا کہ ہیےچا نابنا
+کروبر یکسا یسا پی بعد کے یقتصد کی نےہو مکمل روا ستگیرد کی تمامعلو کو فینرصا ،یدمز ۔ ہیں جرد سے یقےطر سترد میں (NCSS) سسٹم ٹ
+نمل ٹ ی س
+ینڈا نگکلیئر نیشنل کےNCCPL
+۔ ہیےچا نابنا یقینی ناکر ستخطد پر ٹرپور ہدکر سٹپو CDC ہدکر ہمافر یعےرذ کے
+:ئطاشر کی گیعلیحد کی ٹیزرسیکو روا قمر کی زکسٹمر .10
+کسی ۔ کھیںر ظمحفو قتو ہر نہیںا روا کھیںر لگا پر رطو مکمل سے ںثوثاا پنےا کے نا کو ٹیزر و
+نک ٹس
+روا قمر کی زکسٹمر پنےا ہو کہ ہے یراد مہذ حقیقی یکا تحت کے ننوقا کی زکروبر یکسا یسا پی
+۔ ہے نہیں تزجاا کی نےکر لستعماا زمجا غیر لیے کے ےئدفا /مقصد پنےا کو ٹیزر و
+نک ٹس
+روا زفنڈ کے زکسٹمر میں ترصو بھی کسی کو کروبر یکسا یسا پی بھی
+:تقسیم کی فعمنا گئے ئےکما پر زفنڈ ہشد لستعماا غیر کے فینرصا کی زکروبر ٹیزرسیکو .11
+لے او فعمنا زفنڈ کے حطر سا گرا،ہے تاجا کیا ٹیڈکر یعےرذ کے بینک جو یںکر منتقل کو فعمنا ہو سے سبتنا کے بیلنس ہشد لستعماا غیر کے نا کوزکسٹمر متعلقہ ہو کہ ہے مزلا پر یکسا یسا پی
+۔ ہیےچا نیکر حتضاو کی سا پر رطو ییرتحر کو کروبر یکسا یسا پیپنے ا سےاہتا چا ناکر نہیں صلحا فعمنا جو کسٹمر بھی ئیکو ۔ ہیں تےجا کھےر میں نٹؤکاا بینک
+:جگہ کی تیااہد/زرڈرآ نگیڈٹر .12
+،یعےرذ کے ) ںنوباز( ئنلا نفو ٹیلی ہشد ڈریکار صمخصو کی زکروبر پر رطو نیباز ،پر رطو ییرتحر کو زکروبر یکسا یسا پی یعےرذ کے منظا نگیڈٹر منسلک سے نیٹ نٹرا لیے کے یڈٹر ہر زکسٹمر
+کی رڈرآ کو زکسٹمر ۔ ےد یتاہد لیے کے رڈرآ یعےرذ کے عءارذ ہشد رمنظو کے تصلاامو ئنلا نآ مبنی پر نیٹنٹرا یا ،یعےرذ کے خط /فیکس /ئلبامو /یسریڈا میل یا ڈجسٹرر پر رطو ییرتحر
+۔ ہے رڈرآ کا ختوفر مختصر یا ختوفر ،یدخر رڈرآیا آ کہ ہیےچا نابتا پر رطو ضحاو روا ہیےچا لینا م کا قتوبر روا لخیا سبمنا قتو یتےد تیااہد
+2 1 | نمبر صفحہ
+/روا ٹیزر و
+نک ٹس
+لےاو نےجا کیے ختوفر یا ےیدخر کہ جیسے ہیےچا نیہو حتضاو کی تتفصیلا متعلقہ میں زرڈرآ تیرتجا گئے یےد یعےرذ کے کسی سے میں ںیقوطر لابا جہرمند سے فطر کی زکسٹمر
+ہغیرو ،ہے ئیکو گرا حد کی قیمت روا عیتنو کی یند لین ،داتعد روا مناکا ںوہدمعا کے مستقبل یا
+:ہیےچا کھنار لخیا کا ںتوبا یلذ جرد کو ہکگا
+سی ینا سپا کے نٹؤکاا ملکیتی یا ئنٹکلا لیکن حصص بستیاد میں نٹؤکاا یسا یڈ سی یا حصص لےاو نےہو ختوفر میں کیٹرما ہعدقابا بغیر کے لچسپید دجومو سے پہلے یعنی( شیئر ٹرشا )لفا
+۔ ہے تزجاا میں کیٹرما ییڈر کی)ہے ہہدمعا کا بی یلا یسا یعےرذ کے کیٹرما بی یلا یسا میں یلا پی سی
+یریلیوڈ ،ہمتا ۔ ہے عممنو سے سختی میں کیٹرما ییڈر کی )حصص بستیاد میں نٹؤکاا CDS یا ختوفر بغیر کے لچسپید دجومو سے پہلے یعنی(سیل کٹ یل ٹ قتو کے ینےد رڈرآ سیل )ب
+طومشرتھ سا کے دوحد ہدکر صمخصو لیے کے ختوفر لیخا میں منظا تیرتجا کہ جو یعےرذ کےو نڈوF 8رڈرآ صیخصو کا جس ہے تزجاا کی سیل کٹ یل ٹمیں کیٹرما یکٹکنٹر زچرفیو یبلا
+۔ ہے گئی کین بیا میں 13 ببا کے بطاضو یکسا پی جو ہے
+۔ ہیےچا ناکر ہمافر بھی مہنا یقتصد ییرتحر کا زرڈرآ یسےا کو زکروبر یکسا یسا پی کو زکسٹمر لےاو ینےد رڈرآ نیباز کو زکروبر یکسا یسا پی ، ںآبر یدمز
+:نگیڈٹر ئنلا نآ .13
+ئن لا نآ لیکن ،ہے تاکر ہمافر ئدافو سے بہت کو فینرصا یہ چہگرا ۔ ہے گیا یابنا تر تیز روا سستا ،نساآ کو ترتجا میں کیٹرما ٹیزر و
+نک ٹس
+یعےرذ کے نےہو فرمتعا کے سزوسر نگیڈٹر ئنلا ن ٓ
+ہے یروضر یہ لیے کے فینرصا ۔ ہے سکتی بن سبب کا خیرتا میں مدآرد عمل پر تیااہد یا سیلتر کی تمامعلو سے جہو کی ںٹووکار تکنیکی روا ہے سکتیہو نہیں دعتماا بلقا روا ظمحفو پر رطو مکمل نگیڈٹر
+، یںکر لستعماا ڈرو سپا ہپیچید روا طمضبو ،سئراو ینٹیا ،لزاو ئرفا ،پشننکرا جیسے ہیں صلحا تمامعلو میں ےربا کے تصیاخصو ظتیحفا ہما روا نیںجا کو تاخطر ملشا میں نگیڈٹر ئنلا نآ ہو کہ
+ر وا خفیہ کو تمامعلو تیرتجا کی نا ، یںکر یزگر سے نےکر لستعماا ئیفا ئیاو میاعو ، ز
+ل ٹم
+یا مشتبہ یا یںکر یزگر سے نےکر ڈلو نؤاڈ سے ممعلونا یا نےکر کلک پر لنکس ، یںکر لفعا کو یقتصد فیکٹر ملٹی
+یٹ م ی ی ٹس
+شخص ےتیسر کسی یا سے نگیڈٹر ئنلا نآ ہو کہ ہیےچا ناکر فاعترا یہ کو زکسٹمر ںآبر یدمز ۔ یںکر چیک کو ہغیرو یہسٹر یکشننزاٹر روا س ا کے نٹؤکاا سے گیعدقابا لیے کے کھنےر ظمحفو
+۔ گےں ہور ادمہ ذ پر رطو مکمللیے کےج ءنتابھی کسی لےاونے ہو اپید سےجہ وکی ل ستعماا زمجا غیر کسی کےز ڈرسوپا یا رواز ڈکو ئیسار یاء فشاا کے زڈروس پا رواز ڈکو ئیسار کو
+یسےا کسٹمر لیے کے مقصد سا ۔ ہے تیہو تھسا کے )مینزملا( مزملا کے کروبر ٹیزر و
+نک ٹس
+فتہیا ئسنسلا ن
+سک ٹن
+کمیو متما ،قتو لتےکھو نٹؤکاا ئنلا نآ کہ ہیےچا نابنا یقینی یہ کوزکسٹمر ، ںآبر یدمز
+۔ ہے سکتاکر لکا پر UAN یا /روا )ئنزلا( ئنلا نفو ٹیلی فیشلآ کی سا کو کروبر ٹیزر و
+نک ٹس
+کسی لیے کے یقتصد کی شخص
+:ئضافر روا ںیاراد مہذ کی زکسٹمر نارود کے نگیڈٹر .14
+،عداقو ،نیناقو قطلاا بلقا متما ہدکر یرجا قتاًفو قتاًو سے نبجا کی پی سی یا یسا یا یکسا یسا پی روا زنس یل یگور کٹکنڈ مس کیٹرما تحت کےA7 ببا کے بک لور یکسا یسا پی کو زکسٹمر
+سکے جا کی تعمیل حطر یرپو قتو ہر کی ںیوراد مہذ کی رکا یقہطر روا یلیٹریگور ئدعا پر نا کہتا ہیےچا ناکر عمل پر ئطاشر کی ہغیرو طخطو ہنمار ،تیااہد، ٹنو ، ںلیسیوپا ،بطاضو
+یقے طر ئزجا لصتاًخا قتو تےکر مکا میں ںمیوگرسر کی کیٹرما کیپٹل روا کھیںر راقربر کو رمعیا علیٰا کے یپسند فنصاا روا قتوبر ،یرانتدیاد ہو کہ ہے یراد مہذ قیخلاا روا نینوقا کی زکسٹمر یہ
+میگرسر ئزجانا روا ئیکو میں کیٹرما یا یپھیر اہیر میں کیٹرما ،نگیڈٹر رئیڈنساا کہ جیسے ہیےچا ناہو نہیں ثملو میں ںموکا ئزجانا قتو یتےد منجاا ںمیاگرسر تیرتجا کو کسٹمر یکا ۔ یںکر مکا سے
+کا مینتظاابد میں کیٹرما کو کسٹمر ےسرود کسی جو کسٹمر یکا ،ہوعلا کے سا ۔ ہے فدامتر کے مجر نہمامجر مکا نینوقا غیر یساا روا ئیکو سے فطر کی کسٹمر یا ہیں عممنو تحت کے نیناقو ننگرگو جو
+۔ گا ئےجایا اٹھہر راد مہذ بھی ہو ،ہے تاکر ہمافر لتسہومیں نے کر ششکو کی نےکر یا نےکر بتکارا
+یراد مہذ کیزکسٹمر لیے کے نےکر جمع جنرما .15
+لیے کے یڈٹر میں کیٹرما کسی لیے کے کروبر یکسا یسا پی جو ہے میزلا نااکر جمع )جنرما قطلاا بلقا اسرود ئیکو روا جنرما کٹرما ٹو کرما ،جنرما رزیکسپوا( جنزرما قطلاا بلقا متما پر زکسٹمر
+-ہیں سکتے جا ئےا کر جمع میں ترصو بھی کسیتحت II لوشیڈ کے2 ببا متعلق سے بطاضو یلا پی پی سی ینا جنزرما یسےا ۔ ہے یروضر
+2 2 |نمبر صفحہ
+سیدر / ئعارذ کے ) منٹ پے( ئیگیادا .16
+سیا ۔ یںکر لصوو پر منا پنےا سے چینلز بینکنگ ےسرود کسی یا زرڈرآ پے/فٹارڈ بینک/چیک ہشد ساکر فصر ںئیگیاادا متما سے زکروبر یکسا یسا پی ہو کہ ہے میزلا یہ لیے کے زکسٹمر
+پر نٹؤکاا بینک پنےا کے نا جو ہئیںچا نیکر یعےرذ کے چینلز بینکنگ یگرد یا زرڈرآ پے ،فٹسارڈ بینک ،چیک ہشد ساکر A/C pay only ںئیگیاادا کو زکروبر یکسا یسا پی کوزکسٹمر حطر
+نیکر صلحا سیدر ئےہو تےبتا یہ پر رطو صخا کو زکسٹمر ۔ )ہے تزجاا کی تک پےور نیکستاپا 25,000 ہدیاز سے ہدیاز( میں ترصو کی ئیگیادا نقد ۔ یںکر صلحا سیدر کی سا روا ہیں گئے ئےبنا
+۔ ہے لیے کے یرایدخر کی ٹیزر و ن ک ٹ س یا جنرما ئیگیادا یہ کہ ہیےچا
+نےاوکر جمع میں نٹؤکاا بینک کے کروبر یکسا یسا پی فصر لیے کے نا یہ ںجہا ہیں سکتے کر لقبو کیش ہدیاز سے پےور نیکستاپا 25,000 سے زکسٹمر میں تلاحا لیمعمو غیر زکروبر یسا یسا پی
+۔ یںد یعےرذ کے منزمیکا ٹنگرپور ہدکر یزتجو رندا کے ند تیرتجا یکا کو یکسا یسا پی عطلاا کی تقعااو لیمعمو غیر یسیا ہو کہ ہے مزلا پر زکروبر یکسا یسا پی ۔ ہے تاجا ہو یروضر لیے کے
+ہمیافر کی یقتصد کی نگیڈٹر .17
+ختوفر ،یدخر کی ٹیزر و ن ک ٹ س کی زکسٹمر رندا کے ںگھنٹو 24 کے نگیڈٹر یعےرذ کے یعےرذ منظا ہشد طے پہلے بھی کسی کے ن سک ٹ ن کمیو ہدکر نبیا میں مرفا لتسہو روا CRF کو زکروبر یکسا یسا پی
+۔ ہیےچانا کر ہمافر ٹنو یکٹکنٹر یکا کو زکسٹمر پنےا میں سلسلے کے یڈٹر کی نہازور لیے کے لےدتبا یا
+:گا ئےجا کیا ملشا پر رطو قطعی کو تمامعلو صمخصو یلذ جرد میں رڈرآ یقیتصد
+ہے تاجا کیا مدآرد عمل پر حکم پر جس یخرتا )لفا
+داتعد روا منا کا ٹیزر و ن ک ٹ س )ب
+)گیا بیچا یا ایدخر کہ بھی یہ روا کیٹرما یبٹڈ ،کیٹرما یجڈرلیو ،چرفیو ،ییڈر ،ٹسپاا( عیتنو کی ترتجا )پ
+قیمت )ج
+جزرچا یگرد ئیکو روا حشر کی کمیشن )د
+فیس تیرتجا کی ہغیرو پی سی یا یسا روا یلا پی سی سی ینا ،سی یڈ سی ،یکسچینجا یعنی یزلیو یلیٹریگور قطلاا بلقا )ذ
+ٹییوڈ روا ٹیکس کے ںمتوحکو ئیباصو روا قیفاو یعنی تلامحصو نینوقا قطلاا بلقا )ف
+۔ سے کیٹرما یا گیا یاد لیے کے نٹؤکاا پنےا کے کروبر ٹیزر و ن ک ٹ س رڈرآ )ق
+جس ہے ہیو یڈٹر لیاو نےہو کہ یںکر ثیقتو کی تبا سا روا ہے کی یڈٹر نے ںنہوا یعےرذ کے جس یںکر لصوو ٹسنو یکٹکنٹر سے زکروبر یکسا یسا پی ہو کہ ہیےچا نابنا یقینی کو تبا سا کوزکسٹمر
+۔ ہے گئی کی یتاہد سے نبجا کی زکسٹمر کی
+پرکسٹمر روا حتمی کو یڈٹر یگرد تربصو گی ہو ینید عطلاا کی سا کو کروبر یکسا پی رندا کے ند تیرتجا یکا کوزکسٹمر ہے تاجا یاپا دتضا ئیکوگرا میں سا یا میں ترصو کی نےہو نہ یرجا ٹنو یکٹکنٹر
+کے یکسا یسا پی یعےرذ کے کسی سے میں ںیقوطر یلذ جہرمند پر رطو یرفو کو کسٹمر تو ،ہے یتاد نہیں باجو کو کسٹمر یا ہے تاکر نہیں سترد کو دتضا کروبر یکسا یسا پی گرا ۔ گا ئےجا سمجھا بندپا
+:ہیےچا نیاکر جرد یتشکا میں نیژوڈ زفیئرا یلیٹریگور
+فیسرآ یلیٹریگور چیف کاڈ یعہربذ
+،نیژوڈ رموا یلیٹریگور
+74000 چیاکر ،ڈور یکسچینجا کسٹاا نکستاپا ،نگبلڈ یکسچینجا کسٹاا نکستاپا ،نگبلڈ یشنمنسٹریڈا ،لمنز یسرود
+investor.complaints@psx.com.pk میل یا یعہربذ
+۔ ہے سکتا جا کیا ڈلو نؤاڈ کر جا پر سیکشن سینٹر یسٹرنوا لنک کے www.psx.com.pk ٹءسایب و کی یکسا یسا پی مرفا کا ےعود/یتشکا
+2 3 | نمبر صفحہ
+ٹسلرا یا یا /روا یسا یما یسا سے فطر کی سی یڈ سی روا یلا پی سی سی ینا لیے کے زیڈٹر ٹیزرسیکو .18
+یا یا /روا یسا یما یسا کو زکسٹمر یلا پی پی سی ینا لیے کے کھنےر یٹڈ پا سے یقےطر نساآ رواتیز میں ےربا کے یند لین روا یڈٹر کی نا کو زکسٹمر ئےہو کھتےر راقربر کو یرادزار کی تمامعلو
+یسا میں ےربا کے کتحر و نقل کی حصص کے نا میں یسا یڈ سی کو زکسٹمر سی یڈ سی حطر سیاین ا ئیآ یو نارود کے ند ۔ ہے تاکر ہمافر میں خرآ کے ند تمامعلو کی نگیڈٹر یعےرذ کے میل
+۔ ہے تاکر ہمافر ٹسلرا یایا /روا یسا یما
+نمبر ئلبامو سترد پناا ہو کہ ہے ہے تیجا کی کیدتا کو زکسٹمر لیے کے کھنےر راقربر ڈریکار کا سا روا نےکر یکٹر کو یدٹر کی نہازور روا نےٹھاا ہئدفا سے تلیاسہو ٹلرا یا/تماپیغا کے حطر سا
+۔ یںکر ہمافر کو سی یڈ سی روا یلا پی سی سی ینا پتہ میل یا پناا یا /روا
+یقتصد کی یشنزپو کی ٹیزر و
+ن ک ٹ س
+سے نبجا کی سی یڈ سی .19
+پی کو تمامعلو سا رواہیں سکتےکر بطہار سے سی یڈ سی لیے کے نےکر صلحا تمامعلو ینتر ہزتا میں ےربا کے یشنزپو کی ٹیزر و ن ک ٹ س پنیا میں نٹسؤکاا یلیذ پنےا بقمطا کے ڈریکار سی یڈ سی زکسٹمر
+ہدکر ہمافر یعےرذ کے کروبر یکسا یسا پی روا تمامعلو ہدکر ہمافر سے نبجا کی سی یڈ سی ۔ ہے سکتا جا یکھاد کر ملا سے یشنززپو یٹیزر و ن ک ٹ س بقمطا کے ڈریکار فسآ بیک کے کروبر یکسا یسا
+نہ حل کے مسئلے یا نوتعا معد ۔ ہیےچا ینید عطلاا کی سا کو کروبر یکسا یسا پیپر رطو یرفو لیے کے نےکر رود کو دتضا سا کو کسٹمر میں ترصو کی قفر بھی کسی نمیارد کے یشنزپو ٹیزر و ن ک ٹ س
+مرفا ی عود/یتشکا رکا یہماسر پر سے یقےطر صحیح یکا سپا کے نیژوڈ زفیئرا یلیٹریگور کے یکسا یسا پی پر رطو یرفو کو کسٹمر میں ترصو کی نےہو
+ئیںاکر جمعinvestor.complaints@psx.com.pk
+۔ ہے سکتا جا کیا ڈلو نؤاڈ کر جا پر سیکشن سینٹر یسٹرنوا لنک کے www.psx.com.pk ٹءسایب و کی یکسا یسا پی مرفا کا ےعود/یتشکا
+حق کا نےکر صلحا تتفصیلا کی لیجر لیے کے نےکر ہرظا یشنزپو ٹیزرسیکو روا کیش .20
+یشنزپو لیوفو ٹرپو روا کیش میں نٹؤکاا پنےا گئے لےکھو تھسا کے کروبر یسا پی تھسا کے ستخطد روا مہر بطہضابا کی ےئندنما زمجا کے سا یا کروبر یکسا یسا پی ہو کہ ہے صلحا حق یہ کو زکسٹمر
+کو کروبر یکسا یسا پی رندا کے ند تیرتجا )1( یکا کے لیصوو کی سٹیٹمنٹ لیجر کو زکسٹمر میں ترصو کی قفر بھی کسی میں سٹیٹمنٹ لیجر ۔ یںکر صلحا پیکا یکا کی سٹیٹمنٹا لیجر لےاو نےکر ہرظا
+کا ےئندنما زمجا کے کروبر یکسا یسا پی ۔ ہیےچا ینید عطلاا کی سا کو یکسا یسا پی کو زکسٹمر میں ترصو کی نےہو نہ حل کے دتضا بھی کسی ۔ سکے جا کیا رود کو قفر سا کہتا ہے میزلا ناکر عطلاا
+۔ہے تاہو ںایزوآپر ےزاورد خلیاد کے ترفاد/ںخوشا کی سا منا
+ہمیافر میزلا کی سٹیٹمنٹا نٹؤکاا ہیما سہ سے فطر کی زکروبر یکسا یسا پی .21
+ںنود 15 کے مختتاا کے ہیما سہ ہر کو کروبر یکسا یسا پی ہر لیے کے نےبنا یقینی کو فیتشفا میں یسٹرنڈا ٹیزر و
+نک ٹس
+روا ظتحفا کی ںثوثاا کے فینرصا گئے کھےر سپا کے زکروبر یکسا یسا پی
+سک ٹن
+کو سٹیٹمنٹا لیجر کیش میں سٹیٹمنٹا ہیما سہ ۔ ۔ ہو یعےرذ کے ن کمیو لقبو بلقا ہدکر رمقر نبجا کی کسٹمرجو ہے یروضر ناکر ہمافر سٹیٹمنٹا نٹؤکاا ہیما سہ یکا کو فینرصا پنےا رندا کے
+ڈریکار فسآ بیک کے کروبر یکسا یسا پی یراد مہذ کی قمر گئی کی ٹیڈکر یا یبٹڈ میں نٹؤکاا کے ئنٹکلا روا ںئیگیاادا روا یںسیدر متما کی قمر ،تھسا کے بیلنس کیش لےاو نےکر بند روا لنےکھو
+۔ہے یروضر ناکھاد کےکر ختم کو قفر کسی دجومو میں سا تھسا تھسا کے یشنزپو کی ٹیزر و
+نک ٹس
+روا ،ٹیزر و
+نک ٹس
+گئی کھیر یوگر بقمطا کے ڈریکار کے یسا یڈ سی روا یشنززپو ٹیزر و
+نک ٹس
+بقمطا کے
+یٹ م ی ی ٹس
+کے ہیما سہ کو زکروبر یکسا یسا پی کہ سکے جا یابنا یقینی کو تبا سا کہتا ہیےچا نیکر یقتصد کی نا روا ھناپڑ ،ناکر صلحا کو س ہیما سہ ہدکر ہمافر سے فطر کی کروبر یکسا یسا پی کو زکسٹمر
+ینید کو کروبر یکسا یسا پی عطلاا کی سا پر رطو یرفو کو کسٹمر میں ترصو کی قفر بھی کسی ۔ ہے تاکر ہرظا کو یشنزپو حقیقی کی ٹیزر و
+نک ٹس
+روا کیش ہی بقمطا کے تیااہد رڈرآ کے ئنٹسکلا نارود
+کے یکسا یسا پی پر رطو یرفو کوکسٹمر میں ترصو کی نےہو نہ حل کے مسئلے یا نوتعا معد ۔ یںد عطلاا کی سا بھی کو یکسا یسا پی تھسا کے سا روا سکے جا کیا رود کو قفر سا کہتا ہیےچا
+۔ہیےچا نااکر جمع investor.complaints@psx.com.pk مرفا ی عود/یتشکا کا ںورکا یہماسر پر پر رطو ییرتحر سپا کے نیژوڈ زفیئرا یلیٹریگور
+۔ ہے سکتا جا کیا ڈلو نؤاڈ کر جا پر سیکشنسینٹر یسٹرنوا لنک کے www.psx.com.pk ٹءسا یبو کی XSP مرفا کا ےعود/یتشکا
+2 4 | نمبر صفحہ
+لتسہو کی لنےکھو نٹؤکاا یسٹرنوا میں سی یڈ سی .22
+ستار ہابر ہو نکہکیو ہے تاجا یابنا یقینی کو یلتحو ظمحفو کی ٹیزرسیکو یعےرذ کے جس ہے گیا کیا ہمافر پشنآ ینبہتر کا لنےکھو نٹؤکاا یسٹرنوا ستار ہابر میں سی یڈ سی کو زکسٹمر سے نبجا کی سی یڈ سی
+یک ا ۔ ہے تاجا یاچلا پر تیااہد کی ںورکا یہماسر فصر نٹؤکاا یہ نکہکیو ہے تاہو لوکنٹر مکمل روا ستار ہابر پر ٹیزر و ن ک ٹ س پنیا کا زرلڈہو نٹؤکاا رکا یہماسر ۔ ہیں تےہو میں نیانگر کے سی یڈ سی
+یم ا یسا (IVR) نسسپار ئساو یکٹوانٹرا ،ٹلرپو یبو صیخصوں میاگرسر کیش روا نٹؤکاا ،بیلنس کیش روا نٹؤکاامیں جس ہیں بستیاد گھنٹے بیسچو پر نٹؤکاا سا سزوسر ڈیڈا یلیوو ہدیاز سے
+.ہیں سکتی جا یکھید یعےرذ کے ٹسلرا یا روا سٹیٹمنٹا یا ،یسا
+ٹ
+نمل ٹ ی س
+ستار ہابر کی یڈٹر یعےرذ کے یسا یسا یڈ کے سی یڈ سی روا یسا سی ینا کے یلا پی سی سی ینا .23
+سی لیے کے نےکر ہمافر تحفظ ہدیاز سے ہدیاز کو ٹیزر و ن ک ٹ س روا کیش کے نا روا نےلا فیتشفا روا فہضاا میں گیدکررکا میں عمل کے ٹ نمل ٹ ی س روا نگکلیئر کی یڈٹر لیاو نےجا کی سے نبجا کی زکسٹمر
+۔ ہے کیا لیے کے ںورکا یہماسر کیٹرما کسٹاا زغاآ کا (DSS) سزوسر ٹ
+نمل ٹ ی س
+یکٹئراڈ روا (NCS) سزوسر یلڈکسٹو نیشنل تیبلتربا نے یلا پی سی سی ینا روا سی یڈ
+سا ۔ گےیں کر ہمافر تماخدیل ڈکسٹو روا ٹ
+نمل ٹ ی س
+، نگکلیئر لیے کےز یڈٹریسی اسی ی ڈسی یا یل اپی سی سی ین ا جبکہ گے ںہو ملشالیے کے عملیڈ ٹر فصر زکروبریکس ایس اپی تحت کے تماخدن ا
+۔ گےلیں کھو نٹؤکاا IAS تھسا کے CDC یا گےلیں کھو تھسا کے NCCPL نٹؤکاا NCS مبنی پریب و رکایہ ماسرلیے کے مقصد
+تماخد نا ۔ سکیں کھر راقربر کو بیلنس ٹیزر و ن ک ٹ س روا کیش پنےا تھسا کے CDC یا /روا NCCPL ستار ہابر ہو کہ ہیں تیبنا بلقا سا کو ںورکا یہماسر تلیاسہو کی ٹ نمل ٹ ی س ستار ہابر یہ
+CDC روا: www.nccpl.com.pk : سیکشن سزوسرینڈ ا کٹسڈوپر کے ٹءسا یبو کی NCCPL ہو کہ ہے تاجا یاد ہرمشو کو زکسٹمر لیے کے نےکر صلحا تمامعلو مکمل میں ےربا کے
+۔ یںکر حظہملا www.cdcpakistan.com سیکشن نسبز کے ٹءسا یبو
+:ئیسار ئنلا نآ یعےرذ کے سسٹم میشنرنفاا ینا ئیآ یو کے یلا پی سی سی ینا .24
+میشنرنفاا ینا ئیآ یو مبنی پر یبو یکا نے یلا پی سی سی ینا ،لیے کے نےکر کم کو ےخطر کے لستعماا غلط کے ٹیزر و ن ک ٹ س کی ئنٹسکلا روا ینےد غوفر کو دعتماا کے ںورکا یہماسر ،نےھابڑ کو فیتشفا
+متما پنیا ہو کہ ہے تابنا بلقا سا کو زرلڈہو ینا ئیآ یو سسٹم یہ ۔ سکے جا یابنا بلقا کے نےکر یکٹر کو تمامعلو متعلقہ روا ٹ
+نمل ٹ ی س
+،نگیڈٹر کی نا کو ںورکا یہماسر کہتا ہے کیا رتیا (UIN) سسٹم
+یس ا ئیآ یو ۔ سکیں یکھد یعےرذ کے ڈرو سپا روا یڈ ئیآ رزیو قفو روا صمخصو یکا میں زاندا ثرمو روا راہمو تھسا کے زکروبر یکسا یسا پی متعلقہ کے نا کو تمامعلو متعلقہ روا ٹ
+نمل ٹ ی س
+،نگیڈٹر
+۔ ہے سکتا جا کیا صلحا سے ترفاد کے یلا پی سی سی ینا ستار ہابر یا ہے بستیاد پر www.nccpl.com.pk ٹءسا یبو کی یلا پی سی سی ینا مرفا ستاخورد کا
+:یزوستاد رژکلو سڈ سکر ہرمقر .25
+پی( یکسچینجا کسٹاا نکستاپا ،لیے کے نےکر دمد میں نےکر فیصلے ستدبرز کے یرکا یہماسر پر دبنیا کی شتادبر کی ےخطر روا فاہدا ،لتحارصو لیما کی نا روا سمجھنے کو تاخطر لیے کے فینرصا
+بستیاد پر یکسا یسا پی یزوستاد رژ ولکسڈ سکر یہ ۔ ہے کی رتیا یزوستاد رژ ولکسڈ سکر نہنمو یکا رکارد لیے کے ز نس ی ل یگور )یشنزپرآ روا گٹ س یس ئ لا( زکروبر ٹیزر و ن ک ٹ س کے 2016 نے )یکسا یسا
+۔ ہے تیکر حتضاو کی تاخطر مختلف ملشا میں یرکا یہماسر روا ترتجا میں تلاآ تیلیاما
+میں جس ہیےچا ناکر صلحا ٹ رنڈا ہشد یخرتا روا ہشد ستخطد سے فطر کی فینرصا روا ہیےچا ناکر ہمافرپر رطو میزلا یزوستاد رز ولکسڈ سکر کو ہکگا نئے ہر پنےا کو زکروبر یکسا یسا پی
+۔ ہیں چکے سمجھ کو دامو روا عیتنو کییز وستاد رژ ولکسڈ سکر ہو کہ ئےجا کی یقتصد
+۔ سمجھیں روا ھیںپڑ ربغو میں دمفا پنےا کو یزوستاد کی فنکشاا کے )سکر(ےخطر پہلے سے نےکر عوشر رباورکا تھسا کے زکروبر یکسا یسا پی ہو کہ ہے یروضر سے فینرصا ،الہذ
+:نعتمما کی ینےد نٹیرگا کی نیٹرر صخا/ہرمقر کو زکسٹمر .26
+کے ںوعدو کے نیٹرر ہشد نٹیرگا یا فکسڈ سے ںورکا یہماسر یا ماعو نہیںا ،ہمتا ۔ ہے گیا یاد ئسنسلا کا نےکر ئبا ز کس یس یا لےدتبا ،بیچنے ،نےیدخر ٹیزر و ن ک ٹ س لیے پنےا یا فینرصا کو زکروبر یکسا یسا پی
+سے جس ،ہے تاہو ہخطر کا ؤھاچڑ رتاا میں یرکا یہماسر میں ٹیزر و ن ک ٹ س کہ ہیےچا ناہو ہگاآ کو فینرصا ۔ ہے تاجا سمجھا ہید کہھود سےا روا ہے نینوقا غیر یہ نکہکیو ،ہے نہیں تزجاا کی لینے ٹزپاڈ تھسا
+۔ ہے تاہو قعمتو غیر فعمنا
+2 5 | نمبر صفحہ
+ٹسزپاڈ نینوقا غیر کے حطر سا ۔ ہے نینوقا غیر یہ نکہکیو ،ہیےچا یناد نہیں ٹزپاڈ کو کروبر یکسا یسا پی بھی کسی سے منا بھی کسی روا ہیےچا ہنار رشیاہو سے ںمیوگرسر نینوقا غیر نا کو فینرصا
+۔ ہے ہربا سے رکا ہئراد کے ںمیوگرسر ئزجا کی کیٹرما کیپٹلیہ نکہکیو ،گی ئےجا ید نہیں جہتو سے فطر کی یکسا یسا پیپر ےعود بھی کسی متعلق سے
+:رکا یقہطر کا لےازا کے یتشکا .27
+جرد یتشکا میں یکسا یسا پی فرصا تو ،سکتا جا کیا نہیں حل سے بیسلوا شخو جسے ہے عہزتنا ئیکو متعلق سے یند لین یا ترتجا کسی تھسا کے ےئندنما یا کروبر یکسا یسا پی کا فرصا کسی گرا
+میں نیژوڈ زفیئرا یلیٹریگور کے یکسا یسا پی تیاشکا ۔ ہے سکتا جا کیا حل یعےرذ کے لثیثا کو عہزتنا بقمطا کے رکا یقہطر کے 18 ببا کے زنس ی ل یگور یکسا یسا پی بعد کے سا ۔ ہے سکتااوکر
+جا ئیاکر جمع پر رطو ییرتحر کے کر جمع یعےرذ کے میل یا پر investor.complaints@psx.com.pk یا میں پیکا ڈرہا سےا روا کےکر پُر کو مرفا کے ےعود \ یتشکا کے ںورکا یہماسر
+۔ ہیں سکتی
+۔ ہے سکتا جا کیا ڈلو نؤاڈ کر جا پر سیکشن سینٹر یسٹرنوا لنک کے www.psx.com.pk ٹءسایب و کی یکسا یسا پی مرفا کا ےعود/یتشکا
+:ٹزو سے گیعدقابا کا ٹسءسا یبو کی نچیپو جمع روا یلا پی پی سی ینا ،سی یڈ سی ،یکسا یسا پی ،پی سی یا یسا .28
+کی ہغیرو ٹیفیکیشننو ،زکلرسر ،طخطو ہنمار ،بطاضو ،عداقو ،نیناقو قطلاا بلقا متما لےاو نےہو یرجا قتاًفو قتاًو پر ٹسءسا یبو کی یلا پی سی سی ینا روا سی یڈ سی ،یکسا یسا پی ،پی سی یا یسا
+۔ ہیں تیکر بستیاد ںپیاکا
+سے نبجا کی یلا پی سی سی ینا روا سی یڈ سی ،یکسا یسا پی ،تمامعلو متعلق سے تیاروضر روا رکا یقہطر متما کے کھنےر راقربر روا لنےکھو نٹؤکاا تھسا کے زکروبر یکسا یسا پی ، ںآبر یدمز
+پآ پنےا ہو کہ ہے تاجا یاد ہرمشو کو فینرصا ۔ ہیں تیجا ئیپھیلا پر رطو ںیانما روا ضحاو یعےرذ کے ٹسءسا یبو کی ںورادا نا لیے کے لتسہو کی فینرصا تماخد روا تعامصنو مختلف ہدکر پیش
+۔ یکھیںد کو ٹسءسا یبو نا سے گیعدقابا لیے کے نےکر فیصلے کے یرکا یہماسر راسمجھد روا خبربا سے حطر چھیا روا کھنےر یٹڈ پا روا خبرباکو
+گرا ۔ کھیںر ڈریکار کا یند لین یرباورکا پنےا روا یںکر چیک کو بیلنس ٹیزر و ن ک ٹ س روا کیش پنےا سے گیعدقابا ہو کہ ہے ہما بہت یہ لیے کے فینرصا کہ ہیں ہتےچا یناد روز پر تبا سا پھر ربا یکا ہم
+یٹ م ی ی ٹس
+سا کو یکسا یسا پی یا کروبر یکسا یسا پی پنےا پر رطو یرفو نہیںا تو ، ہیں تےہو نہیں لصومو ٹسلرا یا یا ،یسا یما یسا ،س ا نٹؤکاا ،ٹنو یقیتصد تیرتجا کو فینرصا گرا یا ہے دتضا ئیکو
+۔ ہیےچا ینید عطلاا کی
+:یفتعر کی تحاصطلاا یدبنیا لیاو نےجا کی لستعماا میں ئیڈگا سا .29
+کی ٹیزر و ن ک ٹ س ل یگور بھی کسی شخص ل یگور یکا سے نبجا کی جس شخص یساا یکا کہ ہے گئی کی حطر سا میں 2 سیکشن یا شق کی 2015 ،یکٹا ٹیزر و ن ک ٹ س یفتعر کی ہکگا :ہکگایا کسٹمر .1
+.ہے تاجا کہا رکا یہماسر یکا پر رطو معا جسے ہے ملشا شخصبھی ئیکو میں سا روا ہے یتاد منجاا کو میگرسر
+منجاا ںمیاگرسر لیے کے نا روا ہے تاکر مکا تھسا کے سا یا لیے کے شخص ل یگور کسی جو ہے دفر ہو ہئندنما ،ہے گیا کیا نبیا میں 2 سیکشن کے 2015 ،یکٹا ٹیزر و ن ک ٹ س کہ جیسا :ہئندنما .2
+،ہاتنخو نہیںا کہ کے سا نظر قطع ، ہیں سکتے ہو ملشا یجنٹا یا ،نافسرا کے کمپنی ،مینزملا میں سا ۔ ) ہیں تےکر ز ز ن ٹ س ی ک یا ،ککلر ،ن ؤکاا پر رطو معا جو کر ڑچھو کو ںموکا نُا( ہے یتاد
+۔ نہیں یا ہے تیجا کی ئیگیدا سے یعےرذ رواکسی یا ،کمیشن ،تجرا
+:نارود کے رباورکا جو ہے ملحا کا) ٹیفکیٹسر (TREٹیفکیٹسر ٹ نمل ٹ ءنٹاا ٹءار نگیڈٹر ،ہے گیاکیا ن بیامیں 2 سیکشن کے2 015یکٹ اٹیز ر و ن ک ٹ س کہجیسا کروبر ٹیزر و ن ک ٹ س :کروبرٹیز رو ن ک ٹ س .3
+۔ ہے یتاد غیبتر کی نےکر ئبا ز کس یس یا ،نےکر لہدتبا ،بیچنے ،نےیدخر ٹیزر و ن ک ٹ س کو ںوسرود یا ،ہے تاکرپیشکش کی نےکر ےہدمعا تھسا کے ںوسرود .I
+۔ ہے تاکر یند لین میں ٹیزر و ن ک ٹ س لیے کے نٹؤکاا پنےا کے نا یا ئنٹسکلا یا ،ہے تاکر لقبو یا نگتاما رڈرآ لیے کے نگیڈٹر میں ٹیزر و ن ک ٹ س .II
+:ہے گئی کی میں 2 شق کی 2016 ، ز نس ی ل یگور )یشنزپرآ روا گٹ س یس ئ لا( زکروبر ٹیزر و ن ک ٹ س یفتعر کیخت وفر تھسا کے سٹنٹرا دجومو سے پہلے :ختوفر تھسا کے سٹنٹرا دجومو سے پہلے .4
+روا ۔ ناکر مکملی رایدخر کی پہلے ، میں مختلف کسی یا میں ٹ
+نمل ٹ ی س
+ہی یکا ،پہلے سے نےکر مکمل ختوفر .I
+۔ ناکر طے یشنزپو کھلی میں گٹسئ فنا جنرما یا نگیڈٹر جنرما لیے کے (UIN) نمبر ختیشنا دمنفر روا ٹیر و ن ک ٹ س سیا .II
+2 6 | نمبر صفحہ
+:عمل میعمو کا نگیڈٹر میں کیٹرما ٹیزر و
+ن ک ٹ س
+.30
+کروبر ٹیزر و ن ک ٹ س کہ جو ہیےچا لناکھو نٹؤکاا نگیڈٹر تھسا کے زکروبر یکسا یسا پی ڈجسٹرر بھی کسی پہلے کو ںورکا یہماسر ہشمنداخو کے نےکر یرکا یہماسر میں ٹیزر و ن ک ٹ س کی ںکمپنیو ڈ ٹسل .1
+۔ ہو فتہیا ئسنسلا سپا کے پی سی یا یسا لیے کے نےکر مکا پر رطو کے
+۔ لیںکھو نٹؤکاا یلیذ تھسا کے کروبر یکسا یسا پی یا نٹؤکاا یسٹرنوا یکا تھسا کے سی یڈ سی لیے کے یلتحو روا ٹ
+نمل ٹ ی س
+کی حصص .2
+۔ ہے سکتا کر لبہمطا کا نےکر جمع سے پہلے قمر کی جنرما تھسا کے سا سے فینرصا کروبر یکسا یسا پی .3
+۔ یںد تیااہد رڈرآ ضحاو لیے کے ختوفر و یدخر ہر کو کروبر یکسا یسا پی ہو کہ ہیےچا کو فینرصا .4
+۔ ہے یتاد رڈرآ تیرتجا میں منظا تیرتجا رکادخو کے یکسا یسا پی کروبر یکسا یسا پی .5
+تتفصیلا مکمل کی رڈرآ کے ختوفر و یدخر پر سسٹم نگیڈٹر رندا کے ںگھنٹو 24 گلےا کے مدآرد عمل تیرتجا میں جس ہے تاکر ہمافر یقتصد تیرتجا کو فینرصا پنےا کروبر یکسا یسا پی .6
+۔ ہے تاہو فنکشاا کا ٹیکسز/تلامحصو یگرد روا جزرچا کمیشن لےاو نےہو گولا پر ترتجا کی حطر سا تھسا تھسا کے
+۔ ہیےچا ناکر لصومو ٹلرا متعلق سے ترتجا یعےرذ کے میل یا یا/روا یسا یما یسا سے یلا پی سی سی ینا لیے کے ترتجا پنیا پر مختتاا کے ند متعلقہ کو فرصا .7
+۔ ہیےچا ناہو لصومو بھی ٹلرا یکا یعےرذ کے میل یا یا یسا یما یسا لیے کے کتحر و نقل کی حصص پنےا میں خرآ کے ند سے سی یڈ سی کو فرصا .8
+کے یلا پی سی سی ینا میں خرآ کے ند روا زیڈٹر پنےا لےاو نےجا کیے یعےرذ کے کروبر یکسا یسا پی کہتا ہے سکتا کر جسٹرر لیے کے سزوسر یسا ئیآ یو کی یلا پی سی سی ینا فرصا .9
+۔ ےکر نیانگر کی یشنزپو ٹیزر و ن ک ٹ س بستیاد بقمطا کے ڈریکار
+کو گتلا کی یرایدخر سپا کے)ہو ملہمعا بھی جیسازور کے یڈٹر یا،زکسٹمر یسا یسا یڈ یا یساسی ینا یا( زکروبر یکسا یسا پی پنےا سپا کے ںورایدخر ،لیے کے نےیدخر ترتجا یا زیڈٹر .10
+۔ ہیےچا نیہو قمر یروضر پر یخرتا کی ٹ
+نمل ٹ ی س
+لیے کے نےکر ارپو
+۔ ہے تاجا بن لکما کا زشیئر نا فرصا سے جس ، ہیں تےجا ہو منتقل میں نٹؤکاا یسا یڈ سی کے ہکگا )کی زشیئر( حصص ہو کو یخرتا کی ٹ
+نمل ٹ ی س
+بعد کے ئیگیادا کی قمر کی ٹ
+نمل ٹ ی س
+.11
+کے فینرصا یسا یسا یڈ یا یسا سی ینا لیے کے سی یڈ سی / یلا پی سی سی ینا یا( یخرتا کی ٹ
+نمل ٹ ی س
+سپا کے فینرصا لیے کے نےکر مکمل کو ختوفر ،لیے کے ختوفر کی ترتجا
+۔ ہے تاجا ہو مکمل یند لین روا ، ہیں تےجا یےد کر لےاحو کے نا زشیئر ،بعد کے نےہو لصومو ئیگیادا سے رایدخر ۔ ہئیںچا نےہو زش )تھسا
+یسا پی روا بقمطا کے ڈریکار کے کروبر روا یسا یڈ سی میں جس ہیےچا ناکر صلحا سٹیٹمنٹا نٹؤکاا ہیما سہ یکا سے کروبر یکسا یسا پی پنےا کو فینرصا :ٹنو
+گرا ۔ ہو تفصیل کی ہمتمفا پر فختلاا سا تو اہو فختلاا ئیکو گرا روا ںیشنوزپو کی ٹیزر و
+نک ٹس
+روا ینقد کی نا بقمطا کےڈریکار فسآ بیک کے کروبر یکسا
+۔ ہے سکتا کر ہمافر بھی سٹیٹمنٹا نٹوءکاا سے تکثر ہدیازکو کسٹمرپنے ا کروبر تو ئےجا کی ستاخورد سے فطر کی ہکگا
+2 7 | نمبر صفحہ
+بطہار
+)پی سی یا یسا( نکستاپا فآ کمیشن یکسچینجا ینڈا ٹیزرسیکو
+نکستاپا فآ کمیشن یکسچینجا ینڈا ٹیزر و
+نک ٹس
+نکستاپا ،44000 دباآ مسلاا ،یایرا بلیو ، نیویوا حجنا 63 ،نگبلڈ سی ئیآ ینا
+فترد یکزمر
+051-111-117-327 :نمبر ینا یو
+www.secp.gov.pk : ئٹسا یبو
+)سکیا سیا یپ( یکسچینجا کسٹاا نکستاپا
+نکستاپا ،74000 چیاکر ،ڈور یکسچینجا کسٹاا ،نگبلڈ یکسچینجا کسٹاا
+021-111-001-122 :نمبر ینا یو چیاکر فترد یکزمر
+info@psx.com.pk : یسریڈا میل یا ، www.psx.com.pk :ئٹسا یبو
+،لقباا نِ ایوا نِ باخیا 19 ،ہزپلا یا یسا یلا
+نکستاپا ،54000 رہولا رہولا
+042-36316974 :نمبر نفو
+ترفاد ئیقاعلا
+زروٹا یا یسا ئیآ،لمنز یںتوسا ،712-714
+دباآ مسلاا ،نیویوا حجنا B-55 دباآ مسلاا
+051-2894500 :نمبر نفو
+)سی یڈ سی( لمیٹڈ نکستاپا فآ کمپنی یٹرزپاڈ لسینٹر
+74400 -چیاکر ،فیصل ہاہرشا مین یسا یچا سی یما یسا ، Bکبلا ،-B99،سؤہا سی یڈ سی
+0800 – 23275 (CDCPL) :سینٹر لکا ،051-111-111-500 :نمبر نفو فترد ی کزمر
++92-21 34326038 :لکمما نوبیر ئےابر
+info@cdcpak.com :میل یا ،www.cdcpakistan.com :ئٹسا یبو
+)یلا پی سی سی ینا( لمیٹڈ نکستاپا فآ کمپنی نگکلیئر نیشنل
+ڈور یکسچینجا کسٹاا ،نگبلڈ یکسچینجا کسٹاا نکستاپا ،لمنز یںو8
+نکستاپا ،74000 چیاکر
+فترد یکزمر
+021-111-111-622 :نمبر ینا یو
+info@nccpl.com.pk :میل یا ، www.nccpl.com.pk :ئٹسا یبو
+2 8 | نمبر صفحہ

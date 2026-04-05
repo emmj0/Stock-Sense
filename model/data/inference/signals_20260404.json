@@ -1,0 +1,590 @@
+[
+  {
+    "ticker": "FFC",
+    "action": "SELL",
+    "confidence": 0.772,
+    "strength": 1.0,
+    "expected_return_7d_pct": -63.89,
+    "current_price": 498.44,
+    "target_price_7d": 180.01,
+    "price_range_7d": {
+      "low": 164.77,
+      "high": 195.41
+    },
+    "forecast_days": {
+      "bullish": 0,
+      "bearish": 7,
+      "neutral": 0
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts -63.9% median downside over 7 days, with 7/7 days showing bearish directional consensus. Forecast uncertainty: 6.2% price range (moderate). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.447968"
+  },
+  {
+    "ticker": "EFERT",
+    "action": "SELL",
+    "confidence": 0.74,
+    "strength": 1.0,
+    "expected_return_7d_pct": -43.4,
+    "current_price": 197.75,
+    "target_price_7d": 111.93,
+    "price_range_7d": {
+      "low": 104.58,
+      "high": 119.67
+    },
+    "forecast_days": {
+      "bullish": 0,
+      "bearish": 7,
+      "neutral": 0
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts -43.4% median downside over 7 days, with 7/7 days showing bearish directional consensus. Forecast uncertainty: 7.6% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.424441"
+  },
+  {
+    "ticker": "MCB",
+    "action": "SELL",
+    "confidence": 0.735,
+    "strength": 0.682,
+    "expected_return_7d_pct": -5.46,
+    "current_price": 366.35,
+    "target_price_7d": 346.35,
+    "price_range_7d": {
+      "low": 331.56,
+      "high": 360.56
+    },
+    "forecast_days": {
+      "bullish": 0,
+      "bearish": 7,
+      "neutral": 0
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts -5.5% median downside over 7 days, with 7/7 days showing bearish directional consensus. Forecast uncertainty: 7.9% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.494030"
+  },
+  {
+    "ticker": "HUBC",
+    "action": "SELL",
+    "confidence": 0.723,
+    "strength": 1.0,
+    "expected_return_7d_pct": -16.44,
+    "current_price": 196.94,
+    "target_price_7d": 164.57,
+    "price_range_7d": {
+      "low": 158.08,
+      "high": 174.99
+    },
+    "forecast_days": {
+      "bullish": 0,
+      "bearish": 7,
+      "neutral": 0
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts -16.4% median downside over 7 days, with 7/7 days showing bearish directional consensus. Forecast uncertainty: 8.6% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.464494"
+  },
+  {
+    "ticker": "POL",
+    "action": "SELL",
+    "confidence": 0.72,
+    "strength": 0.471,
+    "expected_return_7d_pct": -3.77,
+    "current_price": 626.82,
+    "target_price_7d": 603.2,
+    "price_range_7d": {
+      "low": 576.96,
+      "high": 631.85
+    },
+    "forecast_days": {
+      "bullish": 0,
+      "bearish": 7,
+      "neutral": 0
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts -3.8% median downside over 7 days, with 7/7 days showing bearish directional consensus. Forecast uncertainty: 8.8% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.544629"
+  },
+  {
+    "ticker": "UBL",
+    "action": "SELL",
+    "confidence": 0.691,
+    "strength": 1.0,
+    "expected_return_7d_pct": -14.17,
+    "current_price": 344.45,
+    "target_price_7d": 295.62,
+    "price_range_7d": {
+      "low": 280.89,
+      "high": 317.4
+    },
+    "forecast_days": {
+      "bullish": 0,
+      "bearish": 7,
+      "neutral": 0
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts -14.2% median downside over 7 days, with 7/7 days showing bearish directional consensus. Forecast uncertainty: 10.6% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.596211"
+  },
+  {
+    "ticker": "MEBL",
+    "action": "SELL",
+    "confidence": 0.675,
+    "strength": 1.0,
+    "expected_return_7d_pct": -56.15,
+    "current_price": 457.86,
+    "target_price_7d": 200.79,
+    "price_range_7d": {
+      "low": 175.14,
+      "high": 229.32
+    },
+    "forecast_days": {
+      "bullish": 0,
+      "bearish": 7,
+      "neutral": 0
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts -56.1% median downside over 7 days, with 7/7 days showing bearish directional consensus. Forecast uncertainty: 11.8% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.502569"
+  },
+  {
+    "ticker": "CHCC",
+    "action": "SELL",
+    "confidence": 0.672,
+    "strength": 1.0,
+    "expected_return_7d_pct": -8.98,
+    "current_price": 252.06,
+    "target_price_7d": 229.44,
+    "price_range_7d": {
+      "low": 214.29,
+      "high": 244.6
+    },
+    "forecast_days": {
+      "bullish": 0,
+      "bearish": 7,
+      "neutral": 0
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts -9.0% median downside over 7 days, with 7/7 days showing bearish directional consensus. Forecast uncertainty: 12.0% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.410927"
+  },
+  {
+    "ticker": "ATRL",
+    "action": "SELL",
+    "confidence": 0.642,
+    "strength": 1.0,
+    "expected_return_7d_pct": -31.6,
+    "current_price": 721.19,
+    "target_price_7d": 493.3,
+    "price_range_7d": {
+      "low": 441.97,
+      "high": 548.63
+    },
+    "forecast_days": {
+      "bullish": 0,
+      "bearish": 7,
+      "neutral": 0
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts -31.6% median downside over 7 days, with 7/7 days showing bearish directional consensus. Forecast uncertainty: 14.8% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.387396"
+  },
+  {
+    "ticker": "FABL",
+    "action": "SELL",
+    "confidence": 0.64,
+    "strength": 1.0,
+    "expected_return_7d_pct": -39.17,
+    "current_price": 83.12,
+    "target_price_7d": 50.56,
+    "price_range_7d": {
+      "low": 44.48,
+      "high": 56.91
+    },
+    "forecast_days": {
+      "bullish": 0,
+      "bearish": 7,
+      "neutral": 0
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts -39.2% median downside over 7 days, with 7/7 days showing bearish directional consensus. Forecast uncertainty: 14.9% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.431956"
+  },
+  {
+    "ticker": "BAHL",
+    "action": "SELL",
+    "confidence": 0.637,
+    "strength": 1.0,
+    "expected_return_7d_pct": -24.39,
+    "current_price": 152.83,
+    "target_price_7d": 115.55,
+    "price_range_7d": {
+      "low": 103.92,
+      "high": 127.4
+    },
+    "forecast_days": {
+      "bullish": 0,
+      "bearish": 7,
+      "neutral": 0
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts -24.4% median downside over 7 days, with 7/7 days showing bearish directional consensus. Forecast uncertainty: 15.4% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.404410"
+  },
+  {
+    "ticker": "BAFL",
+    "action": "SELL",
+    "confidence": 0.626,
+    "strength": 1.0,
+    "expected_return_7d_pct": -26.75,
+    "current_price": 107.9,
+    "target_price_7d": 79.04,
+    "price_range_7d": {
+      "low": 70.18,
+      "high": 87.98
+    },
+    "forecast_days": {
+      "bullish": 0,
+      "bearish": 7,
+      "neutral": 0
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts -26.7% median downside over 7 days, with 7/7 days showing bearish directional consensus. Forecast uncertainty: 16.5% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.397419"
+  },
+  {
+    "ticker": "PAEL",
+    "action": "BUY",
+    "confidence": 0.599,
+    "strength": 1.0,
+    "expected_return_7d_pct": 10.34,
+    "current_price": 35.88,
+    "target_price_7d": 39.59,
+    "price_range_7d": {
+      "low": 36.45,
+      "high": 43.67
+    },
+    "forecast_days": {
+      "bullish": 7,
+      "bearish": 0,
+      "neutral": 0
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts 10.3% median upside over 7 days, with 7/7 days showing bullish directional consensus. Forecast uncertainty: 20.1% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.537126"
+  },
+  {
+    "ticker": "PRL",
+    "action": "HOLD",
+    "confidence": 0.54,
+    "strength": 0.5,
+    "expected_return_7d_pct": 8.27,
+    "current_price": 28.37,
+    "target_price_7d": 30.72,
+    "price_range_7d": {
+      "low": 26.4,
+      "high": 35.73
+    },
+    "forecast_days": {
+      "bullish": 7,
+      "bearish": 0,
+      "neutral": 0
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts 8.3% movement (\u00b132.9%) \u2014 insufficient directional conviction for a strong signal. Forecast uncertainty: 32.9% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.561149"
+  },
+  {
+    "ticker": "TGL",
+    "action": "HOLD",
+    "confidence": 0.538,
+    "strength": 0.5,
+    "expected_return_7d_pct": 2.73,
+    "current_price": 133.92,
+    "target_price_7d": 137.58,
+    "price_range_7d": {
+      "low": 128.87,
+      "high": 147.36
+    },
+    "forecast_days": {
+      "bullish": 5,
+      "bearish": 0,
+      "neutral": 2
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts 2.7% movement (\u00b113.8%) \u2014 insufficient directional conviction for a strong signal. Forecast uncertainty: 13.8% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.588694"
+  },
+  {
+    "ticker": "HBL",
+    "action": "HOLD",
+    "confidence": 0.529,
+    "strength": 0.5,
+    "expected_return_7d_pct": -0.38,
+    "current_price": 252.9,
+    "target_price_7d": 251.93,
+    "price_range_7d": {
+      "low": 239.95,
+      "high": 265.24
+    },
+    "forecast_days": {
+      "bullish": 4,
+      "bearish": 0,
+      "neutral": 3
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts -0.4% movement (\u00b110.0%) \u2014 insufficient directional conviction for a strong signal. Forecast uncertainty: 10.0% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.454980"
+  },
+  {
+    "ticker": "DGKC",
+    "action": "HOLD",
+    "confidence": 0.484,
+    "strength": 0.5,
+    "expected_return_7d_pct": 1.83,
+    "current_price": 159.98,
+    "target_price_7d": 162.91,
+    "price_range_7d": {
+      "low": 152.86,
+      "high": 174.43
+    },
+    "forecast_days": {
+      "bullish": 4,
+      "bearish": 0,
+      "neutral": 3
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts 1.8% movement (\u00b113.5%) \u2014 insufficient directional conviction for a strong signal. Forecast uncertainty: 13.5% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.418442"
+  },
+  {
+    "ticker": "SEARL",
+    "action": "HOLD",
+    "confidence": 0.48,
+    "strength": 0.5,
+    "expected_return_7d_pct": 7.18,
+    "current_price": 81.6,
+    "target_price_7d": 87.46,
+    "price_range_7d": {
+      "low": 74.85,
+      "high": 102.37
+    },
+    "forecast_days": {
+      "bullish": 6,
+      "bearish": 0,
+      "neutral": 1
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts 7.2% movement (\u00b133.7%) \u2014 insufficient directional conviction for a strong signal. Forecast uncertainty: 33.7% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.574672"
+  },
+  {
+    "ticker": "OGDC",
+    "action": "HOLD",
+    "confidence": 0.474,
+    "strength": 0.5,
+    "expected_return_7d_pct": -3.42,
+    "current_price": 265.62,
+    "target_price_7d": 256.55,
+    "price_range_7d": {
+      "low": 243.56,
+      "high": 269.61
+    },
+    "forecast_days": {
+      "bullish": 0,
+      "bearish": 3,
+      "neutral": 4
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts -3.4% movement (\u00b19.8%) \u2014 insufficient directional conviction for a strong signal. Forecast uncertainty: 9.8% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.528619"
+  },
+  {
+    "ticker": "FCCL",
+    "action": "HOLD",
+    "confidence": 0.429,
+    "strength": 0.5,
+    "expected_return_7d_pct": -0.31,
+    "current_price": 40.16,
+    "target_price_7d": 40.04,
+    "price_range_7d": {
+      "low": 37.53,
+      "high": 42.86
+    },
+    "forecast_days": {
+      "bullish": 3,
+      "bearish": 0,
+      "neutral": 4
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts -0.3% movement (\u00b113.3%) \u2014 insufficient directional conviction for a strong signal. Forecast uncertainty: 13.3% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.439463"
+  },
+  {
+    "ticker": "MLCF",
+    "action": "HOLD",
+    "confidence": 0.327,
+    "strength": 0.5,
+    "expected_return_7d_pct": 1.92,
+    "current_price": 79.03,
+    "target_price_7d": 80.55,
+    "price_range_7d": {
+      "low": 73.69,
+      "high": 88.04
+    },
+    "forecast_days": {
+      "bullish": 2,
+      "bearish": 0,
+      "neutral": 5
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts 1.9% movement (\u00b118.2%) \u2014 insufficient directional conviction for a strong signal. Forecast uncertainty: 18.2% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.510567"
+  },
+  {
+    "ticker": "ILP",
+    "action": "HOLD",
+    "confidence": 0.313,
+    "strength": 0.5,
+    "expected_return_7d_pct": -1.72,
+    "current_price": 78.22,
+    "target_price_7d": 76.87,
+    "price_range_7d": {
+      "low": 73.55,
+      "high": 80.74
+    },
+    "forecast_days": {
+      "bullish": 0,
+      "bearish": 0,
+      "neutral": 7
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts -1.7% movement (\u00b19.2%) \u2014 insufficient directional conviction for a strong signal. Forecast uncertainty: 9.2% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.472007"
+  },
+  {
+    "ticker": "PPL",
+    "action": "HOLD",
+    "confidence": 0.299,
+    "strength": 0.5,
+    "expected_return_7d_pct": -0.78,
+    "current_price": 204.68,
+    "target_price_7d": 203.08,
+    "price_range_7d": {
+      "low": 193.57,
+      "high": 214.2
+    },
+    "forecast_days": {
+      "bullish": 0,
+      "bearish": 0,
+      "neutral": 7
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts -0.8% movement (\u00b110.1%) \u2014 insufficient directional conviction for a strong signal. Forecast uncertainty: 10.1% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.552637"
+  },
+  {
+    "ticker": "PSO",
+    "action": "HOLD",
+    "confidence": 0.297,
+    "strength": 0.5,
+    "expected_return_7d_pct": 2.53,
+    "current_price": 351.57,
+    "target_price_7d": 360.46,
+    "price_range_7d": {
+      "low": 343.43,
+      "high": 379.32
+    },
+    "forecast_days": {
+      "bullish": 0,
+      "bearish": 0,
+      "neutral": 7
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts 2.5% movement (\u00b110.2%) \u2014 insufficient directional conviction for a strong signal. Forecast uncertainty: 10.2% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.567672"
+  },
+  {
+    "ticker": "LUCK",
+    "action": "HOLD",
+    "confidence": 0.291,
+    "strength": 0.5,
+    "expected_return_7d_pct": -2.35,
+    "current_price": 362.3,
+    "target_price_7d": 353.79,
+    "price_range_7d": {
+      "low": 329.19,
+      "high": 385.79
+    },
+    "forecast_days": {
+      "bullish": 1,
+      "bearish": 0,
+      "neutral": 6
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts -2.3% movement (\u00b115.6%) \u2014 insufficient directional conviction for a strong signal. Forecast uncertainty: 15.6% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.485520"
+  },
+  {
+    "ticker": "NBP",
+    "action": "HOLD",
+    "confidence": 0.265,
+    "strength": 0.5,
+    "expected_return_7d_pct": 0.17,
+    "current_price": 168.56,
+    "target_price_7d": 168.85,
+    "price_range_7d": {
+      "low": 158.6,
+      "high": 179.93
+    },
+    "forecast_days": {
+      "bullish": 0,
+      "bearish": 0,
+      "neutral": 7
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts 0.2% movement (\u00b112.7%) \u2014 insufficient directional conviction for a strong signal. Forecast uncertainty: 12.7% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.520085"
+  },
+  {
+    "ticker": "INIL",
+    "action": "HOLD",
+    "confidence": 0.239,
+    "strength": 0.5,
+    "expected_return_7d_pct": -1.4,
+    "current_price": 145.45,
+    "target_price_7d": 143.41,
+    "price_range_7d": {
+      "low": 134.0,
+      "high": 156.04
+    },
+    "forecast_days": {
+      "bullish": 0,
+      "bearish": 0,
+      "neutral": 7
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts -1.4% movement (\u00b115.2%) \u2014 insufficient directional conviction for a strong signal. Forecast uncertainty: 15.2% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.478007"
+  },
+  {
+    "ticker": "SYS",
+    "action": "HOLD",
+    "confidence": 0.15,
+    "strength": 0.5,
+    "expected_return_7d_pct": 4.78,
+    "current_price": 140.3,
+    "target_price_7d": 147.0,
+    "price_range_7d": {
+      "low": 127.3,
+      "high": 169.21
+    },
+    "forecast_days": {
+      "bullish": 0,
+      "bearish": 0,
+      "neutral": 7
+    },
+    "confidence_note": null,
+    "reasoning": "TFT model forecasts 4.8% movement (\u00b129.9%) \u2014 insufficient directional conviction for a strong signal. Forecast uncertainty: 29.9% price range (wide (lower confidence)). Market sentiment is neutral (blended score: 0.00).",
+    "timestamp": "2026-04-04T22:26:39.581185"
+  }
+]
