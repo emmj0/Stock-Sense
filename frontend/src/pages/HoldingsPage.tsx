@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchPortfolio, upsertPortfolioItem, removePortfolioItem, fetchIndexes, fetchSectors, fetchPortfolioPredictions } from '../api';
-import { ArrowLeft, Pencil, Trash2, X, CheckCircle2, TrendingUp, TrendingDown, ShieldCheck, BarChart3, AlertTriangle, Brain, Newspaper, Target, Gauge, Layers } from 'lucide-react';
+import { Pencil, Trash2, X, CheckCircle2, TrendingUp, TrendingDown, ShieldCheck, BarChart3, AlertTriangle, Brain, Newspaper, Target, Gauge, Layers } from 'lucide-react';
 import { Loader } from '../components/Loader';
+import { Toast, ConfirmModal } from '../components/Toast';
 
 interface PortfolioItem { symbol: string; quantity: number; averageCost?: number; }
 interface StockInfo { name?: string; current?: string; change?: string; percentChange?: string; sectorName?: string; }
@@ -104,6 +105,7 @@ export default function HoldingsPage() {
   const [editForm, setEditForm] = useState({ quantity: 0, averageCost: 0 });
   const [msg, setMsg] = useState('');
   const [error, setError] = useState('');
+  const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -127,8 +129,13 @@ export default function HoldingsPage() {
     if (!editingSymbol || editForm.quantity <= 0) { setError('Quantity must be > 0'); return; }
     try { const u = await upsertPortfolioItem({ symbol: editingSymbol, quantity: editForm.quantity, averageCost: editForm.averageCost }); setHoldings(u); setEditingSymbol(null); setMsg(`Updated ${editingSymbol}`); setTimeout(() => setMsg(''), 2500); } catch (e: any) { setError(e?.response?.data?.message || 'Failed'); }
   };
-  const del = async (sym: string) => {
-    if (!confirm(`Remove ${sym}?`)) return;
+  const del = (sym: string) => {
+    setConfirmDelete(sym);
+  };
+  const executeDelete = async () => {
+    const sym = confirmDelete;
+    if (!sym) return;
+    setConfirmDelete(null);
     try { const u = await removePortfolioItem(sym); setHoldings(u); setMsg(`Removed ${sym}`); setTimeout(() => setMsg(''), 2500); } catch (e: any) { setError(e?.response?.data?.message || 'Failed'); }
   };
 
@@ -148,45 +155,39 @@ export default function HoldingsPage() {
   const totPct = totInv > 0 ? (totPnL / totInv) * 100 : 0;
 
   return (
-    <main className="min-h-screen bg-slate-50 py-6">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6">
+    <div className="p-6 sm:p-8">
+      <div className="mx-auto max-w-6xl">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-5">
-          <button onClick={() => navigate('/dashboard')} className="p-1.5 rounded-lg hover:bg-white text-slate-400 transition-colors"><ArrowLeft size={18} /></button>
-          <div>
-            <h1 className="text-xl font-bold text-slate-900 tracking-tight">My Holdings</h1>
-            <p className="text-xs text-slate-400 mt-0.5">{holdings.length} stocks in portfolio</p>
-          </div>
+        <div className="mb-10">
+          <h1 className="text-4xl font-bold text-slate-900 tracking-tight">My Holdings</h1>
+          <p className="text-slate-500 mt-3">{holdings.length} stocks in portfolio</p>
         </div>
 
-        {error && <div className="mb-3 px-3 py-2 rounded-lg bg-red-50 border border-red-100 text-red-600 text-xs flex items-center gap-2"><AlertTriangle size={14} />{error}</div>}
-        {msg && <div className="mb-3 px-3 py-2 rounded-lg bg-emerald-50 border border-emerald-100 text-emerald-600 text-xs flex items-center gap-2"><CheckCircle2 size={14} />{msg}</div>}
-
         {loading ? <Loader text="Loading holdings..." /> : holdings.length === 0 ? (
-          <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center shadow-sm">
-            <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mx-auto mb-3"><BarChart3 size={22} className="text-blue-500" /></div>
-            <p className="text-slate-800 font-semibold text-sm">No stocks yet</p>
-            <p className="text-slate-400 text-xs mt-1 mb-4">Add stocks from the Dashboard to get started</p>
-            <button onClick={() => navigate('/dashboard')} className="btn btn-primary text-xs">Go to Dashboard</button>
+          <div className="bg-gradient-to-br from-white to-slate-50 rounded-2xl border border-slate-200 p-16 text-center shadow-sm">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100/50 flex items-center justify-center mx-auto mb-4"><BarChart3 size={28} className="text-blue-500" /></div>
+            <p className="text-slate-900 font-bold text-lg">No stocks yet</p>
+            <p className="text-slate-500 text-sm mt-2 mb-6">You haven't added any stock holdings yet. Start building your portfolio from the Dashboard.</p>
+            <button onClick={() => navigate('/dashboard')} className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-medium text-sm hover:shadow-lg hover:shadow-blue-500/30 transition-all"><BarChart3 size={16} /> Go to Dashboard</button>
           </div>
         ) : (
           <>
             {/* Portfolio Summary */}
-            <div className="grid grid-cols-3 gap-3 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
               {[
-                { label: 'Invested', value: `Rs. ${totInv.toLocaleString('en-PK', { maximumFractionDigits: 0 })}`, color: 'text-slate-900' },
-                { label: 'Current Value', value: `Rs. ${totCur.toLocaleString('en-PK', { maximumFractionDigits: 0 })}`, color: 'text-slate-900' },
-                { label: 'Total P&L', value: `${totPnL >= 0 ? '+' : ''}Rs. ${totPnL.toLocaleString('en-PK', { maximumFractionDigits: 0 })} (${totPct >= 0 ? '+' : ''}${totPct.toFixed(1)}%)`, color: totPnL >= 0 ? 'text-emerald-600' : 'text-red-600' },
-              ].map(({ label, value, color }) => (
-                <div key={label} className="bg-white rounded-xl border border-slate-200 px-4 py-3 shadow-sm">
-                  <p className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">{label}</p>
-                  <p className={`text-sm font-bold mt-0.5 ${color}`}>{value}</p>
+                { label: 'Invested', value: `Rs. ${totInv.toLocaleString('en-PK', { maximumFractionDigits: 0 })}`, color: 'text-slate-900', bg: 'bg-gradient-to-br from-blue-50 to-blue-100/50 border-blue-200' },
+                { label: 'Current Value', value: `Rs. ${totCur.toLocaleString('en-PK', { maximumFractionDigits: 0 })}`, color: 'text-slate-900', bg: 'bg-gradient-to-br from-indigo-50 to-indigo-100/50 border-indigo-200' },
+                { label: 'Total P&L', value: `${totPnL >= 0 ? '+' : ''}Rs. ${totPnL.toLocaleString('en-PK', { maximumFractionDigits: 0 })} (${totPct >= 0 ? '+' : ''}${totPct.toFixed(1)}%)`, color: totPnL >= 0 ? 'text-emerald-600 font-bold' : 'text-red-600 font-bold', bg: totPnL >= 0 ? 'bg-gradient-to-br from-emerald-50 to-emerald-100/50 border-emerald-200' : 'bg-gradient-to-br from-red-50 to-red-100/50 border-red-200' },
+              ].map(({ label, value, color, bg }) => (
+                <div key={label} className={`rounded-2xl border px-6 py-5 shadow-sm hover:shadow-md transition-all ${bg}`}>
+                  <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider">{label}</p>
+                  <p className={`text-xl font-bold mt-3 ${color}`}>{value}</p>
                 </div>
               ))}
             </div>
 
             {/* Holdings */}
-            <div className="space-y-2.5">
+            <div className="space-y-4">
               {holdings.map((item, idx) => {
                 const info = stockDetails[item.symbol] || {};
                 const pred = predictionMap[item.symbol];
@@ -198,55 +199,55 @@ export default function HoldingsPage() {
                 const pnl = curV - inv;
 
                 return (
-                  <div key={item.symbol} className={`bg-white rounded-xl border overflow-hidden shadow-sm transition-all duration-200 ${isExp ? 'border-blue-200 shadow-md' : 'border-slate-200 hover:border-slate-300'}`} style={{ animationDelay: `${idx * 0.03}s` }}>
+                  <div key={item.symbol} className={`bg-gradient-to-br from-white to-slate-50/50 rounded-2xl border overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 ${isExp ? 'border-blue-300 ring-2 ring-blue-100' : 'border-slate-200 hover:border-slate-300'}`} style={{ animationDelay: `${idx * 0.03}s` }}>
                     {isEdit ? (
                       /* Edit mode */
-                      <div className="p-4 bg-blue-50/30">
-                        <div className="flex items-center justify-between mb-3">
-                          <span className="text-sm font-bold text-slate-900">Edit {item.symbol}</span>
-                          <button onClick={() => setEditingSymbol(null)} className="p-1 rounded-md hover:bg-white text-slate-400 transition-colors"><X size={14} /></button>
-                        </div>
-                        <div className="grid grid-cols-2 gap-3 mb-3">
+                      <div className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50/30">
+                        <div className="flex items-center justify-between mb-6">
                           <div>
-                            <label className="text-[10px] text-slate-500 font-medium mb-1 block">Quantity</label>
-                            <input type="number" min="1" value={editForm.quantity} onChange={e => setEditForm({ ...editForm, quantity: parseInt(e.target.value) || 0 })} className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 outline-none transition-all" />
+                            <span className="text-lg font-bold text-slate-900">Edit {item.symbol}</span>
+                            <p className="text-sm text-slate-500 mt-1">Update holding details</p>
+                          </div>
+                          <button onClick={() => setEditingSymbol(null)} className="p-2 rounded-lg hover:bg-white text-slate-400 hover:text-slate-600 transition-colors"><X size={20} /></button>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4 mb-6">
+                          <div>
+                            <label className="text-xs text-slate-600 font-semibold mb-2.5 block uppercase tracking-wide">Quantity</label>
+                            <input type="number" min="1" value={editForm.quantity} onChange={e => setEditForm({ ...editForm, quantity: parseInt(e.target.value) || 0 })} className="w-full px-4 py-3 border border-slate-200 rounded-lg text-sm bg-white focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 outline-none transition-all" />
                           </div>
                           <div>
-                            <label className="text-[10px] text-slate-500 font-medium mb-1 block">Avg Cost (Rs)</label>
-                            <input type="number" min="0" step="0.01" value={editForm.averageCost} onChange={e => setEditForm({ ...editForm, averageCost: parseFloat(e.target.value) || 0 })} className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 outline-none transition-all" />
+                            <label className="text-xs text-slate-600 font-semibold mb-2.5 block uppercase tracking-wide">Avg Cost (Rs)</label>
+                            <input type="number" min="0" step="0.01" value={editForm.averageCost} onChange={e => setEditForm({ ...editForm, averageCost: parseFloat(e.target.value) || 0 })} className="w-full px-4 py-3 border border-slate-200 rounded-lg text-sm bg-white focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 outline-none transition-all" />
                           </div>
                         </div>
-                        <div className="flex gap-2">
-                          <button onClick={saveEdit} className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 flex items-center justify-center gap-1.5 transition-colors"><CheckCircle2 size={13} /> Save</button>
-                          <button onClick={() => setEditingSymbol(null)} className="px-4 py-2 bg-slate-100 text-slate-500 rounded-lg text-xs font-medium hover:bg-slate-200 transition-colors">Cancel</button>
+                        <div className="flex gap-3">
+                          <button onClick={saveEdit} className="flex-1 px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg text-sm font-semibold hover:shadow-lg hover:shadow-blue-500/30 flex items-center justify-center gap-2 transition-all"><CheckCircle2 size={16} /> Save</button>
+                          <button onClick={() => setEditingSymbol(null)} className="px-6 py-3 bg-slate-100 text-slate-600 rounded-lg text-sm font-medium hover:bg-slate-200 transition-colors">Cancel</button>
                         </div>
                       </div>
                     ) : (
                       <>
                         {/* Main row */}
-                        <div className="px-4 py-3 cursor-pointer hover:bg-slate-50/50 transition-colors" onClick={() => setExpandedSymbol(isExp ? null : item.symbol)}>
-                          <div className="flex items-center gap-3">
-                            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-sm shadow-blue-600/20">
-                              {item.symbol.charAt(0)}
-                            </div>
+                        <div className="px-6 py-5 cursor-pointer hover:bg-slate-50/80 transition-colors" onClick={() => setExpandedSymbol(isExp ? null : item.symbol)}>
+                          <div className="flex items-center gap-5">
                             <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2">
-                                <span className="text-sm font-semibold text-slate-900">{item.symbol}</span>
-                                {pred && <span className={`px-1.5 py-px rounded-md text-[9px] font-bold text-white leading-snug ${sigCls(pred.signal)}`}>{sigLbl(pred.signal)}</span>}
+                              <div className="flex items-center gap-3">
+                                <span className="text-lg font-bold text-slate-900">{item.symbol}</span>
+                                {pred && <span className={`px-2.5 py-1 rounded-md text-xs font-bold text-white leading-snug ${sigCls(pred.signal)}`}>{sigLbl(pred.signal)}</span>}
                               </div>
-                              <p className="text-[11px] text-slate-400 truncate mt-0.5">{info.name || item.symbol} &middot; {item.quantity} shares</p>
+                              <p className="text-sm text-slate-400 truncate mt-1">{info.name || item.symbol} • {item.quantity} shares</p>
                             </div>
-                            <div className="hidden sm:block text-right mr-2">
-                              <p className={`text-xs font-bold ${pnl >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>{pnl >= 0 ? '+' : ''}Rs. {pnl.toLocaleString('en-PK', { maximumFractionDigits: 0 })}</p>
-                              <p className="text-[10px] text-slate-400 mt-0.5">{inv > 0 ? `${((pnl / inv) * 100).toFixed(1)}%` : '--'}</p>
+                            <div className="hidden sm:block text-right mr-4">
+                              <p className={`text-base font-bold ${pnl >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>{pnl >= 0 ? '+' : ''}Rs. {pnl.toLocaleString('en-PK', { maximumFractionDigits: 0 })}</p>
+                              <p className="text-sm text-slate-400 mt-1">{inv > 0 ? `${((pnl / inv) * 100).toFixed(1)}%` : '--'}</p>
                             </div>
-                            <div className="text-right mr-1">
-                              <p className="text-sm font-semibold text-slate-900">Rs. {info.current || '0'}</p>
-                              <p className={`text-[10px] font-medium mt-0.5 ${pos(info.change || '0') ? 'text-emerald-500' : 'text-red-500'}`}>
+                            <div className="text-right mr-3">
+                              <p className="text-lg font-bold text-slate-900">Rs. {info.current || '0'}</p>
+                              <p className={`text-sm font-semibold mt-1 ${pos(info.change || '0') ? 'text-emerald-500' : 'text-red-500'}`}>
                                 {pos(info.change || '0') ? '+' : ''}{info.change} ({info.percentChange})
                               </p>
                             </div>
-                            <svg className={`w-4 h-4 text-slate-300 shrink-0 transition-transform duration-300 ${isExp ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className={`w-5 h-5 text-slate-300 shrink-0 transition-transform duration-300 ${isExp ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                             </svg>
                           </div>
@@ -254,91 +255,96 @@ export default function HoldingsPage() {
 
                         {/* Expanded detail */}
                         {isExp && (
-                          <div className="border-t border-slate-100 px-4 py-3 space-y-3 bg-gradient-to-b from-slate-50/60 to-white animate-fade-in">
+                          <div className="border-t border-slate-100 px-6 py-6 space-y-6 bg-gradient-to-b from-slate-50/50 to-white animate-fade-in">
                             {/* Holding stats */}
-                            <div className="grid grid-cols-4 gap-2">
-                              {[
-                                { label: 'Quantity', val: item.quantity.toLocaleString() },
-                                { label: 'Avg Cost', val: `Rs. ${(item.averageCost || 0).toFixed(2)}` },
-                                { label: 'Invested', val: `Rs. ${inv.toLocaleString('en-PK', { maximumFractionDigits: 0 })}` },
-                                { label: 'Current Val', val: `Rs. ${curV.toLocaleString('en-PK', { maximumFractionDigits: 0 })}` },
-                              ].map(s => (
-                                <div key={s.label} className="bg-white rounded-lg border border-slate-100 px-2 py-2 text-center">
-                                  <p className="text-[9px] text-slate-400 font-medium uppercase tracking-wide">{s.label}</p>
-                                  <p className="text-[11px] font-bold text-slate-800 mt-0.5">{s.val}</p>
-                                </div>
-                              ))}
+                            <div>
+                              <h3 className="text-sm font-semibold text-slate-900 mb-4">Holding Details</h3>
+                              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                {[
+                                  { label: 'Quantity', val: item.quantity.toLocaleString() },
+                                  { label: 'Avg Cost', val: `Rs. ${(item.averageCost || 0).toFixed(2)}` },
+                                  { label: 'Invested', val: `Rs. ${inv.toLocaleString('en-PK', { maximumFractionDigits: 0 })}` },
+                                  { label: 'Current Val', val: `Rs. ${curV.toLocaleString('en-PK', { maximumFractionDigits: 0 })}` },
+                                ].map(s => (
+                                  <div key={s.label} className="bg-white rounded-lg border border-slate-100 px-4 py-3 text-center hover:shadow-sm transition-all">
+                                    <p className="text-xs text-slate-400 font-semibold uppercase tracking-wide">{s.label}</p>
+                                    <p className="text-sm font-bold text-slate-900 mt-2">{s.val}</p>
+                                  </div>
+                                ))}
+                              </div>
                             </div>
 
                             {pred ? (
                               <>
-                                {/* AI Prediction header */}
-                                <div className="flex items-center gap-1.5 pt-1">
-                                  <Brain size={13} className="text-blue-500" />
-                                  <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">AI Prediction</span>
-                                  {pred.dataAsOf && <span className="text-[9px] text-slate-300 ml-auto">as of {pred.dataAsOf}</span>}
+{/* AI Prediction Section */}
+                            {pred && (
+                              <div className="space-y-4">
+                                <div className="flex items-center gap-2">
+                                  <Brain size={16} className="text-blue-500" />
+                                  <h3 className="text-sm font-semibold text-slate-900">AI Prediction</h3>
+                                  {pred.dataAsOf && <span className="text-xs text-slate-400 ml-auto">as of {pred.dataAsOf}</span>}
                                 </div>
 
                                 {/* Prediction metrics */}
-                                <div className="grid grid-cols-4 gap-2">
-                                  <div className="bg-white rounded-lg border border-slate-100 px-2 py-2 text-center">
-                                    <p className="text-[9px] text-slate-400 font-medium uppercase tracking-wide">Signal</p>
-                                    <span className={`inline-flex items-center gap-0.5 mt-1 px-2 py-0.5 rounded-md text-[10px] font-bold text-white ${sigCls(pred.signal)}`}>
-                                      {pred.signal === 'BUY' ? <TrendingUp size={10} /> : pred.signal === 'SELL' ? <TrendingDown size={10} /> : <Target size={10} />}
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                  <div className="bg-white rounded-lg border border-slate-100 px-4 py-3 text-center">
+                                    <p className="text-xs text-slate-400 font-medium uppercase tracking-wide">Signal</p>
+                                    <span className={`inline-flex items-center gap-1 mt-2 px-2.5 py-1 rounded-md text-xs font-bold text-white ${sigCls(pred.signal)}`}>
+                                      {pred.signal === 'BUY' ? <TrendingUp size={12} /> : pred.signal === 'SELL' ? <TrendingDown size={12} /> : <Target size={12} />}
                                       {sigLbl(pred.signal)}
                                     </span>
                                   </div>
-                                  <div className="bg-white rounded-lg border border-slate-100 px-2 py-2 text-center">
-                                    <p className="text-[9px] text-slate-400 font-medium uppercase tracking-wide">Confidence</p>
-                                    <p className="text-[11px] font-bold text-slate-800 mt-1">{pred.confidence?.toFixed(1)}%</p>
+                                  <div className="bg-white rounded-lg border border-slate-100 px-4 py-3 text-center">
+                                    <p className="text-xs text-slate-400 font-medium uppercase tracking-wide">Confidence</p>
+                                    <p className="text-base font-bold text-slate-800 mt-2">{pred.confidence?.toFixed(1)}%</p>
                                   </div>
-                                  <div className="bg-white rounded-lg border border-slate-100 px-2 py-2 text-center">
-                                    <p className="text-[9px] text-slate-400 font-medium uppercase tracking-wide">Target</p>
-                                    <p className={`text-[11px] font-bold mt-1 ${retCls(pred.predictedReturn)}`}>Rs. {pred.predictedPrice?.toFixed(2)}</p>
+                                  <div className="bg-white rounded-lg border border-slate-100 px-4 py-3 text-center">
+                                    <p className="text-xs text-slate-400 font-medium uppercase tracking-wide">Target</p>
+                                    <p className={`text-base font-bold mt-2 ${retCls(pred.predictedReturn)}`}>Rs. {pred.predictedPrice?.toFixed(2)}</p>
                                   </div>
-                                  <div className="bg-white rounded-lg border border-slate-100 px-2 py-2 text-center">
-                                    <p className="text-[9px] text-slate-400 font-medium uppercase tracking-wide">Return</p>
-                                    <p className={`text-[11px] font-bold mt-1 ${retCls(pred.predictedReturn)}`}>{pred.predictedReturn > 0 ? '+' : ''}{pred.predictedReturn?.toFixed(1)}%</p>
+                                  <div className="bg-white rounded-lg border border-slate-100 px-4 py-3 text-center">
+                                    <p className="text-xs text-slate-400 font-medium uppercase tracking-wide">Return</p>
+                                    <p className={`text-base font-bold mt-2 ${retCls(pred.predictedReturn)}`}>{pred.predictedReturn > 0 ? '+' : ''}{pred.predictedReturn?.toFixed(1)}%</p>
                                   </div>
                                 </div>
 
                                 {/* Trust / Sector / Range */}
-                                <div className="grid grid-cols-3 gap-2">
-                                  <div className={`rounded-lg border px-2 py-2 text-center ${trustCls(pred.trustLevel || 'low')}`}>
+                                <div className="grid grid-cols-3 gap-4">
+                                  <div className={`rounded-lg border px-4 py-3 text-center ${trustCls(pred.trustLevel || 'low')}`}>
                                     <div className="flex items-center justify-center gap-1">
-                                      <ShieldCheck size={10} />
-                                      <p className="text-[9px] font-medium uppercase tracking-wide">Trust</p>
+                                      <ShieldCheck size={14} />
+                                      <p className="text-xs font-medium uppercase tracking-wide">Trust</p>
                                     </div>
-                                    <p className="text-[11px] font-bold capitalize mt-0.5">{pred.trustLevel || 'N/A'}</p>
+                                    <p className="text-sm font-bold capitalize mt-2">{pred.trustLevel || 'N/A'}</p>
                                   </div>
-                                  <div className="bg-white rounded-lg border border-slate-100 px-2 py-2 text-center">
+                                  <div className="bg-white rounded-lg border border-slate-100 px-4 py-3 text-center">
                                     <div className="flex items-center justify-center gap-1 text-slate-400">
-                                      <Layers size={10} />
-                                      <p className="text-[9px] font-medium uppercase tracking-wide">Sector</p>
+                                      <Layers size={14} />
+                                      <p className="text-xs font-medium uppercase tracking-wide">Sector</p>
                                     </div>
-                                    <p className="text-[11px] font-bold text-slate-800 mt-0.5">{pred.sector || info.sectorName || '—'}</p>
+                                    <p className="text-sm font-bold text-slate-800 mt-2">{pred.sector || info.sectorName || '—'}</p>
                                   </div>
-                                  <div className="bg-white rounded-lg border border-slate-100 px-2 py-2 text-center">
+                                  <div className="bg-white rounded-lg border border-slate-100 px-4 py-3 text-center">
                                     <div className="flex items-center justify-center gap-1 text-slate-400">
-                                      <Gauge size={10} />
-                                      <p className="text-[9px] font-medium uppercase tracking-wide">Range</p>
+                                      <Gauge size={14} />
+                                      <p className="text-xs font-medium uppercase tracking-wide">Range</p>
                                     </div>
-                                    <p className="text-[11px] font-bold text-slate-800 mt-0.5">{pred.priceRange ? `${pred.priceRange.low?.toFixed(0)} – ${pred.priceRange.high?.toFixed(0)}` : '—'}</p>
+                                    <p className="text-sm font-bold text-slate-800 mt-2">{pred.priceRange ? `${pred.priceRange.low?.toFixed(0)} – ${pred.priceRange.high?.toFixed(0)}` : '—'}</p>
                                   </div>
                                 </div>
 
-                                {/* Forecast direction bar */}
+                                {/* 7-Day Direction Bar */}
                                 {pred.forecastDays && (
-                                  <div className="bg-white rounded-lg border border-slate-100 px-3 py-2">
-                                    <div className="flex items-center justify-between mb-1.5">
-                                      <span className="text-[9px] text-slate-400 font-medium uppercase tracking-wide">7-Day Direction</span>
-                                      <div className="flex items-center gap-3 text-[9px] text-slate-400">
-                                        <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-400 inline-block" /> {pred.forecastDays.bullish} Bull</span>
-                                        <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-400 inline-block" /> {pred.forecastDays.neutral} Neutral</span>
-                                        <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-400 inline-block" /> {pred.forecastDays.bearish} Bear</span>
+                                  <div className="bg-white rounded-lg border border-slate-100 px-4 py-4">
+                                    <div className="flex items-center justify-between mb-3">
+                                      <span className="text-xs font-semibold text-slate-900 uppercase tracking-wide">7-Day Direction</span>
+                                      <div className="flex items-center gap-4 text-xs text-slate-600">
+                                        <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-400" /> {pred.forecastDays.bullish} Bull</span>
+                                        <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-amber-400" /> {pred.forecastDays.neutral} Neutral</span>
+                                        <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-red-400" /> {pred.forecastDays.bearish} Bear</span>
                                       </div>
                                     </div>
-                                    <div className="flex gap-1 h-2.5 rounded-full overflow-hidden bg-slate-100">
+                                    <div className="flex gap-1 h-3 rounded-lg overflow-hidden bg-slate-100">
                                       {Array.from({ length: pred.forecastDays.bullish || 0 }).map((_, i) => <div key={`b${i}`} className="flex-1 bg-emerald-400" />)}
                                       {Array.from({ length: pred.forecastDays.neutral || 0 }).map((_, i) => <div key={`n${i}`} className="flex-1 bg-amber-400" />)}
                                       {Array.from({ length: pred.forecastDays.bearish || 0 }).map((_, i) => <div key={`d${i}`} className="flex-1 bg-red-400" />)}
@@ -346,80 +352,87 @@ export default function HoldingsPage() {
                                   </div>
                                 )}
 
-                                {/* Chart */}
+{/* Price Forecast Chart */}
                                 {pred.priceForecast7d?.length > 0 && (
-                                  <div className="bg-white rounded-lg border border-slate-100 px-2 pt-2 pb-1">
-                                    <div className="flex items-center gap-1.5 px-1 mb-1">
-                                      <BarChart3 size={11} className="text-slate-400" />
-                                      <span className="text-[9px] text-slate-400 font-medium uppercase tracking-wide">Price Forecast</span>
-                                      <span className="text-[8px] text-slate-300 ml-auto">hover for details</span>
+                                  <div>
+                                    <h3 className="text-sm font-semibold text-slate-900 mb-4 flex items-center gap-2">
+                                      <BarChart3 size={16} className="text-slate-400" />
+                                      Price Forecast (7 Days)
+                                    </h3>
+                                    <div className="bg-white rounded-xl border border-slate-100 p-6">
+                                      <ForecastChart forecast={pred.priceForecast7d} quantiles={pred.quantileForecast7d} currentPrice={curP} />
                                     </div>
-                                    <ForecastChart forecast={pred.priceForecast7d} quantiles={pred.quantileForecast7d} currentPrice={curP} />
+                                  </div>
+                                )}
                                   </div>
                                 )}
 
-                                {/* Sentiment */}
+                                {/* Sentiment Section */}
                                 {pred.sentiment && (
-                                  <div className="bg-white rounded-lg border border-slate-100 px-3 py-2">
-                                    <div className="flex items-center justify-between">
-                                      <div className="flex items-center gap-1.5">
-                                        <Newspaper size={11} className="text-slate-400" />
-                                        <span className="text-[9px] text-slate-400 font-medium uppercase tracking-wide">Sentiment</span>
+                                  <div className="bg-white rounded-lg border border-slate-100 px-4 py-4">
+                                    <div className="flex items-center justify-between mb-3">
+                                      <div className="flex items-center gap-2">
+                                        <Newspaper size={14} className="text-slate-400" />
+                                        <span className="text-xs font-semibold text-slate-900 uppercase tracking-wide">Market Sentiment</span>
                                       </div>
-                                      <span className={`text-[10px] font-bold ${sentCls(pred.sentiment.score)}`}>{sentLbl(pred.sentiment.score)} ({(pred.sentiment.score * 100).toFixed(0)}%)</span>
+                                      <span className={`text-xs font-bold ${sentCls(pred.sentiment.score)}`}>{sentLbl(pred.sentiment.score)} ({(pred.sentiment.score * 100).toFixed(0)}%)</span>
                                     </div>
-                                    {pred.sentiment.reasoning && <p className="text-[10px] text-slate-500 mt-1 leading-relaxed">{pred.sentiment.reasoning}</p>}
+                                    {pred.sentiment.reasoning && <p className="text-sm text-slate-600 leading-relaxed mb-3">{pred.sentiment.reasoning}</p>}
                                     {pred.sentiment.key_headlines?.length > 0 && (
-                                      <div className="mt-1.5 space-y-0.5">
+                                      <div className="space-y-2 pt-2 border-t border-slate-100">
+                                        <p className="text-xs font-semibold text-slate-500">Key Headlines:</p>
                                         {pred.sentiment.key_headlines.slice(0, 3).map((h, i) => (
-                                          <p key={i} className="text-[9px] text-slate-400 pl-2 border-l-2 border-slate-100">{h}</p>
+                                          <p key={i} className="text-sm text-slate-600 pl-3 border-l-2 border-slate-200">{h}</p>
                                         ))}
                                       </div>
                                     )}
                                   </div>
                                 )}
 
-                                {/* Risk factors */}
+                                {/* Risk Factors */}
                                 {pred.riskFactors?.length > 0 && (
-                                  <div className="flex items-center gap-2 flex-wrap bg-red-50/50 rounded-lg border border-red-100 px-3 py-2">
-                                    <div className="flex items-center gap-1 text-red-400 shrink-0">
-                                      <AlertTriangle size={11} />
-                                      <span className="text-[9px] font-medium uppercase tracking-wide">Risks</span>
+                                  <div className="rounded-lg border border-red-200 bg-red-50/60 px-4 py-4">
+                                    <div className="flex items-center gap-2 mb-3">
+                                      <AlertTriangle size={14} className="text-red-500" />
+                                      <span className="text-xs font-semibold text-red-700 uppercase tracking-wide">Risk Factors</span>
                                     </div>
-                                    {pred.riskFactors.map((r, i) => <span key={i} className="text-[9px] px-2 py-0.5 rounded-full bg-red-100 text-red-600 font-medium">{r}</span>)}
+                                    <div className="flex flex-wrap gap-2">
+                                      {pred.riskFactors.map((r, i) => <span key={i} className="text-xs px-3 py-1.5 rounded-md bg-red-100 text-red-700 font-medium">{r}</span>)}
+                                    </div>
                                   </div>
                                 )}
 
-                                {/* AI reasoning */}
+                                {/* AI Analysis */}
                                 {pred.llmReasoning && (
-                                  <div className={`rounded-lg border px-3 py-2.5 ${pred.signal === 'BUY' ? 'bg-emerald-50/40 border-emerald-100' : pred.signal === 'SELL' ? 'bg-red-50/40 border-red-100' : 'bg-amber-50/40 border-amber-100'}`}>
-                                    <div className="flex items-center gap-1.5 mb-1">
-                                      <Brain size={11} className="text-slate-400" />
-                                      <span className="text-[9px] text-slate-400 font-medium uppercase tracking-wide">AI Analysis</span>
+                                  <div className={`rounded-lg border px-4 py-4 ${pred.signal === 'BUY' ? 'bg-emerald-50/60 border-emerald-200' : pred.signal === 'SELL' ? 'bg-red-50/60 border-red-200' : 'bg-amber-50/60 border-amber-200'}`}>
+                                    <div className="flex items-center gap-2 mb-3">
+                                      <Brain size={14} className={`${pred.signal === 'BUY' ? 'text-emerald-600' : pred.signal === 'SELL' ? 'text-red-600' : 'text-amber-600'}`} />
+                                      <span className={`text-xs font-semibold uppercase tracking-wide ${pred.signal === 'BUY' ? 'text-emerald-700' : pred.signal === 'SELL' ? 'text-red-700' : 'text-amber-700'}`}>AI Analysis</span>
                                     </div>
-                                    <p className="text-[11px] text-slate-600 leading-relaxed">{clean(pred.llmReasoning)}</p>
+                                    <p className="text-sm leading-relaxed text-slate-700">{clean(pred.llmReasoning)}</p>
                                   </div>
                                 )}
 
-                                {/* Trust note */}
+                                {/* Trust Note */}
                                 {pred.trustNote && (
-                                  <p className="text-[9px] text-slate-400 italic px-1">{pred.trustNote}</p>
+                                  <p className="text-xs text-slate-500 italic px-4 py-2 rounded-lg bg-slate-50 border border-slate-100">{pred.trustNote}</p>
                                 )}
                               </>
                             ) : (
-                              <div className="text-center py-4">
-                                <BarChart3 size={20} className="text-slate-300 mx-auto mb-1" />
-                                <p className="text-[11px] text-slate-400">No AI prediction available</p>
+                              <div className="text-center py-8 px-4">
+                                <BarChart3 size={28} className="text-slate-300 mx-auto mb-3" />
+                                <p className="text-sm text-slate-500">No AI prediction available</p>
+                                <p className="text-xs text-slate-400 mt-1">Prediction will appear once analysis is complete</p>
                               </div>
                             )}
 
                             {/* Actions */}
-                            <div className="flex gap-2 pt-1">
-                              <button onClick={e => { e.stopPropagation(); startEdit(item); }} className="flex-1 px-3 py-1.5 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 flex items-center justify-center gap-1.5 transition-colors">
-                                <Pencil size={12} /> Edit
+                            <div className="flex gap-3 pt-4 border-t border-slate-100">
+                              <button onClick={e => { e.stopPropagation(); startEdit(item); }} className="flex-1 px-4 py-3 text-sm font-semibold bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 flex items-center justify-center gap-2 transition-colors">
+                                <Pencil size={16} /> Edit
                               </button>
-                              <button onClick={e => { e.stopPropagation(); del(item.symbol); }} className="flex-1 px-3 py-1.5 text-[11px] font-medium bg-red-50 text-red-500 rounded-lg hover:bg-red-100 flex items-center justify-center gap-1.5 transition-colors">
-                                <Trash2 size={12} /> Remove
+                              <button onClick={e => { e.stopPropagation(); del(item.symbol); }} className="flex-1 px-4 py-3 text-sm font-semibold bg-red-50 text-red-600 rounded-lg hover:bg-red-100 flex items-center justify-center gap-2 transition-colors">
+                                <Trash2 size={16} /> Remove
                               </button>
                             </div>
                           </div>
@@ -433,6 +446,18 @@ export default function HoldingsPage() {
           </>
         )}
       </div>
-    </main>
+      {error && <Toast message={error} type="error" onClose={() => setError('')} />}
+      {msg && <Toast message={msg} type="success" onClose={() => setMsg('')} />}
+      {confirmDelete && (
+        <ConfirmModal
+          title="Remove Stock"
+          message={`Are you sure you want to remove ${confirmDelete} from your holdings?`}
+          confirmLabel="Remove"
+          destructive
+          onConfirm={executeDelete}
+          onCancel={() => setConfirmDelete(null)}
+        />
+      )}
+    </div>
   );
 }

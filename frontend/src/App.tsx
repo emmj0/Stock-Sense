@@ -13,6 +13,7 @@ import LearnPage from './pages/LearnPage';
 import ChatPage from './pages/ChatPage';
 import { useAuth } from './providers/AuthProvider';
 import TopNav from './components/TopNav';
+import AppLayout from './components/AppLayout';
 
 function RequireAuth({ children }: { children: JSX.Element }) {
   const { user, loading } = useAuth();
@@ -20,10 +21,10 @@ function RequireAuth({ children }: { children: JSX.Element }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50">
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600" />
-          <p className="mt-4 text-slate-600 font-medium">Loading...</p>
+          <div className="inline-block animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600" />
+          <p className="mt-3 text-slate-500 text-sm font-medium">Loading...</p>
         </div>
       </div>
     );
@@ -36,92 +37,51 @@ function RequireAuth({ children }: { children: JSX.Element }) {
   return children;
 }
 
+/* Guest pages get the TopNav, auth pages get the Sidebar via AppLayout */
+function GuestLayout({ children }: { children: JSX.Element }) {
+  return (
+    <div className="min-h-screen bg-white text-slate-900">
+      <TopNav />
+      {children}
+    </div>
+  );
+}
+
 export default function App() {
   const { user, loading } = useAuth();
 
-  return (
-    <div className="min-h-screen bg-white dark:bg-dark-bg text-gray-900 dark:text-gray-100">
-      <TopNav />
-      {loading ? (
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600" />
-            <p className="mt-4 text-gray-500 dark:text-gray-400 font-medium">Loading...</p>
-          </div>
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600" />
+          <p className="mt-3 text-slate-500 text-sm font-medium">Loading...</p>
         </div>
-      ) : (
-        <Routes>
-          <Route path="/" element={user ? <Navigate to="/dashboard" /> : <LandingPage />} />
-          <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <LoginPage />} />
-          <Route path="/signup" element={user ? <Navigate to="/dashboard" /> : <SignupPage />} />
-          <Route path="/market-watch" element={<MarketWatchPage />} />
-          <Route
-            path="/sectors"
-            element={
-              <RequireAuth>
-                <SectorsPage />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/indexes"
-            element={
-              <RequireAuth>
-                <IndexesPage />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/learn"
-            element={
-              <RequireAuth>
-                <LearnPage />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/preferences"
-            element={
-              <RequireAuth>
-                <PreferencesPage />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              <RequireAuth>
-                <DashboardPage />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/holdings"
-            element={
-              <RequireAuth>
-                <HoldingsPage />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/chat"
-            element={
-              <RequireAuth>
-                <ChatPage />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/settings"
-            element={
-              <RequireAuth>
-                <SettingsPage />
-              </RequireAuth>
-            }
-          />
-          <Route path="*" element={<Navigate to={user ? '/dashboard' : '/'} />} />
-        </Routes>
-      )}
-    </div>
+      </div>
+    );
+  }
+
+  return (
+    <Routes>
+      {/* Guest routes — with TopNav */}
+      <Route path="/" element={user ? <Navigate to="/dashboard" /> : <GuestLayout><LandingPage /></GuestLayout>} />
+      <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <GuestLayout><LoginPage /></GuestLayout>} />
+      <Route path="/signup" element={user ? <Navigate to="/dashboard" /> : <GuestLayout><SignupPage /></GuestLayout>} />
+
+      {/* Auth routes — with Sidebar layout */}
+      <Route element={<RequireAuth><AppLayout /></RequireAuth>}>
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/holdings" element={<HoldingsPage />} />
+        <Route path="/market-watch" element={<MarketWatchPage />} />
+        <Route path="/sectors" element={<SectorsPage />} />
+        <Route path="/indexes" element={<IndexesPage />} />
+        <Route path="/learn" element={<LearnPage />} />
+        <Route path="/chat" element={<ChatPage />} />
+        <Route path="/preferences" element={<PreferencesPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
+      </Route>
+
+      <Route path="*" element={<Navigate to={user ? '/dashboard' : '/'} />} />
+    </Routes>
   );
 }

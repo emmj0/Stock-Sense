@@ -7,19 +7,25 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Space Grotesk', 'system-ui', 'sans-serif'],
       },
       colors: {
         primary: '#000000',
         secondary: '#ffffff',
         accent: '#2563eb',
         'accent-light': '#3b82f6',
-        // Dark mode surfaces — slightly blue-tinted for depth
-        'dark-bg': '#09090f',
-        'dark-card': '#111118',
-        'dark-surface': '#18181f',
-        'dark-border': '#282838',
-        'dark-hover': '#1f1f2e',
+        brand: {
+          50: '#fff8f0',
+          100: '#ffedd5',
+          200: '#fed7aa',
+          300: '#fdba74',
+          400: '#fb923c',
+          500: '#f97316',
+          600: '#ea580c',
+        },
+      },
+      boxShadow: {
+        'brand': '0 1px 3px 0 rgba(249, 115, 22, 0.12), 0 1px 2px -1px rgba(249, 115, 22, 0.1)',
+        'brand-md': '0 4px 6px -1px rgba(249, 115, 22, 0.12), 0 2px 4px -2px rgba(249, 115, 22, 0.08)',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out forwards',
