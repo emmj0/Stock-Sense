@@ -123,86 +123,52 @@ export default function MarketWatchPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-dark-bg text-black dark:text-gray-100">
-      {/* Header */}
-      <div className="relative border-b border-gray-200 dark:border-dark-border bg-white dark:bg-dark-card">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-          <div className="space-y-2">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold">
-              Market Watch
-            </h1>
-            <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl">
-              Follow real-time stock movements across all indexes and sectors
-            </p>
+    <div className="p-6 sm:p-8 max-w-6xl mx-auto">
+      {/* Header + Filters */}
+      <div className="mb-6">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-4">
+          <div>
+            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Market Watch</h1>
+            <p className="text-gray-600 text-sm">Follow real-time stock movements across all indexes and sectors</p>
           </div>
-        </div>
-      </div>
-
-      {/* Filters */}
-      <div className="border-b border-gray-200 dark:border-dark-border bg-gray-50 dark:bg-dark-surface">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* Search */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Search Symbol
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g., TELE, FNEL..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full input"
-                />
-              </div>
-
-              {/* Index Filter */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Filter by Index
-                </label>
-                <select
-                  value={selectedIndex}
-                  onChange={(e) => setSelectedIndex(e.target.value)}
-                  className="w-full input"
-                >
-                  <option value="">All Indexes</option>
-                  {indexes.map((index) => (
-                    <option key={index} value={index}>
-                      {index}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Sector Filter */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Filter by Sector
-                </label>
-                <select
-                  value={selectedSector}
-                  onChange={(e) => setSelectedSector(e.target.value)}
-                  className="w-full input"
-                >
-                  <option value="">All Sectors</option>
-                  {sectors.map((sector) => (
-                    <option key={sector} value={sector}>
-                      {sector}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            {/* Reset Button */}
+          <div className="flex flex-wrap items-center gap-3">
+            <input
+              type="text"
+              placeholder="Search symbol..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full sm:w-44 input"
+            />
+            <select
+              value={selectedIndex}
+              onChange={(e) => setSelectedIndex(e.target.value)}
+              className="w-full sm:w-44 input"
+            >
+              <option value="">All Indexes</option>
+              {indexes.map((index) => (
+                <option key={index} value={index}>
+                  {index}
+                </option>
+              ))}
+            </select>
+            <select
+              value={selectedSector}
+              onChange={(e) => setSelectedSector(e.target.value)}
+              className="w-full sm:w-44 input"
+            >
+              <option value="">All Sectors</option>
+              {sectors.map((sector) => (
+                <option key={sector} value={sector}>
+                  {sector}
+                </option>
+              ))}
+            </select>
             {(selectedIndex || selectedSector || searchTerm) && (
               <button
                 onClick={handleResetFilters}
                 className="btn btn-secondary text-sm"
               >
-                Reset Filters
+                Reset
               </button>
             )}
           </div>
@@ -210,9 +176,9 @@ export default function MarketWatchPage() {
       </div>
 
       {/* Content */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+      <div>
         {error && (
-          <div className="rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-4 text-red-800 dark:text-red-400 mb-6">
+          <div className="rounded-lg bg-red-50 border border-red-200 p-4 text-red-800 mb-6">
             {error}
           </div>
         )}
@@ -222,52 +188,52 @@ export default function MarketWatchPage() {
             <Loader text="Loading market data..." />
           </div>
         ) : filteredStocks.length === 0 ? (
-          <div className="rounded-lg border border-gray-200 dark:border-dark-border bg-gray-50 dark:bg-dark-surface p-12 text-center">
-            <p className="text-gray-600 dark:text-gray-300">No stocks found matching your filters</p>
+          <div className="rounded-lg border border-slate-200 bg-white p-12 text-center">
+            <p className="text-gray-600">No stocks found matching your filters</p>
           </div>
         ) : (
-          <div className="rounded-lg border border-gray-200 dark:border-dark-border bg-white dark:bg-dark-card overflow-hidden">
+          <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
             {/* Table wrapper for responsive scrolling */}
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-gray-200 dark:border-dark-border bg-gray-50 dark:bg-dark-surface">
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">
+                  <tr className="border-b border-slate-200 bg-slate-50">
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
                       Symbol
                     </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900 dark:text-white">
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
                       Current
                     </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900 dark:text-white">
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
                       Change
                     </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900 dark:text-white">
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
                       Change %
                     </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900 dark:text-white">
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
                       High
                     </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900 dark:text-white">
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
                       Low
                     </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900 dark:text-white">
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
                       Open
                     </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900 dark:text-white">
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">
                       Volume
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 dark:divide-dark-border">
+                <tbody className="divide-y divide-slate-200">
                   {filteredStocks.map((stock) => (
                     <tr
                       key={stock._id}
-                      className="hover:bg-gray-50 dark:hover:bg-dark-hover transition-colors cursor-pointer"
+                      className="hover:bg-slate-50 transition-colors cursor-pointer"
                     >
-                      <td className="px-6 py-4 text-sm font-semibold text-gray-900 dark:text-white">
+                      <td className="px-6 py-4 text-sm font-semibold text-slate-900">
                         {stock.SYMBOL}
                       </td>
-                      <td className="px-6 py-4 text-sm text-right text-gray-900 dark:text-white font-semibold">
+                      <td className="px-6 py-4 text-sm text-right text-slate-900 font-semibold">
                         {stock.CURRENT}
                       </td>
                       <td
@@ -288,16 +254,16 @@ export default function MarketWatchPage() {
                       >
                         {isPositive(stock['CHANGE (%)']) ? '+' : ''}{stock['CHANGE (%)']}
                       </td>
-                      <td className="px-6 py-4 text-sm text-right text-gray-600 dark:text-gray-300">
+                      <td className="px-6 py-4 text-sm text-right text-gray-600">
                         {stock.HIGH}
                       </td>
-                      <td className="px-6 py-4 text-sm text-right text-gray-600 dark:text-gray-300">
+                      <td className="px-6 py-4 text-sm text-right text-gray-600">
                         {stock.LOW}
                       </td>
-                      <td className="px-6 py-4 text-sm text-right text-gray-600 dark:text-gray-300">
+                      <td className="px-6 py-4 text-sm text-right text-gray-600">
                         {stock.OPEN}
                       </td>
-                      <td className="px-6 py-4 text-sm text-right text-gray-600 dark:text-gray-300">
+                      <td className="px-6 py-4 text-sm text-right text-gray-600">
                         {stock.VOLUME}
                       </td>
                     </tr>
@@ -307,8 +273,8 @@ export default function MarketWatchPage() {
             </div>
 
             {/* Footer with count */}
-            <div className="border-t border-gray-200 dark:border-dark-border px-6 py-4 bg-gray-50 dark:bg-dark-surface">
-              <p className="text-sm text-gray-600 dark:text-gray-300">
+            <div className="border-t border-slate-200 px-6 py-4 bg-slate-50">
+              <p className="text-sm text-gray-600">
                 Showing {filteredStocks.length} of {stocks.length} stocks
               </p>
             </div>

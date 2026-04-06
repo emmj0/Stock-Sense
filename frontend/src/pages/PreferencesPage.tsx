@@ -62,30 +62,30 @@ export default function PreferencesPage() {
   };
 
   return (
-    <main className="min-h-screen bg-white dark:bg-dark-bg py-12 px-4 sm:px-6 lg:px-8">
+    <main className="p-6 sm:p-8 max-w-6xl mx-auto">
       <div className="mx-auto max-w-2xl">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl sm:text-5xl font-display font-bold text-black dark:text-white mb-4">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-slate-900 tracking-tight mb-2">
             Personalize Your Experience
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300">
+          <p className="text-base text-slate-600">
             Tell us about your investing style so we can show you the most relevant stocks and insights.
           </p>
         </div>
 
         {/* Form Card */}
-        <div className="rounded-xl bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border p-8 md:p-12 shadow-sm">
-          <form className="space-y-10" onSubmit={handleSubmit}>
+        <div className="rounded-2xl bg-white border border-slate-200 p-6 md:p-8 shadow-sm">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             {/* Risk Tolerance */}
             <div>
-              <label className="block mb-5">
-                <span className="text-lg font-semibold text-black dark:text-white mb-2 block">
+              <label className="block mb-3">
+                <span className="text-base font-bold text-slate-900 mb-1 block">
                   Risk Tolerance
                 </span>
-                <p className="text-sm text-gray-600 dark:text-gray-300">How much volatility can you handle?</p>
+                <p className="text-xs text-slate-500">How much volatility can you handle?</p>
               </label>
-              <div className="grid gap-3">
+              <div className="grid gap-2.5">
                 {[
                   { value: 'conservative', label: 'Conservative', desc: 'Prefer stable, lower-volatility stocks' },
                   { value: 'moderate', label: 'Moderate', desc: 'Balanced between growth and stability' },
@@ -93,10 +93,10 @@ export default function PreferencesPage() {
                 ].map((option) => (
                   <label
                     key={option.value}
-                    className={`flex items-center p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                    className={`flex items-center p-3 rounded-xl border-2 cursor-pointer transition-all ${
                       prefs.riskTolerance === option.value
-                        ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-400'
-                        : 'border-gray-300 dark:border-dark-border bg-gray-50 dark:bg-dark-surface hover:border-gray-400 dark:hover:border-gray-600'
+                        ? 'border-blue-500 bg-blue-50'
+                        : 'border-slate-200 bg-slate-50 hover:border-slate-300'
                     }`}
                   >
                     <input
@@ -105,11 +105,11 @@ export default function PreferencesPage() {
                       value={option.value}
                       checked={prefs.riskTolerance === option.value}
                       onChange={(e) => update('riskTolerance', e.target.value as Preferences['riskTolerance'])}
-                      className="w-5 h-5 accent-blue-600"
+                      className="w-4 h-4 accent-blue-600"
                     />
-                    <div className="ml-4">
-                      <p className="font-semibold text-black dark:text-white">{option.label}</p>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">{option.desc}</p>
+                    <div className="ml-3">
+                      <p className="font-semibold text-slate-900 text-sm">{option.label}</p>
+                      <p className="text-xs text-slate-500 mt-0.5">{option.desc}</p>
                     </div>
                   </label>
                 ))}
@@ -118,15 +118,15 @@ export default function PreferencesPage() {
 
             {/* Investment Horizon */}
             <div>
-              <label className="block mb-5">
-                <span className="text-lg font-semibold text-black dark:text-white mb-2 block">
+              <label className="block mb-3">
+                <span className="text-base font-bold text-slate-900 mb-1 block">
                   Investment Horizon
                 </span>
-                <p className="text-sm text-gray-600 dark:text-gray-300">How long do you plan to hold your stocks?</p>
+                <p className="text-xs text-slate-500">How long do you plan to hold your stocks?</p>
               </label>
               <select
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-border bg-white dark:bg-dark-surface text-black dark:text-gray-100 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 transition-all appearance-none"
-                style={{backgroundImage: 'url(data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23000000" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>)', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center', backgroundSize: '20px', paddingRight: '40px'}}
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-900 focus:outline-none focus:ring-0 focus:border-slate-300 transition-all appearance-none text-sm"
+                style={{backgroundImage: 'url(data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%234b5563" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>)', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 10px center', backgroundSize: '18px', paddingRight: '36px'}}
                 value={prefs.investmentHorizon || ''}
                 onChange={(e) => update('investmentHorizon', e.target.value)}
               >
@@ -141,15 +141,15 @@ export default function PreferencesPage() {
 
             {/* Market Cap Focus */}
             <div>
-              <label className="block mb-5">
-                <span className="text-lg font-semibold text-black dark:text-white mb-2 block">
+              <label className="block mb-3">
+                <span className="text-base font-bold text-slate-900 mb-1 block">
                   Market Cap Focus
                 </span>
-                <p className="text-sm text-gray-600 dark:text-gray-300">What size companies interest you?</p>
+                <p className="text-xs text-slate-500">What size companies interest you?</p>
               </label>
               <select
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-border bg-white dark:bg-dark-surface text-black dark:text-gray-100 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 transition-all appearance-none"
-                style={{backgroundImage: 'url(data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23000000" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>)', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center', backgroundSize: '20px', paddingRight: '40px'}}
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-900 focus:outline-none focus:ring-0 focus:border-slate-300 transition-all appearance-none text-sm"
+                style={{backgroundImage: 'url(data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%234b5563" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>)', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 10px center', backgroundSize: '18px', paddingRight: '36px'}}
                 value={prefs.marketCapFocus || ''}
                 onChange={(e) => update('marketCapFocus', e.target.value)}
               >
@@ -163,15 +163,15 @@ export default function PreferencesPage() {
 
             {/* Dividend Preference */}
             <div>
-              <label className="block mb-5">
-                <span className="text-lg font-semibold text-black dark:text-white mb-2 block">
+              <label className="block mb-3">
+                <span className="text-base font-bold text-slate-900 mb-1 block">
                   Dividend Preference
                 </span>
-                <p className="text-sm text-gray-600 dark:text-gray-300">How do you prefer to receive dividends?</p>
+                <p className="text-xs text-slate-500">How do you prefer to receive dividends?</p>
               </label>
               <select
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-dark-border bg-white dark:bg-dark-surface text-black dark:text-gray-100 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 transition-all appearance-none"
-                style={{backgroundImage: 'url(data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23000000" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>)', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center', backgroundSize: '20px', paddingRight: '40px'}}
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-900 focus:outline-none focus:ring-0 focus:border-slate-300 transition-all appearance-none text-sm"
+                style={{backgroundImage: 'url(data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%234b5563" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>)', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 10px center', backgroundSize: '18px', paddingRight: '36px'}}
                 value={prefs.dividendPreference || ''}
                 onChange={(e) => update('dividendPreference', e.target.value)}
               >
@@ -184,22 +184,22 @@ export default function PreferencesPage() {
 
             {/* Sectors */}
             <div>
-              <label className="block mb-5">
-                <span className="text-lg font-semibold text-black dark:text-white mb-2 block">
+              <label className="block mb-3">
+                <span className="text-base font-bold text-slate-900 mb-1 block">
                   Preferred Sectors
                 </span>
-                <p className="text-sm text-gray-600 dark:text-gray-300">Which industries interest you most? (Select at least one)</p>
+                <p className="text-xs text-slate-500">Which industries interest you most? (Select at least one)</p>
               </label>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {sectorOptions.map((sector) => (
                   <button
                     key={sector}
                     type="button"
                     onClick={() => toggleSector(sector)}
-                    className={`px-4 py-3 rounded-lg font-medium transition-all border ${
+                    className={`px-3 py-2 rounded-lg font-medium text-sm transition-all border ${
                       (prefs.sectors || []).includes(sector)
                         ? 'border-blue-500 bg-blue-600 text-white'
-                        : 'border-gray-300 dark:border-dark-border bg-gray-50 dark:bg-dark-surface text-gray-700 dark:text-gray-300 hover:border-gray-400 dark:hover:border-gray-600'
+                        : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300'
                     }`}
                   >
                     {sector}
@@ -210,8 +210,8 @@ export default function PreferencesPage() {
 
             {/* Error Message */}
             {error && (
-              <div className="p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/30">
-                <p className="text-sm text-red-700 dark:text-red-400 font-medium">{error}</p>
+              <div className="p-3 rounded-xl bg-red-50 border border-red-200">
+                <p className="text-xs text-red-700 font-medium">{error}</p>
               </div>
             )}
 
@@ -219,7 +219,7 @@ export default function PreferencesPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-4 px-6 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+              className="w-full py-3 px-6 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors text-sm"
             >
               {loading ? 'Saving your preferences...' : 'Continue to Dashboard'}
             </button>

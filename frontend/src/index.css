@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Base Layer: Dark mode text readability ─────────────────── */
-
 @layer base {
   body {
     font-family: 'Inter', system-ui, sans-serif;
@@ -12,13 +10,7 @@
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    @apply bg-white text-gray-900;
-  }
-
-  .dark body,
-  body.dark,
-  :root.dark body {
-    @apply bg-[#09090f] text-gray-200;
+    @apply bg-white text-slate-900;
   }
 
   html, body, #root {
@@ -26,22 +18,13 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     font-weight: 700;
     letter-spacing: -0.02em;
   }
-
-  /* Force readable text in dark mode */
-  .dark h1, .dark h2, .dark h3 {
-    @apply text-white;
-  }
-
-  .dark p, .dark span, .dark li, .dark td, .dark th, .dark label {
-    color: inherit;
-  }
 }
 
-/* ── Smooth theme transitions ──────────────────────────────── */
+/* ── Smooth transitions ───────────────────────────────────── */
 
 *, *::before, *::after {
   transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
@@ -49,29 +32,29 @@
 
 /* ── Scrollbar ─────────────────────────────────────────────── */
 
-::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { @apply bg-transparent; }
-::-webkit-scrollbar-thumb { @apply bg-gray-300 dark:bg-gray-700 rounded-full; }
-::-webkit-scrollbar-thumb:hover { @apply bg-gray-400 dark:bg-gray-600; }
+::-webkit-scrollbar-thumb { @apply bg-slate-200 rounded-full; }
+::-webkit-scrollbar-thumb:hover { @apply bg-slate-300; }
 
 /* ── Selection ─────────────────────────────────────────────── */
 
-::selection { @apply bg-blue-600 text-white; }
+::selection { @apply bg-orange-500 text-white; }
 
 /* ── Focus ─────────────────────────────────────────────────── */
 
 input:focus, textarea:focus, select:focus {
   outline: none;
-  @apply border-blue-500 ring-2 ring-blue-500/20;
+  @apply border-blue-400 ring-2 ring-blue-500/15;
 }
 
 /* ── Inputs ────────────────────────────────────────────────── */
 
 .input {
-  @apply px-4 py-3 border border-gray-200 dark:border-dark-border rounded-xl
-         bg-white dark:bg-dark-surface text-gray-900 dark:text-gray-100
-         placeholder-gray-400 dark:placeholder-gray-500
-         focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20;
+  @apply px-4 py-3 border border-slate-200 rounded-xl
+         bg-white text-slate-900
+         placeholder-slate-400
+         focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/15;
 }
 
 /* ── Buttons ───────────────────────────────────────────────── */
@@ -81,12 +64,11 @@ input:focus, textarea:focus, select:focus {
 }
 
 .btn-primary {
-  @apply bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-600/20 hover:shadow-blue-600/30;
+  @apply bg-orange-500 text-white hover:bg-orange-600 shadow-lg shadow-orange-500/20 hover:shadow-orange-500/30;
 }
 
 .btn-secondary {
-  @apply border border-gray-200 dark:border-dark-border text-gray-700 dark:text-gray-200
-         hover:bg-gray-50 dark:hover:bg-dark-hover;
+  @apply border border-slate-200 text-slate-700 hover:bg-slate-50;
 }
 
 /* ── Stagger animations ────────────────────────────────────── */
@@ -104,22 +86,20 @@ input:focus, textarea:focus, select:focus {
   @apply transition-all duration-300;
 }
 .card-hover:hover {
-  @apply -translate-y-0.5 shadow-lg dark:shadow-black/30;
+  @apply -translate-y-0.5 shadow-lg;
 }
 
 /* ── Skeleton shimmer ──────────────────────────────────────── */
 
 .skeleton {
-  @apply bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200
-         dark:from-dark-surface dark:via-dark-hover dark:to-dark-surface
+  @apply bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200
          bg-[length:200%_100%] animate-shimmer rounded-lg;
 }
 
 /* ── Glass effect ──────────────────────────────────────────── */
 
 .glass {
-  @apply bg-white/80 dark:bg-[#0e0e18]/90 backdrop-blur-xl
-         border-b border-gray-200/60 dark:border-dark-border/60;
+  @apply bg-white/80 backdrop-blur-xl border-b border-slate-200/60;
 }
 
 /* ── Keyframe animations ───────────────────────────────────── */

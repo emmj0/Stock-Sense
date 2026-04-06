@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchPortfolio, upsertPortfolioItem, removePortfolioItem, fetchIndexes, fetchSectors, fetchPortfolioPredictions } from '../api';
-import { ArrowLeft, Pencil, Trash2, X, CheckCircle2, TrendingUp, TrendingDown, ShieldCheck, BarChart3, AlertTriangle, Brain, Newspaper, Target, Gauge, Layers } from 'lucide-react';
+import { Pencil, Trash2, X, CheckCircle2, TrendingUp, TrendingDown, ShieldCheck, BarChart3, AlertTriangle, Brain, Newspaper, Target, Gauge, Layers } from 'lucide-react';
 import { Loader } from '../components/Loader';
+import { Toast, ConfirmModal } from '../components/Toast';
 
 interface PortfolioItem { symbol: string; quantity: number; averageCost?: number; }
 interface StockInfo { name?: string; current?: string; change?: string; percentChange?: string; sectorName?: string; }
@@ -104,6 +105,7 @@ export default function HoldingsPage() {
   const [editForm, setEditForm] = useState({ quantity: 0, averageCost: 0 });
   const [msg, setMsg] = useState('');
   const [error, setError] = useState('');
+  const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -127,8 +129,13 @@ export default function HoldingsPage() {
     if (!editingSymbol || editForm.quantity <= 0) { setError('Quantity must be > 0'); return; }
     try { const u = await upsertPortfolioItem({ symbol: editingSymbol, quantity: editForm.quantity, averageCost: editForm.averageCost }); setHoldings(u); setEditingSymbol(null); setMsg(`Updated ${editingSymbol}`); setTimeout(() => setMsg(''), 2500); } catch (e: any) { setError(e?.response?.data?.message || 'Failed'); }
   };
-  const del = async (sym: string) => {
-    if (!confirm(`Remove ${sym}?`)) return;
+  const del = (sym: string) => {
+    setConfirmDelete(sym);
+  };
+  const executeDelete = async () => {
+    const sym = confirmDelete;
+    if (!sym) return;
+    setConfirmDelete(null);
     try { const u = await removePortfolioItem(sym); setHoldings(u); setMsg(`Removed ${sym}`); setTimeout(() => setMsg(''), 2500); } catch (e: any) { setError(e?.response?.data?.message || 'Failed'); }
   };
 
@@ -148,19 +155,13 @@ export default function HoldingsPage() {
   const totPct = totInv > 0 ? (totPnL / totInv) * 100 : 0;
 
   return (
-    <main className="min-h-screen bg-slate-50 py-6">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6">
+    <div className="p-6 sm:p-8">
+      <div className="mx-auto max-w-6xl">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-5">
-          <button onClick={() => navigate('/dashboard')} className="p-1.5 rounded-lg hover:bg-white text-slate-400 transition-colors"><ArrowLeft size={18} /></button>
-          <div>
-            <h1 className="text-xl font-bold text-slate-900 tracking-tight">My Holdings</h1>
-            <p className="text-xs text-slate-400 mt-0.5">{holdings.length} stocks in portfolio</p>
-          </div>
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">My Holdings</h1>
+          <p className="text-base text-slate-500 mt-2">{holdings.length} stocks in portfolio</p>
         </div>
-
-        {error && <div className="mb-3 px-3 py-2 rounded-lg bg-red-50 border border-red-100 text-red-600 text-xs flex items-center gap-2"><AlertTriangle size={14} />{error}</div>}
-        {msg && <div className="mb-3 px-3 py-2 rounded-lg bg-emerald-50 border border-emerald-100 text-emerald-600 text-xs flex items-center gap-2"><CheckCircle2 size={14} />{msg}</div>}
 
         {loading ? <Loader text="Loading holdings..." /> : holdings.length === 0 ? (
           <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center shadow-sm">
@@ -172,21 +173,21 @@ export default function HoldingsPage() {
         ) : (
           <>
             {/* Portfolio Summary */}
-            <div className="grid grid-cols-3 gap-3 mb-4">
+            <div className="grid grid-cols-3 gap-4 mb-6">
               {[
-                { label: 'Invested', value: `Rs. ${totInv.toLocaleString('en-PK', { maximumFractionDigits: 0 })}`, color: 'text-slate-900' },
-                { label: 'Current Value', value: `Rs. ${totCur.toLocaleString('en-PK', { maximumFractionDigits: 0 })}`, color: 'text-slate-900' },
-                { label: 'Total P&L', value: `${totPnL >= 0 ? '+' : ''}Rs. ${totPnL.toLocaleString('en-PK', { maximumFractionDigits: 0 })} (${totPct >= 0 ? '+' : ''}${totPct.toFixed(1)}%)`, color: totPnL >= 0 ? 'text-emerald-600' : 'text-red-600' },
-              ].map(({ label, value, color }) => (
-                <div key={label} className="bg-white rounded-xl border border-slate-200 px-4 py-3 shadow-sm">
-                  <p className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">{label}</p>
-                  <p className={`text-sm font-bold mt-0.5 ${color}`}>{value}</p>
+                { label: 'Invested', value: `Rs. ${totInv.toLocaleString('en-PK', { maximumFractionDigits: 0 })}`, color: 'text-slate-900', bg: 'bg-gradient-to-br from-blue-50 to-blue-100/50 border-blue-200' },
+                { label: 'Current Value', value: `Rs. ${totCur.toLocaleString('en-PK', { maximumFractionDigits: 0 })}`, color: 'text-slate-900', bg: 'bg-gradient-to-br from-indigo-50 to-indigo-100/50 border-indigo-200' },
+                { label: 'Total P&L', value: `${totPnL >= 0 ? '+' : ''}Rs. ${totPnL.toLocaleString('en-PK', { maximumFractionDigits: 0 })} (${totPct >= 0 ? '+' : ''}${totPct.toFixed(1)}%)`, color: totPnL >= 0 ? 'text-emerald-600 font-bold' : 'text-red-600 font-bold', bg: totPnL >= 0 ? 'bg-gradient-to-br from-emerald-50 to-emerald-100/50 border-emerald-200' : 'bg-gradient-to-br from-red-50 to-red-100/50 border-red-200' },
+              ].map(({ label, value, color, bg }) => (
+                <div key={label} className={`rounded-2xl border px-6 py-4 shadow-sm hover:shadow-md transition-all ${bg}`}>
+                  <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider">{label}</p>
+                  <p className={`text-lg font-bold mt-2 ${color}`}>{value}</p>
                 </div>
               ))}
             </div>
 
             {/* Holdings */}
-            <div className="space-y-2.5">
+            <div className="space-y-3">
               {holdings.map((item, idx) => {
                 const info = stockDetails[item.symbol] || {};
                 const pred = predictionMap[item.symbol];
@@ -198,55 +199,55 @@ export default function HoldingsPage() {
                 const pnl = curV - inv;
 
                 return (
-                  <div key={item.symbol} className={`bg-white rounded-xl border overflow-hidden shadow-sm transition-all duration-200 ${isExp ? 'border-blue-200 shadow-md' : 'border-slate-200 hover:border-slate-300'}`} style={{ animationDelay: `${idx * 0.03}s` }}>
+                  <div key={item.symbol} className={`bg-gradient-to-br from-white to-slate-50/50 rounded-2xl border overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 ${isExp ? 'border-blue-300 ring-2 ring-blue-100' : 'border-slate-200 hover:border-slate-300'}`} style={{ animationDelay: `${idx * 0.03}s` }}>
                     {isEdit ? (
                       /* Edit mode */
-                      <div className="p-4 bg-blue-50/30">
-                        <div className="flex items-center justify-between mb-3">
-                          <span className="text-sm font-bold text-slate-900">Edit {item.symbol}</span>
-                          <button onClick={() => setEditingSymbol(null)} className="p-1 rounded-md hover:bg-white text-slate-400 transition-colors"><X size={14} /></button>
+                      <div className="p-5 bg-blue-50/40">
+                        <div className="flex items-center justify-between mb-4">
+                          <span className="text-base font-bold text-slate-900">Edit {item.symbol}</span>
+                          <button onClick={() => setEditingSymbol(null)} className="p-1.5 rounded-lg hover:bg-white text-slate-400 transition-colors"><X size={16} /></button>
                         </div>
-                        <div className="grid grid-cols-2 gap-3 mb-3">
+                        <div className="grid grid-cols-2 gap-4 mb-4">
                           <div>
-                            <label className="text-[10px] text-slate-500 font-medium mb-1 block">Quantity</label>
-                            <input type="number" min="1" value={editForm.quantity} onChange={e => setEditForm({ ...editForm, quantity: parseInt(e.target.value) || 0 })} className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 outline-none transition-all" />
+                            <label className="text-xs text-slate-600 font-semibold mb-2 block">Quantity</label>
+                            <input type="number" min="1" value={editForm.quantity} onChange={e => setEditForm({ ...editForm, quantity: parseInt(e.target.value) || 0 })} className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 outline-none transition-all" />
                           </div>
                           <div>
-                            <label className="text-[10px] text-slate-500 font-medium mb-1 block">Avg Cost (Rs)</label>
-                            <input type="number" min="0" step="0.01" value={editForm.averageCost} onChange={e => setEditForm({ ...editForm, averageCost: parseFloat(e.target.value) || 0 })} className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 outline-none transition-all" />
+                            <label className="text-xs text-slate-600 font-semibold mb-2 block">Avg Cost (Rs)</label>
+                            <input type="number" min="0" step="0.01" value={editForm.averageCost} onChange={e => setEditForm({ ...editForm, averageCost: parseFloat(e.target.value) || 0 })} className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 outline-none transition-all" />
                           </div>
                         </div>
-                        <div className="flex gap-2">
-                          <button onClick={saveEdit} className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 flex items-center justify-center gap-1.5 transition-colors"><CheckCircle2 size={13} /> Save</button>
-                          <button onClick={() => setEditingSymbol(null)} className="px-4 py-2 bg-slate-100 text-slate-500 rounded-lg text-xs font-medium hover:bg-slate-200 transition-colors">Cancel</button>
+                        <div className="flex gap-3">
+                          <button onClick={saveEdit} className="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 flex items-center justify-center gap-2 transition-colors"><CheckCircle2 size={15} /> Save</button>
+                          <button onClick={() => setEditingSymbol(null)} className="px-4 py-2.5 bg-slate-100 text-slate-600 rounded-lg text-sm font-medium hover:bg-slate-200 transition-colors">Cancel</button>
                         </div>
                       </div>
                     ) : (
                       <>
                         {/* Main row */}
-                        <div className="px-4 py-3 cursor-pointer hover:bg-slate-50/50 transition-colors" onClick={() => setExpandedSymbol(isExp ? null : item.symbol)}>
-                          <div className="flex items-center gap-3">
-                            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-sm shadow-blue-600/20">
-                              {item.symbol.charAt(0)}
+                        <div className="px-5 py-4 cursor-pointer hover:bg-slate-50/80 transition-colors" onClick={() => setExpandedSymbol(isExp ? null : item.symbol)}>
+                          <div className="flex items-center gap-4">
+                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-md shadow-blue-500/30">
+                              <span className="opacity-0 w-0 h-0 overflow-hidden">{item.symbol.charAt(0)}</span>
                             </div>
                             <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2">
-                                <span className="text-sm font-semibold text-slate-900">{item.symbol}</span>
-                                {pred && <span className={`px-1.5 py-px rounded-md text-[9px] font-bold text-white leading-snug ${sigCls(pred.signal)}`}>{sigLbl(pred.signal)}</span>}
+                              <div className="flex items-center gap-2.5">
+                                <span className="text-base font-bold text-slate-900">{item.symbol}</span>
+                                {pred && <span className={`px-2 py-1 rounded-md text-xs font-bold text-white leading-snug ${sigCls(pred.signal)}`}>{sigLbl(pred.signal)}</span>}
                               </div>
-                              <p className="text-[11px] text-slate-400 truncate mt-0.5">{info.name || item.symbol} &middot; {item.quantity} shares</p>
+                              <p className="text-xs text-slate-400 truncate mt-1">{info.name || item.symbol} • {item.quantity} shares</p>
                             </div>
-                            <div className="hidden sm:block text-right mr-2">
-                              <p className={`text-xs font-bold ${pnl >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>{pnl >= 0 ? '+' : ''}Rs. {pnl.toLocaleString('en-PK', { maximumFractionDigits: 0 })}</p>
-                              <p className="text-[10px] text-slate-400 mt-0.5">{inv > 0 ? `${((pnl / inv) * 100).toFixed(1)}%` : '--'}</p>
+                            <div className="hidden sm:block text-right mr-3">
+                              <p className={`text-sm font-bold ${pnl >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>{pnl >= 0 ? '+' : ''}Rs. {pnl.toLocaleString('en-PK', { maximumFractionDigits: 0 })}</p>
+                              <p className="text-xs text-slate-400 mt-1">{inv > 0 ? `${((pnl / inv) * 100).toFixed(1)}%` : '--'}</p>
                             </div>
-                            <div className="text-right mr-1">
-                              <p className="text-sm font-semibold text-slate-900">Rs. {info.current || '0'}</p>
-                              <p className={`text-[10px] font-medium mt-0.5 ${pos(info.change || '0') ? 'text-emerald-500' : 'text-red-500'}`}>
+                            <div className="text-right mr-2">
+                              <p className="text-base font-bold text-slate-900">Rs. {info.current || '0'}</p>
+                              <p className={`text-xs font-semibold mt-0.5 ${pos(info.change || '0') ? 'text-emerald-500' : 'text-red-500'}`}>
                                 {pos(info.change || '0') ? '+' : ''}{info.change} ({info.percentChange})
                               </p>
                             </div>
-                            <svg className={`w-4 h-4 text-slate-300 shrink-0 transition-transform duration-300 ${isExp ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className={`w-5 h-5 text-slate-300 shrink-0 transition-transform duration-300 ${isExp ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                             </svg>
                           </div>
@@ -254,18 +255,18 @@ export default function HoldingsPage() {
 
                         {/* Expanded detail */}
                         {isExp && (
-                          <div className="border-t border-slate-100 px-4 py-3 space-y-3 bg-gradient-to-b from-slate-50/60 to-white animate-fade-in">
+                          <div className="border-t border-blue-100 px-5 py-4 space-y-4 bg-gradient-to-b from-blue-50/40 to-slate-50/30 animate-fade-in">
                             {/* Holding stats */}
-                            <div className="grid grid-cols-4 gap-2">
+                            <div className="grid grid-cols-4 gap-3">
                               {[
                                 { label: 'Quantity', val: item.quantity.toLocaleString() },
                                 { label: 'Avg Cost', val: `Rs. ${(item.averageCost || 0).toFixed(2)}` },
                                 { label: 'Invested', val: `Rs. ${inv.toLocaleString('en-PK', { maximumFractionDigits: 0 })}` },
                                 { label: 'Current Val', val: `Rs. ${curV.toLocaleString('en-PK', { maximumFractionDigits: 0 })}` },
                               ].map(s => (
-                                <div key={s.label} className="bg-white rounded-lg border border-slate-100 px-2 py-2 text-center">
-                                  <p className="text-[9px] text-slate-400 font-medium uppercase tracking-wide">{s.label}</p>
-                                  <p className="text-[11px] font-bold text-slate-800 mt-0.5">{s.val}</p>
+                                <div key={s.label} className="bg-white rounded-xl border border-slate-100 px-3 py-3 text-center hover:shadow-sm transition-all">
+                                  <p className="text-xs text-slate-400 font-semibold uppercase tracking-wide">{s.label}</p>
+                                  <p className="text-sm font-bold text-slate-900 mt-1">{s.val}</p>
                                 </div>
                               ))}
                             </div>
@@ -414,12 +415,12 @@ export default function HoldingsPage() {
                             )}
 
                             {/* Actions */}
-                            <div className="flex gap-2 pt-1">
-                              <button onClick={e => { e.stopPropagation(); startEdit(item); }} className="flex-1 px-3 py-1.5 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 flex items-center justify-center gap-1.5 transition-colors">
-                                <Pencil size={12} /> Edit
+                            <div className="flex gap-3 pt-2 border-t border-blue-100">
+                              <button onClick={e => { e.stopPropagation(); startEdit(item); }} className="flex-1 px-4 py-2.5 text-xs font-semibold bg-blue-50 text-blue-600 rounded-xl hover:bg-blue-100 flex items-center justify-center gap-2 transition-colors">
+                                <Pencil size={14} /> Edit
                               </button>
-                              <button onClick={e => { e.stopPropagation(); del(item.symbol); }} className="flex-1 px-3 py-1.5 text-[11px] font-medium bg-red-50 text-red-500 rounded-lg hover:bg-red-100 flex items-center justify-center gap-1.5 transition-colors">
-                                <Trash2 size={12} /> Remove
+                              <button onClick={e => { e.stopPropagation(); del(item.symbol); }} className="flex-1 px-4 py-2.5 text-xs font-semibold bg-red-50 text-red-600 rounded-xl hover:bg-red-100 flex items-center justify-center gap-2 transition-colors">
+                                <Trash2 size={14} /> Remove
                               </button>
                             </div>
                           </div>
@@ -433,6 +434,18 @@ export default function HoldingsPage() {
           </>
         )}
       </div>
-    </main>
+      {error && <Toast message={error} type="error" onClose={() => setError('')} />}
+      {msg && <Toast message={msg} type="success" onClose={() => setMsg('')} />}
+      {confirmDelete && (
+        <ConfirmModal
+          title="Remove Stock"
+          message={`Are you sure you want to remove ${confirmDelete} from your holdings?`}
+          confirmLabel="Remove"
+          destructive
+          onConfirm={executeDelete}
+          onCancel={() => setConfirmDelete(null)}
+        />
+      )}
+    </div>
   );
 }
