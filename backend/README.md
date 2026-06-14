@@ -1,6 +1,6 @@
 # StockSense Backend
 
-This folder contains a minimal Node.js + Express backend for the StockSense project. It provides authentication routes (signup/login/me) and serves a simple landing page.
+This folder contains a minimal Node.js + Express backend for the StockSense project. It provides authentication routes (signup/login/me) and serves a simple landing page
 
 Prerequisites
 - Node.js (16+ recommended)
