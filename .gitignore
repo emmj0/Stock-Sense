@@ -51,3 +51,7 @@ npm-debug.log*
 
 # Database backups
 *.dump
+
+# Frontend source — the Python `lib/` rule above is too broad and was hiding this
+!frontend/src/lib/
+!frontend/src/lib/**
