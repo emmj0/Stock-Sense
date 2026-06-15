@@ -35,6 +35,7 @@ router.post('/send', async (req, res) => {
     const userContext = {
       name: user.name,
       email: user.email,
+      balance: user.balance || 0,
       portfolio: user.portfolio || [],
       preferences: user.preferences || {},
     };
