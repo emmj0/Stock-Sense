@@ -1,0 +1,73 @@
+name: Tests
+
+# Manual: go to the Actions tab → "Tests" → "Run workflow".
+# Runs the backend (Jest + in-memory Mongo) and frontend (Vitest) suites,
+# publishes a pass/fail summary on the run, and uploads the HTML/JUnit reports
+# as downloadable artifacts for the project report document.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  checks: write
+
+jobs:
+  backend:
+    name: Backend tests (Jest)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
+      - run: npm ci
+      - name: Run backend tests
+        run: npm run test:ci
+      - name: Publish backend test summary
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Backend results
+          path: backend/test-report/backend-junit.xml
+          reporter: jest-junit
+      - name: Upload backend report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: backend-test-report
+          path: backend/test-report
+
+  frontend:
+    name: Frontend tests (Vitest)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - name: Run frontend tests
+        run: npm test
+      - name: Publish frontend test summary
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Frontend results
+          path: frontend/test-report/frontend-junit.xml
+          reporter: java-junit
+      - name: Upload frontend report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: frontend-test-report
+          path: frontend/test-report

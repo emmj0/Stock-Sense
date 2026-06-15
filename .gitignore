@@ -55,3 +55,7 @@ npm-debug.log*
 # Frontend source — the Python `lib/` rule above is too broad and was hiding this
 !frontend/src/lib/
 !frontend/src/lib/**
+
+# Test reports (generated; uploaded as CI artifacts instead of committed)
+test-report/
+coverage/
