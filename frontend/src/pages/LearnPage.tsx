@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { fetchCourses, fetchCourse, startCourse, markReadingComplete, markPracticeComplete, submitQuiz, markVideoWatched, fetchNotes, saveNotes } from '../api';
 import { Loader } from '../components/Loader';
 import { PageHeader } from '../components/ui';
+import { videoKey } from '../lib/format';
 import {
   Lock, CheckCircle2, BookOpen, GraduationCap, ClipboardCheck, ArrowRight, ArrowLeft,
   RefreshCw, Zap, Star, X, Trophy, Sparkles, PlayCircle, Film, ExternalLink, NotebookPen, Check,
@@ -40,7 +41,6 @@ interface CourseDetail {
 }
 
 // stable key used for "watched" tracking — matches the backend (youtubeId || query)
-const videoKey = (v: CourseVideo) => v.youtubeId || v.query || v.title;
 const ytSearchUrl = (q: string) => `https://www.youtube.com/results?search_query=${encodeURIComponent(q)}`;
 
 interface QuizResult {

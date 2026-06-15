@@ -5,12 +5,13 @@ import { Toast } from '../components/Toast';
 import { useAuth } from '../providers/AuthProvider';
 import { Search, Bell, Plus, X, TrendingUp, TrendingDown, Check, Star, Mail, MailOpen, Wallet, Coins, ShoppingCart } from 'lucide-react';
 import type { Stock } from '../types';
+import { parseNum, parsePct } from '../lib/format';
 
 /* ── helpers ── */
 const AV_COLORS = ['from-sky-500 to-blue-600', 'from-brand-500 to-orange-600', 'from-emerald-500 to-teal-600', 'from-violet-500 to-fuchsia-600', 'from-rose-500 to-pink-600', 'from-amber-500 to-orange-600', 'from-cyan-500 to-sky-600', 'from-indigo-500 to-violet-600'];
 const avatarColor = (s: string) => AV_COLORS[[...s].reduce((a, c) => a + c.charCodeAt(0), 0) % AV_COLORS.length];
-const pct = (s: Stock) => parseFloat((s.changePercent || '0').replace(/[%,]/g, '')) || 0;
-const num = (s?: string) => parseFloat((s || '0').replace(/,/g, '')) || 0;
+const pct = (s: Stock) => parsePct(s.changePercent);
+const num = (s?: string) => parseNum(s);
 const QUICK_CREDIT = [500, 1000, 5000, 10000];
 
 /* deterministic synthetic series ending at `current` — for chart shape only */
