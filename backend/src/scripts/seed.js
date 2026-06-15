@@ -12,6 +12,7 @@ dotenv.config({ path: path.join(__dirname, '..', '..', '.env') });
 
 const Course = require('../models/Course');
 const coursesData = require('../../course.json');
+const courseVideos = require('../../course-videos.json');
 
 async function seedCourses() {
   try {
@@ -33,10 +34,14 @@ async function seedCourses() {
     await Course.deleteMany({});
     console.log('✅ Existing courses cleared');
 
-    // Add order to each course based on array index
+    // Add order to each course + attach the curated videos for that course
     const coursesWithOrder = coursesData.courses.map((course, index) => ({
       ...course,
       order: index + 1, // 1-based ordering
+      content: {
+        ...course.content,
+        videos: courseVideos[course.id] || course.content.videos || [],
+      },
     }));
 
     // Insert all courses

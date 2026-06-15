@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
-import { fetchCourses, fetchCourse, startCourse, markReadingComplete, markPracticeComplete, submitQuiz } from '../api';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { fetchCourses, fetchCourse, startCourse, markReadingComplete, markPracticeComplete, submitQuiz, markVideoWatched, fetchNotes, saveNotes } from '../api';
 import { Loader } from '../components/Loader';
 import { PageHeader } from '../components/ui';
 import {
   Lock, CheckCircle2, BookOpen, GraduationCap, ClipboardCheck, ArrowRight, ArrowLeft,
-  RefreshCw, Zap, Star, X, Trophy, Sparkles,
+  RefreshCw, Zap, Star, X, Trophy, Sparkles, PlayCircle, Film, ExternalLink, NotebookPen, Check,
 } from 'lucide-react';
 
 interface CourseOverview {
@@ -27,16 +27,21 @@ interface CourseOverview {
 }
 
 interface Quiz { id: string; question: string; options: string[]; }
+interface CourseVideo { title: string; channel?: string; youtubeId?: string; query?: string; description?: string; }
 
 interface CourseDetail {
   id: string;
   title: string;
   difficulty: string;
   description: string;
-  content: { readingMaterial: string; practiceQuestions: string[]; };
+  content: { readingMaterial: string; practiceQuestions: string[]; videos?: CourseVideo[]; };
   quizzes: Quiz[];
   order: number;
 }
+
+// stable key used for "watched" tracking — matches the backend (youtubeId || query)
+const videoKey = (v: CourseVideo) => v.youtubeId || v.query || v.title;
+const ytSearchUrl = (q: string) => `https://www.youtube.com/results?search_query=${encodeURIComponent(q)}`;
 
 interface QuizResult {
   quizId: string;
@@ -52,12 +57,18 @@ export default function LearnPage() {
   const [loading, setLoading] = useState(true);
   const [selectedCourse, setSelectedCourse] = useState<CourseDetail | null>(null);
   const [courseProgress, setCourseProgress] = useState<any>(null);
-  const [activeTab, setActiveTab] = useState<'reading' | 'practice' | 'quiz'>('reading');
+  const [activeTab, setActiveTab] = useState<'reading' | 'videos' | 'practice' | 'quiz'>('reading');
   const [quizAnswers, setQuizAnswers] = useState<{ [quizId: string]: string }>({});
   const [quizSubmitted, setQuizSubmitted] = useState(false);
   const [quizResults, setQuizResults] = useState<{ score: number; passed: boolean; results: QuizResult[] } | null>(null);
   const [courseLoading, setCourseLoading] = useState(false);
   const [submittingQuiz, setSubmittingQuiz] = useState(false);
+  // notes
+  const [notes, setNotes] = useState('');
+  const [notesStatus, setNotesStatus] = useState<'idle' | 'saving' | 'saved'>('idle');
+  const [notesOpen, setNotesOpen] = useState(true);
+  const notesLoadedFor = useRef<string | null>(null);
+  const lastSavedRef = useRef('');
 
   useEffect(() => { loadCourses(); }, []);
 
@@ -80,11 +91,19 @@ export default function LearnPage() {
     setQuizResults(null);
     setQuizAnswers({});
     setActiveTab('reading');
+    notesLoadedFor.current = null;
+    setNotes(''); setNotesStatus('idle');
     try {
       const data = await fetchCourse(courseId);
       setSelectedCourse(data.course);
       setCourseProgress(data.progress);
       if (data.progress.status === 'not_started') await startCourse(courseId);
+      try {
+        const note = await fetchNotes(courseId);
+        setNotes(note.content);
+        lastSavedRef.current = note.content;
+        notesLoadedFor.current = courseId;
+      } catch { notesLoadedFor.current = courseId; }
     } catch (err: any) {
       console.error('Failed to open course:', err);
       if (err.response?.status === 403) alert('This course is locked. Complete previous courses first.');
@@ -93,12 +112,38 @@ export default function LearnPage() {
     }
   };
 
+  // debounced autosave for notes
+  useEffect(() => {
+    if (!selectedCourse || notesLoadedFor.current !== selectedCourse.id) return;
+    if (notes === lastSavedRef.current) return;
+    setNotesStatus('saving');
+    const t = setTimeout(async () => {
+      try {
+        await saveNotes(selectedCourse.id, notes);
+        lastSavedRef.current = notes;
+        setNotesStatus('saved');
+      } catch { setNotesStatus('idle'); }
+    }, 800);
+    return () => clearTimeout(t);
+  }, [notes, selectedCourse]);
+
+  const handleVideoWatched = useCallback(async (v: CourseVideo) => {
+    if (!selectedCourse) return;
+    const key = videoKey(v);
+    if ((courseProgress?.videosWatched || []).includes(key)) return;
+    try {
+      await markVideoWatched(selectedCourse.id, key);
+      setCourseProgress((prev: any) => ({ ...prev, videosWatched: [...(prev?.videosWatched || []), key] }));
+    } catch (err) { console.error('Failed to mark video watched', err); }
+  }, [selectedCourse, courseProgress]);
+
   const closeCourse = () => {
     setSelectedCourse(null);
     setCourseProgress(null);
     setQuizSubmitted(false);
     setQuizResults(null);
     setQuizAnswers({});
+    setNotes(''); setNotesStatus('idle'); notesLoadedFor.current = null;
     loadCourses();
   };
 
@@ -130,7 +175,10 @@ export default function LearnPage() {
       setQuizSubmitted(true);
       setCourseProgress(result.progress);
       if (result.quizPassed) loadCourses();
-    } catch (err) { console.error('Failed to submit quiz:', err); }
+    } catch (err: any) {
+      console.error('Failed to submit quiz:', err);
+      alert(err?.response?.data?.message || 'Could not submit the quiz. Please try again.');
+    }
     finally { setSubmittingQuiz(false); }
   };
 
@@ -148,88 +196,179 @@ export default function LearnPage() {
 
   /* ── Course Detail View ───────────────────────────────── */
   if (selectedCourse) {
+    const videos = selectedCourse.content.videos || [];
+    const watchedKeys: string[] = courseProgress?.videosWatched || [];
+    const watchedCount = videos.filter(v => watchedKeys.includes(videoKey(v))).length;
+    const allVideosWatched = videos.length === 0 || watchedCount === videos.length;
+    const quizUnlocked = !!courseProgress?.quizPassed || (!!courseProgress?.readingCompleted && !!courseProgress?.practiceCompleted && allVideosWatched);
+
     const tabs = [
-      { key: 'reading' as const, label: 'Reading', icon: BookOpen, done: courseProgress?.readingCompleted },
-      { key: 'practice' as const, label: 'Practice', icon: ClipboardCheck, done: courseProgress?.practiceCompleted },
-      { key: 'quiz' as const, label: `Quiz (${selectedCourse.quizzes.length})`, icon: GraduationCap, done: courseProgress?.quizPassed },
+      { key: 'reading' as const, label: 'Reading', icon: BookOpen, done: !!courseProgress?.readingCompleted, locked: false },
+      { key: 'videos' as const, label: videos.length ? `Videos ${watchedCount}/${videos.length}` : 'Videos', icon: Film, done: videos.length > 0 && allVideosWatched, locked: false },
+      { key: 'practice' as const, label: 'Practice', icon: ClipboardCheck, done: !!courseProgress?.practiceCompleted, locked: false },
+      { key: 'quiz' as const, label: `Quiz (${selectedCourse.quizzes.length})`, icon: GraduationCap, done: !!courseProgress?.quizPassed, locked: !quizUnlocked },
     ];
+
+    const notesStatusLabel = notesStatus === 'saving' ? 'Saving…' : notesStatus === 'saved' ? 'Saved ✓' : '';
+
     return (
-      <div className="page max-w-4xl">
-        {/* Course Header */}
+      <div className="page max-w-6xl">
         <button onClick={closeCourse} className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 transition-colors mb-5 reveal">
           <ArrowLeft className="w-4 h-4" /> Back to Courses
         </button>
 
-        <div className="card p-6 mb-6 reveal">
-          <div className="flex items-start justify-between gap-3">
-            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">{selectedCourse.title}</h1>
-            <span className={`pill ring-1 ring-inset capitalize ${diffColor(selectedCourse.difficulty)}`}>{selectedCourse.difficulty}</span>
-          </div>
-          <p className="text-slate-500 text-sm mt-2">{selectedCourse.description}</p>
+        <div className="flex flex-col lg:flex-row gap-6 items-start">
+          {/* ── Main column ── */}
+          <div className="flex-1 min-w-0 w-full">
+            <div className="card p-6 mb-6 reveal">
+              <div className="flex items-start justify-between gap-3">
+                <h1 className="text-2xl font-bold text-slate-900 tracking-tight">{selectedCourse.title}</h1>
+                <span className={`pill ring-1 ring-inset capitalize ${diffColor(selectedCourse.difficulty)}`}>{selectedCourse.difficulty}</span>
+              </div>
+              <p className="text-slate-500 text-sm mt-2">{selectedCourse.description}</p>
 
-          {/* Tabs */}
-          <div className="flex flex-wrap gap-2 mt-5">
-            {tabs.map(t => (
-              <button key={t.key} onClick={() => setActiveTab(t.key)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all ${activeTab === t.key ? 'bg-sky-600 text-white shadow-lg shadow-sky-600/25' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}>
-                <t.icon className="w-4 h-4" /> {t.label}
-                {t.done && <CheckCircle2 className={`w-4 h-4 ${activeTab === t.key ? 'text-white' : 'text-emerald-500'}`} />}
-              </button>
-            ))}
-          </div>
-        </div>
+              <div className="flex flex-wrap gap-2 mt-5">
+                {tabs.map(t => (
+                  <button key={t.key} onClick={() => setActiveTab(t.key)}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all ${activeTab === t.key ? 'bg-sky-600 text-white shadow-lg shadow-sky-600/25' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}>
+                    <t.icon className="w-4 h-4" /> {t.label}
+                    {t.locked ? <Lock className={`w-3.5 h-3.5 ${activeTab === t.key ? 'text-white' : 'text-slate-400'}`} />
+                      : t.done && <CheckCircle2 className={`w-4 h-4 ${activeTab === t.key ? 'text-white' : 'text-emerald-500'}`} />}
+                  </button>
+                ))}
+              </div>
+            </div>
 
-        {/* Course Content */}
-        {courseLoading ? <Loader text="Loading course..." /> : (
-          <>
-            {activeTab === 'reading' && (
-              <div className="card p-7 reveal">
-                <div className="prose prose-slate max-w-none">
-                  {selectedCourse.content.readingMaterial.split('\n\n').map((p, idx) => (
-                    <p key={idx} className="text-slate-700 leading-relaxed mb-4">{p}</p>
-                  ))}
-                </div>
-                <div className="mt-7 pt-6 border-t border-slate-100">
-                  {!courseProgress?.readingCompleted ? (
-                    <button onClick={handleMarkReadingComplete} className="btn btn-sky"><CheckCircle2 className="w-5 h-5" /> Mark as Read</button>
-                  ) : (
-                    <div className="flex flex-wrap items-center justify-between gap-3">
-                      <span className="flex items-center gap-2 text-emerald-600 font-semibold text-sm"><CheckCircle2 className="w-5 h-5" /> Reading completed</span>
+            {courseLoading ? <Loader text="Loading course..." /> : (
+              <>
+                {activeTab === 'reading' && (
+                  <div className="card p-7 reveal">
+                    <div className="prose prose-slate max-w-none">
+                      {selectedCourse.content.readingMaterial.split('\n\n').map((p, idx) => (
+                        <p key={idx} className="text-slate-700 leading-relaxed mb-4">{p}</p>
+                      ))}
+                    </div>
+                    <div className="mt-7 pt-6 border-t border-slate-100">
+                      {!courseProgress?.readingCompleted ? (
+                        <button onClick={handleMarkReadingComplete} className="btn btn-sky"><CheckCircle2 className="w-5 h-5" /> Mark as Read</button>
+                      ) : (
+                        <div className="flex flex-wrap items-center justify-between gap-3">
+                          <span className="flex items-center gap-2 text-emerald-600 font-semibold text-sm"><CheckCircle2 className="w-5 h-5" /> Reading completed</span>
+                          <button onClick={() => setActiveTab('videos')} className="btn btn-primary">Watch the Videos <ArrowRight className="w-4 h-4" /></button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'videos' && (
+                  <div className="card p-7 reveal">
+                    <h2 className="text-lg font-bold text-slate-900 mb-1">Watch & Learn</h2>
+                    <p className="text-slate-500 text-sm mb-5">Watch each video, then mark it as watched. You must watch all {videos.length || 'the'} videos to unlock the quiz.</p>
+                    {videos.length === 0 ? (
+                      <div className="text-center py-10 text-slate-400 text-sm">No videos for this module yet.</div>
+                    ) : (
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        {videos.map((v, i) => {
+                          const key = videoKey(v);
+                          const watched = watchedKeys.includes(key);
+                          return (
+                            <div key={i} className="rounded-2xl border border-slate-200/80 overflow-hidden bg-white flex flex-col">
+                              {v.youtubeId ? (
+                                <div className="relative aspect-video bg-black">
+                                  <iframe className="absolute inset-0 w-full h-full" src={`https://www.youtube-nocookie.com/embed/${v.youtubeId}`}
+                                    title={v.title} loading="lazy" allowFullScreen
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" />
+                                </div>
+                              ) : (
+                                <a href={ytSearchUrl(v.query || v.title)} target="_blank" rel="noreferrer" onClick={() => handleVideoWatched(v)}
+                                  className="relative aspect-video bg-gradient-to-br from-slate-800 to-ink-900 flex flex-col items-center justify-center text-white hover:opacity-95 transition-opacity">
+                                  <PlayCircle className="w-12 h-12 mb-1.5 opacity-90" />
+                                  <span className="text-sm font-semibold px-4 text-center">Watch on YouTube</span>
+                                  <span className="text-[11px] text-white/60 mt-0.5">opens a search for this topic</span>
+                                </a>
+                              )}
+                              <div className="p-4 flex-1 flex flex-col">
+                                <p className="font-semibold text-slate-900 text-sm leading-snug">{v.title}</p>
+                                {v.channel && <p className="text-xs text-slate-400 mt-0.5">{v.channel}</p>}
+                                {v.description && <p className="text-xs text-slate-500 mt-1.5">{v.description}</p>}
+                                <div className="flex items-center gap-3 mt-3 pt-3 border-t border-slate-100">
+                                  <button onClick={() => handleVideoWatched(v)} disabled={watched}
+                                    className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors ${watched ? 'bg-emerald-50 text-emerald-600 cursor-default' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}>
+                                    {watched ? <><Check className="w-3.5 h-3.5" /> Watched</> : 'Mark as watched'}
+                                  </button>
+                                  {v.youtubeId && (
+                                    <a href={`https://www.youtube.com/watch?v=${v.youtubeId}`} target="_blank" rel="noreferrer" onClick={() => handleVideoWatched(v)}
+                                      className="inline-flex items-center gap-1 text-xs text-sky-600 hover:text-sky-700 font-medium"><ExternalLink className="w-3.5 h-3.5" /> Open</a>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                    <div className="mt-7 pt-6 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
+                      <span className={`flex items-center gap-2 text-sm font-semibold ${allVideosWatched ? 'text-emerald-600' : 'text-slate-400'}`}>
+                        {allVideosWatched ? <CheckCircle2 className="w-5 h-5" /> : <PlayCircle className="w-5 h-5" />} {watchedCount}/{videos.length} watched
+                      </span>
                       <button onClick={() => setActiveTab('practice')} className="btn btn-primary">Continue to Practice <ArrowRight className="w-4 h-4" /></button>
                     </div>
-                  )}
-                </div>
-              </div>
-            )}
+                  </div>
+                )}
 
-            {activeTab === 'practice' && (
-              <div className="card p-7 reveal">
-                <h2 className="text-lg font-bold text-slate-900 mb-1">Practice Questions</h2>
-                <p className="text-slate-500 text-sm mb-5">Think through these to reinforce what you learned.</p>
-                <div className="space-y-3">
-                  {selectedCourse.content.practiceQuestions.map((q, idx) => (
-                    <div key={idx} className="flex items-start gap-3 p-4 bg-sky-50/60 rounded-xl border border-sky-100">
-                      <span className="shrink-0 w-7 h-7 bg-sky-600 text-white rounded-lg flex items-center justify-center font-bold text-xs">{idx + 1}</span>
-                      <p className="text-slate-800 font-medium text-sm pt-0.5">{q}</p>
+                {activeTab === 'practice' && (
+                  <div className="card p-7 reveal">
+                    <h2 className="text-lg font-bold text-slate-900 mb-1">Practice Questions</h2>
+                    <p className="text-slate-500 text-sm mb-5">Think through these to reinforce what you learned.</p>
+                    <div className="space-y-3">
+                      {selectedCourse.content.practiceQuestions.map((q, idx) => (
+                        <div key={idx} className="flex items-start gap-3 p-4 bg-sky-50/60 rounded-xl border border-sky-100">
+                          <span className="shrink-0 w-7 h-7 bg-sky-600 text-white rounded-lg flex items-center justify-center font-bold text-xs">{idx + 1}</span>
+                          <p className="text-slate-800 font-medium text-sm pt-0.5">{q}</p>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-                <div className="mt-7 pt-6 border-t border-slate-100">
-                  {!courseProgress?.practiceCompleted ? (
-                    <button onClick={handleMarkPracticeComplete} className="btn btn-sky"><CheckCircle2 className="w-5 h-5" /> I've reviewed these</button>
-                  ) : (
-                    <div className="flex flex-wrap items-center justify-between gap-3">
-                      <span className="flex items-center gap-2 text-emerald-600 font-semibold text-sm"><CheckCircle2 className="w-5 h-5" /> Practice completed</span>
-                      <button onClick={() => setActiveTab('quiz')} className="btn btn-primary">Take the Quiz <ArrowRight className="w-4 h-4" /></button>
+                    <div className="mt-7 pt-6 border-t border-slate-100">
+                      {!courseProgress?.practiceCompleted ? (
+                        <button onClick={handleMarkPracticeComplete} className="btn btn-sky"><CheckCircle2 className="w-5 h-5" /> I've reviewed these</button>
+                      ) : (
+                        <div className="flex flex-wrap items-center justify-between gap-3">
+                          <span className="flex items-center gap-2 text-emerald-600 font-semibold text-sm"><CheckCircle2 className="w-5 h-5" /> Practice completed</span>
+                          {quizUnlocked ? (
+                            <button onClick={() => setActiveTab('quiz')} className="btn btn-primary">Take the Quiz <ArrowRight className="w-4 h-4" /></button>
+                          ) : (
+                            <span className="flex items-center gap-1.5 text-xs font-medium text-amber-600"><Lock className="w-3.5 h-3.5" /> Watch all videos to unlock the quiz</span>
+                          )}
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-              </div>
-            )}
+                  </div>
+                )}
 
-            {activeTab === 'quiz' && (
-              <div className="space-y-5 reveal">
-                {!quizSubmitted ? (
+                {activeTab === 'quiz' && !quizUnlocked && (
+                  <div className="card p-8 reveal text-center">
+                    <div className="w-16 h-16 mx-auto rounded-2xl bg-slate-100 flex items-center justify-center mb-4"><Lock className="w-8 h-8 text-slate-400" /></div>
+                    <h3 className="text-lg font-bold text-slate-900">Finish the module to unlock the quiz</h3>
+                    <p className="text-slate-500 text-sm mt-1 max-w-md mx-auto">Work through every step so the quiz actually tests what you've learned.</p>
+                    <div className="max-w-xs mx-auto mt-5 space-y-2.5 text-left">
+                      {[
+                        { label: 'Read the material', done: !!courseProgress?.readingCompleted },
+                        { label: `Watch all videos (${watchedCount}/${videos.length})`, done: allVideosWatched },
+                        { label: 'Review the practice questions', done: !!courseProgress?.practiceCompleted },
+                      ].map((s, i) => (
+                        <div key={i} className={`flex items-center gap-2.5 text-sm font-medium ${s.done ? 'text-emerald-600' : 'text-slate-500'}`}>
+                          {s.done ? <CheckCircle2 className="w-5 h-5" /> : <span className="w-5 h-5 rounded-full border-2 border-slate-300 shrink-0" />}
+                          {s.label}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'quiz' && quizUnlocked && (
+                  <div className="space-y-5 reveal">
+                    {!quizSubmitted ? (
                   <>
                     <div className="flex items-start gap-2.5 rounded-xl p-4 bg-sky-50 border border-sky-100">
                       <Sparkles className="w-5 h-5 text-sky-600 shrink-0 mt-0.5" />
@@ -303,6 +442,35 @@ export default function LearnPage() {
             )}
           </>
         )}
+          </div>
+
+          {/* ── Notes side panel ── */}
+          {notesOpen ? (
+            <aside className="w-full lg:w-80 shrink-0 lg:sticky lg:top-4 reveal">
+              <div className="card overflow-hidden">
+                <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100 bg-slate-50/60">
+                  <div className="flex items-center gap-2">
+                    <NotebookPen className="w-4 h-4 text-violet-500" />
+                    <span className="text-sm font-bold text-slate-900">My Notes</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {notesStatusLabel && <span className={`text-[11px] font-medium ${notesStatus === 'saved' ? 'text-emerald-500' : 'text-slate-400'}`}>{notesStatusLabel}</span>}
+                    <button onClick={() => setNotesOpen(false)} className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors" title="Hide notes"><X className="w-4 h-4" /></button>
+                  </div>
+                </div>
+                <textarea value={notes} onChange={e => setNotes(e.target.value)}
+                  placeholder="Jot down your own notes while you learn — they autosave and stay with this course."
+                  className="w-full h-[420px] resize-none p-4 text-sm text-slate-700 leading-relaxed focus:outline-none placeholder:text-slate-400" />
+              </div>
+              <p className="text-[11px] text-slate-400 mt-2 px-1">Notes are private to you and saved per course.</p>
+            </aside>
+          ) : (
+            <button onClick={() => setNotesOpen(true)}
+              className="shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-violet-50 text-violet-700 text-sm font-semibold hover:bg-violet-100 transition-colors reveal">
+              <NotebookPen className="w-4 h-4" /> My Notes
+            </button>
+          )}
+        </div>
       </div>
     );
   }

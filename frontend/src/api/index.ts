@@ -171,6 +171,21 @@ export async function markPracticeComplete(courseId: string): Promise<any> {
   return data;
 }
 
+export async function markVideoWatched(courseId: string, youtubeId: string): Promise<any> {
+  const { data } = await api.post(`/api/courses/${courseId}/video-watched`, { youtubeId });
+  return data;
+}
+
+export async function fetchNotes(courseId: string): Promise<{ content: string; updatedAt: string | null }> {
+  const { data } = await api.get(`/api/courses/${courseId}/notes`);
+  return { content: data.content || '', updatedAt: data.updatedAt || null };
+}
+
+export async function saveNotes(courseId: string, content: string): Promise<{ content: string; updatedAt: string }> {
+  const { data } = await api.put(`/api/courses/${courseId}/notes`, { content });
+  return data;
+}
+
 export async function submitQuiz(courseId: string, answers: { quizId: string; selectedAnswer: string }[]): Promise<any> {
   const { data } = await api.post(`/api/courses/${courseId}/submit-quiz`, { answers });
   return data;

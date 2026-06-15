@@ -47,6 +47,7 @@ const CourseProgressSchema = new mongoose.Schema(
     },
     readingCompleted: { type: Boolean, default: false },
     practiceCompleted: { type: Boolean, default: false },
+    videosWatched: [{ type: String }], // youtubeIds the user has watched in this course
     quizAttempts: [QuizAttemptSchema],
     quizScore: { type: Number, default: 0 }, // percentage score
     quizPassed: { type: Boolean, default: false },

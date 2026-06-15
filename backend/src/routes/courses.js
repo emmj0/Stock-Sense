@@ -1,6 +1,7 @@
 const express = require('express');
 const Course = require('../models/Course');
 const User = require('../models/User');
+const Note = require('../models/Note');
 const auth = require('../middleware/auth');
 
 const router = express.Router();
@@ -103,6 +104,7 @@ router.get('/:courseId', auth, async (req, res) => {
         status: 'not_started',
         readingCompleted: false,
         practiceCompleted: false,
+        videosWatched: [],
         quizAttempts: [],
         quizScore: 0,
         quizPassed: false,
@@ -226,6 +228,61 @@ router.post('/:courseId/practice-complete', auth, async (req, res) => {
   }
 });
 
+// POST /api/courses/:courseId/video-watched - Mark a video as watched (effort tracking)
+router.post('/:courseId/video-watched', auth, async (req, res) => {
+  try {
+    const { courseId } = req.params;
+    const { youtubeId } = req.body;
+    if (!youtubeId) return res.status(400).json({ message: 'youtubeId is required' });
+
+    const user = await User.findById(req.user.id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    let progress = user.courseProgress.find((p) => p.courseId === courseId);
+    if (!progress) {
+      user.courseProgress.push({ courseId, status: 'in_progress', startedAt: new Date(), videosWatched: [youtubeId] });
+    } else {
+      if (progress.status === 'not_started') { progress.status = 'in_progress'; progress.startedAt = new Date(); }
+      if (!progress.videosWatched) progress.videosWatched = [];
+      if (!progress.videosWatched.includes(youtubeId)) progress.videosWatched.push(youtubeId);
+    }
+
+    await user.save();
+    res.json({ message: 'Video marked as watched', progress: user.courseProgress.find((p) => p.courseId === courseId) });
+  } catch (err) {
+    console.error('Failed to mark video watched', err);
+    res.status(500).json({ message: 'Unable to update progress', error: err.message });
+  }
+});
+
+// GET /api/courses/:courseId/notes - the user's personal notes for this course
+router.get('/:courseId/notes', auth, async (req, res) => {
+  try {
+    const note = await Note.findOne({ user: req.user.id, courseId: req.params.courseId }).lean();
+    res.json({ content: note?.content || '', updatedAt: note?.updatedAt || null });
+  } catch (err) {
+    console.error('Failed to load notes', err);
+    res.status(500).json({ message: 'Unable to load notes' });
+  }
+});
+
+// PUT /api/courses/:courseId/notes - save the user's notes (autosave)
+router.put('/:courseId/notes', auth, async (req, res) => {
+  try {
+    const content = typeof req.body.content === 'string' ? req.body.content : '';
+    if (content.length > 50_000) return res.status(400).json({ message: 'Notes are too long' });
+    const note = await Note.findOneAndUpdate(
+      { user: req.user.id, courseId: req.params.courseId },
+      { $set: { content, updatedAt: new Date() } },
+      { new: true, upsert: true }
+    ).lean();
+    res.json({ content: note.content, updatedAt: note.updatedAt });
+  } catch (err) {
+    console.error('Failed to save notes', err);
+    res.status(500).json({ message: 'Unable to save notes' });
+  }
+});
+
 // POST /api/courses/:courseId/submit-quiz - Submit quiz answers
 router.post('/:courseId/submit-quiz', auth, async (req, res) => {
   try {
@@ -244,6 +301,19 @@ router.post('/:courseId/submit-quiz', auth, async (req, res) => {
     const course = await Course.findOne({ id: courseId });
     if (!course) {
       return res.status(404).json({ message: 'Course not found' });
+    }
+
+    // Effort gate: user must finish reading, watch all videos, and review practice
+    // before the quiz counts. This keeps learning meaningful and can't be skipped.
+    const existingProgress = user.courseProgress.find((p) => p.courseId === courseId);
+    const watched = existingProgress?.videosWatched || [];
+    const allVideosWatched = (course.content?.videos || []).every((v) => watched.includes(v.youtubeId || v.query));
+    // Already-passed users keep access (don't break their track); everyone else must put in the effort.
+    if (!existingProgress?.quizPassed &&
+        (!existingProgress?.readingCompleted || !existingProgress?.practiceCompleted || !allVideosWatched)) {
+      return res.status(403).json({
+        message: 'Complete the reading, watch all the videos, and review the practice questions before taking the quiz.',
+      });
     }
 
     // Grade the quiz
