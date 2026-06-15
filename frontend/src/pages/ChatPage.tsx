@@ -101,7 +101,10 @@ export default function ChatPage() {
           /* Empty state — centered vertically and horizontally */
           <div className="h-full flex flex-col items-center justify-center px-4">
             <div className="w-full max-w-xl mx-auto flex flex-col items-center">
-              <h2 className="text-2xl font-bold text-slate-900 mb-1">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-500 to-orange-600 text-white flex items-center justify-center mb-4 shadow-lg shadow-brand-500/30">
+                <MessageSquare size={24} />
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900 mb-1 font-display">
                 Hi {user?.name?.split(' ')[0]}! How can I help?
               </h2>
               <p className="text-sm text-slate-400 text-center mb-8">
@@ -122,7 +125,7 @@ export default function ChatPage() {
 
               {/* Input box inline with empty state */}
               <div className="w-full">
-                <div className="flex items-end gap-2 bg-white rounded-2xl border border-slate-200 shadow-sm px-4 py-3 transition-all">
+                <div className="flex items-end gap-2 bg-white rounded-2xl border border-slate-200 shadow-soft px-4 py-3 transition-all focus-within:border-brand-300 focus-within:ring-2 focus-within:ring-brand-500/15">
                   <textarea
                     ref={inputRef}
                     value={input}
@@ -161,8 +164,8 @@ export default function ChatPage() {
             {messages.map((msg, idx) => (
               <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 {msg.role === 'assistant' && (
-                  <div className="w-6 h-6 rounded-md bg-brand-500 flex items-center justify-center mr-2 mt-1 shrink-0">
-                    <Send size={11} className="text-white -rotate-45" />
+                  <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-brand-500 to-orange-600 flex items-center justify-center mr-2 mt-1 shrink-0 shadow-sm">
+                    <Send size={12} className="text-white -rotate-45" />
                   </div>
                 )}
                 <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
@@ -176,8 +179,8 @@ export default function ChatPage() {
             ))}
             {loading && (
               <div className="flex justify-start">
-                <div className="w-6 h-6 rounded-md bg-brand-500 flex items-center justify-center mr-2 shrink-0">
-                  <Send size={11} className="text-white -rotate-45" />
+                <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-brand-500 to-orange-600 flex items-center justify-center mr-2 shrink-0 shadow-sm">
+                  <Send size={12} className="text-white -rotate-45" />
                 </div>
                 <div className="bg-slate-50 rounded-2xl rounded-bl-md px-4 py-3 border border-slate-100">
                   <div className="flex gap-1.5">
@@ -200,7 +203,7 @@ export default function ChatPage() {
             <button onClick={startNewChat} className="p-2 rounded-lg text-slate-400 hover:text-brand-500 hover:bg-brand-50 transition-colors shrink-0" title="New Chat">
               <Plus size={18} />
             </button>
-            <div className="flex-1 flex items-end gap-2 bg-white rounded-2xl border border-slate-200 shadow-sm px-4 py-2.5 transition-all">
+            <div className="flex-1 flex items-end gap-2 bg-white rounded-2xl border border-slate-200 shadow-soft px-4 py-2.5 transition-all focus-within:border-brand-300 focus-within:ring-2 focus-within:ring-brand-500/15">
               <textarea
                 ref={inputRef}
                 value={input}

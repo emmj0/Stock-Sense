@@ -2,6 +2,7 @@ const express = require('express');
 const User = require('../models/User');
 const Stock = require('../models/Stock');
 const auth = require('../middleware/auth');
+const trading = require('../services/trading');
 
 const router = express.Router();
 
@@ -46,12 +47,139 @@ router.put('/preferences', auth, async (req, res) => {
   }
 });
 
+// PUT /api/user/profile  — update display name and/or avatar
+router.put('/profile', auth, async (req, res) => {
+  try {
+    const updates = {};
+    if (typeof req.body.name === 'string' && req.body.name.trim()) {
+      updates.name = req.body.name.trim();
+    }
+    if (req.body.avatar !== undefined) {
+      // accept a data URL / URL string, or null/'' to remove
+      const avatar = req.body.avatar;
+      if (avatar && typeof avatar === 'string') {
+        if (avatar.length > 3_000_000) {
+          return res.status(400).json({ message: 'Image too large. Please choose a smaller photo.' });
+        }
+        updates.avatar = avatar;
+      } else {
+        updates.avatar = '';
+      }
+    }
+
+    if (Object.keys(updates).length === 0) {
+      return res.status(400).json({ message: 'Nothing to update' });
+    }
+
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      { $set: updates },
+      { new: true, select: '-password' }
+    );
+
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    res.json({ user });
+  } catch (err) {
+    console.error('Failed to update profile', err);
+    res.status(500).json({ message: 'Unable to update profile' });
+  }
+});
+
+// GET /api/user/watchlist
+router.get('/watchlist', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('watchlist');
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    res.json({ watchlist: user.watchlist || [] });
+  } catch (err) {
+    console.error('Failed to get watchlist', err);
+    res.status(500).json({ message: 'Unable to load watchlist' });
+  }
+});
+
+// POST /api/user/watchlist  { symbol }
+router.post('/watchlist', auth, async (req, res) => {
+  try {
+    const symbol = (req.body.symbol || '').toUpperCase();
+    if (!symbol) return res.status(400).json({ message: 'symbol is required' });
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      { $addToSet: { watchlist: symbol } },
+      { new: true, select: 'watchlist' }
+    );
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    res.json({ watchlist: user.watchlist });
+  } catch (err) {
+    console.error('Failed to add to watchlist', err);
+    res.status(500).json({ message: 'Unable to update watchlist' });
+  }
+});
+
+// DELETE /api/user/watchlist/:symbol
+router.delete('/watchlist/:symbol', auth, async (req, res) => {
+  try {
+    const symbol = req.params.symbol.toUpperCase();
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      { $pull: { watchlist: symbol } },
+      { new: true, select: 'watchlist' }
+    );
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    res.json({ watchlist: user.watchlist });
+  } catch (err) {
+    console.error('Failed to remove from watchlist', err);
+    res.status(500).json({ message: 'Unable to update watchlist' });
+  }
+});
+
+// GET /api/user/balance — current cash wallet
+router.get('/balance', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('balance');
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    res.json({ balance: user.balance || 0 });
+  } catch (err) {
+    console.error('Failed to get balance', err);
+    res.status(500).json({ message: 'Unable to load balance' });
+  }
+});
+
+// POST /api/user/credit  { amount } — add cash to the wallet
+router.post('/credit', auth, async (req, res) => {
+  try {
+    const user = await trading.credit(req.user.id, req.body.amount);
+    res.json({ balance: user.balance });
+  } catch (err) {
+    res.status(400).json({ message: err.message || 'Unable to add credit' });
+  }
+});
+
+// POST /api/user/buy  { symbol, quantity } — buy shares using the wallet
+router.post('/buy', auth, async (req, res) => {
+  try {
+    const { user, price, cost } = await trading.buy(req.user.id, req.body.symbol, req.body.quantity);
+    res.json({ portfolio: user.portfolio, balance: user.balance, price, cost });
+  } catch (err) {
+    res.status(400).json({ message: err.message || 'Unable to buy' });
+  }
+});
+
+// POST /api/user/sell  { symbol, quantity? } — sell shares, crediting the wallet
+router.post('/sell', auth, async (req, res) => {
+  try {
+    const { user, price, proceeds } = await trading.sell(req.user.id, req.body.symbol, req.body.quantity);
+    res.json({ portfolio: user.portfolio, balance: user.balance, price, proceeds });
+  } catch (err) {
+    res.status(400).json({ message: err.message || 'Unable to sell' });
+  }
+});
+
 // GET /api/user/portfolio
 router.get('/portfolio', auth, async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select('portfolio');
+    const user = await User.findById(req.user.id).select('portfolio balance');
     if (!user) return res.status(404).json({ message: 'User not found' });
-    res.json({ portfolio: user.portfolio || [] });
+    res.json({ portfolio: user.portfolio || [], balance: user.balance || 0 });
   } catch (err) {
     console.error('Failed to get portfolio', err);
     res.status(500).json({ message: 'Unable to load portfolio' });

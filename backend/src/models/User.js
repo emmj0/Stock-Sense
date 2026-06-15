@@ -47,6 +47,7 @@ const CourseProgressSchema = new mongoose.Schema(
     },
     readingCompleted: { type: Boolean, default: false },
     practiceCompleted: { type: Boolean, default: false },
+    videosWatched: [{ type: String }], // youtubeIds the user has watched in this course
     quizAttempts: [QuizAttemptSchema],
     quizScore: { type: Number, default: 0 }, // percentage score
     quizPassed: { type: Boolean, default: false },
@@ -71,6 +72,9 @@ const UserSchema = new mongoose.Schema({
     default: 'local',
   },
   googleId: { type: String },
+  avatar: { type: String }, // profile picture as a data URL (or remote URL)
+  balance: { type: Number, default: 0, min: 0 }, // virtual cash wallet used to buy stocks
+  watchlist: [{ type: String }], // stock symbols the user is watching
   preferences: PreferencesSchema,
   portfolio: [PortfolioItemSchema],
   // Learning progress

@@ -18,6 +18,8 @@ export type User = {
   _id?: string;
   name: string;
   email: string;
+  avatar?: string;
+  balance?: number;
   preferences?: Preferences;
   portfolio?: PortfolioItem[];
 };

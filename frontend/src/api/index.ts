@@ -34,6 +34,11 @@ export async function savePreferences(preferences: Preferences): Promise<Prefere
   return data.preferences;
 }
 
+export async function updateProfile(payload: { name?: string; avatar?: string | null }): Promise<User> {
+  const { data } = await api.put<{ user: User }>('/api/user/profile', payload);
+  return data.user;
+}
+
 export async function fetchStocks(search?: string): Promise<Stock[]> {
   const params = search ? { search } : undefined;
   const { data } = await api.get<{ stocks: Stock[] }>('/api/stocks', { params });
@@ -53,6 +58,65 @@ export async function upsertPortfolioItem(item: PortfolioItem): Promise<Portfoli
 export async function removePortfolioItem(symbol: string): Promise<PortfolioItem[]> {
   const { data } = await api.delete<{ portfolio: PortfolioItem[] }>(`/api/user/portfolio/${symbol}`);
   return data.portfolio;
+}
+
+// ── Wallet / trading ──
+export async function fetchBalance(): Promise<number> {
+  const { data } = await api.get<{ balance: number }>('/api/user/balance');
+  return data.balance || 0;
+}
+
+export async function addCredit(amount: number): Promise<number> {
+  const { data } = await api.post<{ balance: number }>('/api/user/credit', { amount });
+  return data.balance || 0;
+}
+
+export async function buyStock(symbol: string, quantity: number): Promise<{ portfolio: PortfolioItem[]; balance: number; price: number; cost: number }> {
+  const { data } = await api.post('/api/user/buy', { symbol, quantity });
+  return data;
+}
+
+export async function sellStock(symbol: string, quantity?: number): Promise<{ portfolio: PortfolioItem[]; balance: number; price: number; proceeds: number }> {
+  const { data } = await api.post('/api/user/sell', { symbol, quantity });
+  return data;
+}
+
+export async function fetchWatchlist(): Promise<string[]> {
+  const { data } = await api.get<{ watchlist: string[] }>('/api/user/watchlist');
+  return data.watchlist || [];
+}
+
+export async function addToWatchlist(symbol: string): Promise<string[]> {
+  const { data } = await api.post<{ watchlist: string[] }>('/api/user/watchlist', { symbol });
+  return data.watchlist || [];
+}
+
+export async function removeFromWatchlist(symbol: string): Promise<string[]> {
+  const { data } = await api.delete<{ watchlist: string[] }>(`/api/user/watchlist/${symbol}`);
+  return data.watchlist || [];
+}
+
+export interface NotificationItem {
+  _id: string;
+  symbol?: string;
+  type: 'up' | 'down' | 'steady' | 'info' | 'buy' | 'sell' | 'credit';
+  title: string;
+  message?: string;
+  read: boolean;
+  createdAt: string;
+}
+
+export async function fetchNotifications(): Promise<{ notifications: NotificationItem[]; unreadCount: number }> {
+  const { data } = await api.get<{ notifications: NotificationItem[]; unreadCount: number }>('/api/notifications');
+  return { notifications: data.notifications || [], unreadCount: data.unreadCount || 0 };
+}
+
+export async function markNotificationsRead(): Promise<void> {
+  await api.post('/api/notifications/read-all');
+}
+
+export async function setNotificationRead(id: string, read: boolean): Promise<void> {
+  await api.patch(`/api/notifications/${id}`, { read });
 }
 
 export async function fetchIndexes(): Promise<any[]> {
@@ -104,6 +168,21 @@ export async function markReadingComplete(courseId: string): Promise<any> {
 
 export async function markPracticeComplete(courseId: string): Promise<any> {
   const { data } = await api.post(`/api/courses/${courseId}/practice-complete`);
+  return data;
+}
+
+export async function markVideoWatched(courseId: string, youtubeId: string): Promise<any> {
+  const { data } = await api.post(`/api/courses/${courseId}/video-watched`, { youtubeId });
+  return data;
+}
+
+export async function fetchNotes(courseId: string): Promise<{ content: string; updatedAt: string | null }> {
+  const { data } = await api.get(`/api/courses/${courseId}/notes`);
+  return { content: data.content || '', updatedAt: data.updatedAt || null };
+}
+
+export async function saveNotes(courseId: string, content: string): Promise<{ content: string; updatedAt: string }> {
+  const { data } = await api.put(`/api/courses/${courseId}/notes`, { content });
   return data;
 }
 

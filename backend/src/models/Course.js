@@ -10,10 +10,22 @@ const QuizSchema = new mongoose.Schema(
   { _id: false }
 );
 
+const VideoSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true },
+    channel: { type: String },
+    youtubeId: { type: String }, // 11-char YouTube id → embedded player (preferred)
+    query: { type: String },     // fallback: a search query, rendered as a "watch on YouTube" card
+    description: { type: String },
+  },
+  { _id: false }
+);
+
 const ContentSchema = new mongoose.Schema(
   {
     readingMaterial: { type: String, required: true },
     practiceQuestions: [{ type: String }],
+    videos: [VideoSchema],
   },
   { _id: false }
 );

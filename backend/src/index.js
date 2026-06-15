@@ -13,6 +13,7 @@ const marketRoutes = require('./routes/market');
 const coursesRoutes = require('./routes/courses');
 const chatRoutes = require('./routes/chat');
 const predictionsRoutes = require('./routes/predictions');
+const notificationsRoutes = require('./routes/notifications');
 
 const app = express();
 
@@ -21,7 +22,7 @@ const allowedOrigins = process.env.CLIENT_URLS
   : ['http://localhost:5173'];
 
 app.use(cors({ origin: allowedOrigins, credentials: true }));
-app.use(express.json());
+app.use(express.json({ limit: '3mb' })); // headroom for base64 avatar uploads
 
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
@@ -30,6 +31,7 @@ app.use('/api/market', marketRoutes);
 app.use('/api/courses', coursesRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/predictions', predictionsRoutes);
+app.use('/api/notifications', notificationsRoutes);
 
 // Serve landing page
 app.use(express.static(path.join(__dirname, '..', 'public')));

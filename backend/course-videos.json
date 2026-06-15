@@ -1,0 +1,43 @@
+{
+  "_comment": "Curated YouTube videos per course. `youtubeId` embeds the player inline. `query` is only a fallback safety net if an id is ever cleared. Edit freely — `node src/scripts/seed.js` re-attaches these (the weekly Gemini refresh never touches videos).",
+  "course_1": [
+    { "title": "PSX Complete Course #1 — Beginner to Expert (Urdu)", "channel": "PSX Course", "youtubeId": "xAb0YTie3Mg", "query": "Pakistan Stock Exchange full course beginner to expert urdu", "description": "Start-to-finish intro to how the Pakistan Stock Exchange works." },
+    { "title": "How To Invest In PSX — Pakistan Stock Market Basics", "channel": "Investor Education", "youtubeId": "lTvt3Lisuhc", "query": "how to invest in Pakistan Stock Exchange PSX basics", "description": "What shares are and how to begin investing on the PSX." }
+  ],
+  "course_2": [
+    { "title": "Stock Indexes in PSX — KSE-100, KSE-30, KMI-30, ALLSHR", "channel": "Investor Education", "youtubeId": "HZWonb9OOz8", "query": "what are stock indexes Pakistan Stock Exchange KSE 100 KMI 30", "description": "What each PSX index represents and how to read it." },
+    { "title": "What is KMI-30? Shariah Screening & KSE Meezan Index", "channel": "Islamic Finance", "youtubeId": "I4YLVICI730", "query": "what is KMI 30 shariah screening KSE Meezan index", "description": "The Shariah-compliant index explained for beginners." }
+  ],
+  "course_3": [
+    { "title": "Unpacking PSX Sectors — Steel, Cement & Auto", "channel": "Yousuf Farooq", "youtubeId": "3FcS6YseNxY", "query": "PSX sectors steel cement auto explained", "description": "How major PSX sectors differ and what drives them." },
+    { "title": "Top Most Valuable Industries in PSX — Market Cap Breakdown", "channel": "Investor Education", "youtubeId": "HZNcx8zoD78", "query": "top valuable industries Pakistan Stock Exchange market cap breakdown", "description": "Which sectors carry the most weight on the exchange." }
+  ],
+  "course_4": [
+    { "title": "Stock Analysis Before Investing in PSX — EPS (Urdu)", "channel": "Investor Education", "youtubeId": "FUMMjEq0PjY", "query": "stock analysis before investing PSX earning per share urdu", "description": "Reading a company's earnings before you buy." },
+    { "title": "What is the P/E Ratio? Fundamental Analysis (Urdu/Hindi)", "channel": "Investor Education", "youtubeId": "GO3cbnFy730", "query": "what is PE ratio stock market fundamental analysis urdu hindi", "description": "Price-to-earnings explained simply." }
+  ],
+  "course_5": [
+    { "title": "Don't Trade the Pakistan Stock Market (common traps)", "channel": "Sarmaaya Explain", "youtubeId": "2TQuwTxstBI", "query": "dont trade Pakistan stock market common mistakes", "description": "Why over-trading and tips/rumors hurt beginners." },
+    { "title": "If I Started Investing In Pakistan — Complete Guide", "channel": "Investor Education", "youtubeId": "0XU_BI0IwHg", "query": "if I started investing in Pakistan complete investing guide", "description": "A sensible beginner roadmap that avoids common errors." }
+  ],
+  "course_6": [
+    { "title": "How to Place a Stop Loss in PSX (Trade Cast guide)", "channel": "Investor Education", "youtubeId": "fObyEAryG-E", "query": "how to place stop loss PSX trade cast terminal", "description": "Protecting capital with a stop loss on the PSX." },
+    { "title": "What is Diversification? Reducing Investment Risk", "channel": "Investor Education", "youtubeId": "qY-xgy_kl78", "query": "what is diversification beginners guide reducing investment risk", "description": "Spreading risk across stocks and sectors." }
+  ],
+  "course_7": [
+    { "title": "How to Find Shariah-Compliant Stocks on PSX", "channel": "Islamic Finance", "youtubeId": "WTf5baaBxBg", "query": "how to find shariah compliant stocks PSX Pakistan", "description": "Screening stocks for Islamic compliance." },
+    { "title": "PSX Shariah-Compliant (KMI) Index Companies List", "channel": "Investor Education", "youtubeId": "gc6ITEDdcQw", "query": "PSX shariah compliant index companies list KMI", "description": "Which PSX companies qualify as Shariah-compliant." }
+  ],
+  "course_8": [
+    { "title": "What is a Candlestick Chart? Technical Analysis Basics", "channel": "CA Rachana Ranade", "youtubeId": "V47CdOCDo4s", "query": "what is candlestick chart basics of technical analysis", "description": "How to read candlesticks — the foundation of charts." },
+    { "title": "Beginner's Guide to Candlesticks, Support/Resistance & Indicators", "channel": "Investor Education", "youtubeId": "Gf791LDEsQI", "query": "beginners guide candlestick patterns support resistance technical indicators", "description": "Support, resistance and basic indicators for beginners." }
+  ],
+  "course_9": [
+    { "title": "PSX Update — Interest Rates & Inflation Explained", "channel": "Investor Education", "youtubeId": "i3mF_6P1jqw", "query": "Pakistan stock market interest rates inflation PSX analysis", "description": "How rates and inflation move the market." },
+    { "title": "Inflation, Real Estate vs Stocks in Pakistan", "channel": "Investor Education", "youtubeId": "wHfRAKIFwzM", "query": "why you are losing money Pakistan inflation real estate vs stocks", "description": "How the economy shapes where money grows." }
+  ],
+  "course_10": [
+    { "title": "The Ultimate Guide to Long-Term Investing in PSX", "channel": "Meer Abdullah", "youtubeId": "c_pwmPqubxI", "query": "ultimate guide long term investment investor mindset PSX", "description": "Building a long-term investor mindset on the PSX." },
+    { "title": "Daily Trading vs Long-Term Investing in Pakistan", "channel": "Investor Education", "youtubeId": "pAC3gTtmczs", "query": "daily trading vs long term investing Pakistan urdu hindi", "description": "Why patient, long-term investing usually wins." }
+  ]
+}
