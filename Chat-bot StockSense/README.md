@@ -26,12 +26,11 @@ Quick start:
 
 3. Configure environment
    Copy .env.example to .env and set at least:
-   LOCAL_LLM_URL=http://127.0.0.1:11434
-   LOCAL_LLM_MODEL=llama3.1:8b
+   GEMINI_API_KEY=your-gemini-api-key-here
+   GEMINI_MODEL=gemini-1.5-flash
+   (Get a free key at https://aistudio.google.com/apikey)
 
-4. Start local LLM (Ollama example)
-   ollama pull llama3.1:8b
-   ollama serve
+4. (No local model needed — the chatbot calls the hosted Gemini API.)
 
 5. Build index
    python build_rag_index.py
@@ -55,14 +54,13 @@ Conversation context and memory:
 How LLM integration works:
 - The question is embedded using sentence-transformers
 - Top-k chunks are retrieved from FAISS
-- The retrieved context and optional user profile are sent to a local LLM HTTP endpoint
-- LLM output is returned as chatbot response
+- The retrieved context and optional user profile are sent to the Google Gemini API
+- Gemini output is returned as the chatbot response
+- If GEMINI_API_KEY is missing or the call fails, the bot falls back to an
+  extractive answer built from the retrieved context (so it still works offline)
 
-Using another local LLM runtime:
-- Keep the same pattern, expose an API compatible with Ollama /api/generate
-- Set:
-   LOCAL_LLM_URL=<runtime endpoint>
-   LOCAL_LLM_MODEL=<local model name>
+Changing the Gemini model:
+- Set GEMINI_MODEL in .env (e.g. gemini-1.5-flash, gemini-1.5-pro, gemini-2.0-flash)
 
 MongoDB integration notes:
 - Add MONGO_URI in .env

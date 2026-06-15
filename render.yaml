@@ -9,3 +9,28 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
+
+  # ── StockSense chatbot (Flask + Gemini + RAG) ──
+  - type: web
+    name: stocksense-chatbot
+    runtime: python
+    rootDir: "Chat-bot StockSense"
+    plan: starter            # torch + sentence-transformers can OOM on the 512MB free plan
+    buildCommand: pip install --upgrade pip setuptools wheel && pip install -r requirements.txt
+    startCommand: gunicorn -c gunicorn.conf.py api:app
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: GEMINI_API_KEY
+        sync: false          # set this secret in the Render dashboard
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: MONGO_URI
+        sync: false          # same connection string your backend uses
+      - key: MONGO_DB_NAME
+        value: stocksense
+      - key: MONGO_USERS_COLLECTION
+        value: users
+      - key: HF_HOME
+        value: /opt/render/project/.cache/huggingface

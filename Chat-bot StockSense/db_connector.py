@@ -295,6 +295,17 @@ def get_user_preferences(email: str) -> Optional[Dict[str, Any]]:
     return user.get("preferences", {})
 
 
+def get_user_balance(email: str) -> float:
+    """Return the user's available cash wallet balance."""
+    user = get_user_by_email(email)
+    if not user:
+        return 0.0
+    try:
+        return float(user.get("balance", 0) or 0)
+    except (TypeError, ValueError):
+        return 0.0
+
+
 # ---------------------------------------------------------------------------
 # FORMATTING HELPERS
 # ---------------------------------------------------------------------------
@@ -326,9 +337,12 @@ def format_stock_detail(s: Dict[str, Any]) -> str:
     )
 
 
-def format_portfolio(holdings: List[Dict[str, Any]]) -> str:
+def format_portfolio(holdings: List[Dict[str, Any]], balance: Optional[float] = None) -> str:
     if not holdings:
-        return "Your portfolio is empty. Add some stocks to get started!"
+        msg = "Your portfolio is empty. Add some stocks to get started!"
+        if balance is not None:
+            msg += f"\n\nAvailable Cash: Rs. {balance:,.2f}"
+        return msg
 
     lines = ["Your Portfolio:\n"]
     total_invested = 0
@@ -350,6 +364,9 @@ def format_portfolio(holdings: List[Dict[str, Any]]) -> str:
     lines.append(f"\nTotal Invested: Rs. {total_invested:,.2f}")
     lines.append(f"Current Value: Rs. {total_current:,.2f}")
     lines.append(f"Total P&L: {arrow}Rs. {total_pnl:,.2f} ({arrow}{total_pnl_pct}%)")
+    if balance is not None:
+        lines.append(f"Available Cash: Rs. {balance:,.2f}")
+        lines.append(f"Net Worth (cash + holdings): Rs. {balance + total_current:,.2f}")
 
     return "\n".join(lines)
 

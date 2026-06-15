@@ -63,9 +63,11 @@ if db.is_db_connected():
 else:
     logger.warning("Database not connected — running in offline mode")
 
-ollama_model = os.getenv("LOCAL_LLM_MODEL", "phi3")
-ollama_url = os.getenv("LOCAL_LLM_URL", "http://127.0.0.1:11434")
-logger.info(f"LLM: {ollama_model} via Ollama at {ollama_url}")
+gemini_model = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+if os.getenv("GEMINI_API_KEY"):
+    logger.info(f"LLM: {gemini_model} via Google Gemini API")
+else:
+    logger.warning("GEMINI_API_KEY not set — LLM disabled, will fall back to extractive answers")
 logger.info("API ready. RAG engine will load on first chat request.")
 
 

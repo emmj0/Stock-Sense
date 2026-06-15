@@ -33,50 +33,68 @@ logger = logging.getLogger("stocksense")
 
 
 # ---------------------------------------------------------------------------
-# Ollama / Phi-3 LLM integration
+# Gemini LLM integration
 # ---------------------------------------------------------------------------
 
 
-def _get_ollama_config() -> tuple[str, str]:
-    """Read Ollama config at call time so dotenv is loaded first."""
-    url = os.getenv("LOCAL_LLM_URL", "http://127.0.0.1:11434")
-    model = os.getenv("LOCAL_LLM_MODEL", "phi3")
-    return url, model
+def _get_gemini_config() -> tuple[str, str]:
+    """Read Gemini config at call time so dotenv is loaded first."""
+    api_key = os.getenv("GEMINI_API_KEY", "")
+    model = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+    return api_key, model
 
 
-def call_ollama(prompt: str, system: str = "", temperature: float = 0.7, max_tokens: int = 512) -> Optional[str]:
-    """Call local Ollama API with Phi-3. Returns generated text or None on failure."""
-    url, model = _get_ollama_config()
-    logger.info(f"[LLM] Calling {model} (max_tokens={max_tokens}, temp={temperature})")
-    t_start = time.time()
-    try:
-        payload = {
-            "model": model,
-            "prompt": prompt,
-            "stream": False,
-            "options": {
-                "temperature": temperature,
-                "num_predict": max_tokens,
-            },
-        }
-        if system:
-            payload["system"] = system
-        resp = requests.post(f"{url}/api/generate", json=payload, timeout=120)
-        resp.raise_for_status()
-        result = resp.json()
-        text = result.get("response", "").strip()
-        elapsed = time.time() - t_start
-        logger.info(f"[LLM] {model} responded in {elapsed:.1f}s ({len(text)} chars)")
-        return text
-    except requests.exceptions.ConnectionError:
-        logger.error(f"[LLM] Ollama not reachable at {url} — is it running?")
+def call_gemini(prompt: str, system: str = "", temperature: float = 0.7, max_tokens: int = 512) -> Optional[str]:
+    """Call the Google Gemini API. Returns generated text or None on failure.
+
+    Uses the public REST endpoint with an API key (GEMINI_API_KEY) so no extra
+    SDK is needed. Returning None lets the caller fall back to an extractive answer.
+    """
+    api_key, model = _get_gemini_config()
+    if not api_key:
+        logger.error("[LLM] GEMINI_API_KEY not set — cannot call Gemini")
         return None
+
+    logger.info(f"[LLM] Calling Gemini {model} (max_tokens={max_tokens}, temp={temperature})")
+    t_start = time.time()
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
+    payload = {
+        "contents": [{"role": "user", "parts": [{"text": prompt}]}],
+        "generationConfig": {
+            "temperature": temperature,
+            "maxOutputTokens": max_tokens,
+        },
+    }
+    if system:
+        payload["system_instruction"] = {"parts": [{"text": system}]}
+
+    try:
+        resp = requests.post(url, json=payload, timeout=60)
+        resp.raise_for_status()
+        data = resp.json()
+        candidates = data.get("candidates", [])
+        if not candidates:
+            logger.error(f"[LLM] Gemini returned no candidates: {str(data)[:200]}")
+            return None
+        parts = candidates[0].get("content", {}).get("parts", [])
+        text = "".join(p.get("text", "") for p in parts).strip()
+        elapsed = time.time() - t_start
+        logger.info(f"[LLM] Gemini {model} responded in {elapsed:.1f}s ({len(text)} chars)")
+        return text or None
     except requests.exceptions.Timeout:
-        logger.error(f"[LLM] Ollama timed out after 120s")
+        logger.error("[LLM] Gemini timed out after 60s")
+        return None
+    except requests.exceptions.HTTPError as exc:
+        body = exc.response.text[:300] if exc.response is not None else ""
+        logger.error(f"[LLM] Gemini HTTP error: {exc} — {body}")
         return None
     except Exception as exc:
-        logger.error(f"[LLM] Call failed ({model}): {exc}")
+        logger.error(f"[LLM] Gemini call failed: {exc}")
         return None
+
+
+# Backward-compatible alias (any older import of call_ollama keeps working).
+call_ollama = call_gemini
 
 
 def build_rag_prompt(question: str, chunks: List["RetrievedChunk"],
@@ -525,6 +543,26 @@ def try_db_answer(question: str, user_email: Optional[str] = None, user_context:
             "Go to: /preferences"
         )
 
+    # --- Balance / cash wallet (works via user_context, no DB needed) ---
+    if any(p in q for p in ["my balance", "account balance", "available balance", "cash balance",
+                            "available cash", "how much cash", "how much money do i", "how much money i have",
+                            "my wallet", "my cash", "my funds", "my credit", "how much can i invest",
+                            "how much do i have", "money do i have"]):
+        bal = None
+        if user_context and user_context.get("balance") is not None:
+            try:
+                bal = float(user_context.get("balance") or 0)
+            except (TypeError, ValueError):
+                bal = None
+        if bal is None and user_email and db.is_db_connected():
+            bal = db.get_user_balance(user_email)
+        if bal is None:
+            return "Please log in so I can check your cash balance."
+        return (
+            f"Your available cash balance is Rs. {bal:,.2f}.\n\n"
+            "Use it to buy stocks in the app, or top up from the Dashboard using 'Add Credit'."
+        )
+
     # --- Everything below needs DB connection ---
     if not db.is_db_connected():
         return None
@@ -536,7 +574,15 @@ def try_db_answer(question: str, user_email: Optional[str] = None, user_context:
         if not user_email:
             return "Please log in so I can show your portfolio."
         holdings = db.get_user_portfolio(user_email)
-        return db.format_portfolio(holdings)
+        bal = None
+        if user_context and user_context.get("balance") is not None:
+            try:
+                bal = float(user_context.get("balance") or 0)
+            except (TypeError, ValueError):
+                bal = None
+        if bal is None:
+            bal = db.get_user_balance(user_email)
+        return db.format_portfolio(holdings, balance=bal)
 
     # --- "Should I buy/sell TICKER?" → Show that specific stock's prediction ---
     if ticker and any(p in q for p in ["should i buy", "should i sell", "should i invest",
@@ -880,6 +926,9 @@ def _format_user_context_summary(user_context: Optional[Dict[str, object]]) -> s
     name = user_context.get("name")
     if name:
         parts.append(f"User: {name}")
+    balance = user_context.get("balance")
+    if balance is not None:
+        parts.append(f"Available cash: Rs. {balance}")
     prefs = user_context.get("preferences") or {}
     if prefs:
         if prefs.get("riskTolerance"):
@@ -904,12 +953,12 @@ def _generate_llm_answer(
     chat_history: Optional[List[Dict[str, str]]] = None,
     db_context: Optional[str] = None,
 ) -> str:
-    """Generate answer using Ollama Phi-3 with RAG context. Falls back to extractive."""
+    """Generate answer using Gemini with RAG context. Falls back to extractive."""
     has_db = db_context is not None
     logger.info(f"[Answer] Generating LLM answer (chunks={len(chunks)}, db_context={has_db})")
 
     system, user_prompt = build_rag_prompt(question, chunks, chat_history, db_context)
-    llm_reply = call_ollama(user_prompt, system=system, temperature=0.7, max_tokens=200)
+    llm_reply = call_gemini(user_prompt, system=system, temperature=0.7, max_tokens=400)
 
     if llm_reply and len(llm_reply) > 15:
         logger.info("[Answer] Using LLM response")
