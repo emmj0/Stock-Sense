@@ -21,7 +21,7 @@ const allowedOrigins = process.env.CLIENT_URLS
   : ['http://localhost:5173'];
 
 app.use(cors({ origin: allowedOrigins, credentials: true }));
-app.use(express.json());
+app.use(express.json({ limit: '3mb' })); // headroom for base64 avatar uploads
 
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);

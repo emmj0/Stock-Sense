@@ -46,6 +46,44 @@ router.put('/preferences', auth, async (req, res) => {
   }
 });
 
+// PUT /api/user/profile  — update display name and/or avatar
+router.put('/profile', auth, async (req, res) => {
+  try {
+    const updates = {};
+    if (typeof req.body.name === 'string' && req.body.name.trim()) {
+      updates.name = req.body.name.trim();
+    }
+    if (req.body.avatar !== undefined) {
+      // accept a data URL / URL string, or null/'' to remove
+      const avatar = req.body.avatar;
+      if (avatar && typeof avatar === 'string') {
+        if (avatar.length > 3_000_000) {
+          return res.status(400).json({ message: 'Image too large. Please choose a smaller photo.' });
+        }
+        updates.avatar = avatar;
+      } else {
+        updates.avatar = '';
+      }
+    }
+
+    if (Object.keys(updates).length === 0) {
+      return res.status(400).json({ message: 'Nothing to update' });
+    }
+
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      { $set: updates },
+      { new: true, select: '-password' }
+    );
+
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    res.json({ user });
+  } catch (err) {
+    console.error('Failed to update profile', err);
+    res.status(500).json({ message: 'Unable to update profile' });
+  }
+});
+
 // GET /api/user/portfolio
 router.get('/portfolio', auth, async (req, res) => {
   try {

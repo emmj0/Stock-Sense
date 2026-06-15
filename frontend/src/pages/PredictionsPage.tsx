@@ -1,6 +1,11 @@
 import { useEffect, useState, useMemo } from 'react';
 import { fetchPredictions, fetchRecommendations, fetchPortfolioPredictions } from '../api';
 import { useAuth } from '../providers/AuthProvider';
+import {
+  Brain, TrendingUp, TrendingDown, Target, ShieldCheck, Newspaper, AlertTriangle,
+  Search, Sparkles, ArrowRight, Inbox, PlusCircle, BarChart3,
+} from 'lucide-react';
+import { PageHeader, SectionTitle, StatCard, EmptyState } from '../components/ui';
 
 interface Prediction {
   symbol: string;
@@ -151,21 +156,21 @@ export default function PredictionsPage() {
   };
 
   const returnColor = (ret: number) => {
-    if (ret > 0) return 'text-emerald-600 dark:text-emerald-400';
-    if (ret < 0) return 'text-red-600 dark:text-red-400';
-    return 'text-gray-600 dark:text-gray-300';
+    if (ret > 0) return 'text-emerald-600';
+    if (ret < 0) return 'text-red-600';
+    return 'text-slate-600';
   };
 
   const trustBadge = (level: string) => {
-    if (level === 'high') return { text: 'High accuracy', cls: 'text-emerald-700 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-900/30' };
-    if (level === 'low') return { text: 'Low accuracy', cls: 'text-red-700 bg-red-50 dark:text-red-400 dark:bg-red-900/30' };
-    return { text: 'Moderate accuracy', cls: 'text-amber-700 bg-amber-50 dark:text-amber-400 dark:bg-amber-900/30' };
+    if (level === 'high') return { text: 'High accuracy', cls: 'text-emerald-700 bg-emerald-50 ring-1 ring-inset ring-emerald-600/15' };
+    if (level === 'low') return { text: 'Low accuracy', cls: 'text-red-700 bg-red-50 ring-1 ring-inset ring-red-600/15' };
+    return { text: 'Moderate accuracy', cls: 'text-amber-700 bg-amber-50 ring-1 ring-inset ring-amber-600/15' };
   };
 
   const sentimentLabel = (score: number) => {
-    if (score >= 0.3) return { text: 'Positive news', cls: 'text-emerald-600 dark:text-emerald-400' };
-    if (score <= -0.3) return { text: 'Negative news', cls: 'text-red-600 dark:text-red-400' };
-    return { text: 'Neutral news', cls: 'text-gray-500 dark:text-gray-300' };
+    if (score >= 0.3) return { text: 'Positive news', cls: 'text-emerald-600' };
+    if (score <= -0.3) return { text: 'Negative news', cls: 'text-red-600' };
+    return { text: 'Neutral news', cls: 'text-slate-500' };
   };
 
   // Mini sparkline for 7-day price forecast
@@ -193,7 +198,7 @@ export default function PredictionsPage() {
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <circle cx="0" cy={h - ((current - min) / range) * (h - 4) - 2} r="2.5" fill="#6b7280" />
+        <circle cx="0" cy={h - ((current - min) / range) * (h - 4) - 2} r="2.5" fill="#94a3b8" />
         <circle
           cx={w}
           cy={h - ((data[data.length - 1] - min) / range) * (h - 4) - 2}
@@ -206,649 +211,577 @@ export default function PredictionsPage() {
 
   const lastUpdated = predictions.length > 0 ? predictions[0].updatedAt : null;
 
+  /* ── Shared prediction card (used by All Stocks & My Stocks tabs) ── */
+  const PredictionCard = ({ pred, idx, accent }: { pred: any; idx: number; accent: 'slate' | 'sky' }) => {
+    const isExpanded = expandedSymbol === pred.symbol;
+    const sent = sentimentLabel(pred.sentiment?.score || 0);
+    const trust = trustBadge(pred.trustLevel || 'medium');
+
+    return (
+      <div
+        className={`card overflow-hidden reveal transition-all duration-300 ${
+          isExpanded
+            ? 'ring-2 ring-sky-200 border-sky-300'
+            : 'hover:shadow-card-hover hover:border-slate-300'
+        } ${accent === 'sky' ? 'border-sky-100' : ''}`}
+        style={{ animationDelay: `${Math.min(idx * 0.04, 0.3)}s` }}
+      >
+        {/* Main Row */}
+        <div
+          onClick={() => setExpandedSymbol(isExpanded ? null : pred.symbol)}
+          className="px-5 py-4 cursor-pointer hover:bg-slate-50/70 transition-colors"
+        >
+          <div className="flex items-center justify-between gap-3">
+            {/* Left: signal + stock info */}
+            <div className="flex items-center gap-3 min-w-0">
+              <div className={`w-11 h-11 rounded-xl flex items-center justify-center text-white font-bold text-[11px] shrink-0 shadow-sm ${signalBg(pred.signal)}`}>
+                {pred.signal}
+              </div>
+              <div className="min-w-0">
+                <div className="flex items-center gap-2">
+                  <p className="text-base font-bold text-slate-900">{pred.symbol}</p>
+                  <span className="text-xs text-slate-400 hidden sm:inline truncate">{pred.companyName}</span>
+                </div>
+                <p className="text-xs text-slate-400 mt-0.5">{pred.sector} &middot; {signalLabel(pred.signal)}</p>
+              </div>
+            </div>
+
+            {/* Center: 7-day sparkline */}
+            <div className="hidden md:block text-center">
+              <Sparkline data={pred.priceForecast7d || []} current={pred.currentPrice} />
+              <p className="text-[10px] text-slate-400 mt-0.5">Next 7 days</p>
+            </div>
+
+            {/* Right: prices + return */}
+            <div className="text-right shrink-0">
+              <div className="flex items-center gap-3">
+                <div className="hidden sm:block text-right">
+                  <p className="text-[11px] text-slate-400">Now</p>
+                  <p className="text-sm font-semibold text-slate-700">Rs. {pred.currentPrice?.toFixed(2)}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-[11px] text-slate-400">7-day target</p>
+                  <p className={`text-sm font-bold ${returnColor(pred.predictedReturn)}`}>
+                    Rs. {pred.predictedPrice?.toFixed(2)}
+                  </p>
+                </div>
+                <span className={`pill ${pred.predictedReturn > 0 ? 'pill-up' : pred.predictedReturn < 0 ? 'pill-down' : 'pill-flat'}`}>
+                  {pred.predictedReturn > 0 ? '+' : ''}{pred.predictedReturn?.toFixed(1)}%
+                </span>
+              </div>
+            </div>
+
+            {/* Expand chevron */}
+            <svg className={`w-5 h-5 text-slate-300 shrink-0 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+
+          {/* Holding info (portfolio tab) */}
+          {pred.holding && (
+            <div className="mt-3 pt-3 border-t border-slate-100 flex flex-wrap gap-4 text-xs text-slate-500">
+              <span>Shares: <strong className="text-slate-700">{pred.holding.quantity}</strong></span>
+              <span>Avg cost: <strong className="text-slate-700">Rs. {pred.holding.averageCost?.toFixed(2)}</strong></span>
+              <span>Invested: <strong className="text-slate-700">Rs. {pred.holding.invested?.toFixed(0)}</strong></span>
+              <span>Current value: <strong className="text-slate-700">Rs. {pred.holding.currentValue?.toFixed(0)}</strong></span>
+            </div>
+          )}
+        </div>
+
+        {/* Expanded Detail */}
+        {isExpanded && (
+          <div className="border-t border-slate-100 px-5 py-6 space-y-6 bg-gradient-to-b from-slate-50/60 to-white animate-fade-in">
+            {/* AI Prediction block — mirrors HoldingsPage */}
+            <div className="rounded-2xl border border-sky-100 bg-gradient-to-br from-sky-50/40 to-white p-5 space-y-5">
+              <div className="flex items-center gap-2">
+                <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-sky-500 to-indigo-600 flex items-center justify-center text-white shadow-sm"><Brain size={15} /></div>
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900">AI Prediction</h3>
+                  <p className="text-[11px] text-slate-500">What our model expects over the next 7 days — not financial advice.</p>
+                </div>
+                {pred.dataAsOf && <span className="text-[11px] text-slate-400 ml-auto">as of {pred.dataAsOf}</span>}
+              </div>
+
+              {/* Metric tiles with layman helper lines */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div className="tile">
+                  <p className="tile-label">Signal</p>
+                  <span className={`inline-flex items-center gap-1 mt-1.5 px-2.5 py-1 rounded-md text-xs font-bold text-white ${signalBg(pred.signal)}`}>
+                    {pred.signal === 'BUY' ? <TrendingUp size={12} /> : pred.signal === 'SELL' ? <TrendingDown size={12} /> : <Target size={12} />}
+                    {pred.signal}
+                  </span>
+                  <p className="text-[10px] text-slate-400 mt-1.5">AI's call</p>
+                </div>
+                <div className="tile">
+                  <p className="tile-label">Confidence</p>
+                  <p className="tile-value">{pred.confidence?.toFixed(0)}%</p>
+                  <p className="text-[10px] text-slate-400 mt-1">how sure</p>
+                </div>
+                <div className="tile">
+                  <p className="tile-label">Target Price</p>
+                  <p className={`tile-value ${returnColor(pred.predictedReturn)}`}>Rs. {pred.predictedPrice?.toFixed(2)}</p>
+                  <p className="text-[10px] text-slate-400 mt-1">expected price</p>
+                </div>
+                <div className="tile">
+                  <p className="tile-label">Est. Return</p>
+                  <p className={`tile-value ${returnColor(pred.predictedReturn)}`}>{pred.predictedReturn > 0 ? '+' : ''}{pred.predictedReturn?.toFixed(1)}%</p>
+                  <p className="text-[10px] text-slate-400 mt-1">vs today</p>
+                </div>
+              </div>
+
+              {/* AI reasoning */}
+              <div className={`rounded-xl border px-4 py-4 ${pred.signal === 'BUY' ? 'bg-emerald-50/60 border-emerald-200' : pred.signal === 'SELL' ? 'bg-red-50/60 border-red-200' : 'bg-amber-50/60 border-amber-200'}`}>
+                <div className="flex items-center gap-2 mb-2.5">
+                  <Brain size={14} className={pred.signal === 'BUY' ? 'text-emerald-600' : pred.signal === 'SELL' ? 'text-red-600' : 'text-amber-600'} />
+                  <span className={`text-[11px] font-bold uppercase tracking-wide ${pred.signal === 'BUY' ? 'text-emerald-700' : pred.signal === 'SELL' ? 'text-red-700' : 'text-amber-700'}`}>What our AI says</span>
+                </div>
+                <p className="text-sm leading-relaxed text-slate-700">{cleanReasoning(pred.llmReasoning || pred.reasoning)}</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* Price range */}
+              <div className="rounded-xl border border-slate-200/80 bg-white p-5">
+                <SectionTitle icon={Target}>Where the price could go</SectionTitle>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-slate-500">Current price</span>
+                    <span className="font-semibold text-slate-900">Rs. {pred.currentPrice?.toFixed(2)}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-slate-500">Most likely price (7 days)</span>
+                    <span className={`font-bold ${returnColor(pred.predictedReturn)}`}>
+                      Rs. {pred.predictedPrice?.toFixed(2)}
+                    </span>
+                  </div>
+                  {/* Price range bar — includes current price in bounds */}
+                  {pred.priceRange?.low != null && pred.priceRange?.high != null && (() => {
+                    const rangeLow = Math.min(pred.currentPrice, pred.priceRange.low);
+                    const rangeHigh = Math.max(pred.currentPrice, pred.priceRange.high);
+                    const totalRange = rangeHigh - rangeLow || 1;
+                    const currentPct = ((pred.currentPrice - rangeLow) / totalRange) * 100;
+                    const targetPct = ((pred.predictedPrice - rangeLow) / totalRange) * 100;
+                    const lowPct = ((pred.priceRange.low - rangeLow) / totalRange) * 100;
+                    const highPct = ((pred.priceRange.high - rangeLow) / totalRange) * 100;
+                    const goingUp = pred.predictedPrice > pred.currentPrice;
+
+                    return (
+                      <div className="mt-3 p-3 rounded-lg bg-slate-50/70 border border-slate-100">
+                        <p className="text-[11px] text-slate-400 mb-3">Predicted price range in 7 days</p>
+                        <div className="relative h-8">
+                          {/* Full range line */}
+                          <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 h-1 bg-slate-200 rounded-full" />
+                          {/* Model's predicted range (q10 to q90) */}
+                          <div
+                            className="absolute top-1/2 -translate-y-1/2 h-2.5 bg-sky-200 rounded-full"
+                            style={{ left: `${lowPct}%`, right: `${100 - highPct}%` }}
+                          />
+                          {/* Current price marker */}
+                          <div
+                            className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-slate-500 rounded-full border-2 border-white shadow-md z-10"
+                            style={{ left: `${Math.max(2, Math.min(98, currentPct))}%`, transform: 'translate(-50%, -50%)' }}
+                            title={`Current: Rs. ${pred.currentPrice?.toFixed(2)}`}
+                          />
+                          {/* Target price marker */}
+                          <div
+                            className={`absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 border-white shadow-md z-10 ${goingUp ? 'bg-emerald-500' : 'bg-red-500'}`}
+                            style={{ left: `${Math.max(2, Math.min(98, targetPct))}%`, transform: 'translate(-50%, -50%)' }}
+                            title={`Target: Rs. ${pred.predictedPrice?.toFixed(2)}`}
+                          />
+                        </div>
+                        <div className="flex justify-between text-[10px] mt-1">
+                          <span className="text-slate-400">Rs. {rangeLow.toFixed(0)}</span>
+                          <span className="text-slate-400">Rs. {rangeHigh.toFixed(0)}</span>
+                        </div>
+                        <div className="flex items-center justify-center gap-4 mt-2">
+                          <div className="flex items-center gap-1">
+                            <span className="w-2 h-2 rounded-full bg-slate-500" />
+                            <span className="text-[10px] text-slate-400">Current</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <span className={`w-2 h-2 rounded-full ${goingUp ? 'bg-emerald-500' : 'bg-red-500'}`} />
+                            <span className="text-[10px] text-slate-400">Target</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <span className="w-4 h-1.5 rounded bg-sky-200" />
+                            <span className="text-[10px] text-slate-400">Likely range</span>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
+                </div>
+              </div>
+
+              {/* Sentiment + Risk */}
+              <div className="space-y-4">
+                {/* News Sentiment */}
+                <div className="rounded-xl border border-slate-200/80 bg-white px-4 py-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2"><Newspaper size={14} className="text-slate-400" /><span className="text-[11px] font-bold text-slate-900 uppercase tracking-wide">Recent news mood</span></div>
+                    {pred.sentiment?.source && pred.sentiment.source !== 'neutral' && (
+                      <span className="text-[10px] text-slate-400">via {pred.sentiment.source}</span>
+                    )}
+                  </div>
+                  <p className={`text-sm font-semibold mb-2 ${sent.cls}`}>{sent.text}</p>
+                  {pred.sentiment?.key_headlines?.length > 0 ? (
+                    <div className="space-y-2 pt-2 border-t border-slate-100">
+                      {pred.sentiment.key_headlines.slice(0, 3).map((h: string, i: number) => (
+                        <p key={i} className="text-sm text-slate-600 pl-3 border-l-2 border-sky-200">{h}</p>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-xs text-slate-400">No major headlines recently</p>
+                  )}
+                </div>
+
+                {/* Risk Factors */}
+                {pred.riskFactors?.length > 0 && (
+                  <div className="rounded-xl border border-red-200 bg-red-50/60 px-4 py-4">
+                    <div className="flex items-center gap-2 mb-3"><AlertTriangle size={14} className="text-red-500" /><span className="text-[11px] font-bold text-red-700 uppercase tracking-wide">Things to watch out for</span></div>
+                    <div className="flex flex-wrap gap-2">
+                      {pred.riskFactors.map((risk: string, i: number) => (
+                        <span key={i} className="text-xs px-3 py-1.5 rounded-md bg-red-100 text-red-700 font-medium">{risk}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Bottom tags */}
+            <div className="flex flex-wrap gap-2 pt-1">
+              <span className={`text-[11px] px-2.5 py-1 rounded-full font-medium inline-flex items-center gap-1 ${trust.cls}`}>
+                <ShieldCheck size={12} /> {trust.text}
+              </span>
+              <span className="text-[11px] px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">
+                {pred.forecastDays?.bullish || 0} of 7 days look positive
+              </span>
+              <span className="text-[11px] px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">
+                AI confidence: {pred.confidence?.toFixed(0)}%
+              </span>
+              {pred.trustNote && (
+                <span className="text-[11px] px-2.5 py-1 rounded-full bg-red-50 text-red-600">
+                  {pred.trustNote}
+                </span>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
-    <div className="min-h-screen bg-white dark:bg-dark-bg text-black dark:text-gray-100">
-      {/* Header */}
-      <div className="relative border-b border-gray-200 dark:border-dark-border bg-white dark:bg-dark-bg">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-            <div className="space-y-2">
-              <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Stock Predictions
-              </h1>
-              <p className="text-gray-500 dark:text-gray-300 text-base max-w-2xl">
-                Our AI analyzes 28 KSE-30 stocks daily and predicts where prices may go in the next 7 days.
-                Each stock gets a <strong className="text-emerald-600">BUY</strong>, <strong className="text-amber-600">HOLD</strong>, or <strong className="text-red-600">SELL</strong> recommendation based on price patterns, market data, and news sentiment.
+    <div className="page">
+      <PageHeader
+        icon={Brain}
+        title="Stock Predictions"
+        subtitle="Our AI analyzes 28 KSE-30 stocks daily and forecasts where prices may go in the next 7 days."
+        accent="sky"
+        action={
+          lastUpdated ? (
+            <div className="hidden sm:block text-right">
+              <p className="eyebrow">Last updated</p>
+              <p className="text-sm font-semibold text-slate-700 mt-0.5">
+                {new Date(lastUpdated).toLocaleDateString('en-PK', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}
               </p>
             </div>
-            {lastUpdated && (
-              <p className="text-xs text-gray-400 whitespace-nowrap">
-                Last updated: {new Date(lastUpdated).toLocaleDateString('en-PK', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
-              </p>
-            )}
-          </div>
-        </div>
+          ) : undefined
+        }
+      />
+
+      {/* Plain-language intro */}
+      <div className="card p-4 mb-6 reveal stagger-1">
+        <p className="text-sm text-slate-600 leading-relaxed">
+          Each stock gets a{' '}
+          <strong className="text-emerald-600">BUY</strong>,{' '}
+          <strong className="text-amber-600">HOLD</strong>, or{' '}
+          <strong className="text-red-600">SELL</strong> call based on price patterns, market data and news mood.
+          A <strong>signal</strong> is the AI's call, <strong>confidence</strong> is how sure it is,
+          and the <strong>target</strong> is the price it expects in 7 days.
+        </p>
       </div>
 
-      {/* Summary Cards */}
+      {/* Summary stat cards */}
       {!loading && predictions.length > 0 && (
-        <div className="border-b border-gray-100 dark:border-dark-border bg-gray-50/50 dark:bg-dark-surface/50">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5">
-            <div className="flex flex-wrap gap-3">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-100 dark:border-emerald-800">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                <span className="text-sm font-semibold text-emerald-700 dark:text-emerald-400">{summary.buy} stocks to buy</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 dark:bg-amber-900/30 border border-amber-100 dark:border-amber-800">
-                <span className="w-2 h-2 rounded-full bg-amber-500" />
-                <span className="text-sm font-semibold text-amber-700 dark:text-amber-400">{summary.hold} to hold</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 dark:bg-red-900/30 border border-red-100 dark:border-red-800">
-                <span className="w-2 h-2 rounded-full bg-red-500" />
-                <span className="text-sm font-semibold text-red-700 dark:text-red-400">{summary.sell} to sell</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-dark-surface">
-                <span className="text-sm text-gray-500 dark:text-gray-300">{predictions.length} stocks analyzed</span>
-              </div>
-            </div>
-          </div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          <StatCard label="Buy signals" tone="emerald" icon={TrendingUp} value={summary.buy} sub={<span className="text-slate-500">may go up</span>} />
+          <StatCard label="Hold signals" tone="brand" icon={Target} value={summary.hold} sub={<span className="text-slate-500">wait & watch</span>} />
+          <StatCard label="Sell signals" tone="red" icon={TrendingDown} value={summary.sell} sub={<span className="text-slate-500">may decline</span>} />
+          <StatCard label="Analyzed" tone="sky" icon={BarChart3} value={predictions.length} sub={<span className="text-slate-500">stocks tracked</span>} />
         </div>
       )}
 
       {/* Tabs */}
-      <div className="border-b border-gray-200 dark:border-dark-border bg-white dark:bg-dark-bg sticky top-[72px] z-10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex gap-6">
-            {user && (
-              <button
-                onClick={() => setActiveTab('portfolio')}
-                className={`py-3.5 text-sm font-medium border-b-2 transition-colors ${
-                  activeTab === 'portfolio'
-                    ? 'border-blue-600 text-blue-600'
-                    : 'border-transparent text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200'
-                }`}
-              >
-                My Stocks {portfolioPredictions.length > 0 && `(${portfolioPredictions.length})`}
-              </button>
-            )}
+      <div className="border-b border-slate-200 mb-6">
+        <div className="flex gap-6">
+          {user && (
             <button
-              onClick={() => setActiveTab('recommendations')}
-              className={`py-3.5 text-sm font-medium border-b-2 transition-colors ${
-                activeTab === 'recommendations'
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200'
+              onClick={() => setActiveTab('portfolio')}
+              className={`py-3 text-sm font-semibold border-b-2 transition-colors ${
+                activeTab === 'portfolio'
+                  ? 'border-sky-600 text-sky-600'
+                  : 'border-transparent text-slate-500 hover:text-slate-700'
               }`}
             >
-              Top Picks
+              My Stocks {portfolioPredictions.length > 0 && `(${portfolioPredictions.length})`}
             </button>
-            <button
-              onClick={() => setActiveTab('all')}
-              className={`py-3.5 text-sm font-medium border-b-2 transition-colors ${
-                activeTab === 'all'
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200'
-              }`}
-            >
-              All Stocks ({predictions.length})
-            </button>
-          </div>
+          )}
+          <button
+            onClick={() => setActiveTab('recommendations')}
+            className={`py-3 text-sm font-semibold border-b-2 transition-colors ${
+              activeTab === 'recommendations'
+                ? 'border-sky-600 text-sky-600'
+                : 'border-transparent text-slate-500 hover:text-slate-700'
+            }`}
+          >
+            Top Picks
+          </button>
+          <button
+            onClick={() => setActiveTab('all')}
+            className={`py-3 text-sm font-semibold border-b-2 transition-colors ${
+              activeTab === 'all'
+                ? 'border-sky-600 text-sky-600'
+                : 'border-transparent text-slate-500 hover:text-slate-700'
+            }`}
+          >
+            All Stocks ({predictions.length})
+          </button>
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
-        {loading ? (
-          <div className="flex items-center justify-center py-20">
-            <div className="text-center">
-              <div className="inline-block animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600" />
-              <p className="mt-4 text-gray-500 dark:text-gray-300">Loading predictions...</p>
+      {loading ? (
+        <div className="flex items-center justify-center py-20">
+          <div className="text-center">
+            <div className="inline-block animate-spin rounded-full h-10 w-10 border-b-2 border-sky-600" />
+            <p className="mt-4 text-slate-500">Loading predictions...</p>
+          </div>
+        </div>
+      ) : error ? (
+        <EmptyState
+          icon={AlertTriangle}
+          title="Couldn't load predictions"
+          message={error}
+          action={<button onClick={loadData} className="btn btn-sky"><ArrowRight size={16} /> Retry</button>}
+        />
+      ) : predictions.length === 0 ? (
+        <EmptyState
+          icon={BarChart3}
+          title="No Predictions Yet"
+          message="No predictions available yet. Check back later."
+        />
+      ) : activeTab === 'portfolio' ? (
+        /* ============== MY STOCKS TAB ============== */
+        <div>
+          {portfolioPredictions.length === 0 ? (
+            <EmptyState
+              icon={PlusCircle}
+              title="No stocks in your portfolio"
+              message="Add KSE-30 stocks to your portfolio from the Dashboard to see personalized predictions here."
+              action={<a href="/dashboard" className="btn btn-primary"><BarChart3 size={16} /> Go to Dashboard</a>}
+            />
+          ) : (
+            <div>
+              <SectionTitle
+                icon={Sparkles}
+                right={
+                  <div className="flex flex-wrap gap-2">
+                    {(() => {
+                      const pBuy = portfolioPredictions.filter((p: any) => p.signal === 'BUY').length;
+                      const pSell = portfolioPredictions.filter((p: any) => p.signal === 'SELL').length;
+                      const pHold = portfolioPredictions.filter((p: any) => p.signal === 'HOLD').length;
+                      return (
+                        <>
+                          {pBuy > 0 && <span className="pill pill-up">{pBuy} to buy</span>}
+                          {pHold > 0 && <span className="pill pill-brand">{pHold} to hold</span>}
+                          {pSell > 0 && <span className="pill pill-down">{pSell} to sell</span>}
+                        </>
+                      );
+                    })()}
+                  </div>
+                }
+              >
+                Predictions for Your Stocks
+              </SectionTitle>
+              <p className="text-sm text-slate-500 -mt-2 mb-5">
+                Here's what our AI predicts for the {portfolioPredictions.length} stock{portfolioPredictions.length !== 1 ? 's' : ''} in your portfolio over the next 7 days.
+              </p>
+
+              <div className="space-y-3.5">
+                {portfolioPredictions.map((pred: any, idx: number) => (
+                  <PredictionCard key={pred.symbol} pred={pred} idx={idx} accent="sky" />
+                ))}
+              </div>
             </div>
-          </div>
-        ) : error ? (
-          <div className="text-center py-20">
-            <p className="text-red-500 mb-4">{error}</p>
-            <button onClick={loadData} className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-              Retry
-            </button>
-          </div>
-        ) : predictions.length === 0 ? (
-          <div className="text-center py-20">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 dark:bg-dark-surface flex items-center justify-center">
-              <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
+          )}
+        </div>
+      ) : activeTab === 'recommendations' ? (
+        /* ============== TOP PICKS TAB ============== */
+        <div className="space-y-10">
+          {recommendations?.topBuys?.length ? (
+            <div>
+              <SectionTitle
+                icon={TrendingUp}
+                right={<span className="text-xs text-slate-400">Our AI thinks these may go up</span>}
+              >
+                Stocks Worth Buying
+              </SectionTitle>
+              <div className="space-y-3.5">
+                {recommendations.topBuys.map((rec, i) => (
+                  <div key={rec.symbol} className="card card-interactive p-4 reveal" style={{ animationDelay: `${Math.min(i * 0.04, 0.3)}s` }}>
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-sm">
+                          #{i + 1}
+                        </div>
+                        <div>
+                          <p className="font-bold text-slate-900">{rec.symbol}</p>
+                          <p className="text-xs text-slate-500">{rec.sector}</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-emerald-600 font-bold text-lg">+{rec.predicted_return?.toFixed(1)}%</p>
+                        <p className="text-xs text-slate-400">expected in 7 days</p>
+                      </div>
+                    </div>
+                    <div className="mt-3 flex items-center gap-4 text-sm">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-slate-400">Now:</span>
+                        <span className="font-medium text-slate-700">Rs. {rec.current_price?.toFixed(2)}</span>
+                      </div>
+                      <ArrowRight size={16} className="text-emerald-400" />
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-slate-400">Target:</span>
+                        <span className="font-semibold text-emerald-600">Rs. {rec.predicted_price?.toFixed(2)}</span>
+                      </div>
+                      <div className="ml-auto text-xs text-slate-400">
+                        Confidence: {rec.confidence?.toFixed(0)}%
+                      </div>
+                    </div>
+                    {rec.reasoning && (
+                      <p className="mt-2 text-xs text-slate-500 leading-relaxed line-clamp-2">{cleanReasoning(rec.reasoning)}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
-            <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">No Predictions Yet</h3>
-            <p className="text-gray-500 dark:text-gray-300">No predictions available yet. Check back later.</p>
-          </div>
-        ) : activeTab === 'portfolio' ? (
-          /* ============== MY STOCKS TAB ============== */
-          <div>
-            {portfolioPredictions.length === 0 ? (
-              <div className="text-center py-16">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center">
-                  <svg className="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">No stocks in your portfolio</h3>
-                <p className="text-gray-500 dark:text-gray-300 mb-4">Add KSE-30 stocks to your portfolio from the Dashboard to see personalized predictions here.</p>
-                <a href="/dashboard" className="inline-block px-5 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-full hover:bg-blue-700 transition-colors">
-                  Go to Dashboard
-                </a>
-              </div>
-            ) : (
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                  <h2 className="text-lg font-bold text-gray-900 dark:text-white">Predictions for Your Stocks</h2>
-                </div>
-                <p className="text-sm text-gray-500 dark:text-gray-300 mb-5">
-                  Here's what our AI predicts for the {portfolioPredictions.length} stock{portfolioPredictions.length !== 1 ? 's' : ''} in your portfolio over the next 7 days.
-                </p>
+          ) : null}
 
-                {/* Portfolio summary */}
-                <div className="flex flex-wrap gap-3 mb-6">
-                  {(() => {
-                    const pBuy = portfolioPredictions.filter((p: any) => p.signal === 'BUY').length;
-                    const pSell = portfolioPredictions.filter((p: any) => p.signal === 'SELL').length;
-                    const pHold = portfolioPredictions.filter((p: any) => p.signal === 'HOLD').length;
-                    return (
-                      <>
-                        {pBuy > 0 && (
-                          <span className="px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-100 dark:border-emerald-800 text-sm font-medium text-emerald-700 dark:text-emerald-400">
-                            {pBuy} to buy
-                          </span>
-                        )}
-                        {pHold > 0 && (
-                          <span className="px-3 py-1.5 rounded-full bg-amber-50 dark:bg-amber-900/30 border border-amber-100 dark:border-amber-800 text-sm font-medium text-amber-700 dark:text-amber-400">
-                            {pHold} to hold
-                          </span>
-                        )}
-                        {pSell > 0 && (
-                          <span className="px-3 py-1.5 rounded-full bg-red-50 dark:bg-red-900/30 border border-red-100 dark:border-red-800 text-sm font-medium text-red-700 dark:text-red-400">
-                            {pSell} to sell
-                          </span>
-                        )}
-                      </>
-                    );
-                  })()}
-                </div>
-
-                {/* Render portfolio predictions using same card layout as All Stocks */}
-                <div className="grid gap-3">
-                  {portfolioPredictions.map((pred: any) => {
-                    const isExpanded = expandedSymbol === pred.symbol;
-                    const trust = trustBadge(pred.trustLevel || 'medium');
-
-                    return (
-                      <div key={pred.symbol} className="border border-blue-100 dark:border-blue-800/50 rounded-xl overflow-hidden hover:border-blue-200 dark:hover:border-blue-700 transition-colors bg-blue-50/20 dark:bg-dark-card">
-                        <div
-                          onClick={() => setExpandedSymbol(isExpanded ? null : pred.symbol)}
-                          className="p-4 cursor-pointer hover:bg-blue-50/40 dark:hover:bg-dark-hover transition-colors"
-                        >
-                          <div className="flex items-center justify-between gap-3">
-                            <div className="flex items-center gap-3 min-w-0">
-                              <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-xs shrink-0 ${signalBg(pred.signal)}`}>
-                                {pred.signal}
-                              </div>
-                              <div className="min-w-0">
-                                <div className="flex items-center gap-2">
-                                  <p className="font-semibold text-gray-900 dark:text-white">{pred.symbol}</p>
-                                  <span className="text-xs text-gray-400 hidden sm:inline">{pred.companyName}</span>
-                                </div>
-                                <p className="text-xs text-gray-400">{pred.sector} &middot; {signalLabel(pred.signal)}</p>
-                              </div>
-                            </div>
-                            <div className="hidden md:block">
-                              <Sparkline data={pred.priceForecast7d || []} current={pred.currentPrice} />
-                              <p className="text-[10px] text-gray-400 text-center mt-0.5">7-day trend</p>
-                            </div>
-                            <div className="text-right shrink-0">
-                              <div className="flex items-center gap-3">
-                                <div className="hidden sm:block text-right">
-                                  <p className="text-xs text-gray-400">Now</p>
-                                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Rs. {pred.currentPrice?.toFixed(2)}</p>
-                                </div>
-                                <div className="text-right">
-                                  <p className="text-xs text-gray-400">7-day target</p>
-                                  <p className={`text-sm font-bold ${returnColor(pred.predictedReturn)}`}>
-                                    Rs. {pred.predictedPrice?.toFixed(2)}
-                                  </p>
-                                </div>
-                                <div className={`text-right px-2.5 py-1 rounded-lg ${pred.predictedReturn > 0 ? 'bg-emerald-50 dark:bg-emerald-900/30' : pred.predictedReturn < 0 ? 'bg-red-50 dark:bg-red-900/30' : 'bg-gray-50 dark:bg-dark-surface'}`}>
-                                  <p className={`text-base font-bold ${returnColor(pred.predictedReturn)}`}>
-                                    {pred.predictedReturn > 0 ? '+' : ''}{pred.predictedReturn?.toFixed(1)}%
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <svg className={`w-5 h-5 text-gray-300 shrink-0 transition-transform ${isExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                            </svg>
-                          </div>
-                          {/* Holding info */}
-                          {pred.holding && (
-                            <div className="mt-2 pt-2 border-t border-blue-100 dark:border-blue-800/50 flex flex-wrap gap-4 text-xs text-gray-500 dark:text-gray-300">
-                              <span>Shares: <strong className="text-gray-700 dark:text-gray-300">{pred.holding.quantity}</strong></span>
-                              <span>Avg cost: <strong className="text-gray-700 dark:text-gray-300">Rs. {pred.holding.averageCost?.toFixed(2)}</strong></span>
-                              <span>Invested: <strong className="text-gray-700 dark:text-gray-300">Rs. {pred.holding.invested?.toFixed(0)}</strong></span>
-                              <span>Current value: <strong className="text-gray-700 dark:text-gray-300">Rs. {pred.holding.currentValue?.toFixed(0)}</strong></span>
-                            </div>
-                          )}
+          {recommendations?.topSells?.length ? (
+            <div>
+              <SectionTitle
+                icon={TrendingDown}
+                right={<span className="text-xs text-slate-400">Our AI thinks these may decline</span>}
+              >
+                Stocks to Watch Out For
+              </SectionTitle>
+              <div className="space-y-3.5">
+                {recommendations.topSells.map((rec, i) => (
+                  <div key={rec.symbol} className="card card-interactive p-4 reveal" style={{ animationDelay: `${Math.min(i * 0.04, 0.3)}s` }}>
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-xl bg-red-100 flex items-center justify-center text-red-700 font-bold text-sm">
+                          #{i + 1}
                         </div>
-                        {isExpanded && (
-                          <div className="border-t border-blue-100 dark:border-blue-800/50 bg-white dark:bg-dark-surface p-4 sm:p-6 space-y-5">
-                            <div>
-                              <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-100 mb-2 flex items-center gap-2">
-                                <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                                </svg>
-                                What our AI says
-                              </h4>
-                              <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{cleanReasoning(pred.llmReasoning || pred.reasoning)}</p>
-                            </div>
-                            <div className="flex flex-wrap gap-2 pt-2 border-t border-gray-100 dark:border-dark-border">
-                              <span className={`text-[11px] px-2.5 py-1 rounded-full font-medium ${trust.cls}`}>{trust.text}</span>
-                              <span className="text-[11px] px-2.5 py-1 rounded-full bg-gray-100 dark:bg-dark-surface text-gray-500 dark:text-gray-300">
-                                {pred.forecastDays?.bullish || 0} of 7 days look positive
-                              </span>
-                              <span className="text-[11px] px-2.5 py-1 rounded-full bg-gray-100 dark:bg-dark-surface text-gray-500 dark:text-gray-300">
-                                AI confidence: {pred.confidence?.toFixed(0)}%
-                              </span>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-          </div>
-        ) : activeTab === 'recommendations' ? (
-          /* ============== TOP PICKS TAB ============== */
-          <div className="space-y-10">
-            {recommendations?.topBuys?.length ? (
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="w-3 h-3 rounded-full bg-emerald-500" />
-                  <h2 className="text-lg font-bold text-gray-900 dark:text-white">Stocks Worth Buying</h2>
-                  <span className="text-xs text-gray-400 ml-1">Our AI thinks these may go up</span>
-                </div>
-                <div className="grid gap-3">
-                  {recommendations.topBuys.map((rec, i) => (
-                    <div key={rec.symbol} className="p-4 border border-gray-200 dark:border-dark-border rounded-xl hover:border-emerald-200 dark:hover:border-emerald-800 hover:bg-emerald-50/20 dark:hover:bg-emerald-900/10 transition-all">
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex items-center gap-3">
-                          <div className="w-9 h-9 rounded-lg bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center text-emerald-700 dark:text-emerald-400 font-bold text-sm">
-                            #{i + 1}
-                          </div>
-                          <div>
-                            <p className="font-semibold text-gray-900 dark:text-white">{rec.symbol}</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-300">{rec.sector}</p>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-emerald-600 font-bold text-lg">+{rec.predicted_return?.toFixed(1)}%</p>
-                          <p className="text-xs text-gray-400">expected in 7 days</p>
+                        <div>
+                          <p className="font-bold text-slate-900">{rec.symbol}</p>
+                          <p className="text-xs text-slate-500">{rec.sector}</p>
                         </div>
                       </div>
-                      <div className="mt-3 flex items-center gap-4 text-sm">
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-gray-400">Now:</span>
-                          <span className="font-medium">Rs. {rec.current_price?.toFixed(2)}</span>
-                        </div>
-                        <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                        </svg>
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-gray-400">Target:</span>
-                          <span className="font-semibold text-emerald-600">Rs. {rec.predicted_price?.toFixed(2)}</span>
-                        </div>
-                        <div className="ml-auto text-xs text-gray-400">
-                          Confidence: {rec.confidence?.toFixed(0)}%
-                        </div>
+                      <div className="text-right">
+                        <p className="text-red-600 font-bold text-lg">{rec.predicted_return?.toFixed(1)}%</p>
+                        <p className="text-xs text-slate-400">expected in 7 days</p>
                       </div>
-                      {rec.reasoning && (
-                        <p className="mt-2 text-xs text-gray-500 dark:text-gray-300 leading-relaxed line-clamp-2">{cleanReasoning(rec.reasoning)}</p>
-                      )}
                     </div>
-                  ))}
-                </div>
-              </div>
-            ) : null}
-
-            {recommendations?.topSells?.length ? (
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="w-3 h-3 rounded-full bg-red-500" />
-                  <h2 className="text-lg font-bold text-gray-900 dark:text-white">Stocks to Watch Out For</h2>
-                  <span className="text-xs text-gray-400 ml-1">Our AI thinks these may decline</span>
-                </div>
-                <div className="grid gap-3">
-                  {recommendations.topSells.map((rec, i) => (
-                    <div key={rec.symbol} className="p-4 border border-gray-200 dark:border-dark-border rounded-xl hover:border-red-200 dark:hover:border-red-800 hover:bg-red-50/20 dark:hover:bg-red-900/10 transition-all">
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex items-center gap-3">
-                          <div className="w-9 h-9 rounded-lg bg-red-100 dark:bg-red-900/40 flex items-center justify-center text-red-700 dark:text-red-400 font-bold text-sm">
-                            #{i + 1}
-                          </div>
-                          <div>
-                            <p className="font-semibold text-gray-900 dark:text-white">{rec.symbol}</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-300">{rec.sector}</p>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-red-600 font-bold text-lg">{rec.predicted_return?.toFixed(1)}%</p>
-                          <p className="text-xs text-gray-400">expected in 7 days</p>
-                        </div>
+                    <div className="mt-3 flex items-center gap-4 text-sm">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-slate-400">Now:</span>
+                        <span className="font-medium text-slate-700">Rs. {rec.current_price?.toFixed(2)}</span>
                       </div>
-                      <div className="mt-3 flex items-center gap-4 text-sm">
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-gray-400">Now:</span>
-                          <span className="font-medium">Rs. {rec.current_price?.toFixed(2)}</span>
-                        </div>
-                        <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                        </svg>
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-gray-400">Target:</span>
-                          <span className="font-semibold text-red-600">Rs. {rec.predicted_price?.toFixed(2)}</span>
-                        </div>
-                        <div className="ml-auto text-xs text-gray-400">
-                          Confidence: {rec.confidence?.toFixed(0)}%
-                        </div>
+                      <ArrowRight size={16} className="text-red-400" />
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-slate-400">Target:</span>
+                        <span className="font-semibold text-red-600">Rs. {rec.predicted_price?.toFixed(2)}</span>
                       </div>
-                      {rec.reasoning && (
-                        <p className="mt-2 text-xs text-gray-500 dark:text-gray-300 leading-relaxed line-clamp-2">{cleanReasoning(rec.reasoning)}</p>
-                      )}
+                      <div className="ml-auto text-xs text-slate-400">
+                        Confidence: {rec.confidence?.toFixed(0)}%
+                      </div>
                     </div>
-                  ))}
-                </div>
+                    {rec.reasoning && (
+                      <p className="mt-2 text-xs text-slate-500 leading-relaxed line-clamp-2">{cleanReasoning(rec.reasoning)}</p>
+                    )}
+                  </div>
+                ))}
               </div>
-            ) : null}
+            </div>
+          ) : null}
 
-            {!recommendations?.topBuys?.length && !recommendations?.topSells?.length && (
-              <div className="text-center py-16 text-gray-500 dark:text-gray-300">No recommendations available yet.</div>
-            )}
-          </div>
-        ) : (
-          /* ============== ALL STOCKS TAB ============== */
-          <div>
-            {/* Filters */}
-            <div className="mb-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+          {!recommendations?.topBuys?.length && !recommendations?.topSells?.length && (
+            <EmptyState icon={Inbox} title="No recommendations yet" message="No recommendations available yet. Check back later." />
+          )}
+        </div>
+      ) : (
+        /* ============== ALL STOCKS TAB ============== */
+        <div>
+          {/* Filters */}
+          <div className="mb-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="relative">
+              <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
               <input
                 type="text"
                 placeholder="Search stock name or symbol..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 py-2.5 border border-gray-200 dark:border-dark-border rounded-xl text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white dark:bg-dark-card dark:text-gray-100 dark:placeholder-gray-500"
+                className="input pl-10"
               />
-              <select
-                value={filterSignal}
-                onChange={(e) => setFilterSignal(e.target.value)}
-                className="w-full px-4 py-2.5 border border-gray-200 dark:border-dark-border rounded-xl text-sm focus:outline-none focus:border-blue-400 bg-white dark:bg-dark-card dark:text-gray-100"
-              >
-                <option value="">All Recommendations</option>
-                <option value="BUY">Buy signals only</option>
-                <option value="HOLD">Hold signals only</option>
-                <option value="SELL">Sell signals only</option>
-              </select>
-              <select
-                value={filterSector}
-                onChange={(e) => setFilterSector(e.target.value)}
-                className="w-full px-4 py-2.5 border border-gray-200 dark:border-dark-border rounded-xl text-sm focus:outline-none focus:border-blue-400 bg-white dark:bg-dark-card dark:text-gray-100"
-              >
-                <option value="">All Sectors</option>
-                {sectors.map((s) => (
-                  <option key={s} value={s}>{s}</option>
-                ))}
-              </select>
             </div>
-
-            {/* Stock Cards */}
-            <div className="grid gap-3">
-              {filtered.map((pred) => {
-                const isExpanded = expandedSymbol === pred.symbol;
-                const sent = sentimentLabel(pred.sentiment?.score || 0);
-                const trust = trustBadge(pred.trustLevel || 'medium');
-
-                return (
-                  <div key={pred.symbol} className="border border-gray-200 dark:border-dark-border rounded-xl overflow-hidden hover:border-gray-300 dark:hover:border-gray-600 transition-colors dark:bg-dark-card">
-                    {/* Main Row */}
-                    <div
-                      onClick={() => setExpandedSymbol(isExpanded ? null : pred.symbol)}
-                      className="p-4 cursor-pointer hover:bg-gray-50/50 dark:hover:bg-dark-hover transition-colors"
-                    >
-                      <div className="flex items-center justify-between gap-3">
-                        {/* Left: Stock info + signal */}
-                        <div className="flex items-center gap-3 min-w-0">
-                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-xs shrink-0 ${signalBg(pred.signal)}`}>
-                            {pred.signal}
-                          </div>
-                          <div className="min-w-0">
-                            <div className="flex items-center gap-2">
-                              <p className="font-semibold text-gray-900 dark:text-white">{pred.symbol}</p>
-                              <span className="text-xs text-gray-400 hidden sm:inline">{pred.companyName}</span>
-                            </div>
-                            <p className="text-xs text-gray-400">{pred.sector} &middot; {signalLabel(pred.signal)}</p>
-                          </div>
-                        </div>
-
-                        {/* Center: Price trend sparkline */}
-                        <div className="hidden md:block">
-                          <Sparkline data={pred.priceForecast7d || []} current={pred.currentPrice} />
-                          <p className="text-[10px] text-gray-400 text-center mt-0.5">7-day trend</p>
-                        </div>
-
-                        {/* Right: Prices + return */}
-                        <div className="text-right shrink-0">
-                          <div className="flex items-center gap-3">
-                            <div className="hidden sm:block text-right">
-                              <p className="text-xs text-gray-400">Now</p>
-                              <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Rs. {pred.currentPrice?.toFixed(2)}</p>
-                            </div>
-                            <div className="text-right">
-                              <p className="text-xs text-gray-400">7-day target</p>
-                              <p className={`text-sm font-bold ${returnColor(pred.predictedReturn)}`}>
-                                Rs. {pred.predictedPrice?.toFixed(2)}
-                              </p>
-                            </div>
-                            <div className={`text-right px-2.5 py-1 rounded-lg ${pred.predictedReturn > 0 ? 'bg-emerald-50 dark:bg-emerald-900/30' : pred.predictedReturn < 0 ? 'bg-red-50 dark:bg-red-900/30' : 'bg-gray-50 dark:bg-dark-surface'}`}>
-                              <p className={`text-base font-bold ${returnColor(pred.predictedReturn)}`}>
-                                {pred.predictedReturn > 0 ? '+' : ''}{pred.predictedReturn?.toFixed(1)}%
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Expand icon */}
-                        <svg className={`w-5 h-5 text-gray-300 shrink-0 transition-transform ${isExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
-                    </div>
-
-                    {/* Expanded Detail */}
-                    {isExpanded && (
-                      <div className="border-t border-gray-100 dark:border-dark-border bg-gray-50/50 dark:bg-dark-surface p-4 sm:p-6 space-y-5">
-                        {/* AI Analysis */}
-                        <div>
-                          <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-100 mb-2 flex items-center gap-2">
-                            <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                            </svg>
-                            What our AI says
-                          </h4>
-                          <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                            {cleanReasoning(pred.llmReasoning || pred.reasoning)}
-                          </p>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                          {/* Price Forecast */}
-                          <div>
-                            <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-100 mb-3">Where the price could go</h4>
-                            <div className="space-y-2">
-                              <div className="flex items-center justify-between text-sm">
-                                <span className="text-gray-500 dark:text-gray-300">Current price</span>
-                                <span className="font-semibold">Rs. {pred.currentPrice?.toFixed(2)}</span>
-                              </div>
-                              <div className="flex items-center justify-between text-sm">
-                                <span className="text-gray-500 dark:text-gray-300">Most likely price (7 days)</span>
-                                <span className={`font-bold ${returnColor(pred.predictedReturn)}`}>
-                                  Rs. {pred.predictedPrice?.toFixed(2)}
-                                </span>
-                              </div>
-                              {/* Price range bar — includes current price in bounds */}
-                              {pred.priceRange?.low != null && pred.priceRange?.high != null && (() => {
-                                const rangeLow = Math.min(pred.currentPrice, pred.priceRange.low);
-                                const rangeHigh = Math.max(pred.currentPrice, pred.priceRange.high);
-                                const totalRange = rangeHigh - rangeLow || 1;
-                                const currentPct = ((pred.currentPrice - rangeLow) / totalRange) * 100;
-                                const targetPct = ((pred.predictedPrice - rangeLow) / totalRange) * 100;
-                                const lowPct = ((pred.priceRange.low - rangeLow) / totalRange) * 100;
-                                const highPct = ((pred.priceRange.high - rangeLow) / totalRange) * 100;
-                                const goingUp = pred.predictedPrice > pred.currentPrice;
-
-                                return (
-                                  <div className="mt-3 p-3 rounded-lg bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border">
-                                    <p className="text-xs text-gray-400 mb-3">Predicted price range in 7 days</p>
-                                    <div className="relative h-8">
-                                      {/* Full range line */}
-                                      <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 h-1 bg-gray-100 dark:bg-dark-surface rounded-full" />
-                                      {/* Model's predicted range (q10 to q90) */}
-                                      <div
-                                        className="absolute top-1/2 -translate-y-1/2 h-2.5 bg-blue-100 rounded-full"
-                                        style={{ left: `${lowPct}%`, right: `${100 - highPct}%` }}
-                                      />
-                                      {/* Current price marker */}
-                                      <div
-                                        className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-gray-500 rounded-full border-2 border-white shadow-md z-10"
-                                        style={{ left: `${Math.max(2, Math.min(98, currentPct))}%`, transform: 'translate(-50%, -50%)' }}
-                                        title={`Current: Rs. ${pred.currentPrice?.toFixed(2)}`}
-                                      />
-                                      {/* Target price marker */}
-                                      <div
-                                        className={`absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 border-white shadow-md z-10 ${goingUp ? 'bg-emerald-500' : 'bg-red-500'}`}
-                                        style={{ left: `${Math.max(2, Math.min(98, targetPct))}%`, transform: 'translate(-50%, -50%)' }}
-                                        title={`Target: Rs. ${pred.predictedPrice?.toFixed(2)}`}
-                                      />
-                                    </div>
-                                    <div className="flex justify-between text-[10px] mt-1">
-                                      <span className="text-gray-400">Rs. {rangeLow.toFixed(0)}</span>
-                                      <span className="text-gray-400">Rs. {rangeHigh.toFixed(0)}</span>
-                                    </div>
-                                    <div className="flex items-center justify-center gap-4 mt-2">
-                                      <div className="flex items-center gap-1">
-                                        <span className="w-2 h-2 rounded-full bg-gray-500" />
-                                        <span className="text-[10px] text-gray-400">Current</span>
-                                      </div>
-                                      <div className="flex items-center gap-1">
-                                        <span className={`w-2 h-2 rounded-full ${goingUp ? 'bg-emerald-500' : 'bg-red-500'}`} />
-                                        <span className="text-[10px] text-gray-400">Target</span>
-                                      </div>
-                                      <div className="flex items-center gap-1">
-                                        <span className="w-4 h-1.5 rounded bg-blue-100" />
-                                        <span className="text-[10px] text-gray-400">Predicted range</span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                );
-                              })()}
-                            </div>
-                          </div>
-
-                          {/* Sentiment + Risk */}
-                          <div className="space-y-4">
-                            {/* News Sentiment */}
-                            <div>
-                              <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-100 mb-2">Recent news mood</h4>
-                              <div className="p-3 rounded-lg bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border">
-                                <div className="flex items-center justify-between mb-2">
-                                  <span className={`text-sm font-medium ${sent.cls}`}>{sent.text}</span>
-                                  {pred.sentiment?.source && pred.sentiment.source !== 'neutral' && (
-                                    <span className="text-[10px] text-gray-400">via {pred.sentiment.source}</span>
-                                  )}
-                                </div>
-                                {pred.sentiment?.key_headlines?.length > 0 ? (
-                                  <ul className="space-y-1">
-                                    {pred.sentiment.key_headlines.slice(0, 3).map((h, i) => (
-                                      <li key={i} className="text-xs text-gray-500 dark:text-gray-300 flex items-start gap-1.5">
-                                        <span className="text-gray-300 mt-0.5">-</span>
-                                        <span>{h}</span>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                ) : (
-                                  <p className="text-xs text-gray-400">No major headlines recently</p>
-                                )}
-                              </div>
-                            </div>
-
-                            {/* Risk Factors */}
-                            {pred.riskFactors?.length > 0 && (
-                              <div>
-                                <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-100 mb-2">Things to watch out for</h4>
-                                <ul className="space-y-1">
-                                  {pred.riskFactors.map((risk, i) => (
-                                    <li key={i} className="text-xs text-gray-500 dark:text-gray-300 flex items-start gap-1.5">
-                                      <span className="text-amber-400 mt-0.5">!</span>
-                                      <span>{risk}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-
-                        {/* Bottom tags */}
-                        <div className="flex flex-wrap gap-2 pt-2 border-t border-gray-100 dark:border-dark-border">
-                          <span className={`text-[11px] px-2.5 py-1 rounded-full font-medium ${trust.cls}`}>
-                            {trust.text}
-                          </span>
-                          <span className="text-[11px] px-2.5 py-1 rounded-full bg-gray-100 dark:bg-dark-surface text-gray-500 dark:text-gray-300">
-                            {pred.forecastDays?.bullish || 0} of 7 days look positive
-                          </span>
-                          <span className="text-[11px] px-2.5 py-1 rounded-full bg-gray-100 dark:bg-dark-surface text-gray-500 dark:text-gray-300">
-                            AI confidence: {pred.confidence?.toFixed(0)}%
-                          </span>
-                          {pred.trustNote && (
-                            <span className="text-[11px] px-2.5 py-1 rounded-full bg-red-50 dark:bg-red-900/30 text-red-500 dark:text-red-400">
-                              {pred.trustNote}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-
-              {filtered.length === 0 && (
-                <div className="text-center py-12 text-gray-500 dark:text-gray-300">
-                  No stocks match your search.
-                </div>
-              )}
-            </div>
+            <select
+              value={filterSignal}
+              onChange={(e) => setFilterSignal(e.target.value)}
+              className="input"
+            >
+              <option value="">All Recommendations</option>
+              <option value="BUY">Buy signals only</option>
+              <option value="HOLD">Hold signals only</option>
+              <option value="SELL">Sell signals only</option>
+            </select>
+            <select
+              value={filterSector}
+              onChange={(e) => setFilterSector(e.target.value)}
+              className="input"
+            >
+              <option value="">All Sectors</option>
+              {sectors.map((s) => (
+                <option key={s} value={s}>{s}</option>
+              ))}
+            </select>
           </div>
-        )}
 
-        {/* Disclaimer */}
-        {predictions.length > 0 && (
-          <div className="mt-8 p-4 rounded-xl bg-amber-50/50 dark:bg-amber-900/20 border border-amber-100 dark:border-amber-800/50">
-            <p className="text-xs text-amber-700 dark:text-amber-400 leading-relaxed">
-              <strong>Important:</strong> These predictions are generated by an AI model for educational and informational purposes only.
-              They are <strong>not financial advice</strong>. The stock market carries risk — you can lose money.
-              Always do your own research or consult a financial advisor before making any investment decisions.
-              Past predictions do not guarantee future results.
-            </p>
+          {/* Stock Cards */}
+          <div className="space-y-3.5">
+            {filtered.map((pred, idx) => (
+              <PredictionCard key={pred.symbol} pred={pred} idx={idx} accent="slate" />
+            ))}
+
+            {filtered.length === 0 && (
+              <EmptyState icon={Search} title="No matches" message="No stocks match your search." />
+            )}
           </div>
-        )}
-      </div>
+        </div>
+      )}
+
+      {/* Disclaimer */}
+      {predictions.length > 0 && (
+        <div className="mt-8 p-4 rounded-xl bg-amber-50/60 border border-amber-200 reveal">
+          <p className="text-xs text-amber-700 leading-relaxed">
+            <strong>Important:</strong> These predictions are generated by an AI model for educational and informational purposes only.
+            They are <strong>not financial advice</strong>. The stock market carries risk — you can lose money.
+            Always do your own research or consult a financial advisor before making any investment decisions.
+            Past predictions do not guarantee future results.
+          </p>
+        </div>
+      )}
     </div>
   );
 }

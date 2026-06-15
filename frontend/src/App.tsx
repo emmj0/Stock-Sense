@@ -14,6 +14,7 @@ import ChatPage from './pages/ChatPage';
 import { useAuth } from './providers/AuthProvider';
 import TopNav from './components/TopNav';
 import AppLayout from './components/AppLayout';
+import { AuthModalProvider } from './components/AuthModal';
 
 function RequireAuth({ children }: { children: JSX.Element }) {
   const { user, loading } = useAuth();
@@ -62,11 +63,13 @@ export default function App() {
   }
 
   return (
+    <AuthModalProvider>
     <Routes>
       {/* Guest routes — with TopNav */}
       <Route path="/" element={user ? <Navigate to="/dashboard" /> : <GuestLayout><LandingPage /></GuestLayout>} />
-      <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <GuestLayout><LoginPage /></GuestLayout>} />
-      <Route path="/signup" element={user ? <Navigate to="/dashboard" /> : <GuestLayout><SignupPage /></GuestLayout>} />
+      {/* Auth pages render full-screen without the marketing TopNav (kept for deep links / RequireAuth fallback) */}
+      <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <LoginPage />} />
+      <Route path="/signup" element={user ? <Navigate to="/dashboard" /> : <SignupPage />} />
 
       {/* Auth routes — with Sidebar layout */}
       <Route element={<RequireAuth><AppLayout /></RequireAuth>}>
@@ -83,5 +86,6 @@ export default function App() {
 
       <Route path="*" element={<Navigate to={user ? '/dashboard' : '/'} />} />
     </Routes>
+    </AuthModalProvider>
   );
 }

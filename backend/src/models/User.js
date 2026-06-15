@@ -71,6 +71,7 @@ const UserSchema = new mongoose.Schema({
     default: 'local',
   },
   googleId: { type: String },
+  avatar: { type: String }, // profile picture as a data URL (or remote URL)
   preferences: PreferencesSchema,
   portfolio: [PortfolioItemSchema],
   // Learning progress

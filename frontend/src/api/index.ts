@@ -34,6 +34,11 @@ export async function savePreferences(preferences: Preferences): Promise<Prefere
   return data.preferences;
 }
 
+export async function updateProfile(payload: { name?: string; avatar?: string | null }): Promise<User> {
+  const { data } = await api.put<{ user: User }>('/api/user/profile', payload);
+  return data.user;
+}
+
 export async function fetchStocks(search?: string): Promise<Stock[]> {
   const params = search ? { search } : undefined;
   const { data } = await api.get<{ stocks: Stock[] }>('/api/stocks', { params });

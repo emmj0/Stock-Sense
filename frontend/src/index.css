@@ -10,7 +10,7 @@
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    @apply bg-white text-slate-900;
+    @apply bg-slate-50 text-slate-900;
   }
 
   html, body, #root {
@@ -18,60 +18,111 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
     font-weight: 700;
     letter-spacing: -0.02em;
   }
+
+  /* Smooth transitions */
+  *, *::before, *::after {
+    transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-slate-300/70 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-slate-400; }
+
+  /* Selection */
+  ::selection { @apply bg-brand-500 text-white; }
+
+  /* Focus */
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    @apply border-sky-400 ring-2 ring-sky-500/15;
+  }
 }
 
-/* ── Smooth transitions ───────────────────────────────────── */
+/* ── Component classes (live in components layer so utilities override) ── */
+@layer components {
+  .page {
+    @apply px-5 py-6 sm:px-8 sm:py-8 mx-auto w-full max-w-[1180px];
+  }
 
-*, *::before, *::after {
-  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  /* Inputs */
+  .input {
+    @apply w-full px-4 py-2.5 border border-slate-200 rounded-xl
+           bg-white text-slate-900 text-sm
+           placeholder-slate-400 shadow-soft
+           focus:outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-500/15;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl
+           transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    @apply bg-brand-500 text-white hover:bg-brand-600 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40;
+  }
+  .btn-sky {
+    @apply bg-sky-600 text-white hover:bg-sky-700 shadow-lg shadow-sky-600/25 hover:shadow-sky-600/40;
+  }
+  .btn-secondary {
+    @apply border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300;
+  }
+  .btn-ghost {
+    @apply text-slate-500 hover:bg-slate-100 hover:text-slate-800;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-white rounded-2xl border border-slate-200/80 shadow-card;
+  }
+  .card-interactive {
+    @apply card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5 hover:border-slate-300;
+  }
+
+  /* Pills / Badges */
+  .pill {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold;
+  }
+  .pill-up    { @apply bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-600/15; }
+  .pill-down  { @apply bg-red-50 text-red-700 ring-1 ring-inset ring-red-600/15; }
+  .pill-flat  { @apply bg-slate-100 text-slate-600 ring-1 ring-inset ring-slate-500/10; }
+  .pill-brand { @apply bg-brand-50 text-brand-700 ring-1 ring-inset ring-brand-600/15; }
+  .pill-sky   { @apply bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-600/15; }
+
+  /* eyebrow label */
+  .eyebrow {
+    @apply text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400;
+  }
+
+  /* Stat tile */
+  .tile {
+    @apply rounded-xl border border-slate-200/80 bg-white px-4 py-3.5 text-center;
+  }
+  .tile-label { @apply text-[11px] font-semibold uppercase tracking-wide text-slate-400; }
+  .tile-value { @apply text-sm font-bold text-slate-900 mt-1; }
+
+  /* Skeleton shimmer */
+  .skeleton {
+    @apply bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200
+           bg-[length:200%_100%] animate-shimmer rounded-lg;
+  }
+
+  /* Glass effect */
+  .glass {
+    @apply bg-white/80 backdrop-blur-xl border-b border-slate-200/60;
+  }
 }
 
-/* ── Scrollbar ─────────────────────────────────────────────── */
+/* dark scrollbar inside the sidebar */
+.scrollbar-dark::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.25); }
+.scrollbar-dark::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.4); }
 
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { @apply bg-transparent; }
-::-webkit-scrollbar-thumb { @apply bg-slate-200 rounded-full; }
-::-webkit-scrollbar-thumb:hover { @apply bg-slate-300; }
-
-/* ── Selection ─────────────────────────────────────────────── */
-
-::selection { @apply bg-orange-500 text-white; }
-
-/* ── Focus ─────────────────────────────────────────────────── */
-
-input:focus, textarea:focus, select:focus {
-  outline: none;
-  @apply border-blue-400 ring-2 ring-blue-500/15;
-}
-
-/* ── Inputs ────────────────────────────────────────────────── */
-
-.input {
-  @apply px-4 py-3 border border-slate-200 rounded-xl
-         bg-white text-slate-900
-         placeholder-slate-400
-         focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/15;
-}
-
-/* ── Buttons ───────────────────────────────────────────────── */
-
-.btn {
-  @apply px-6 py-3 font-medium rounded-xl transition-all duration-200 active:scale-[0.98];
-}
-
-.btn-primary {
-  @apply bg-orange-500 text-white hover:bg-orange-600 shadow-lg shadow-orange-500/20 hover:shadow-orange-500/30;
-}
-
-.btn-secondary {
-  @apply border border-slate-200 text-slate-700 hover:bg-slate-50;
-}
-
-/* ── Stagger animations ────────────────────────────────────── */
+/* ── Stagger animation delays ──────────────────────────────── */
 
 .stagger-1 { animation-delay: 0.05s; }
 .stagger-2 { animation-delay: 0.1s; }
@@ -80,27 +131,13 @@ input:focus, textarea:focus, select:focus {
 .stagger-5 { animation-delay: 0.25s; }
 .stagger-6 { animation-delay: 0.3s; }
 
-/* ── Card hover ────────────────────────────────────────────── */
+/* generic entrance — set opacity:0 then animate */
+.reveal { opacity: 0; animation: enter 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 
-.card-hover {
-  @apply transition-all duration-300;
-}
-.card-hover:hover {
-  @apply -translate-y-0.5 shadow-lg;
-}
+/* ── Marquee ticker ────────────────────────────────────────── */
 
-/* ── Skeleton shimmer ──────────────────────────────────────── */
-
-.skeleton {
-  @apply bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200
-         bg-[length:200%_100%] animate-shimmer rounded-lg;
-}
-
-/* ── Glass effect ──────────────────────────────────────────── */
-
-.glass {
-  @apply bg-white/80 backdrop-blur-xl border-b border-slate-200/60;
-}
+.marquee-track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
+.marquee-paused:hover .marquee-track { animation-play-state: paused; }
 
 /* ── Keyframe animations ───────────────────────────────────── */
 
@@ -122,6 +159,16 @@ input:focus, textarea:focus, select:focus {
 @keyframes fadeInRight {
   from { opacity: 0; transform: translateX(30px); }
   to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes enter {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .animate-fadeInUp { animation: fadeInUp 0.7s ease-out forwards; }

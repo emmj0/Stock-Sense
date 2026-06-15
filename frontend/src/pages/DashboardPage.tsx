@@ -2,7 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { fetchStocks, upsertPortfolioItem } from '../api';
 import { TableSkeletonLoader } from '../components/Loader';
 import { Toast } from '../components/Toast';
-import { X } from 'lucide-react';
+import { X, Search, LayoutDashboard, TrendingUp, TrendingDown, Activity, Plus } from 'lucide-react';
+import { PageHeader, StatCard } from '../components/ui';
 import type { Stock } from '../types';
 
 export default function DashboardPage() {
@@ -35,6 +36,14 @@ export default function DashboardPage() {
     return stocks.filter((s) => s.symbol.toLowerCase().includes(search.toLowerCase()));
   }, [search, stocks]);
 
+  const pct = (s: Stock) => parseFloat((s.changePercent || '0').replace(/[%,]/g, '')) || 0;
+  const { gainers, losers, topGainer, topLoser } = useMemo(() => {
+    const g = stocks.filter(s => pct(s) > 0).length;
+    const l = stocks.filter(s => pct(s) < 0).length;
+    const sorted = [...stocks].sort((a, b) => pct(b) - pct(a));
+    return { gainers: g, losers: l, topGainer: sorted[0], topLoser: sorted[sorted.length - 1] };
+  }, [stocks]);
+
   const startAdd = (symbol: string) => {
     setSelectedSymbol(symbol);
     setQuantity(1);
@@ -56,169 +65,120 @@ export default function DashboardPage() {
     }
   };
 
-
   return (
-    <div className="p-6 sm:p-8">
-      <div className="mx-auto max-w-6xl">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Portfolio Dashboard</h1>
-          <p className="text-sm text-slate-500 mt-1">Manage your PSX stocks and track your holdings in real-time</p>
-        </div>
+    <div className="page">
+      <PageHeader
+        icon={LayoutDashboard}
+        title="Portfolio Dashboard"
+        subtitle="Browse PSX stocks and add them to your portfolio"
+        accent="brand"
+      />
 
-        {/* Search & Controls */}
-        <div className="mb-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
-          <div className="flex-1 relative">
+      {/* Market snapshot */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-7">
+        <StatCard label="Stocks Listed" tone="sky" icon={Activity} value={stocks.length || '—'} />
+        <StatCard label="Advancing" tone="emerald" icon={TrendingUp} value={gainers} sub={<span className="text-emerald-600">gaining today</span>} />
+        <StatCard label="Declining" tone="red" icon={TrendingDown} value={losers} sub={<span className="text-red-600">in the red</span>} />
+        <StatCard label="Top Mover" tone="brand" icon={TrendingUp}
+          value={topGainer?.symbol || '—'}
+          sub={topGainer ? <span className="text-emerald-600">{topGainer.changePercent}</span> : undefined} />
+      </div>
+
+      {/* Stocks table */}
+      <div className="card overflow-hidden reveal">
+        <div className="border-b border-slate-100 px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <h2 className="text-base font-bold text-slate-900">Available Stocks</h2>
+            <span className="pill pill-sky">{filteredStocks.length}</span>
+          </div>
+          <div className="relative w-full sm:w-72">
+            <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
-              className="w-full px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl border border-gray-300 bg-white text-black text-sm sm:text-base placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 transition-all"
-              placeholder="Search stocks... (e.g., LPL, PTC)"
+              className="input pl-10"
+              placeholder="Search stocks… (e.g. LPL, PTC)"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
         </div>
 
-        {/* Main Grid */}
-        <div className="grid gap-8 lg:grid-cols-1">
-          {/* Stocks Table */}
-          <div className="lg:col-span-1">
-            <div className="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden">
-              <div className="border-b border-slate-200 px-4 sm:px-6 py-4 bg-gray-50">
-                <div className="flex items-center justify-between gap-2">
-                  <h2 className="text-lg sm:text-xl font-bold text-slate-900 truncate">Available Stocks</h2>
-                  <span className="text-xs sm:text-sm font-semibold text-gray-600 bg-gray-200 px-3 py-1 sm:px-4 sm:py-2 rounded-full whitespace-nowrap">
-                    {filteredStocks.length}
-                  </span>
-                </div>
-              </div>
-
-              <div className="max-h-[600px] overflow-y-auto overflow-x-auto">
-                {loadingStocks ? (
-                  <div className="px-4 sm:px-6 py-8">
-                    <TableSkeletonLoader />
-                  </div>
-                ) : filteredStocks.length > 0 ? (
-                  <table className="w-full text-xs sm:text-sm">
-                    <thead className="sticky top-0 bg-gray-50 border-b border-gray-200">
-                      <tr>
-                        <th className="text-left px-3 sm:px-6 py-3 sm:py-4 font-semibold text-gray-700">Symbol</th>
-                        <th className="text-right px-2 sm:px-6 py-3 sm:py-4 font-semibold text-gray-700">Price</th>
-                        <th className="text-right px-2 sm:px-6 py-3 sm:py-4 font-semibold text-gray-700">Change</th>
-                        <th className="text-right px-2 sm:px-6 py-3 sm:py-4 font-semibold text-gray-700 hidden sm:table-cell">Volume</th>
-                        <th className="text-right px-2 sm:px-6 py-3 sm:py-4 font-semibold text-gray-700">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200">
-                      {filteredStocks.map((stock) => (
-                        <tr key={stock.id} className="hover:bg-gray-50 transition-colors group">
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 font-semibold text-black group-hover:text-blue-600 transition-colors whitespace-nowrap">{stock.symbol}</td>
-                          <td className="text-right px-2 sm:px-6 py-3 sm:py-4 text-gray-700 font-medium whitespace-nowrap text-xs sm:text-sm">Rs {stock.current}</td>
-                          <td className={`text-right px-2 sm:px-6 py-3 sm:py-4 font-semibold text-xs sm:text-sm whitespace-nowrap ${
-                            stock.changePercent.startsWith('-') ? 'text-red-600' : 'text-green-600'
-                          }`}>
-                            {stock.changePercent}
-                          </td>
-                          <td className="text-right px-2 sm:px-6 py-3 sm:py-4 text-gray-600 text-xs font-medium hidden sm:table-cell">{stock.volume}</td>
-                          <td className="text-right px-2 sm:px-6 py-3 sm:py-4">
-                            <button
-                              onClick={() => startAdd(stock.symbol)}
-                              className="px-2 sm:px-4 py-1.5 sm:py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors text-xs sm:text-sm whitespace-nowrap"
-                            >
-                              Add
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                ) : (
-                  <div className="px-4 sm:px-6 py-12 text-center">
-                    <p className="text-gray-600 text-sm sm:text-lg font-medium">
-                      {search ? `No stocks found matching "${search}"` : 'No stocks available'}
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Add Stock Modal */}
-          {selectedSymbol && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
-              {/* Blurred Background */}
-              <div
-                className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300"
-                onClick={() => setSelectedSymbol('')}
-              />
-              
-              {/* Modal */}
-              <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-in fade-in zoom-in duration-300">
-                {/* Header with gradient */}
-                <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 sm:px-8 py-6 flex items-center justify-between">
-                  <div>
-                    <p className="text-blue-100 text-sm font-medium mb-1">Add to Holdings</p>
-                    <h2 className="text-2xl sm:text-3xl font-bold text-white">{selectedSymbol}</h2>
-                  </div>
-                  <button
-                    onClick={() => setSelectedSymbol('')}
-                    className="p-2 text-white hover:bg-white/20 rounded-lg transition-colors flex-shrink-0"
-                  >
-                    <X className="w-6 h-6" />
-                  </button>
-                </div>
-                
-                {/* Content */}
-                <div className="p-6 sm:p-8 space-y-6">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Quantity (shares)
-                    </label>
-                    <input
-                      type="number"
-                      min={1}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-black focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 transition-all"
-                      value={quantity}
-                      onChange={(e) => setQuantity(Math.max(1, Number(e.target.value)))}
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Average Cost (Optional)
-                    </label>
-                    <input
-                      type="number"
-                      min={0}
-                      step={0.01}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-black placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 transition-all"
-                      placeholder="e.g. 25.50"
-                      value={averageCost ?? ''}
-                      onChange={(e) => setAverageCost(e.target.value ? Number(e.target.value) : undefined)}
-                    />
-                  </div>
-
-                  <div className="flex gap-3 pt-4">
-                    <button
-                      onClick={submitAdd}
-                      className="flex-1 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-200 hover:scale-105"
-                    >
-                      Add Stock
-                    </button>
-                    <button
-                      onClick={() => setSelectedSymbol('')}
-                      className="flex-1 py-3 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition-colors"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-              </div>
+        <div className="max-h-[620px] overflow-y-auto overflow-x-auto">
+          {loadingStocks ? (
+            <div className="px-5 py-8"><TableSkeletonLoader /></div>
+          ) : filteredStocks.length > 0 ? (
+            <table className="w-full text-sm">
+              <thead className="sticky top-0 bg-slate-50/95 backdrop-blur border-b border-slate-200 z-10">
+                <tr className="text-left text-[11px] uppercase tracking-wider text-slate-400">
+                  <th className="px-5 py-3 font-semibold">Symbol</th>
+                  <th className="px-5 py-3 font-semibold text-right">Price</th>
+                  <th className="px-5 py-3 font-semibold text-right">Change</th>
+                  <th className="px-5 py-3 font-semibold text-right hidden sm:table-cell">Volume</th>
+                  <th className="px-5 py-3 font-semibold text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {filteredStocks.map((stock) => {
+                  const down = (stock.changePercent || '').startsWith('-');
+                  return (
+                    <tr key={stock.id} className="hover:bg-slate-50/70 transition-colors group">
+                      <td className="px-5 py-3.5 font-bold text-slate-900 group-hover:text-brand-600 transition-colors whitespace-nowrap">{stock.symbol}</td>
+                      <td className="px-5 py-3.5 text-right text-slate-700 font-medium font-mono whitespace-nowrap">Rs {stock.current}</td>
+                      <td className="px-5 py-3.5 text-right whitespace-nowrap">
+                        <span className={`pill ${down ? 'pill-down' : 'pill-up'} !py-0.5`}>{stock.changePercent}</span>
+                      </td>
+                      <td className="px-5 py-3.5 text-right text-slate-500 text-xs font-mono hidden sm:table-cell">{stock.volume}</td>
+                      <td className="px-5 py-3.5 text-right">
+                        <button onClick={() => startAdd(stock.symbol)}
+                          className="inline-flex items-center gap-1 px-3 py-1.5 bg-brand-500 text-white font-semibold rounded-lg hover:bg-brand-600 shadow-sm shadow-brand-500/25 transition-all text-xs whitespace-nowrap active:scale-95">
+                          <Plus size={13} /> Add
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          ) : (
+            <div className="px-5 py-14 text-center">
+              <Search className="w-10 h-10 text-slate-300 mx-auto mb-3" />
+              <p className="text-slate-500 font-medium">{search ? `No stocks found matching “${search}”` : 'No stocks available'}</p>
             </div>
           )}
         </div>
-        {error && <Toast message={error} type="error" onClose={() => setError('')} />}
-        {success && <Toast message={success} type="success" onClose={() => setSuccess('')} />}
       </div>
+
+      {/* Add Stock Modal */}
+      {selectedSymbol && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-ink-950/60 backdrop-blur-sm animate-fade-in" onClick={() => setSelectedSymbol('')} />
+          <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-scale-in">
+            <div className="bg-gradient-to-r from-brand-500 to-orange-600 px-7 py-6 flex items-center justify-between">
+              <div>
+                <p className="text-white/80 text-sm font-medium mb-0.5">Add to Holdings</p>
+                <h2 className="text-2xl font-bold text-white font-display">{selectedSymbol}</h2>
+              </div>
+              <button onClick={() => setSelectedSymbol('')} className="p-2 text-white hover:bg-white/20 rounded-lg transition-colors"><X className="w-5 h-5" /></button>
+            </div>
+            <div className="p-7 space-y-5">
+              <div>
+                <label className="eyebrow mb-2 block">Quantity (shares)</label>
+                <input type="number" min={1} className="input" value={quantity} onChange={(e) => setQuantity(Math.max(1, Number(e.target.value)))} />
+              </div>
+              <div>
+                <label className="eyebrow mb-2 block">Average Cost (optional)</label>
+                <input type="number" min={0} step={0.01} className="input" placeholder="e.g. 25.50" value={averageCost ?? ''} onChange={(e) => setAverageCost(e.target.value ? Number(e.target.value) : undefined)} />
+              </div>
+              <div className="flex gap-3 pt-2">
+                <button onClick={submitAdd} className="btn btn-primary flex-1">Add Stock</button>
+                <button onClick={() => setSelectedSymbol('')} className="btn btn-secondary">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {error && <Toast message={error} type="error" onClose={() => setError('')} />}
+      {success && <Toast message={success} type="success" onClose={() => setSuccess('')} />}
     </div>
   );
 }
