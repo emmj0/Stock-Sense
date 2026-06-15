@@ -1,9 +1,11 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../providers/AuthProvider';
-import { LayoutDashboard, Briefcase, BarChart3, GraduationCap, MessageSquare, Settings, LogOut, ChevronLeft, Layers, LineChart, Menu, X, Camera } from 'lucide-react';
+import { LayoutDashboard, Briefcase, BarChart3, GraduationCap, MessageSquare, Settings, LogOut, ChevronLeft, Layers, LineChart, Menu, X, Camera, Wallet } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { updateProfile } from '../api';
 import { resizeImage } from '../lib/image';
+
+const fmtRs = (n: number) => n.toLocaleString('en-PK', { maximumFractionDigits: 2 });
 
 const navItems = [
   { path: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -103,6 +105,24 @@ export default function Sidebar({ mobileOpen, setMobileOpen }: { mobileOpen: boo
           <X size={18} />
         </button>
       </div>
+
+      {/* Balance / wallet (display only) */}
+      {user && (collapsed ? (
+        <div className="relative px-2 pt-3 flex justify-center shrink-0">
+          <div title={`Balance Rs ${fmtRs(user.balance || 0)}`}
+            className="p-2.5 rounded-xl bg-gradient-to-br from-ink-850 to-ink-950 border border-white/10 text-brand-400 shadow-lg">
+            <Wallet size={18} />
+          </div>
+        </div>
+      ) : (
+        <div className="relative px-3 pt-4 shrink-0">
+          <div className="rounded-2xl bg-gradient-to-br from-ink-850 to-ink-950 border border-white/10 p-4 shadow-lg overflow-hidden relative">
+            <div className="pointer-events-none absolute -top-8 -right-6 w-24 h-24 rounded-full bg-brand-500/15 blur-2xl" />
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-400 flex items-center gap-1.5"><Wallet size={13} className="text-brand-400" /> Available Balance</p>
+            <p className="text-2xl font-bold text-white font-display mt-1.5 tracking-tight">Rs {fmtRs(user.balance || 0)}</p>
+          </div>
+        </div>
+      ))}
 
       {/* Nav items */}
       <nav className="relative flex-1 overflow-y-auto py-4 px-3 space-y-1">

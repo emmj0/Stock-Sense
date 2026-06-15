@@ -60,6 +60,65 @@ export async function removePortfolioItem(symbol: string): Promise<PortfolioItem
   return data.portfolio;
 }
 
+// ── Wallet / trading ──
+export async function fetchBalance(): Promise<number> {
+  const { data } = await api.get<{ balance: number }>('/api/user/balance');
+  return data.balance || 0;
+}
+
+export async function addCredit(amount: number): Promise<number> {
+  const { data } = await api.post<{ balance: number }>('/api/user/credit', { amount });
+  return data.balance || 0;
+}
+
+export async function buyStock(symbol: string, quantity: number): Promise<{ portfolio: PortfolioItem[]; balance: number; price: number; cost: number }> {
+  const { data } = await api.post('/api/user/buy', { symbol, quantity });
+  return data;
+}
+
+export async function sellStock(symbol: string, quantity?: number): Promise<{ portfolio: PortfolioItem[]; balance: number; price: number; proceeds: number }> {
+  const { data } = await api.post('/api/user/sell', { symbol, quantity });
+  return data;
+}
+
+export async function fetchWatchlist(): Promise<string[]> {
+  const { data } = await api.get<{ watchlist: string[] }>('/api/user/watchlist');
+  return data.watchlist || [];
+}
+
+export async function addToWatchlist(symbol: string): Promise<string[]> {
+  const { data } = await api.post<{ watchlist: string[] }>('/api/user/watchlist', { symbol });
+  return data.watchlist || [];
+}
+
+export async function removeFromWatchlist(symbol: string): Promise<string[]> {
+  const { data } = await api.delete<{ watchlist: string[] }>(`/api/user/watchlist/${symbol}`);
+  return data.watchlist || [];
+}
+
+export interface NotificationItem {
+  _id: string;
+  symbol?: string;
+  type: 'up' | 'down' | 'steady' | 'info' | 'buy' | 'sell' | 'credit';
+  title: string;
+  message?: string;
+  read: boolean;
+  createdAt: string;
+}
+
+export async function fetchNotifications(): Promise<{ notifications: NotificationItem[]; unreadCount: number }> {
+  const { data } = await api.get<{ notifications: NotificationItem[]; unreadCount: number }>('/api/notifications');
+  return { notifications: data.notifications || [], unreadCount: data.unreadCount || 0 };
+}
+
+export async function markNotificationsRead(): Promise<void> {
+  await api.post('/api/notifications/read-all');
+}
+
+export async function setNotificationRead(id: string, read: boolean): Promise<void> {
+  await api.patch(`/api/notifications/${id}`, { read });
+}
+
 export async function fetchIndexes(): Promise<any[]> {
   const { data } = await api.get('/api/market/indexes');
   return data.indexes || [];

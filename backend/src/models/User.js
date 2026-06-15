@@ -72,6 +72,8 @@ const UserSchema = new mongoose.Schema({
   },
   googleId: { type: String },
   avatar: { type: String }, // profile picture as a data URL (or remote URL)
+  balance: { type: Number, default: 0, min: 0 }, // virtual cash wallet used to buy stocks
+  watchlist: [{ type: String }], // stock symbols the user is watching
   preferences: PreferencesSchema,
   portfolio: [PortfolioItemSchema],
   // Learning progress

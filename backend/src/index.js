@@ -13,6 +13,7 @@ const marketRoutes = require('./routes/market');
 const coursesRoutes = require('./routes/courses');
 const chatRoutes = require('./routes/chat');
 const predictionsRoutes = require('./routes/predictions');
+const notificationsRoutes = require('./routes/notifications');
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use('/api/market', marketRoutes);
 app.use('/api/courses', coursesRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/predictions', predictionsRoutes);
+app.use('/api/notifications', notificationsRoutes);
 
 // Serve landing page
 app.use(express.static(path.join(__dirname, '..', 'public')));

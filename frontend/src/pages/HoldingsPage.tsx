@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchPortfolio, upsertPortfolioItem, removePortfolioItem, fetchIndexes, fetchSectors, fetchPortfolioPredictions } from '../api';
+import { fetchPortfolio, upsertPortfolioItem, removePortfolioItem, sellStock, fetchIndexes, fetchSectors, fetchPortfolioPredictions } from '../api';
 import { Pencil, Trash2, X, CheckCircle2, TrendingUp, TrendingDown, Minus, ShieldCheck, BarChart3, AlertTriangle, Brain, Newspaper, Gauge, Layers, Briefcase, Wallet, Coins, PieChart, ChevronRight } from 'lucide-react';
 import { Loader } from '../components/Loader';
 import { Toast, ConfirmModal } from '../components/Toast';
 import { PageHeader, SectionTitle, EmptyState } from '../components/ui';
+import { useAuth } from '../providers/AuthProvider';
 
 interface PortfolioItem { symbol: string; quantity: number; averageCost?: number; }
 interface StockInfo {
@@ -157,6 +158,7 @@ function ForecastChart({ forecast, quantiles, currentPrice }: {
 
 export default function HoldingsPage() {
   const navigate = useNavigate();
+  const { user, refreshUser } = useAuth();
   const [holdings, setHoldings] = useState<PortfolioItem[]>([]);
   const [stockDetails, setStockDetails] = useState<{ [key: string]: StockInfo }>({});
   const [predictionMap, setPredictionMap] = useState<{ [key: string]: PredictionInfo }>({});
@@ -167,6 +169,9 @@ export default function HoldingsPage() {
   const [msg, setMsg] = useState('');
   const [error, setError] = useState('');
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
+  const [sellSymbol, setSellSymbol] = useState<string | null>(null);
+  const [sellQty, setSellQty] = useState(1);
+  const [selling, setSelling] = useState(false);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -186,22 +191,26 @@ export default function HoldingsPage() {
       })));
       setStockDetails(d);
       try { const p = await fetchPortfolioPredictions(); const m: any = {}; (p || []).forEach((x: any) => { m[x.symbol] = x; }); setPredictionMap(m); } catch {}
+      refreshUser().catch(() => {}); // sync wallet balance
     } catch (e: any) { setError(e?.response?.data?.message || 'Failed to load'); }
     finally { setLoading(false); }
+    // refreshUser is intentionally omitted — its identity changes on every auth state
+    // update, and including it here would retrigger the load effect in an infinite loop.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => { load(); }, [load]);
 
   // lock scroll while any modal is open
   useEffect(() => {
-    const open = detailSymbol || editingSymbol;
+    const open = detailSymbol || editingSymbol || sellSymbol;
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') { setDetailSymbol(null); setEditingSymbol(null); } };
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') { setDetailSymbol(null); setEditingSymbol(null); setSellSymbol(null); } };
     document.addEventListener('keydown', onKey);
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = prev; };
-  }, [detailSymbol, editingSymbol]);
+  }, [detailSymbol, editingSymbol, sellSymbol]);
 
   const startEdit = (item: PortfolioItem) => { setDetailSymbol(null); setEditingSymbol(item.symbol); setEditForm({ quantity: item.quantity, averageCost: item.averageCost || 0 }); setError(''); setMsg(''); };
   const saveEdit = async () => {
@@ -215,6 +224,21 @@ export default function HoldingsPage() {
     setConfirmDelete(null);
     setDetailSymbol(null);
     try { const u = await removePortfolioItem(sym); setHoldings(u); setMsg(`Removed ${sym}`); setTimeout(() => setMsg(''), 2500); } catch (e: any) { setError(e?.response?.data?.message || 'Failed'); }
+  };
+
+  const startSell = (item: PortfolioItem) => { setDetailSymbol(null); setSellSymbol(item.symbol); setSellQty(item.quantity); setError(''); setMsg(''); };
+  const submitSell = async () => {
+    if (!sellSymbol || sellQty <= 0) { setError('Quantity must be > 0'); return; }
+    setSelling(true);
+    try {
+      const res = await sellStock(sellSymbol, sellQty);
+      setHoldings(res.portfolio);
+      setSellSymbol(null);
+      setMsg(`Sold ${sellQty} ${sellSymbol} for Rs ${res.proceeds.toLocaleString('en-PK')}`);
+      await refreshUser();
+      setTimeout(() => setMsg(''), 3000);
+    } catch (e: any) { setError(e?.response?.data?.message || 'Could not sell'); }
+    finally { setSelling(false); }
   };
 
   // Helpers
@@ -257,6 +281,17 @@ export default function HoldingsPage() {
         subtitle={`${holdings.length} ${holdings.length === 1 ? 'stock' : 'stocks'} in your portfolio · tap a stock for details`}
         accent="brand"
       />
+
+      {/* Cash wallet banner */}
+      <div className="card p-4 mb-5 reveal flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
+          <div className="w-11 h-11 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center"><Wallet size={20} /></div>
+          <div>
+            <p className="eyebrow">Available Cash</p>
+            <p className="text-xl font-bold text-slate-900 font-display tracking-tight">Rs {(user?.balance || 0).toLocaleString('en-PK', { maximumFractionDigits: 2 })}</p>
+          </div>
+        </div>
+      </div>
 
       {loading ? <Loader text="Loading holdings..." /> : holdings.length === 0 ? (
         <EmptyState
@@ -537,8 +572,9 @@ export default function HoldingsPage() {
 
               {/* footer actions */}
               <div className="flex gap-3 px-5 py-4 border-t border-slate-100 bg-white">
-                <button onClick={() => startEdit(item)} className="flex-1 px-4 py-2.5 text-sm font-semibold bg-sky-50 text-sky-700 rounded-xl hover:bg-sky-100 flex items-center justify-center gap-2 transition-colors"><Pencil size={15} /> Edit</button>
-                <button onClick={() => del(item.symbol)} className="flex-1 px-4 py-2.5 text-sm font-semibold bg-red-50 text-red-600 rounded-xl hover:bg-red-100 flex items-center justify-center gap-2 transition-colors"><Trash2 size={15} /> Remove</button>
+                <button onClick={() => startSell(item)} className="flex-1 px-4 py-2.5 text-sm font-semibold bg-emerald-50 text-emerald-700 rounded-xl hover:bg-emerald-100 flex items-center justify-center gap-2 transition-colors"><Coins size={15} /> Sell</button>
+                <button onClick={() => startEdit(item)} className="px-4 py-2.5 text-sm font-semibold bg-sky-50 text-sky-700 rounded-xl hover:bg-sky-100 flex items-center justify-center gap-2 transition-colors"><Pencil size={15} /> Edit</button>
+                <button onClick={() => del(item.symbol)} className="px-4 py-2.5 text-sm font-semibold bg-red-50 text-red-600 rounded-xl hover:bg-red-100 flex items-center justify-center gap-2 transition-colors"><Trash2 size={15} /> Remove</button>
               </div>
             </div>
           </div>
@@ -576,6 +612,50 @@ export default function HoldingsPage() {
           </div>
         </div>
       )}
+
+      {/* ── Sell modal ── */}
+      {sellSymbol && (() => {
+        const item = holdings.find(h => h.symbol === sellSymbol);
+        if (!item) return null;
+        const price = num(stockDetails[sellSymbol]?.current);
+        const proceeds = price * sellQty;
+        return (
+          <div className="fixed inset-0 z-[75] flex items-center justify-center p-4">
+            <div className="absolute inset-0 bg-ink-950/60 backdrop-blur-sm animate-fade-in" onClick={() => setSellSymbol(null)} />
+            <div className="relative w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden animate-scale-in">
+              <div className="bg-gradient-to-r from-emerald-500 to-teal-600 px-6 py-5 flex items-center justify-between">
+                <div>
+                  <p className="text-white/80 text-sm font-medium">Sell holding</p>
+                  <h2 className="text-2xl font-bold text-white font-display">{sellSymbol}</h2>
+                </div>
+                <button onClick={() => setSellSymbol(null)} className="p-2 text-white hover:bg-white/20 rounded-lg transition-colors"><X size={18} /></button>
+              </div>
+              <div className="p-6 space-y-5">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-slate-500">Market price</span>
+                  <span className="font-bold text-slate-900 font-display">Rs {stockDetails[sellSymbol]?.current || price.toFixed(2)}</span>
+                </div>
+                <div>
+                  <label className="eyebrow mb-2 block">Quantity to sell (you hold {item.quantity})</label>
+                  <input type="number" min={1} max={item.quantity} value={sellQty}
+                    onChange={e => setSellQty(Math.min(item.quantity, Math.max(1, Math.floor(Number(e.target.value)) || 1)))} className="input" />
+                  <button onClick={() => setSellQty(item.quantity)} className="mt-1.5 text-[11px] font-semibold text-emerald-600 hover:text-emerald-700">Sell all {item.quantity}</button>
+                </div>
+                <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-4 space-y-2">
+                  <div className="flex items-center justify-between text-sm"><span className="text-slate-500">You'll receive</span><span className="font-bold text-emerald-600">Rs {proceeds.toLocaleString('en-PK', { maximumFractionDigits: 2 })}</span></div>
+                  <div className="flex items-center justify-between text-sm"><span className="text-slate-500">New cash balance</span><span className="font-semibold text-slate-700">Rs {((user?.balance || 0) + proceeds).toLocaleString('en-PK', { maximumFractionDigits: 2 })}</span></div>
+                </div>
+                <div className="flex gap-3">
+                  <button onClick={submitSell} disabled={selling || price <= 0} className="btn flex-1 bg-emerald-500 hover:bg-emerald-600 text-white disabled:opacity-60 disabled:cursor-not-allowed">
+                    {selling ? 'Selling…' : <><Coins size={16} /> Sell for Rs {proceeds.toLocaleString('en-PK', { maximumFractionDigits: 0 })}</>}
+                  </button>
+                  <button onClick={() => setSellSymbol(null)} className="btn btn-secondary">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
 
       {error && <Toast message={error} type="error" onClose={() => setError('')} />}
       {msg && <Toast message={msg} type="success" onClose={() => setMsg('')} />}
