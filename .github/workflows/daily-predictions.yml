@@ -1,10 +1,19 @@
 name: Daily AI Predictions
 
+# End-to-end daily cycle (after PSX close):
+#   1. incrementally scrape any missing trading days  -> stocksense_tft_final.csv
+#   2. promote those rows into the model's master file -> tft_ready_clean.csv
+#   3. run TFT inference on the now-fresh data         -> predictions/recommendations in MongoDB
+#   4. commit the refreshed CSVs back                  -> next run starts current (self-sustaining)
+
 on:
   schedule:
-    # Run Mon-Fri at 12:00 UTC = 5:00 PM PKT (after PSX close at 3:30 PM)
+    # Mon-Fri 12:00 UTC = 5:00 PM PKT (after PSX close at 3:30 PM)
     - cron: '0 12 * * 1-5'
-  workflow_dispatch: # Allow manual trigger
+  workflow_dispatch: # allow manual trigger
+
+permissions:
+  contents: write    # required so the job can commit the refreshed CSVs back
 
 jobs:
   run-predictions:
@@ -34,6 +43,22 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # 1. Self-healing price refresh: scrapes every trading day between the last
+      #    date in the committed CSV and today (usually just 1 day; more if a run
+      #    was missed). Hits dps.psx.com.pk/historical directly — no Mongo needed.
+      - name: Refresh price history (incremental)
+        working-directory: ./model
+        run: python scrappers/technical_incremental.py
+
+      # 2. Promote the new rows into tft_ready_clean.csv (the 43-col file the model
+      #    actually reads). History stays byte-identical; only new rows are added.
+      - name: Promote fresh rows into master CSV
+        working-directory: ./model
+        run: python utility/promote_to_clean.py
+
+      # 3. TFT inference on the fresh data -> MongoDB (predictions + recommendations).
+      #    --skip-scrape because steps 1-2 already refreshed the data; step 3 still
+      #    fetches live news sentiment per ticker for the forecast itself.
       - name: Run Prediction Pipeline
         working-directory: ./model
         env:
@@ -47,8 +72,20 @@ jobs:
           TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY_1 }}
           GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
           GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+        run: python run_predictions.py --skip-scrape 2>&1 | tail -100
+
+      # 4. Persist the refreshed data so tomorrow's run starts current.
+      - name: Commit refreshed data
         run: |
-          python run_predictions.py 2>&1 | tail -100
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add model/data/final/tft_ready_clean.csv model/data/processed/stocksense_tft_final.csv
+          if git diff --staged --quiet; then
+            echo "No data changes to commit."
+          else
+            git commit -m "chore(data): daily refresh to $(date -u +%F) [skip ci]"
+            git push
+          fi
 
       - name: Print Summary
         if: always()

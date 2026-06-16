@@ -59,3 +59,8 @@ npm-debug.log*
 # Test reports (generated; uploaded as CI artifacts instead of committed)
 test-report/
 coverage/
+
+# data refresh backups (written by technical_incremental / promote_to_clean)
+model/data/**/*.bak
+
+model/lightning_logs/

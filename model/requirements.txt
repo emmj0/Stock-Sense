@@ -18,3 +18,4 @@ uvicorn[standard]>=0.29.0
 python-multipart>=0.0.9
 pytz>=2024.1
 yfinance>=0.2.0
+tqdm>=4.66.0
